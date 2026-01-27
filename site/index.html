@@ -17,6 +17,7 @@
             --millennial: #f472b6;
             --gen-z: #22d3ee;
             --gen-alpha: #a3e635;
+            --rosetta: #04191b;
         }
 
         * {
@@ -128,6 +129,31 @@
         .gen-card.millennial { --accent: var(--millennial); }
         .gen-card.gen-z { --accent: var(--gen-z); }
         .gen-card.gen-alpha { --accent: var(--gen-alpha); }
+        .gen-card.rosetta { --accent: var(--rosetta); }
+
+        .section-header {
+            font-size: 0.875rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .gen-card .badge {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 16px;
+            padding: 4px 12px;
+            background: color-mix(in srgb, var(--accent) 15%, transparent);
+            border-radius: 100px;
+        }
 
         .gen-card .years {
             display: inline-block;
@@ -237,6 +263,7 @@
         </section>
 
         <section class="container">
+            <h3 class="section-header">Generations</h3>
             <div class="generations-grid">
                 <a href="gen-x.html" class="gen-card gen-x">
                     <span class="years">1965 - 1980</span>
@@ -298,6 +325,28 @@
                         <span class="keyword">Roblox</span>
                         <span class="keyword">Touch-First</span>
                         <span class="keyword">Accessible</span>
+                    </div>
+                    <div class="arrow">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <section class="container" style="padding-top: 0;">
+            <h3 class="section-header">Design Systems</h3>
+            <div class="generations-grid">
+                <a href="rosetta.html" class="gen-card rosetta">
+                    <span class="badge">Handshake</span>
+                    <h2>Rosetta</h2>
+                    <p>Professional clarity with human warmth. Dark teal primary, Noi Grotesk typography, and shadow-based elevation.</p>
+                    <div class="keywords">
+                        <span class="keyword">Professional</span>
+                        <span class="keyword">Clean</span>
+                        <span class="keyword">Accessible</span>
+                        <span class="keyword">Neutral</span>
                     </div>
                     <div class="arrow">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
