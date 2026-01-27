@@ -1,1026 +1,768 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rosetta Design System | Design Prompts</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            /* Background Colors */
-            --bg-primary: #FFFFFF;
-            --bg-secondary: #F6F6F6;
-            --bg-surface: #FCFCFD;
-            --bg-inverted: #121212;
-            --bg-selected: #EAEAEA;
-            --bg-disabled: #EEEEEE;
-            --bg-tertiary: #F3F3F3;
-            --bg-quaternary: #E7E7E7;
-
-            /* Foreground Colors */
-            --fg-primary: #121212;
-            --fg-secondary: rgba(18, 18, 18, 0.7);
-            --fg-disabled: rgba(18, 18, 18, 0.4);
-            --fg-inverted: #FFFFFF;
-            --fg-border: rgba(31, 32, 44, 0.2);
-
-            /* Interactive Colors */
-            --interactive-primary: #04191B;
-            --interactive-hovered: rgba(18, 18, 18, 0.06);
-            --interactive-pressed: rgba(18, 18, 18, 0.12);
-            --interactive-focus: #003BCC;
-
-            /* Status Colors */
-            --status-info-bg: #CCDBFF;
-            --status-info-fg: #003BCC;
-            --status-positive-bg: #A5E09F;
-            --status-positive-fg: #327D0F;
-            --status-warning-bg: #FFD999;
-            --status-warning-fg: #A36700;
-            --status-negative-bg: #FFC2C4;
-            --status-negative-fg: #BB3643;
-            --status-neutral-bg: #EAEAEA;
-
-            /* Spacing */
-            --spacing-half: 2px;
-            --spacing-one: 4px;
-            --spacing-two: 8px;
-            --spacing-three: 12px;
-            --spacing-four: 16px;
-            --spacing-five: 20px;
-            --spacing-six: 24px;
-            --spacing-eight: 32px;
-            --spacing-twelve: 48px;
-            --spacing-sixteen: 64px;
-
-            /* Border Radius */
-            --radius-zero: 0px;
-            --radius-one: 4px;
-            --radius-two: 8px;
-            --radius-three: 12px;
-            --radius-four: 16px;
-            --radius-max: 9999px;
-
-            /* Shadows */
-            --elevation-one: 0 1px 2px rgba(0, 0, 0, 0.08);
-            --elevation-two: 0 2px 20px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.08);
-            --elevation-three: 0 6px 30px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.08);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Noi Grotesk', 'Inter', system-ui, sans-serif;
-            background: var(--bg-primary);
-            color: var(--fg-primary);
-            min-height: 100vh;
-            line-height: 1.5;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 0 var(--spacing-six);
-        }
-
-        /* Header */
-        header {
-            padding: var(--spacing-four) 0;
-            border-bottom: 1px solid var(--fg-border);
-        }
-
-        .nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .back-link {
-            color: var(--interactive-primary);
-            text-decoration: none;
-            font-size: 15px;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: var(--spacing-two);
-            transition: color 0.2s ease-out;
-        }
-
-        .back-link:hover {
-            color: var(--fg-primary);
-        }
-
-        .back-link::before {
-            content: '<-';
-            font-family: 'IBM Plex Mono', monospace;
-        }
-
-        .style-badge {
-            font-size: 13px;
-            padding: var(--spacing-one) var(--spacing-three);
-            background: var(--bg-secondary);
-            color: var(--fg-secondary);
-            border-radius: var(--radius-max);
-            font-weight: 500;
-        }
-
-        /* Hero Section */
-        .hero {
-            padding: var(--spacing-sixteen) 0 var(--spacing-twelve);
-        }
-
-        .hero .label {
-            font-size: 13px;
-            color: var(--fg-secondary);
-            letter-spacing: 0.01em;
-            margin-bottom: var(--spacing-four);
-            font-weight: 500;
-        }
-
-        .hero h1 {
-            font-size: clamp(44px, 8vw, 72px);
-            font-weight: 600;
-            color: var(--interactive-primary);
-            margin-bottom: var(--spacing-six);
-            letter-spacing: -0.03em;
-            line-height: 1;
-        }
-
-        .hero .tagline {
-            font-size: 19px;
-            color: var(--fg-secondary);
-            max-width: 600px;
-            line-height: 1.4;
-            letter-spacing: -0.02em;
-        }
-
-        .hero .tagline strong {
-            color: var(--fg-primary);
-            font-weight: 500;
-        }
-
-        /* Divider */
-        .divider {
-            border: none;
-            border-top: 1px solid var(--fg-border);
-            margin: var(--spacing-twelve) 0;
-        }
-
-        /* Content */
-        .content {
-            padding: var(--spacing-eight) 0;
-        }
-
-        .section {
-            margin-bottom: var(--spacing-twelve);
-        }
-
-        .section-label {
-            display: flex;
-            align-items: center;
-            gap: var(--spacing-three);
-            margin-bottom: var(--spacing-five);
-            font-size: 13px;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--fg-secondary);
-            font-weight: 600;
-        }
-
-        .section-label::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: linear-gradient(to right, var(--fg-border), transparent);
-        }
-
-        .section h2 {
-            font-size: 28px;
-            font-weight: 500;
-            margin-bottom: var(--spacing-four);
-            color: var(--fg-primary);
-            letter-spacing: -0.02em;
-        }
-
-        .section p, .section li {
-            color: var(--fg-secondary);
-            margin-bottom: var(--spacing-three);
-            font-size: 15px;
-            line-height: 1.6;
-        }
-
-        .section ul {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .section li {
-            padding-left: var(--spacing-six);
-            position: relative;
-        }
-
-        .section li::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 10px;
-            width: 6px;
-            height: 6px;
-            background: var(--interactive-primary);
-            border-radius: 50%;
-        }
-
-        /* Cards */
-        .card {
-            background: var(--bg-primary);
-            border: 1px solid rgba(226, 229, 243, 1);
-            border-radius: var(--radius-four);
-            box-shadow: var(--elevation-two);
-            margin: var(--spacing-six) 0;
-            overflow: hidden;
-        }
-
-        .card-header {
-            background: var(--bg-secondary);
-            padding: var(--spacing-three) var(--spacing-four);
-            border-bottom: 1px solid var(--fg-border);
-            font-size: 13px;
-            font-weight: 500;
-            color: var(--fg-secondary);
-        }
-
-        .card-body {
-            padding: var(--spacing-five);
-        }
-
-        /* Philosophy Box */
-        .philosophy-box {
-            background: var(--bg-surface);
-            border-left: 4px solid var(--interactive-primary);
-            padding: var(--spacing-five) var(--spacing-six);
-            margin: var(--spacing-six) 0;
-            border-radius: 0 var(--radius-two) var(--radius-two) 0;
-            font-size: 17px;
-            color: var(--fg-primary);
-            font-weight: 500;
-            line-height: 1.5;
-        }
-
-        /* Color Swatches */
-        .color-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-            gap: var(--spacing-four);
-            margin: var(--spacing-six) 0;
-        }
-
-        .color-swatch {
-            border-radius: var(--radius-three);
-            overflow: hidden;
-            box-shadow: var(--elevation-one);
-            border: 1px solid var(--fg-border);
-        }
-
-        .color-swatch .preview {
-            height: 80px;
-        }
-
-        .color-swatch .info {
-            padding: var(--spacing-three);
-            background: var(--bg-primary);
-        }
-
-        .color-swatch .name {
-            font-size: 13px;
-            font-weight: 500;
-            color: var(--fg-primary);
-            margin-bottom: 2px;
-        }
-
-        .color-swatch .hex {
-            font-size: 12px;
-            font-family: 'IBM Plex Mono', monospace;
-            color: var(--fg-secondary);
-        }
-
-        /* Status Color Row */
-        .status-colors {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-            gap: var(--spacing-four);
-            margin: var(--spacing-six) 0;
-        }
-
-        .status-swatch {
-            display: flex;
-            align-items: center;
-            gap: var(--spacing-three);
-            padding: var(--spacing-three) var(--spacing-four);
-            border-radius: var(--radius-two);
-        }
-
-        .status-swatch .dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-        }
-
-        .status-swatch .label {
-            font-size: 13px;
-            font-weight: 500;
-        }
-
-        /* Typography Samples */
-        .type-sample {
-            margin: var(--spacing-four) 0;
-            padding: var(--spacing-four) 0;
-            border-bottom: 1px solid var(--fg-border);
-        }
-
-        .type-sample:last-child {
-            border-bottom: none;
-        }
-
-        .type-label {
-            font-size: 12px;
-            color: var(--fg-secondary);
-            margin-bottom: var(--spacing-two);
-            font-family: 'IBM Plex Mono', monospace;
-        }
-
-        .type-heading-xl {
-            font-size: 44px;
-            font-weight: 500;
-            letter-spacing: -0.04em;
-            line-height: 1;
-        }
-
-        .type-heading-lg {
-            font-size: 32px;
-            font-weight: 500;
-            letter-spacing: -0.03em;
-            line-height: 1.2;
-        }
-
-        .type-heading-md {
-            font-size: 28px;
-            font-weight: 500;
-            letter-spacing: -0.03em;
-            line-height: 1.2;
-        }
-
-        .type-body-lg {
-            font-size: 17px;
-            font-weight: 400;
-            letter-spacing: -0.02em;
-            line-height: 1.4;
-        }
-
-        .type-body-md {
-            font-size: 15px;
-            font-weight: 400;
-            line-height: 1.5;
-        }
-
-        .type-mono {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 14px;
-            color: var(--interactive-primary);
-        }
-
-        /* Spacing Demo */
-        .spacing-demo {
-            display: flex;
-            flex-direction: column;
-            gap: var(--spacing-three);
-            margin: var(--spacing-six) 0;
-        }
-
-        .spacing-item {
-            display: flex;
-            align-items: center;
-            gap: var(--spacing-four);
-        }
-
-        .spacing-bar {
-            height: 24px;
-            background: var(--interactive-primary);
-            border-radius: var(--radius-one);
-            opacity: 0.2;
-        }
-
-        .spacing-label {
-            font-size: 13px;
-            font-family: 'IBM Plex Mono', monospace;
-            color: var(--fg-secondary);
-            min-width: 100px;
-        }
-
-        /* Component Examples */
-        .component-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: var(--spacing-four);
-            align-items: center;
-            margin: var(--spacing-five) 0;
-        }
-
-        /* Buttons */
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: var(--spacing-three) var(--spacing-five);
-            font-family: 'Noi Grotesk', 'Inter', system-ui, sans-serif;
-            font-size: 15px;
-            font-weight: 600;
-            border-radius: var(--radius-two);
-            cursor: pointer;
-            transition: all 0.2s ease-out;
-            border: none;
-            min-height: 48px;
-        }
-
-        .btn-primary {
-            background: var(--interactive-primary);
-            color: var(--fg-inverted);
-        }
-
-        .btn-primary:hover {
-            background: #062E32;
-        }
-
-        .btn-primary:active {
-            background: #073D42;
-        }
-
-        .btn-secondary {
-            background: var(--bg-primary);
-            color: var(--fg-primary);
-            border: 1px solid var(--fg-border);
-        }
-
-        .btn-secondary:hover {
-            background: var(--bg-tertiary);
-        }
-
-        .btn-secondary:active {
-            background: var(--bg-quaternary);
-        }
-
-        .btn-destructive {
-            background: var(--status-negative-fg);
-            color: var(--fg-inverted);
-        }
-
-        .btn-destructive:hover {
-            background: #a02f3a;
-        }
-
-        .btn:disabled {
-            background: var(--bg-disabled);
-            color: var(--fg-disabled);
-            cursor: not-allowed;
-        }
-
-        /* Inputs */
-        .input {
-            height: 48px;
-            border: 1px solid var(--fg-border);
-            border-radius: var(--radius-one);
-            background: transparent;
-            padding: 0 var(--spacing-four);
-            font-family: 'Noi Grotesk', 'Inter', system-ui, sans-serif;
-            font-size: 15px;
-            color: var(--fg-primary);
-            width: 100%;
-            max-width: 300px;
-            transition: border-color 0.2s, outline 0.2s;
-        }
-
-        .input:hover {
-            border-color: var(--fg-primary);
-        }
-
-        .input:focus {
-            outline: 2px solid var(--interactive-focus);
-            outline-offset: 2px;
-            border-color: var(--interactive-focus);
-        }
-
-        .input::placeholder {
-            color: var(--fg-secondary);
-        }
-
-        /* Tags/Badges */
-        .tag {
-            display: inline-flex;
-            align-items: center;
-            padding: var(--spacing-one) var(--spacing-two);
-            border-radius: var(--radius-one);
-            font-size: 13px;
-            font-weight: 600;
-        }
-
-        .tag-info {
-            background: var(--status-info-bg);
-            color: var(--status-info-fg);
-        }
-
-        .tag-positive {
-            background: var(--status-positive-bg);
-            color: var(--status-positive-fg);
-        }
-
-        .tag-warning {
-            background: var(--status-warning-bg);
-            color: var(--status-warning-fg);
-        }
-
-        .tag-negative {
-            background: var(--status-negative-bg);
-            color: var(--status-negative-fg);
-        }
-
-        .tag-neutral {
-            background: var(--status-neutral-bg);
-            color: var(--fg-primary);
-        }
-
-        /* Pillars Grid */
-        .pillars-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: var(--spacing-four);
-            margin: var(--spacing-six) 0;
-        }
-
-        .pillar-card {
-            background: var(--bg-surface);
-            border: 1px solid var(--fg-border);
-            border-radius: var(--radius-three);
-            padding: var(--spacing-five);
-        }
-
-        .pillar-card h4 {
-            color: var(--interactive-primary);
-            font-size: 15px;
-            font-weight: 600;
-            margin-bottom: var(--spacing-two);
-        }
-
-        .pillar-card p {
-            font-size: 14px;
-            color: var(--fg-secondary);
-            margin: 0;
-            line-height: 1.5;
-        }
-
-        /* Copy Section */
-        .copy-section {
-            text-align: center;
-            margin-top: var(--spacing-twelve);
-            padding: var(--spacing-twelve) var(--spacing-eight);
-            background: var(--bg-secondary);
-            border-radius: var(--radius-four);
-        }
-
-        .copy-section h3 {
-            font-size: 24px;
-            font-weight: 500;
-            margin-bottom: var(--spacing-three);
-            color: var(--fg-primary);
-            letter-spacing: -0.02em;
-        }
-
-        .copy-section p {
-            color: var(--fg-secondary);
-            margin-bottom: var(--spacing-six);
-            font-size: 15px;
-        }
-
-        .copy-btn {
-            background: var(--interactive-primary);
-            color: var(--fg-inverted);
-            border: none;
-            padding: var(--spacing-four) var(--spacing-eight);
-            font-family: 'Noi Grotesk', 'Inter', system-ui, sans-serif;
-            font-size: 15px;
-            font-weight: 600;
-            border-radius: var(--radius-two);
-            cursor: pointer;
-            transition: background-color 0.2s ease-out;
-            min-height: 48px;
-        }
-
-        .copy-btn:hover {
-            background: #062E32;
-        }
-
-        .copy-btn:active {
-            background: #073D42;
-        }
-
-        .copy-btn:focus-visible {
-            outline: 2px solid var(--interactive-focus);
-            outline-offset: 2px;
-        }
-
-        .copy-btn.copied {
-            background: var(--status-positive-fg);
-        }
-
-        /* Footer */
-        footer {
-            padding: var(--spacing-eight) 0;
-            text-align: center;
-            color: var(--fg-secondary);
-            font-size: 14px;
-            border-top: 1px solid var(--fg-border);
-        }
-
-        /* Sensory Description Box */
-        .sensory-box {
-            background: var(--bg-secondary);
-            border-radius: var(--radius-three);
-            padding: var(--spacing-five);
-            margin: var(--spacing-six) 0;
-        }
-
-        .sensory-box h4 {
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--fg-primary);
-            margin-bottom: var(--spacing-three);
-        }
-
-        .sensory-box p {
-            font-size: 14px;
-            color: var(--fg-secondary);
-            margin-bottom: var(--spacing-two);
-        }
-
-        /* Responsive */
-        @media (max-width: 640px) {
-            .hero h1 {
-                font-size: 36px;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rosetta Design System</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            rosetta: {
+              'bg-primary': '#FFFFFF',
+              'bg-secondary': '#F6F6F6',
+              'bg-surface': '#FCFCFD',
+              'bg-inverted': '#121212',
+              'bg-selected': '#EAEAEA',
+              'bg-disabled': '#EEEEEE',
+              'bg-tertiary': '#F3F3F3',
+              'bg-quaternary': '#E7E7E7',
+              'fg-primary': '#121212',
+              'fg-secondary': 'rgba(18,18,18,0.7)',
+              'fg-disabled': 'rgba(18,18,18,0.4)',
+              'fg-inverted': '#FFFFFF',
+              'fg-border': 'rgba(31,32,44,0.2)',
+              'interactive-primary': '#04191B',
+              'interactive-hover': '#062E32',
+              'interactive-active': '#073D42',
+              'interactive-hovered': 'rgba(18,18,18,0.06)',
+              'interactive-pressed': 'rgba(18,18,18,0.12)',
+              'focus-outline': '#003BCC',
+              'info-bg': '#CCDBFF',
+              'info-fg': '#003BCC',
+              'positive-bg': '#A5E09F',
+              'positive-fg': '#327D0F',
+              'warning-bg': '#FFD999',
+              'warning-fg': '#A36700',
+              'negative-bg': '#FFC2C4',
+              'negative-fg': '#BB3643',
+              'neutral-bg': '#EAEAEA',
             }
-
-            .color-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .pillars-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .component-row {
-                flex-direction: column;
-                align-items: stretch;
-            }
-
-            .btn {
-                width: 100%;
-            }
-
-            .input {
-                max-width: 100%;
-            }
+          },
+          fontFamily: {
+            sans: ['"Inter"', 'system-ui', 'sans-serif'],
+            brand: ['"Bebas Neue"', 'sans-serif'],
+            mono: ['"IBM Plex Mono"', 'monospace'],
+          },
+          spacing: {
+            'half': '2px',
+            'one': '4px',
+            'two': '8px',
+            'three': '12px',
+            'four': '16px',
+            'five': '20px',
+            'six': '24px',
+            'eight': '32px',
+            'twelve': '48px',
+            'sixteen': '64px',
+          },
+          borderRadius: {
+            'zero': '0px',
+            'one': '4px',
+            'two': '8px',
+            'three': '12px',
+            'four': '16px',
+            'max': '9999px',
+          },
+          boxShadow: {
+            'elevation-one': '0 1px 2px rgba(0,0,0,0.08)',
+            'elevation-two': '0 2px 20px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.08)',
+            'elevation-three': '0 6px 30px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.08)',
+          },
+          fontSize: {
+            'brand-large': ['122px', { lineHeight: '0.8', letterSpacing: '-0.02em', fontWeight: '600' }],
+            'brand-small': ['60px', { lineHeight: '0.9', letterSpacing: '-0.01em', fontWeight: '600' }],
+            'heading-xl': ['44px', { lineHeight: '1.0', letterSpacing: '-0.04em', fontWeight: '500' }],
+            'heading-lg': ['32px', { lineHeight: '1.2', letterSpacing: '-0.03em', fontWeight: '500' }],
+            'heading-md': ['28px', { lineHeight: '1.2', letterSpacing: '-0.03em', fontWeight: '500' }],
+            'heading-sm': ['24px', { lineHeight: '1.2', letterSpacing: '-0.02em', fontWeight: '500' }],
+            'body-xl': ['19px', { lineHeight: '1.2', letterSpacing: '-0.02em' }],
+            'body-lg': ['17px', { lineHeight: '1.4', letterSpacing: '-0.02em' }],
+            'body-md': ['15px', { lineHeight: '1.2', letterSpacing: '0' }],
+            'body-sm': ['13px', { lineHeight: '1.2', letterSpacing: '0.01em' }],
+          }
         }
-
-        /* Reduced motion */
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
-        }
-
-        /* Focus states */
-        :focus-visible {
-            outline: 2px solid var(--interactive-focus);
-            outline-offset: 2px;
-        }
-    </style>
+      }
+    }
+  </script>
+  <style>
+    .font-sans { font-feature-settings: "ss03" on, "ss11" on; }
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: #F6F6F6; }
+    ::-webkit-scrollbar-thumb { background: rgba(18,18,18,0.2); border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(18,18,18,0.4); }
+    .focus-ring:focus-visible { outline: #003BCC solid 2px; outline-offset: 2px; }
+    .btn-transition { transition: background-color 0.2s ease-out, border-color 0.2s ease-out; }
+    .card-interactive { transition: box-shadow 0.2s ease-out, border-color 0.2s ease-out; }
+    @keyframes modalIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+    .animate-modal { animation: modalIn 0.2s ease-out; }
+    @media (prefers-reduced-motion: reduce) { * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; } }
+    .copy-toast { animation: fadeInUp 0.2s ease-out; }
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    .section-divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(31,32,44,0.2), transparent); }
+  </style>
 </head>
-<body>
-    <header>
-        <div class="container">
-            <nav class="nav">
-                <a href="index.html" class="back-link">Back to all prompts</a>
-                <span class="style-badge">Design System</span>
-            </nav>
+<body class="bg-rosetta-bg-primary text-rosetta-fg-primary font-sans antialiased">
+
+  <!-- Navigation -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-rosetta-bg-primary/95 backdrop-blur-sm border-b border-rosetta-fg-border">
+    <div class="max-w-7xl mx-auto px-six flex items-center justify-between h-16">
+      <div class="flex items-center gap-four">
+        <a href="index.html" class="text-body-sm text-rosetta-fg-secondary hover:text-rosetta-fg-primary transition-colors font-mono">&larr; Back</a>
+        <span class="font-brand text-2xl tracking-tight text-rosetta-interactive-primary">ROSETTA</span>
+      </div>
+      <div class="hidden md:flex items-center gap-four">
+        <a href="#colors" class="text-body-md text-rosetta-fg-secondary hover:text-rosetta-fg-primary transition-colors">Colors</a>
+        <a href="#typography" class="text-body-md text-rosetta-fg-secondary hover:text-rosetta-fg-primary transition-colors">Typography</a>
+        <a href="#components" class="text-body-md text-rosetta-fg-secondary hover:text-rosetta-fg-primary transition-colors">Components</a>
+        <a href="#patterns" class="text-body-md text-rosetta-fg-secondary hover:text-rosetta-fg-primary transition-colors">Patterns</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="pt-32 pb-sixteen px-six bg-rosetta-bg-surface">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid lg:grid-cols-2 gap-twelve items-center">
+        <div>
+          <h1 class="font-brand text-brand-small lg:text-brand-large text-rosetta-interactive-primary leading-none mb-six">
+            ROSETTA
+          </h1>
+          <p class="text-heading-sm text-rosetta-fg-secondary mb-eight max-w-xl">
+            Professional clarity with human warmth. Built for a platform connecting students and employers.
+          </p>
+          <div class="flex flex-wrap gap-four">
+            <span class="inline-flex items-center gap-two px-four py-two bg-rosetta-bg-secondary rounded-two text-body-sm">
+              <span class="w-2 h-2 rounded-full bg-rosetta-positive-fg"></span>
+              Trustworthy
+            </span>
+            <span class="inline-flex items-center gap-two px-four py-two bg-rosetta-bg-secondary rounded-two text-body-sm">
+              <span class="w-2 h-2 rounded-full bg-rosetta-info-fg"></span>
+              Approachable
+            </span>
+            <span class="inline-flex items-center gap-two px-four py-two bg-rosetta-bg-secondary rounded-two text-body-sm">
+              <span class="w-2 h-2 rounded-full bg-rosetta-interactive-primary"></span>
+              Clear
+            </span>
+            <span class="inline-flex items-center gap-two px-four py-two bg-rosetta-bg-secondary rounded-two text-body-sm">
+              <span class="w-2 h-2 rounded-full bg-rosetta-warning-fg"></span>
+              Modern
+            </span>
+          </div>
         </div>
-    </header>
-
-    <main>
-        <section class="hero">
-            <div class="container">
-                <p class="label">Handshake Design System</p>
-                <h1>Rosetta</h1>
-                <p class="tagline"><strong>Professional clarity with human warmth.</strong> A design language for platforms connecting students and employers. Readable, accessible, trustworthy.</p>
+        <div class="relative">
+          <div class="grid grid-cols-2 gap-four">
+            <div class="bg-rosetta-interactive-primary rounded-four p-six shadow-elevation-three">
+              <div class="text-rosetta-fg-inverted text-body-lg font-medium mb-two">Find Your Path</div>
+              <div class="text-rosetta-fg-inverted/70 text-body-sm">Discover opportunities that match your goals</div>
             </div>
-        </section>
-
-        <hr class="divider">
-
-        <section class="content">
-            <div class="container">
-                <div class="section">
-                    <div class="section-label">Philosophy</div>
-                    <h2>The Visual Vibe</h2>
-
-                    <div class="philosophy-box">
-                        Clean. Approachable. Trustworthy. Modern.
-                    </div>
-
-                    <p>Imagine a well-designed career center: organized, professional, but not intimidating. The interface feels helpful rather than bureaucratic. It's the difference between a sterile government form and a thoughtfully designed onboarding experience.</p>
-
-                    <div class="sensory-box">
-                        <h4>If this design were a physical space:</h4>
-                        <p>A modern coworking space with clean desks and good lighting. White walls with occasional accent plants. Natural light through large windows. Professional but not stuffy - people wear nice casual. Quiet enough to focus, social enough to feel human.</p>
-                    </div>
-
-                    <h3 style="font-size: 17px; font-weight: 500; margin: 24px 0 16px; color: var(--fg-primary);">Emotional Keywords</h3>
-                    <ul>
-                        <li><strong style="color: var(--fg-primary);">Trustworthy</strong> - Students trust this platform with their career. The design must feel reliable, not experimental.</li>
-                        <li><strong style="color: var(--fg-primary);">Approachable</strong> - Despite handling serious workflows (hiring, applications), it never feels cold or corporate.</li>
-                        <li><strong style="color: var(--fg-primary);">Clear</strong> - Information hierarchy is paramount. Users scan, not read. Every visual decision aids comprehension.</li>
-                        <li><strong style="color: var(--fg-primary);">Modern</strong> - Contemporary without being trendy. Noi Grotesk brings geometric precision with humanist warmth.</li>
-                        <li><strong style="color: var(--fg-primary);">Neutral</strong> - The content (jobs, profiles, companies) is the hero. The UI recedes.</li>
-                    </ul>
-                </div>
-
-                <hr class="divider">
-
-                <div class="section">
-                    <div class="section-label">Colors</div>
-                    <h2>Neutral Foundation with Semantic Accents</h2>
-                    <p>The palette is intentionally restrained. Most of the interface is white, gray, and the dark teal primary. Color appears meaningfully for status, actions, and hierarchy.</p>
-
-                    <h3 style="font-size: 15px; font-weight: 600; margin: 24px 0 16px; color: var(--fg-primary);">Core Palette</h3>
-                    <div class="color-grid">
-                        <div class="color-swatch">
-                            <div class="preview" style="background: #04191B;"></div>
-                            <div class="info">
-                                <div class="name">Interactive Primary</div>
-                                <div class="hex">#04191B</div>
-                            </div>
-                        </div>
-                        <div class="color-swatch">
-                            <div class="preview" style="background: #FFFFFF;"></div>
-                            <div class="info">
-                                <div class="name">BG Primary</div>
-                                <div class="hex">#FFFFFF</div>
-                            </div>
-                        </div>
-                        <div class="color-swatch">
-                            <div class="preview" style="background: #F6F6F6;"></div>
-                            <div class="info">
-                                <div class="name">BG Secondary</div>
-                                <div class="hex">#F6F6F6</div>
-                            </div>
-                        </div>
-                        <div class="color-swatch">
-                            <div class="preview" style="background: #121212;"></div>
-                            <div class="info">
-                                <div class="name">FG Primary</div>
-                                <div class="hex">#121212</div>
-                            </div>
-                        </div>
-                        <div class="color-swatch">
-                            <div class="preview" style="background: rgba(18, 18, 18, 0.7);"></div>
-                            <div class="info">
-                                <div class="name">FG Secondary</div>
-                                <div class="hex">rgba(18,18,18,0.7)</div>
-                            </div>
-                        </div>
-                        <div class="color-swatch">
-                            <div class="preview" style="background: #003BCC;"></div>
-                            <div class="info">
-                                <div class="name">Focus Outline</div>
-                                <div class="hex">#003BCC</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <h3 style="font-size: 15px; font-weight: 600; margin: 24px 0 16px; color: var(--fg-primary);">Status Colors</h3>
-                    <div class="status-colors">
-                        <div class="status-swatch" style="background: var(--status-info-bg);">
-                            <div class="dot" style="background: var(--status-info-fg);"></div>
-                            <span class="label" style="color: var(--status-info-fg);">Info / Blue</span>
-                        </div>
-                        <div class="status-swatch" style="background: var(--status-positive-bg);">
-                            <div class="dot" style="background: var(--status-positive-fg);"></div>
-                            <span class="label" style="color: var(--status-positive-fg);">Positive / Green</span>
-                        </div>
-                        <div class="status-swatch" style="background: var(--status-warning-bg);">
-                            <div class="dot" style="background: var(--status-warning-fg);"></div>
-                            <span class="label" style="color: var(--status-warning-fg);">Warning / Amber</span>
-                        </div>
-                        <div class="status-swatch" style="background: var(--status-negative-bg);">
-                            <div class="dot" style="background: var(--status-negative-fg);"></div>
-                            <span class="label" style="color: var(--status-negative-fg);">Negative / Red</span>
-                        </div>
-                    </div>
-                </div>
-
-                <hr class="divider">
-
-                <div class="section">
-                    <div class="section-label">Typography</div>
-                    <h2>Noi Grotesk with Humanist Warmth</h2>
-                    <p>A geometric sans-serif with optical corrections and humanist touches. The ss03 and ss11 stylistic alternates give it distinctive character without sacrificing readability. Using Inter as a web fallback.</p>
-
-                    <div class="card">
-                        <div class="card-header">Type Scale</div>
-                        <div class="card-body">
-                            <div class="type-sample">
-                                <div class="type-label">Heading XL / 44px / -0.04em</div>
-                                <div class="type-heading-xl">Page Titles</div>
-                            </div>
-                            <div class="type-sample">
-                                <div class="type-label">Heading Large / 32px / -0.03em</div>
-                                <div class="type-heading-lg">Section Headers</div>
-                            </div>
-                            <div class="type-sample">
-                                <div class="type-label">Heading Medium / 28px / -0.03em</div>
-                                <div class="type-heading-md">Card Titles, Modal Headers</div>
-                            </div>
-                            <div class="type-sample">
-                                <div class="type-label">Body Large / 17px / -0.02em</div>
-                                <div class="type-body-lg">Primary body text for paragraphs and descriptions.</div>
-                            </div>
-                            <div class="type-sample">
-                                <div class="type-label">Body Medium / 15px / 0</div>
-                                <div class="type-body-md">Default body text, UI labels, form inputs, and general content.</div>
-                            </div>
-                            <div class="type-sample">
-                                <div class="type-label">Mono / IBM Plex Mono / 14px</div>
-                                <div class="type-mono">Code snippets, technical labels, token names</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <hr class="divider">
-
-                <div class="section">
-                    <div class="section-label">Spacing</div>
-                    <h2>4px Rhythm</h2>
-                    <p>Everything aligns to a 4px grid. Spacing tokens follow a consistent scale for predictable, harmonious layouts.</p>
-
-                    <div class="spacing-demo">
-                        <div class="spacing-item">
-                            <span class="spacing-label">spacing-one (4px)</span>
-                            <div class="spacing-bar" style="width: 4px;"></div>
-                        </div>
-                        <div class="spacing-item">
-                            <span class="spacing-label">spacing-two (8px)</span>
-                            <div class="spacing-bar" style="width: 8px;"></div>
-                        </div>
-                        <div class="spacing-item">
-                            <span class="spacing-label">spacing-three (12px)</span>
-                            <div class="spacing-bar" style="width: 12px;"></div>
-                        </div>
-                        <div class="spacing-item">
-                            <span class="spacing-label">spacing-four (16px)</span>
-                            <div class="spacing-bar" style="width: 16px;"></div>
-                        </div>
-                        <div class="spacing-item">
-                            <span class="spacing-label">spacing-six (24px)</span>
-                            <div class="spacing-bar" style="width: 24px;"></div>
-                        </div>
-                        <div class="spacing-item">
-                            <span class="spacing-label">spacing-eight (32px)</span>
-                            <div class="spacing-bar" style="width: 32px;"></div>
-                        </div>
-                        <div class="spacing-item">
-                            <span class="spacing-label">spacing-twelve (48px)</span>
-                            <div class="spacing-bar" style="width: 48px;"></div>
-                        </div>
-                        <div class="spacing-item">
-                            <span class="spacing-label">spacing-sixteen (64px)</span>
-                            <div class="spacing-bar" style="width: 64px;"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <hr class="divider">
-
-                <div class="section">
-                    <div class="section-label">Components</div>
-                    <h2>Buttons, Inputs, Tags</h2>
-
-                    <h3 style="font-size: 15px; font-weight: 600; margin: 24px 0 16px; color: var(--fg-primary);">Buttons</h3>
-                    <p>8px border radius standard. Medium size (48px height) is the default.</p>
-                    <div class="component-row">
-                        <button class="btn btn-primary">Primary Action</button>
-                        <button class="btn btn-secondary">Secondary</button>
-                        <button class="btn btn-destructive">Destructive</button>
-                        <button class="btn btn-primary" disabled>Disabled</button>
-                    </div>
-
-                    <h3 style="font-size: 15px; font-weight: 600; margin: 24px 0 16px; color: var(--fg-primary);">Text Inputs</h3>
-                    <p>4px border radius for inputs. Focus state uses blue outline.</p>
-                    <div class="component-row">
-                        <input type="text" class="input" placeholder="Enter your email...">
-                    </div>
-
-                    <h3 style="font-size: 15px; font-weight: 600; margin: 24px 0 16px; color: var(--fg-primary);">Status Tags</h3>
-                    <p>Semantic colors with both background tints and saturated foreground colors.</p>
-                    <div class="component-row">
-                        <span class="tag tag-info">Info</span>
-                        <span class="tag tag-positive">Success</span>
-                        <span class="tag tag-warning">Warning</span>
-                        <span class="tag tag-negative">Error</span>
-                        <span class="tag tag-neutral">Neutral</span>
-                    </div>
-                </div>
-
-                <hr class="divider">
-
-                <div class="section">
-                    <div class="section-label">Signature</div>
-                    <h2>The Bold Factor</h2>
-                    <p>What makes Rosetta distinctive:</p>
-
-                    <div class="pillars-grid">
-                        <div class="pillar-card">
-                            <h4>Dark Teal, Not Blue</h4>
-                            <p>#04191B is the hero color. Sophisticated, distinctive, avoids "generic SaaS blue."</p>
-                        </div>
-                        <div class="pillar-card">
-                            <h4>Noi Grotesk + Stylistic Alternates</h4>
-                            <p>ss03 and ss11 features give typography subtle character without sacrificing legibility.</p>
-                        </div>
-                        <div class="pillar-card">
-                            <h4>Shadow-First Elevation</h4>
-                            <p>Cards rely on soft shadows rather than heavy borders. Depth without visual noise.</p>
-                        </div>
-                        <div class="pillar-card">
-                            <h4>4px Grid Discipline</h4>
-                            <p>Everything snaps to the 4px grid. Consistency creates subconscious harmony.</p>
-                        </div>
-                        <div class="pillar-card">
-                            <h4>Dual-Variant Status Colors</h4>
-                            <p>Each status has both a light background tint and saturated foreground for flexible patterns.</p>
-                        </div>
-                        <div class="pillar-card">
-                            <h4>White Space as Feature</h4>
-                            <p>Generous padding and margins. The interface breathes. Content has room.</p>
-                        </div>
-                        <div class="pillar-card">
-                            <h4>Semantic Color Restraint</h4>
-                            <p>Color means something. Blue = info. Green = success. Red = error. Never decorative.</p>
-                        </div>
-                        <div class="pillar-card">
-                            <h4>Sansplomb for Impact</h4>
-                            <p>Bold condensed face reserved for marketing/brand moments when you need to make a statement.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="copy-section">
-                    <h3>Get the Full Prompt</h3>
-                    <p>Copy the complete design system for your AI coding assistant.</p>
-                    <button class="copy-btn" onclick="copyPrompt()">Copy to Clipboard</button>
-                </div>
+            <div class="bg-rosetta-bg-primary rounded-four p-six shadow-elevation-three border border-rosetta-fg-border">
+              <div class="text-rosetta-fg-primary text-body-lg font-medium mb-two">120k+ Jobs</div>
+              <div class="text-rosetta-fg-secondary text-body-sm">Posted this month</div>
             </div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="container">
-            <p>Rosetta Design System - Professional clarity with human warmth.</p>
+            <div class="bg-rosetta-info-bg rounded-four p-six shadow-elevation-two">
+              <div class="text-rosetta-info-fg text-body-lg font-medium mb-two">Application Sent</div>
+              <div class="text-rosetta-info-fg/70 text-body-sm">You'll hear back soon</div>
+            </div>
+            <div class="bg-rosetta-positive-bg rounded-four p-six shadow-elevation-two">
+              <div class="text-rosetta-positive-fg text-body-lg font-medium mb-two">Interview Scheduled</div>
+              <div class="text-rosetta-positive-fg/70 text-body-sm">Tomorrow at 2:00 PM</div>
+            </div>
+          </div>
         </div>
-    </footer>
+      </div>
+    </div>
+  </header>
 
-    <script>
-        async function copyPrompt() {
-            try {
-                const response = await fetch('../generations/rosetta.md');
-                const text = await response.text();
-                await navigator.clipboard.writeText(text);
-                const btn = document.querySelector('.copy-btn');
-                btn.textContent = 'Copied!';
-                btn.classList.add('copied');
-                setTimeout(() => {
-                    btn.textContent = 'Copy to Clipboard';
-                    btn.classList.remove('copied');
-                }, 2000);
-            } catch (err) {
-                alert('Copy failed. Please open the .md file directly.');
-            }
+  <!-- Philosophy Section -->
+  <section class="py-sixteen px-six bg-rosetta-bg-primary">
+    <div class="max-w-7xl mx-auto">
+      <h2 class="text-heading-lg text-rosetta-fg-primary mb-six">Design Philosophy</h2>
+      <div class="grid md:grid-cols-3 gap-six">
+        <div class="p-six bg-rosetta-bg-surface rounded-three border border-rosetta-fg-border">
+          <div class="w-12 h-12 rounded-two bg-rosetta-interactive-primary flex items-center justify-center mb-four">
+            <svg class="w-6 h-6 text-rosetta-fg-inverted" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <h3 class="text-heading-sm text-rosetta-fg-primary mb-two">Trustworthy</h3>
+          <p class="text-body-md text-rosetta-fg-secondary">Students trust this platform with their career. The design must feel reliable, not experimental.</p>
+        </div>
+        <div class="p-six bg-rosetta-bg-surface rounded-three border border-rosetta-fg-border">
+          <div class="w-12 h-12 rounded-two bg-rosetta-interactive-primary flex items-center justify-center mb-four">
+            <svg class="w-6 h-6 text-rosetta-fg-inverted" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <h3 class="text-heading-sm text-rosetta-fg-primary mb-two">Approachable</h3>
+          <p class="text-body-md text-rosetta-fg-secondary">Despite handling serious workflows, it never feels cold or corporate. Warmth through typography and spacing.</p>
+        </div>
+        <div class="p-six bg-rosetta-bg-surface rounded-three border border-rosetta-fg-border">
+          <div class="w-12 h-12 rounded-two bg-rosetta-interactive-primary flex items-center justify-center mb-four">
+            <svg class="w-6 h-6 text-rosetta-fg-inverted" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6z"></path>
+            </svg>
+          </div>
+          <h3 class="text-heading-sm text-rosetta-fg-primary mb-two">Clear</h3>
+          <p class="text-body-md text-rosetta-fg-secondary">Information hierarchy is paramount. Users scan, not read. Every visual decision aids comprehension.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider mx-six"></div>
+
+  <!-- Colors Section -->
+  <section id="colors" class="py-sixteen px-six bg-rosetta-bg-primary">
+    <div class="max-w-7xl mx-auto">
+      <h2 class="text-heading-lg text-rosetta-fg-primary mb-two">Color System</h2>
+      <p class="text-body-lg text-rosetta-fg-secondary mb-eight max-w-2xl">Neutral foundation with semantic accents. The palette is intentionally restrained.</p>
+
+      <h3 class="text-heading-sm text-rosetta-fg-primary mb-four">Backgrounds</h3>
+      <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-four mb-eight">
+        <div class="color-swatch cursor-pointer group" data-color="#FFFFFF">
+          <div class="aspect-square rounded-three bg-[#FFFFFF] border border-rosetta-fg-border shadow-elevation-one group-hover:shadow-elevation-two transition-shadow"></div>
+          <div class="mt-two">
+            <div class="text-body-sm font-medium">bg-primary</div>
+            <div class="text-body-sm text-rosetta-fg-secondary font-mono">#FFFFFF</div>
+          </div>
+        </div>
+        <div class="color-swatch cursor-pointer group" data-color="#F6F6F6">
+          <div class="aspect-square rounded-three bg-[#F6F6F6] border border-rosetta-fg-border shadow-elevation-one group-hover:shadow-elevation-two transition-shadow"></div>
+          <div class="mt-two">
+            <div class="text-body-sm font-medium">bg-secondary</div>
+            <div class="text-body-sm text-rosetta-fg-secondary font-mono">#F6F6F6</div>
+          </div>
+        </div>
+        <div class="color-swatch cursor-pointer group" data-color="#FCFCFD">
+          <div class="aspect-square rounded-three bg-[#FCFCFD] border border-rosetta-fg-border shadow-elevation-one group-hover:shadow-elevation-two transition-shadow"></div>
+          <div class="mt-two">
+            <div class="text-body-sm font-medium">bg-surface</div>
+            <div class="text-body-sm text-rosetta-fg-secondary font-mono">#FCFCFD</div>
+          </div>
+        </div>
+        <div class="color-swatch cursor-pointer group" data-color="#121212">
+          <div class="aspect-square rounded-three bg-[#121212] shadow-elevation-one group-hover:shadow-elevation-two transition-shadow"></div>
+          <div class="mt-two">
+            <div class="text-body-sm font-medium">bg-inverted</div>
+            <div class="text-body-sm text-rosetta-fg-secondary font-mono">#121212</div>
+          </div>
+        </div>
+        <div class="color-swatch cursor-pointer group" data-color="#EAEAEA">
+          <div class="aspect-square rounded-three bg-[#EAEAEA] border border-rosetta-fg-border shadow-elevation-one group-hover:shadow-elevation-two transition-shadow"></div>
+          <div class="mt-two">
+            <div class="text-body-sm font-medium">bg-selected</div>
+            <div class="text-body-sm text-rosetta-fg-secondary font-mono">#EAEAEA</div>
+          </div>
+        </div>
+        <div class="color-swatch cursor-pointer group" data-color="#EEEEEE">
+          <div class="aspect-square rounded-three bg-[#EEEEEE] border border-rosetta-fg-border shadow-elevation-one group-hover:shadow-elevation-two transition-shadow"></div>
+          <div class="mt-two">
+            <div class="text-body-sm font-medium">bg-disabled</div>
+            <div class="text-body-sm text-rosetta-fg-secondary font-mono">#EEEEEE</div>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="text-heading-sm text-rosetta-fg-primary mb-four">Interactive</h3>
+      <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-four mb-eight">
+        <div class="color-swatch cursor-pointer group" data-color="#04191B">
+          <div class="aspect-square rounded-three bg-[#04191B] shadow-elevation-one group-hover:shadow-elevation-two transition-shadow"></div>
+          <div class="mt-two">
+            <div class="text-body-sm font-medium">interactive-primary</div>
+            <div class="text-body-sm text-rosetta-fg-secondary font-mono">#04191B</div>
+          </div>
+        </div>
+        <div class="color-swatch cursor-pointer group" data-color="#062E32">
+          <div class="aspect-square rounded-three bg-[#062E32] shadow-elevation-one group-hover:shadow-elevation-two transition-shadow"></div>
+          <div class="mt-two">
+            <div class="text-body-sm font-medium">interactive-hover</div>
+            <div class="text-body-sm text-rosetta-fg-secondary font-mono">#062E32</div>
+          </div>
+        </div>
+        <div class="color-swatch cursor-pointer group" data-color="#073D42">
+          <div class="aspect-square rounded-three bg-[#073D42] shadow-elevation-one group-hover:shadow-elevation-two transition-shadow"></div>
+          <div class="mt-two">
+            <div class="text-body-sm font-medium">interactive-active</div>
+            <div class="text-body-sm text-rosetta-fg-secondary font-mono">#073D42</div>
+          </div>
+        </div>
+        <div class="color-swatch cursor-pointer group" data-color="#003BCC">
+          <div class="aspect-square rounded-three bg-[#003BCC] shadow-elevation-one group-hover:shadow-elevation-two transition-shadow"></div>
+          <div class="mt-two">
+            <div class="text-body-sm font-medium">focus-outline</div>
+            <div class="text-body-sm text-rosetta-fg-secondary font-mono">#003BCC</div>
+          </div>
+        </div>
+        <div class="color-swatch cursor-pointer group" data-color="#121212">
+          <div class="aspect-square rounded-three bg-[#121212] shadow-elevation-one group-hover:shadow-elevation-two transition-shadow"></div>
+          <div class="mt-two">
+            <div class="text-body-sm font-medium">fg-primary</div>
+            <div class="text-body-sm text-rosetta-fg-secondary font-mono">#121212</div>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="text-heading-sm text-rosetta-fg-primary mb-four">Status Colors</h3>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-four">
+        <div class="rounded-three overflow-hidden border border-rosetta-fg-border">
+          <div class="color-swatch cursor-pointer p-four bg-rosetta-info-bg" data-color="#CCDBFF">
+            <div class="text-body-sm font-medium text-rosetta-info-fg">Info Background</div>
+            <div class="text-body-sm text-rosetta-info-fg/70 font-mono">#CCDBFF</div>
+          </div>
+          <div class="color-swatch cursor-pointer p-four bg-rosetta-info-fg" data-color="#003BCC">
+            <div class="text-body-sm font-medium text-white">Info Foreground</div>
+            <div class="text-body-sm text-white/70 font-mono">#003BCC</div>
+          </div>
+        </div>
+        <div class="rounded-three overflow-hidden border border-rosetta-fg-border">
+          <div class="color-swatch cursor-pointer p-four bg-rosetta-positive-bg" data-color="#A5E09F">
+            <div class="text-body-sm font-medium text-rosetta-positive-fg">Positive Background</div>
+            <div class="text-body-sm text-rosetta-positive-fg/70 font-mono">#A5E09F</div>
+          </div>
+          <div class="color-swatch cursor-pointer p-four bg-rosetta-positive-fg" data-color="#327D0F">
+            <div class="text-body-sm font-medium text-white">Positive Foreground</div>
+            <div class="text-body-sm text-white/70 font-mono">#327D0F</div>
+          </div>
+        </div>
+        <div class="rounded-three overflow-hidden border border-rosetta-fg-border">
+          <div class="color-swatch cursor-pointer p-four bg-rosetta-warning-bg" data-color="#FFD999">
+            <div class="text-body-sm font-medium text-rosetta-warning-fg">Warning Background</div>
+            <div class="text-body-sm text-rosetta-warning-fg/70 font-mono">#FFD999</div>
+          </div>
+          <div class="color-swatch cursor-pointer p-four bg-rosetta-warning-fg" data-color="#A36700">
+            <div class="text-body-sm font-medium text-white">Warning Foreground</div>
+            <div class="text-body-sm text-white/70 font-mono">#A36700</div>
+          </div>
+        </div>
+        <div class="rounded-three overflow-hidden border border-rosetta-fg-border">
+          <div class="color-swatch cursor-pointer p-four bg-rosetta-negative-bg" data-color="#FFC2C4">
+            <div class="text-body-sm font-medium text-rosetta-negative-fg">Negative Background</div>
+            <div class="text-body-sm text-rosetta-negative-fg/70 font-mono">#FFC2C4</div>
+          </div>
+          <div class="color-swatch cursor-pointer p-four bg-rosetta-negative-fg" data-color="#BB3643">
+            <div class="text-body-sm font-medium text-white">Negative Foreground</div>
+            <div class="text-body-sm text-white/70 font-mono">#BB3643</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider mx-six"></div>
+
+  <!-- Typography Section -->
+  <section id="typography" class="py-sixteen px-six bg-rosetta-bg-secondary">
+    <div class="max-w-7xl mx-auto">
+      <h2 class="text-heading-lg text-rosetta-fg-primary mb-two">Typography</h2>
+      <p class="text-body-lg text-rosetta-fg-secondary mb-eight max-w-2xl">Three font families: Noi Grotesk for UI (Inter fallback), Sansplomb for brand (Bebas Neue fallback), IBM Plex Mono for code.</p>
+
+      <div class="grid md:grid-cols-3 gap-six mb-twelve">
+        <div class="bg-rosetta-bg-primary rounded-four p-six shadow-elevation-two">
+          <div class="text-body-sm text-rosetta-fg-secondary mb-two font-mono">font-sans</div>
+          <div class="text-heading-md font-sans mb-four">Noi Grotesk</div>
+          <p class="text-body-md text-rosetta-fg-secondary">Geometric sans-serif with humanist touches. Using Inter as web fallback.</p>
+        </div>
+        <div class="bg-rosetta-bg-primary rounded-four p-six shadow-elevation-two">
+          <div class="text-body-sm text-rosetta-fg-secondary mb-two font-mono">font-brand</div>
+          <div class="text-heading-md font-brand tracking-wide mb-four">SANSPLOMB</div>
+          <p class="text-body-md text-rosetta-fg-secondary">Bold condensed for marketing and brand moments. Using Bebas Neue as web fallback.</p>
+        </div>
+        <div class="bg-rosetta-bg-primary rounded-four p-six shadow-elevation-two">
+          <div class="text-body-sm text-rosetta-fg-secondary mb-two font-mono">font-mono</div>
+          <div class="text-heading-md font-mono mb-four">IBM Plex Mono</div>
+          <p class="text-body-md text-rosetta-fg-secondary">Clean monospace for code and technical labels.</p>
+        </div>
+      </div>
+
+      <h3 class="text-heading-sm text-rosetta-fg-primary mb-six">Type Scale</h3>
+      <div class="bg-rosetta-bg-primary rounded-four p-six shadow-elevation-two overflow-x-auto">
+        <table class="w-full min-w-[600px]">
+          <thead>
+            <tr class="text-left text-body-sm text-rosetta-fg-secondary border-b border-rosetta-fg-border">
+              <th class="pb-four">Style</th>
+              <th class="pb-four">Preview</th>
+              <th class="pb-four font-mono">Size</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-rosetta-fg-border">
+            <tr>
+              <td class="py-four text-body-sm font-mono text-rosetta-fg-secondary">brand-large</td>
+              <td class="py-four"><span class="font-brand text-5xl lg:text-7xl text-rosetta-interactive-primary tracking-tight">HEADLINE</span></td>
+              <td class="py-four text-body-sm font-mono text-rosetta-fg-secondary">122px</td>
+            </tr>
+            <tr>
+              <td class="py-four text-body-sm font-mono text-rosetta-fg-secondary">heading-xl</td>
+              <td class="py-four"><span class="text-heading-xl">Page Title</span></td>
+              <td class="py-four text-body-sm font-mono text-rosetta-fg-secondary">44px</td>
+            </tr>
+            <tr>
+              <td class="py-four text-body-sm font-mono text-rosetta-fg-secondary">heading-lg</td>
+              <td class="py-four"><span class="text-heading-lg">Section Header</span></td>
+              <td class="py-four text-body-sm font-mono text-rosetta-fg-secondary">32px</td>
+            </tr>
+            <tr>
+              <td class="py-four text-body-sm font-mono text-rosetta-fg-secondary">heading-md</td>
+              <td class="py-four"><span class="text-heading-md">Card Title</span></td>
+              <td class="py-four text-body-sm font-mono text-rosetta-fg-secondary">28px</td>
+            </tr>
+            <tr>
+              <td class="py-four text-body-sm font-mono text-rosetta-fg-secondary">heading-sm</td>
+              <td class="py-four"><span class="text-heading-sm">Subsection Header</span></td>
+              <td class="py-four text-body-sm font-mono text-rosetta-fg-secondary">24px</td>
+            </tr>
+            <tr>
+              <td class="py-four text-body-sm font-mono text-rosetta-fg-secondary">body-xl</td>
+              <td class="py-four"><span class="text-body-xl">Large body for introductions</span></td>
+              <td class="py-four text-body-sm font-mono text-rosetta-fg-secondary">19px</td>
+            </tr>
+            <tr>
+              <td class="py-four text-body-sm font-mono text-rosetta-fg-secondary">body-lg</td>
+              <td class="py-four"><span class="text-body-lg">Primary body text</span></td>
+              <td class="py-four text-body-sm font-mono text-rosetta-fg-secondary">17px</td>
+            </tr>
+            <tr>
+              <td class="py-four text-body-sm font-mono text-rosetta-fg-secondary">body-md</td>
+              <td class="py-four"><span class="text-body-md">Default UI text</span></td>
+              <td class="py-four text-body-sm font-mono text-rosetta-fg-secondary">15px</td>
+            </tr>
+            <tr>
+              <td class="py-four text-body-sm font-mono text-rosetta-fg-secondary">body-sm</td>
+              <td class="py-four"><span class="text-body-sm">Captions and metadata</span></td>
+              <td class="py-four text-body-sm font-mono text-rosetta-fg-secondary">13px</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider mx-six"></div>
+
+  <!-- Components Section -->
+  <section id="components" class="py-sixteen px-six bg-rosetta-bg-primary">
+    <div class="max-w-7xl mx-auto">
+      <h2 class="text-heading-lg text-rosetta-fg-primary mb-two">Components</h2>
+      <p class="text-body-lg text-rosetta-fg-secondary mb-eight max-w-2xl">Functional, accessible components on the 4px grid with consistent elevation.</p>
+
+      <h3 class="text-heading-sm text-rosetta-fg-primary mb-six">Buttons</h3>
+      <div class="bg-rosetta-bg-surface rounded-four p-six border border-rosetta-fg-border mb-eight">
+        <div class="flex flex-wrap gap-four items-center mb-six">
+          <button class="btn-transition focus-ring h-12 px-six bg-rosetta-interactive-primary text-rosetta-fg-inverted font-semibold rounded-two hover:bg-rosetta-interactive-hover active:bg-rosetta-interactive-active">
+            Primary Button
+          </button>
+          <button class="btn-transition focus-ring h-12 px-six bg-rosetta-bg-primary text-rosetta-fg-primary font-semibold rounded-two border border-rosetta-fg-border hover:bg-rosetta-bg-tertiary active:bg-rosetta-bg-quaternary">
+            Secondary Button
+          </button>
+          <button class="btn-transition focus-ring h-12 px-six bg-transparent text-rosetta-fg-primary font-semibold rounded-two hover:bg-rosetta-interactive-hovered active:bg-rosetta-interactive-pressed">
+            Ghost Button
+          </button>
+          <button class="btn-transition focus-ring h-12 px-six bg-rosetta-negative-fg text-white font-semibold rounded-two hover:opacity-90 active:opacity-80">
+            Destructive
+          </button>
+        </div>
+        <div class="flex flex-wrap gap-four items-center mb-six">
+          <button class="btn-transition focus-ring h-9 px-four bg-rosetta-interactive-primary text-rosetta-fg-inverted text-body-sm font-semibold rounded-two hover:bg-rosetta-interactive-hover">Small</button>
+          <button class="btn-transition focus-ring h-12 px-six bg-rosetta-interactive-primary text-rosetta-fg-inverted font-semibold rounded-two hover:bg-rosetta-interactive-hover">Medium</button>
+          <button class="btn-transition focus-ring h-[60px] px-eight bg-rosetta-interactive-primary text-rosetta-fg-inverted text-body-lg font-semibold rounded-two hover:bg-rosetta-interactive-hover">Large</button>
+        </div>
+        <div class="flex flex-wrap gap-four items-center">
+          <button class="h-12 px-six bg-rosetta-bg-disabled text-rosetta-fg-disabled font-semibold rounded-two cursor-not-allowed">Disabled</button>
+          <button class="btn-transition focus-ring w-12 h-12 bg-rosetta-interactive-primary text-rosetta-fg-inverted rounded-max hover:bg-rosetta-interactive-hover flex items-center justify-center">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+          </button>
+        </div>
+      </div>
+
+      <h3 class="text-heading-sm text-rosetta-fg-primary mb-six">Inputs</h3>
+      <div class="bg-rosetta-bg-surface rounded-four p-six border border-rosetta-fg-border mb-eight">
+        <div class="grid md:grid-cols-2 gap-six">
+          <div>
+            <label class="block text-body-sm font-medium text-rosetta-fg-primary mb-two">Text Input</label>
+            <input type="text" placeholder="Enter your name" class="focus-ring w-full h-12 px-four border border-rosetta-fg-border rounded-one bg-transparent text-rosetta-fg-primary placeholder:text-rosetta-fg-secondary hover:border-rosetta-fg-primary focus:border-rosetta-focus-outline">
+          </div>
+          <div>
+            <label class="block text-body-sm font-medium text-rosetta-fg-primary mb-two">Select</label>
+            <select class="focus-ring w-full h-12 px-four border border-rosetta-fg-border rounded-one bg-rosetta-bg-primary text-rosetta-fg-primary hover:border-rosetta-fg-primary">
+              <option>Select an option</option>
+              <option>Software Engineering</option>
+              <option>Product Management</option>
+              <option>Design</option>
+            </select>
+          </div>
+          <div class="md:col-span-2">
+            <label class="block text-body-sm font-medium text-rosetta-fg-primary mb-two">Textarea</label>
+            <textarea rows="3" placeholder="Tell us about yourself..." class="focus-ring w-full p-four border border-rosetta-fg-border rounded-one bg-transparent text-rosetta-fg-primary placeholder:text-rosetta-fg-secondary hover:border-rosetta-fg-primary resize-none"></textarea>
+          </div>
+          <div class="flex items-center gap-three">
+            <input type="checkbox" id="check1" class="w-5 h-5 rounded-one border-rosetta-fg-border accent-rosetta-interactive-primary focus-ring">
+            <label for="check1" class="text-body-md text-rosetta-fg-primary">I agree to the terms</label>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="text-heading-sm text-rosetta-fg-primary mb-six">Cards</h3>
+      <div class="grid md:grid-cols-3 gap-six mb-eight">
+        <div class="bg-rosetta-bg-primary rounded-four p-six shadow-elevation-two border border-[#E2E5F3]">
+          <h4 class="text-heading-md text-rosetta-fg-primary mb-two">Static Card</h4>
+          <p class="text-body-md text-rosetta-fg-secondary mb-four">Cards use soft shadows for elevation instead of heavy borders.</p>
+          <div class="flex gap-two">
+            <span class="inline-flex items-center px-three py-one bg-rosetta-info-bg text-rosetta-info-fg text-body-sm font-semibold rounded-one">Remote</span>
+            <span class="inline-flex items-center px-three py-one bg-rosetta-neutral-bg text-rosetta-fg-primary text-body-sm font-semibold rounded-one">Full-time</span>
+          </div>
+        </div>
+        <div class="card-interactive cursor-pointer bg-rosetta-bg-primary rounded-four p-six shadow-elevation-two border border-[#E2E5F3] hover:shadow-elevation-three hover:border-rosetta-fg-border">
+          <h4 class="text-heading-md text-rosetta-fg-primary mb-two">Interactive Card</h4>
+          <p class="text-body-md text-rosetta-fg-secondary mb-four">Hover to see shadow and border transitions. Cards float rather than sit.</p>
+          <div class="flex gap-two">
+            <span class="inline-flex items-center px-three py-one bg-rosetta-positive-bg text-rosetta-positive-fg text-body-sm font-semibold rounded-one">Hiring</span>
+          </div>
+        </div>
+        <div class="card-interactive cursor-pointer bg-rosetta-bg-primary rounded-four shadow-elevation-two border border-[#E2E5F3] hover:shadow-elevation-three hover:border-rosetta-fg-border overflow-hidden">
+          <div class="p-six border-b border-rosetta-fg-border">
+            <div class="flex items-start justify-between mb-three">
+              <div class="w-12 h-12 bg-rosetta-interactive-primary rounded-two flex items-center justify-center text-rosetta-fg-inverted font-brand text-xl">HS</div>
+              <span class="inline-flex items-center px-three py-one bg-rosetta-warning-bg text-rosetta-warning-fg text-body-sm font-semibold rounded-one">2 days left</span>
+            </div>
+            <h4 class="text-heading-md text-rosetta-fg-primary mb-one">Software Engineer</h4>
+            <p class="text-body-md text-rosetta-fg-secondary">Handshake, San Francisco</p>
+          </div>
+          <div class="p-six bg-rosetta-bg-surface">
+            <div class="flex gap-two flex-wrap">
+              <span class="inline-flex items-center px-two py-one bg-rosetta-bg-primary text-rosetta-fg-secondary text-body-sm rounded-one border border-rosetta-fg-border">React</span>
+              <span class="inline-flex items-center px-two py-one bg-rosetta-bg-primary text-rosetta-fg-secondary text-body-sm rounded-one border border-rosetta-fg-border">TypeScript</span>
+              <span class="inline-flex items-center px-two py-one bg-rosetta-bg-primary text-rosetta-fg-secondary text-body-sm rounded-one border border-rosetta-fg-border">Node.js</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="text-heading-sm text-rosetta-fg-primary mb-six">Badges & Tags</h3>
+      <div class="bg-rosetta-bg-surface rounded-four p-six border border-rosetta-fg-border">
+        <div class="flex flex-wrap gap-four items-center">
+          <span class="inline-flex items-center px-three py-one bg-rosetta-info-bg text-rosetta-info-fg text-body-sm font-semibold rounded-one">Info</span>
+          <span class="inline-flex items-center px-three py-one bg-rosetta-positive-bg text-rosetta-positive-fg text-body-sm font-semibold rounded-one">Positive</span>
+          <span class="inline-flex items-center px-three py-one bg-rosetta-warning-bg text-rosetta-warning-fg text-body-sm font-semibold rounded-one">Warning</span>
+          <span class="inline-flex items-center px-three py-one bg-rosetta-negative-bg text-rosetta-negative-fg text-body-sm font-semibold rounded-one">Negative</span>
+          <span class="inline-flex items-center px-three py-one bg-rosetta-neutral-bg text-rosetta-fg-primary text-body-sm font-semibold rounded-one">Neutral</span>
+          <span class="inline-flex items-center gap-two px-three py-one bg-rosetta-interactive-primary text-rosetta-fg-inverted text-body-sm font-semibold rounded-max">
+            <span class="w-1.5 h-1.5 bg-rosetta-positive-bg rounded-full"></span>Active
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider mx-six"></div>
+
+  <!-- Spacing Section -->
+  <section id="patterns" class="py-sixteen px-six bg-rosetta-bg-secondary">
+    <div class="max-w-7xl mx-auto">
+      <h2 class="text-heading-lg text-rosetta-fg-primary mb-two">Spacing & Layout</h2>
+      <p class="text-body-lg text-rosetta-fg-secondary mb-eight max-w-2xl">Everything aligns to a 4px grid. Spacing tokens create subconscious harmony.</p>
+
+      <div class="bg-rosetta-bg-primary rounded-four p-six shadow-elevation-two mb-eight overflow-x-auto">
+        <table class="w-full min-w-[500px]">
+          <thead>
+            <tr class="text-left text-body-sm text-rosetta-fg-secondary border-b border-rosetta-fg-border">
+              <th class="pb-four">Token</th>
+              <th class="pb-four">Value</th>
+              <th class="pb-four">Visual</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-rosetta-fg-border">
+            <tr><td class="py-three text-body-sm font-mono">spacing-one</td><td class="py-three text-body-sm">4px</td><td class="py-three"><div class="h-4 bg-rosetta-interactive-primary rounded-zero" style="width: 4px"></div></td></tr>
+            <tr><td class="py-three text-body-sm font-mono">spacing-two</td><td class="py-three text-body-sm">8px</td><td class="py-three"><div class="h-4 bg-rosetta-interactive-primary rounded-zero" style="width: 8px"></div></td></tr>
+            <tr><td class="py-three text-body-sm font-mono">spacing-three</td><td class="py-three text-body-sm">12px</td><td class="py-three"><div class="h-4 bg-rosetta-interactive-primary rounded-zero" style="width: 12px"></div></td></tr>
+            <tr><td class="py-three text-body-sm font-mono">spacing-four</td><td class="py-three text-body-sm">16px</td><td class="py-three"><div class="h-4 bg-rosetta-interactive-primary rounded-zero" style="width: 16px"></div></td></tr>
+            <tr><td class="py-three text-body-sm font-mono">spacing-six</td><td class="py-three text-body-sm">24px</td><td class="py-three"><div class="h-4 bg-rosetta-interactive-primary rounded-zero" style="width: 24px"></div></td></tr>
+            <tr><td class="py-three text-body-sm font-mono">spacing-eight</td><td class="py-three text-body-sm">32px</td><td class="py-three"><div class="h-4 bg-rosetta-interactive-primary rounded-zero" style="width: 32px"></div></td></tr>
+            <tr><td class="py-three text-body-sm font-mono">spacing-twelve</td><td class="py-three text-body-sm">48px</td><td class="py-three"><div class="h-4 bg-rosetta-interactive-primary rounded-zero" style="width: 48px"></div></td></tr>
+            <tr><td class="py-three text-body-sm font-mono">spacing-sixteen</td><td class="py-three text-body-sm">64px</td><td class="py-three"><div class="h-4 bg-rosetta-interactive-primary rounded-zero" style="width: 64px"></div></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="text-heading-sm text-rosetta-fg-primary mb-six">Border Radius</h3>
+      <div class="grid grid-cols-3 md:grid-cols-6 gap-four mb-eight">
+        <div class="text-center"><div class="aspect-square bg-rosetta-interactive-primary rounded-zero mb-two"></div><div class="text-body-sm font-mono">0px</div></div>
+        <div class="text-center"><div class="aspect-square bg-rosetta-interactive-primary rounded-one mb-two"></div><div class="text-body-sm font-mono">4px</div></div>
+        <div class="text-center"><div class="aspect-square bg-rosetta-interactive-primary rounded-two mb-two"></div><div class="text-body-sm font-mono">8px</div></div>
+        <div class="text-center"><div class="aspect-square bg-rosetta-interactive-primary rounded-three mb-two"></div><div class="text-body-sm font-mono">12px</div></div>
+        <div class="text-center"><div class="aspect-square bg-rosetta-interactive-primary rounded-four mb-two"></div><div class="text-body-sm font-mono">16px</div></div>
+        <div class="text-center"><div class="aspect-square bg-rosetta-interactive-primary rounded-max mb-two"></div><div class="text-body-sm font-mono">max</div></div>
+      </div>
+
+      <h3 class="text-heading-sm text-rosetta-fg-primary mb-six">Elevation</h3>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-six">
+        <div class="bg-rosetta-bg-primary rounded-four p-six shadow-elevation-one">
+          <div class="text-body-sm font-mono text-rosetta-fg-secondary mb-two">elevation-one</div>
+          <div class="text-body-md text-rosetta-fg-primary">Subtle lift</div>
+        </div>
+        <div class="bg-rosetta-bg-primary rounded-four p-six shadow-elevation-two">
+          <div class="text-body-sm font-mono text-rosetta-fg-secondary mb-two">elevation-two</div>
+          <div class="text-body-md text-rosetta-fg-primary">Standard cards</div>
+        </div>
+        <div class="bg-rosetta-bg-primary rounded-four p-six shadow-elevation-three">
+          <div class="text-body-sm font-mono text-rosetta-fg-secondary mb-two">elevation-three</div>
+          <div class="text-body-md text-rosetta-fg-primary">Modals, dropdowns</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider mx-six"></div>
+
+  <!-- Bold Factor Section -->
+  <section class="py-sixteen px-six bg-rosetta-interactive-primary text-rosetta-fg-inverted">
+    <div class="max-w-7xl mx-auto">
+      <h2 class="font-brand text-brand-small lg:text-6xl tracking-tight mb-eight">THE BOLD FACTOR</h2>
+      <p class="text-body-xl text-rosetta-fg-inverted/80 mb-twelve max-w-2xl">Signature elements that make Rosetta distinctive.</p>
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-six">
+        <div class="bg-white/10 backdrop-blur-sm rounded-four p-six">
+          <div class="text-3xl mb-four">1</div>
+          <h3 class="text-heading-sm mb-two">Dark Teal, Not Blue</h3>
+          <p class="text-body-md text-rosetta-fg-inverted/70">#04191B is sophisticated. Avoids "generic SaaS blue."</p>
+        </div>
+        <div class="bg-white/10 backdrop-blur-sm rounded-four p-six">
+          <div class="text-3xl mb-four">2</div>
+          <h3 class="text-heading-sm mb-two">Shadow-First Elevation</h3>
+          <p class="text-body-md text-rosetta-fg-inverted/70">Soft shadows over heavy borders. Cards float.</p>
+        </div>
+        <div class="bg-white/10 backdrop-blur-sm rounded-four p-six">
+          <div class="text-3xl mb-four">3</div>
+          <h3 class="text-heading-sm mb-two">4px Grid Discipline</h3>
+          <p class="text-body-md text-rosetta-fg-inverted/70">Everything snaps to 4px. Subconscious harmony.</p>
+        </div>
+        <div class="bg-white/10 backdrop-blur-sm rounded-four p-six">
+          <div class="text-3xl mb-four">4</div>
+          <h3 class="text-heading-sm mb-two">White Space as Feature</h3>
+          <p class="text-body-md text-rosetta-fg-inverted/70">Generous padding. The interface breathes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider mx-six"></div>
+
+  <!-- Do's and Don'ts -->
+  <section class="py-sixteen px-six bg-rosetta-bg-primary">
+    <div class="max-w-7xl mx-auto">
+      <h2 class="text-heading-lg text-rosetta-fg-primary mb-eight">Do's and Don'ts</h2>
+      <div class="grid md:grid-cols-2 gap-six">
+        <div class="bg-rosetta-positive-bg/20 rounded-four p-six border border-rosetta-positive-fg/30">
+          <div class="flex items-center gap-two mb-four">
+            <svg class="w-6 h-6 text-rosetta-positive-fg" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+            <h3 class="text-heading-sm text-rosetta-positive-fg">Do</h3>
+          </div>
+          <ul class="space-y-three text-body-md text-rosetta-fg-primary">
+            <li class="flex items-start gap-two"><span class="text-rosetta-positive-fg mt-1">+</span>Use semantic colors for meaning</li>
+            <li class="flex items-start gap-two"><span class="text-rosetta-positive-fg mt-1">+</span>Rely on shadows for elevation</li>
+            <li class="flex items-start gap-two"><span class="text-rosetta-positive-fg mt-1">+</span>Use generous whitespace</li>
+            <li class="flex items-start gap-two"><span class="text-rosetta-positive-fg mt-1">+</span>Maintain the 4px grid</li>
+            <li class="flex items-start gap-two"><span class="text-rosetta-positive-fg mt-1">+</span>Keep animations functional</li>
+          </ul>
+        </div>
+        <div class="bg-rosetta-negative-bg/20 rounded-four p-six border border-rosetta-negative-fg/30">
+          <div class="flex items-center gap-two mb-four">
+            <svg class="w-6 h-6 text-rosetta-negative-fg" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            <h3 class="text-heading-sm text-rosetta-negative-fg">Don't</h3>
+          </div>
+          <ul class="space-y-three text-body-md text-rosetta-fg-primary">
+            <li class="flex items-start gap-two"><span class="text-rosetta-negative-fg mt-1">-</span>Use color decoratively</li>
+            <li class="flex items-start gap-two"><span class="text-rosetta-negative-fg mt-1">-</span>Add playful or whimsical elements</li>
+            <li class="flex items-start gap-two"><span class="text-rosetta-negative-fg mt-1">-</span>Create dark or moody interfaces</li>
+            <li class="flex items-start gap-two"><span class="text-rosetta-negative-fg mt-1">-</span>Add decorative or ornate elements</li>
+            <li class="flex items-start gap-two"><span class="text-rosetta-negative-fg mt-1">-</span>Use trendy or experimental patterns</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Copy Prompt Section -->
+  <section class="py-sixteen px-six bg-rosetta-bg-secondary">
+    <div class="max-w-7xl mx-auto text-center">
+      <h2 class="text-heading-lg text-rosetta-fg-primary mb-four">Get the Full Prompt</h2>
+      <p class="text-body-lg text-rosetta-fg-secondary mb-eight max-w-xl mx-auto">Copy the complete Rosetta design system prompt for your AI coding assistant.</p>
+      <button id="copyBtn" class="btn-transition focus-ring h-14 px-eight bg-rosetta-interactive-primary text-rosetta-fg-inverted text-body-lg font-semibold rounded-two hover:bg-rosetta-interactive-hover active:bg-rosetta-interactive-active">
+        Copy to Clipboard
+      </button>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-twelve px-six bg-rosetta-bg-inverted text-rosetta-fg-inverted">
+    <div class="max-w-7xl mx-auto">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-six">
+        <div class="flex items-center gap-four">
+          <span class="font-brand text-3xl tracking-tight">ROSETTA</span>
+          <span class="text-body-sm text-rosetta-fg-inverted/60">Handshake Design System</span>
+        </div>
+        <div class="text-body-sm text-rosetta-fg-inverted/60">Professional clarity with human warmth</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast -->
+  <div id="toast" class="fixed bottom-six right-six z-50 hidden">
+    <div class="copy-toast bg-rosetta-bg-inverted text-rosetta-fg-inverted px-four py-three rounded-two shadow-elevation-three flex items-center gap-two">
+      <svg class="w-4 h-4 text-rosetta-positive-bg" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+      <span id="toastMessage" class="text-body-sm">Copied to clipboard</span>
+    </div>
+  </div>
+
+  <script>
+    // Copy to clipboard
+    const toast = document.getElementById('toast');
+    const toastMessage = document.getElementById('toastMessage');
+    let toastTimeout;
+
+    function showToast(message) {
+      toastMessage.textContent = message;
+      toast.classList.remove('hidden');
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => toast.classList.add('hidden'), 2000);
+    }
+
+    document.querySelectorAll('.color-swatch').forEach(swatch => {
+      swatch.addEventListener('click', async () => {
+        const color = swatch.dataset.color;
+        if (color) {
+          try {
+            await navigator.clipboard.writeText(color);
+            showToast(`Copied ${color}`);
+          } catch (err) {
+            showToast('Failed to copy');
+          }
         }
-    </script>
+      });
+    });
+
+    document.getElementById('copyBtn').addEventListener('click', async () => {
+      try {
+        const response = await fetch('../design-prompts/rosetta.md');
+        const text = await response.text();
+        await navigator.clipboard.writeText(text);
+        showToast('Copied to clipboard!');
+      } catch (err) {
+        showToast('Failed to copy');
+      }
+    });
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+  </script>
 </body>
 </html>
