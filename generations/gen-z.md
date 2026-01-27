@@ -62,6 +62,18 @@ This design system channels the visual language of the generation raised on TikT
 
 **Personality Over Polish**: A tiny rotation here. An unexpected color clash there. Slight imperfections that feel human. The opposite of the sterile corporate landing page.
 
+### Cultural UX Patterns (Make It Feel Gen Z)
+
+**Creator-First Surfaces**: Profiles, handles, and identity blocks are top-level UI, not secondary. The system should assume users want to be seen and credited.
+
+**Remix Culture**: Design for reuse and recontextualization — quote cards, shareable tiles, and "reply-with" affordances built into core layouts.
+
+**Social Proof Everywhere**: Visible counts, reactions, streaks, and "from people you follow" cues. Trust is social, not institutional.
+
+**Privacy-Savvy Defaults**: Clear control surfaces for audience, visibility, and muting. "Close friends" and "only me" are first-class states.
+
+**Low-Friction Expressiveness**: Emoji, stickers, and templates are normal UI controls, not special features.
+
 ### The "Anti-Patterns" (What This Is NOT)
 - **Not Minimal**: Minimal is for LinkedIn. This is maximal with purpose.
 - **Not Corporate**: No generic stock photos. No "synergy." No blue buttons on white backgrounds.

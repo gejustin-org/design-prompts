@@ -53,6 +53,16 @@ Think Roblox lobby meets educational app meets AR playground. The interface cele
 
 3. **Haptic-Audio-Visual Harmony**: Gen Alpha experiences interfaces synesthetically—sounds, vibrations, and visuals work together. Design for the full sensory experience, with graceful fallbacks for each modality.
 
+### Social-Play Defaults (Make It Feel Gen Alpha)
+
+**Avatar Economy**: Identity is customizable and collectible. Skins, badges, and cosmetic upgrades are part of the core UI, not an add-on.
+
+**Short-Form Loops**: Actions should feel like a quick clip: tap, reward, share, repeat. Micro-feedback in under 500ms.
+
+**Co-Play & UGC**: Create-with and play-with flows are first-class. Templates, remix tools, and sharing are part of normal navigation.
+
+**Safety Rails, Not Friction**: Guardrails and parental controls exist but feel friendly and invisible unless needed.
+
 ### Visual Signatures
 - **Blobby Organic Shapes**: No sharp corners. Everything feels soft, safe, squishy—like the silicone pop-its they grew up with.
 - **Saturated Joy**: Colors are bright, saturated, and unapologetically cheerful. Pastels are for backgrounds; primaries are for action.

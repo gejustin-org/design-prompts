@@ -21,6 +21,10 @@
             --gold: #D4A574;
             --blush: #FADADD;
             --sage-light: #E8F0E8;
+            --cream: #FAF7F2;
+            --mauve: #C9B8C9;
+            --terracotta: #D4A574;
+            --destructive: #E8A598;
 
             --shadow-soft: 0 2px 8px rgba(61, 61, 61, 0.04);
             --shadow-md: 0 4px 16px rgba(61, 61, 61, 0.06);
@@ -28,6 +32,7 @@
             --shadow-pink: 0 4px 24px rgba(244, 209, 209, 0.4);
             --shadow-warm: 0 4px 20px rgba(212, 165, 116, 0.15);
 
+            --radius-sm: 8px;
             --radius-md: 12px;
             --radius-lg: 16px;
             --radius-xl: 24px;
@@ -190,7 +195,7 @@
         .hero .tagline {
             font-size: 1.25rem;
             color: var(--fg-muted);
-            max-width: 480px;
+            max-width: 520px;
             margin: 0 auto;
             line-height: 1.8;
         }
@@ -397,6 +402,75 @@
             margin-top: 8px;
         }
 
+        /* Emotional Keywords Pills */
+        .keywords-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 20px 0;
+        }
+
+        .keyword-pill {
+            padding: 8px 20px;
+            border-radius: var(--radius-full);
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: all 0.2s ease-out;
+        }
+
+        .keyword-pill:hover {
+            transform: translateY(-2px);
+        }
+
+        .keyword-pill.pink {
+            background: var(--primary);
+            color: var(--fg);
+        }
+
+        .keyword-pill.sage {
+            background: var(--secondary);
+            color: var(--fg);
+        }
+
+        .keyword-pill.cream {
+            background: var(--muted);
+            color: var(--fg);
+        }
+
+        .keyword-pill.gold {
+            background: var(--gold);
+            color: white;
+        }
+
+        /* Glass card variant */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: var(--radius-xl);
+            padding: 28px;
+            margin: 28px 0;
+        }
+
+        /* Gradient Section */
+        .gradient-showcase {
+            display: grid;
+            gap: 16px;
+            margin: 28px 0;
+        }
+
+        .gradient-bar {
+            height: 60px;
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            box-shadow: var(--shadow-soft);
+        }
+
         /* Copy Button Section with gradient */
         .copy-section {
             text-align: center;
@@ -492,6 +566,17 @@
             font-style: italic;
         }
 
+        /* Anti-patterns section */
+        .anti-pattern {
+            background: linear-gradient(135deg, var(--destructive) 0%, var(--accent) 100%);
+            opacity: 0.9;
+        }
+
+        .anti-list li::before {
+            background: var(--destructive);
+            box-shadow: 0 0 8px rgba(232, 165, 152, 0.6);
+        }
+
         /* Fade in animation */
         @keyframes fadeInUp {
             from {
@@ -521,7 +606,7 @@
                 animation: none;
                 opacity: 1;
             }
-            .card:hover, .color-swatch:hover, .copy-btn:hover {
+            .card:hover, .color-swatch:hover, .copy-btn:hover, .keyword-pill:hover {
                 transform: none;
             }
         }
@@ -549,7 +634,7 @@
             <div class="container">
                 <span class="years fade-in">Born 1981 - 1996</span>
                 <h1 class="fade-in fade-in-delay-1"><em>Millennial</em></h1>
-                <p class="tagline fade-in fade-in-delay-2">Curated authenticity meets warm minimalism. Instagram aesthetics, millennial pink, and the art of intentional softness.</p>
+                <p class="tagline fade-in fade-in-delay-2">Curated authenticity through warm minimalism and intentional softness. The generation that turned avocado toast into a cultural moment.</p>
             </div>
         </section>
 
@@ -561,8 +646,20 @@
 
                     <div class="card">
                         <h2>Curated <em>Authenticity</em></h2>
-                        <p>This design system captures the aesthetic sensibility of the generation that came of age during the Instagram era. A blend of aspirational lifestyle imagery, approachable warmth, and "adulting" self-awareness.</p>
+                        <p>This design system captures the aesthetic sensibility of the generation that came of age during the Instagram era - a blend of aspirational lifestyle imagery, approachable warmth, and "adulting" self-awareness.</p>
                         <p>Every design choice should feel like it was handpicked from a Pinterest board, arranged with intention on a marble countertop, and photographed in golden hour light.</p>
+                    </div>
+
+                    <h3 style="font-family: 'DM Sans', sans-serif; font-size: 1rem; font-weight: 600; margin: 32px 0 16px; color: var(--fg);">The Visual Vibe</h3>
+                    <p style="font-size: 1.125rem; font-style: italic; color: var(--gold); font-family: 'Playfair Display', serif; margin-bottom: 20px;">Soft. Curated. Warm. Aspirational.</p>
+
+                    <div class="keywords-grid">
+                        <span class="keyword-pill pink">Warm</span>
+                        <span class="keyword-pill sage">Curated</span>
+                        <span class="keyword-pill cream">Approachable</span>
+                        <span class="keyword-pill pink">Nostalgic</span>
+                        <span class="keyword-pill gold">Self-aware</span>
+                        <span class="keyword-pill sage">Genuine</span>
                     </div>
                 </div>
 
@@ -598,23 +695,73 @@
                             <span class="hex">#3D3D3D</span>
                         </div>
                     </div>
+
+                    <div class="glass-card">
+                        <h3 style="font-size: 0.875rem; font-weight: 600; margin-bottom: 12px;">Extended Palette</h3>
+                        <div class="color-grid" style="margin: 0;">
+                            <div class="color-swatch" style="background: #FADADD; color: #3D3D3D;">
+                                Blush
+                                <span class="hex">#FADADD</span>
+                            </div>
+                            <div class="color-swatch" style="background: #E8F0E8; color: #3D3D3D;">
+                                Sage Light
+                                <span class="hex">#E8F0E8</span>
+                            </div>
+                            <div class="color-swatch" style="background: #F9F1ED; color: #3D3D3D;">
+                                Muted
+                                <span class="hex">#F9F1ED</span>
+                            </div>
+                            <div class="color-swatch" style="background: #C9B8C9; color: #3D3D3D;">
+                                Mauve
+                                <span class="hex">#C9B8C9</span>
+                            </div>
+                            <div class="color-swatch" style="background: #8B8178; color: #FFFFFF;">
+                                Taupe
+                                <span class="hex">#8B8178</span>
+                            </div>
+                            <div class="color-swatch" style="background: #E8A598; color: #3D3D3D;">
+                                Coral
+                                <span class="hex">#E8A598</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gradients -->
+                <div class="section">
+                    <div class="section-label"><span>Gradients</span></div>
+                    <h2>Sunrise <em>Tones</em></h2>
+                    <p>Gradients add warmth and dimension without complexity. They should feel like natural color transitions - sunrise tones, blushing cheeks, golden hour light.</p>
+
+                    <div class="gradient-showcase">
+                        <div class="gradient-bar" style="background: linear-gradient(135deg, #F4D1D1 0%, #FADADD 50%, #FAF7F2 100%); color: var(--fg);">
+                            Blush Gradient
+                        </div>
+                        <div class="gradient-bar" style="background: linear-gradient(135deg, #F4D1D1 0%, #E8C4B8 50%, #D4A574 100%); color: white;">
+                            Sunset Gradient
+                        </div>
+                        <div class="gradient-bar" style="background: linear-gradient(135deg, #E8F0E8 0%, #D4E5D7 100%); color: var(--fg);">
+                            Sage Gradient
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Typography -->
                 <div class="section">
                     <div class="section-label"><span>Typography</span></div>
                     <h2>Clean with <em>Personality</em></h2>
+                    <p>Typography balances professionalism with approachability. The type should feel like a friend explaining something clearly - not a professor lecturing.</p>
 
                     <div class="type-card">
                         <div class="type-sample heading-sample">
                             <div class="label">Headings & UI</div>
                             <div class="demo">DM Sans</div>
-                            <div class="note">Geometric but friendly, with subtle personality in letterforms.</div>
+                            <div class="note">Geometric but friendly, with subtle personality in letterforms. Clean enough for professionalism, warm enough for approachability.</div>
                         </div>
                         <div class="type-sample accent-sample">
                             <div class="label">Accent Moments</div>
                             <div class="demo">Playfair Display</div>
-                            <div class="note">Used sparingly for emphasis, quotes, and decorative headings.</div>
+                            <div class="note">Used sparingly for emphasis, quotes, and decorative headings. Adds editorial warmth without pretension.</div>
                         </div>
                     </div>
                 </div>
@@ -627,14 +774,51 @@
 
                     <div class="card">
                         <ul>
-                            <li><strong>Floating gradient orbs</strong> - Blurred circles of pink and sage creating ambient depth</li>
-                            <li><strong>Rounded everything</strong> - Sharp corners feel aggressive; soft edges invite interaction</li>
+                            <li><strong>Floating gradient orbs</strong> - Large blurred circles (300-600px) creating ambient depth with heavy blur and palette colors</li>
+                            <li><strong>Organic floating shapes</strong> - Blob-like forms with <code style="background: var(--muted); padding: 2px 6px; border-radius: 4px; font-size: 0.875rem;">border-radius: 60% 40% 50% 70%</code></li>
+                            <li><strong>Rounded everything</strong> - Sharp corners feel aggressive; soft edges invite interaction (radius-lg minimum)</li>
                             <li><strong>Pink-tinted shadows</strong> - Dreamy, diffused, like golden hour light</li>
-                            <li><strong>Section labels with decorative lines</strong> - Wellness-brand inspired headers</li>
-                            <li><strong>Pill badges and tags</strong> - Creating that Pinterest board feel</li>
-                            <li><strong>Cards with gentle lift</strong> - Hover states that feel satisfying, not jarring</li>
-                            <li><strong>Lifestyle photography integration</strong> - Flat lays, marble surfaces, plants</li>
-                            <li><strong>Gradient overlays</strong> - Pink-to-peach transitions, never garish</li>
+                            <li><strong>Section labels with decorative lines</strong> - Wellness-brand inspired headers with gradient fades</li>
+                            <li><strong>Pill badges and tags</strong> - Rounded-full elements creating that Pinterest board feel</li>
+                            <li><strong>Cards with gentle lift</strong> - Hover states with translateY(-2px) that feel satisfying, not jarring</li>
+                            <li><strong>Lifestyle photography integration</strong> - Flat lays, marble surfaces, plants, golden hour lighting</li>
+                            <li><strong>Glass card effects</strong> - Frosted glass with backdrop-blur(12px) and warm-tinted overlay</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Motion & Effects -->
+                <div class="section">
+                    <div class="section-label"><span>Motion & Effects</span></div>
+                    <h2>Smooth <em>Satisfaction</em></h2>
+                    <p>Movement should feel like a satisfying stretch, a gentle sigh, a settling into comfort. Nothing jarring, nothing urgent.</p>
+
+                    <div class="card">
+                        <ul>
+                            <li><strong>Hover lift</strong> - translateY(-2px) with 200ms ease-out for snappy but smooth feel</li>
+                            <li><strong>Button press</strong> - scale(0.98) with 100ms for satisfying feedback</li>
+                            <li><strong>Floating animation</strong> - 6-8s ease-in-out infinite for ambient depth</li>
+                            <li><strong>Fade in up</strong> - 600ms ease-out for page load elegance</li>
+                            <li><strong>Shadow evolution</strong> - shadow-soft to shadow-md on hover</li>
+                            <li><strong>Gradient shift</strong> - 8s ease-in-out infinite for ambient background animation</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Anti-Patterns -->
+                <div class="section">
+                    <div class="section-label"><span>Anti-Patterns</span></div>
+                    <h2>What to <em>Avoid</em></h2>
+                    <p>These mistakes will break the millennial aesthetic:</p>
+
+                    <div class="card">
+                        <ul class="anti-list">
+                            <li><strong>Pure black or white</strong> - Use soft charcoal (#3D3D3D) and warm cream (#FDF8F5)</li>
+                            <li><strong>Sharp corners</strong> - Everything should be rounded (radius-lg minimum for cards)</li>
+                            <li><strong>Harsh shadows</strong> - Shadows should be soft, diffused, warm-tinted</li>
+                            <li><strong>Aggressive colors</strong> - All colors should be muted, dusty, or soft</li>
+                            <li><strong>Cold grays</strong> - Gray should always have warm undertone (taupe, greige)</li>
+                            <li><strong>Fast, jarring animations</strong> - All motion should be smooth, satisfying, and gentle</li>
                         </ul>
                     </div>
                 </div>

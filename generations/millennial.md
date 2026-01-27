@@ -63,6 +63,14 @@ Imagine scrolling through a wellness brand's Instagram feed, or walking into a b
 - Not loud or aggressive (soft power, not hard sell)
 - Not purely decorative (function informs beauty)
 
+### The Millennial Tension (Make It Feel Real)
+
+This generation is polished but tired, aspirational but self-aware. The design should carry a gentle wink:
+- **Wellness, But Honest**: Calm visuals with small moments of humor or confession ("we tried our best" energy).
+- **Adulting UI**: Subtle nudges, checklists, and progress feels helpful, not gamified.
+- **Nostalgia as Texture**: Soft skeuomorphic cues (paper edges, photo frames, film grain) used sparingly.
+- **Story-First Layouts**: Content reads like a lifestyle post or guide, not a corporate dashboard.
+
 ### The DNA of This Style
 
 #### 1. The Millennial Pink Spectrum

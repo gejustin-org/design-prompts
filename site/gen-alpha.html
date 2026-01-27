@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gen Alpha Design Prompt | Generation Design Prompts</title>
+    <title>Gen Alpha Design System | Gamified Universe</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -39,9 +39,12 @@
             --rare: #3498DB;
             --common: #95A5A6;
             --xp: #F1C40F;
+            --health: #E74C3C;
+            --mana: #3498DB;
 
             /* Gradients */
             --gradient-primary: linear-gradient(135deg, #6C5CE7 0%, #A29BFE 50%, #74B9FF 100%);
+            --gradient-success: linear-gradient(135deg, #00D68F 0%, #7EFFD2 100%);
             --gradient-legendary: linear-gradient(135deg, #FF9F43 0%, #FFD93D 50%, #FF6B9D 100%);
             --gradient-xp: linear-gradient(90deg, #6C5CE7 0%, #00D68F 100%);
             --gradient-rainbow: linear-gradient(90deg, #FF6B9D, #FFB830, #00D68F, #00C9FF, #6C5CE7);
@@ -50,6 +53,7 @@
             --shadow-sm: 0 2px 8px rgba(108, 92, 231, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
             --shadow-md: 0 4px 16px rgba(108, 92, 231, 0.12), 0 2px 4px rgba(0, 0, 0, 0.04);
             --shadow-lg: 0 8px 32px rgba(108, 92, 231, 0.16), 0 4px 8px rgba(0, 0, 0, 0.04);
+            --shadow-xl: 0 16px 48px rgba(108, 92, 231, 0.20), 0 8px 16px rgba(0, 0, 0, 0.06);
             --shadow-hover: 0 12px 40px rgba(108, 92, 231, 0.20), 0 6px 12px rgba(0, 0, 0, 0.06), 0 0 20px rgba(108, 92, 231, 0.15);
 
             /* Glows */
@@ -58,10 +62,21 @@
             --glow-legendary: 0 0 20px rgba(255, 159, 67, 0.5), 0 0 40px rgba(255, 159, 67, 0.3);
             --glow-epic: 0 0 20px rgba(155, 89, 182, 0.5), 0 0 40px rgba(155, 89, 182, 0.3);
             --glow-rare: 0 0 20px rgba(52, 152, 219, 0.5), 0 0 40px rgba(52, 152, 219, 0.3);
+            --glow-rainbow: 0 0 30px rgba(108, 92, 231, 0.4), 0 0 60px rgba(0, 201, 255, 0.3), 0 0 90px rgba(255, 107, 157, 0.2);
 
             /* Bouncy Easings */
             --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
             --ease-squish: cubic-bezier(0.34, 1.56, 0.64, 1);
+            --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+            --ease-snap: cubic-bezier(0.2, 0, 0, 1);
+
+            /* Radii */
+            --radius-sm: 12px;
+            --radius-md: 16px;
+            --radius-lg: 24px;
+            --radius-xl: 32px;
+            --radius-2xl: 48px;
+            --radius-full: 9999px;
         }
 
         * {
@@ -111,10 +126,12 @@
         .particle:nth-child(6) { width: 22px; height: 22px; background: var(--primary); top: 85%; left: 25%; animation-delay: 5s; opacity: 0.3; }
         .particle:nth-child(7) { width: 14px; height: 14px; background: var(--xp); top: 30%; left: 45%; animation-delay: 6s; }
         .particle:nth-child(8) { width: 16px; height: 16px; background: var(--success); top: 50%; left: 60%; animation-delay: 7s; opacity: 0.3; }
+        .particle:nth-child(9) { width: 10px; height: 10px; background: var(--legendary); top: 15%; left: 55%; animation-delay: 2.5s; }
+        .particle:nth-child(10) { width: 18px; height: 18px; background: var(--epic); top: 70%; left: 85%; animation-delay: 4.5s; opacity: 0.35; }
 
         @keyframes float-particle {
-            0%, 100% { transform: translateY(0) scale(1); }
-            50% { transform: translateY(-30px) scale(1.1); }
+            0%, 100% { transform: translateY(0) scale(1) rotate(0deg); }
+            50% { transform: translateY(-30px) scale(1.1) rotate(180deg); }
         }
 
         .container {
@@ -147,7 +164,7 @@
             gap: 8px;
             padding: 12px 20px;
             background: var(--surface);
-            border-radius: 9999px;
+            border-radius: var(--radius-full);
             box-shadow: var(--shadow-sm);
             transition: all 0.3s var(--ease-bounce);
         }
@@ -168,7 +185,7 @@
             padding: 10px 20px;
             background: var(--gradient-primary);
             color: white;
-            border-radius: 9999px;
+            border-radius: var(--radius-full);
             font-weight: 600;
             box-shadow: var(--shadow-md), var(--glow-primary);
             animation: pulse-glow 2s ease-in-out infinite;
@@ -228,7 +245,7 @@
         .hero p {
             font-size: 1.25rem;
             color: var(--muted-fg);
-            max-width: 600px;
+            max-width: 650px;
             margin: 0 auto 32px;
         }
 
@@ -242,7 +259,7 @@
             position: relative;
             height: 32px;
             background: var(--muted);
-            border-radius: 9999px;
+            border-radius: var(--radius-full);
             overflow: hidden;
             box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
         }
@@ -254,7 +271,7 @@
             height: 100%;
             width: 72%;
             background: var(--gradient-xp);
-            border-radius: 9999px;
+            border-radius: var(--radius-full);
             animation: shimmer 2s linear infinite;
             background-size: 200% 100%;
         }
@@ -334,7 +351,7 @@
         /* Blobby Card */
         .blobby-card {
             background: var(--surface);
-            border-radius: 24px;
+            border-radius: var(--radius-lg);
             padding: 28px;
             box-shadow: var(--shadow-md);
             border: 2px solid var(--muted);
@@ -350,7 +367,7 @@
         /* Pillar Card */
         .pillar-card {
             background: var(--surface);
-            border-radius: 24px;
+            border-radius: var(--radius-lg);
             padding: 28px;
             box-shadow: var(--shadow-md);
             border: 2px solid var(--primary-light);
@@ -371,8 +388,8 @@
         }
 
         .pillar-list li {
-            padding: 12px 0;
-            padding-left: 36px;
+            padding: 16px 0;
+            padding-left: 40px;
             position: relative;
             border-bottom: 1px solid var(--muted);
         }
@@ -387,24 +404,66 @@
             left: 0;
             top: 50%;
             transform: translateY(-50%);
-            width: 24px;
-            height: 24px;
-            background: var(--success);
+            width: 28px;
+            height: 28px;
+            background: var(--gradient-success);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
+            box-shadow: var(--shadow-sm);
         }
 
         .pillar-list li::after {
             content: '\2713';
             position: absolute;
-            left: 6px;
+            left: 8px;
             top: 50%;
             transform: translateY(-50%);
             color: white;
             font-weight: 700;
             font-size: 0.875rem;
+        }
+
+        /* Vibe Cards Grid */
+        .vibe-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin: 24px 0;
+        }
+
+        .vibe-card {
+            background: var(--surface);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            transition: all 0.4s var(--ease-bounce);
+            border: 2px solid transparent;
+        }
+
+        .vibe-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .vibe-card:nth-child(1) { border-color: var(--warning); }
+        .vibe-card:nth-child(2) { border-color: var(--success); }
+        .vibe-card:nth-child(3) { border-color: var(--danger); }
+        .vibe-card:nth-child(4) { border-color: var(--info); }
+
+        .vibe-card .vibe-icon {
+            font-size: 48px;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .vibe-card .vibe-title {
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 700;
+            font-size: 1.125rem;
+            color: var(--fg);
         }
 
         /* Achievement Badges Section */
@@ -421,7 +480,7 @@
             align-items: center;
             padding: 24px;
             background: var(--surface);
-            border-radius: 24px;
+            border-radius: var(--radius-lg);
             box-shadow: var(--shadow-md);
             transition: all 0.4s var(--ease-bounce);
             position: relative;
@@ -560,14 +619,14 @@
         /* Color Swatches */
         .color-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
             gap: 16px;
             margin: 24px 0;
         }
 
         .color-swatch {
             aspect-ratio: 1;
-            border-radius: 24px;
+            border-radius: var(--radius-lg);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -598,50 +657,161 @@
             opacity: 0.8;
         }
 
-        /* Signature Elements List */
-        .signature-list {
-            list-style: none;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 12px;
+        /* Typography Section */
+        .type-demo {
+            background: var(--surface);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+            margin: 24px 0;
+            box-shadow: var(--shadow-md);
         }
 
-        .signature-list li {
-            padding: 16px 20px;
-            padding-left: 52px;
-            position: relative;
+        .type-sample {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--muted);
+        }
+
+        .type-sample:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .type-sample .type-label {
+            font-size: 0.75rem;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 4px;
+            font-weight: 700;
+        }
+
+        .type-fredoka {
+            font-family: 'Fredoka', sans-serif;
+        }
+
+        .type-nunito {
+            font-family: 'Nunito', sans-serif;
+        }
+
+        /* Signature Elements List */
+        .signature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+            margin: 24px 0;
+        }
+
+        .signature-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 20px;
             background: var(--surface);
-            border-radius: 16px;
+            border-radius: var(--radius-md);
             box-shadow: var(--shadow-sm);
             transition: all 0.3s var(--ease-bounce);
         }
 
-        .signature-list li:hover {
+        .signature-item:hover {
             transform: translateX(8px);
             box-shadow: var(--shadow-md);
         }
 
-        .signature-list li::before {
-            content: '';
-            position: absolute;
-            left: 16px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 24px;
-            height: 24px;
+        .signature-icon {
+            width: 48px;
+            height: 48px;
             background: var(--gradient-primary);
             border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
         }
 
-        .signature-list li::after {
-            content: '\2713';
-            position: absolute;
-            left: 22px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: white;
+        .signature-text {
+            font-size: 0.95rem;
+            color: var(--fg);
+        }
+
+        /* Gamification Elements Section */
+        .game-elements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            margin: 24px 0;
+        }
+
+        .game-element-card {
+            background: var(--surface);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s var(--ease-bounce);
+            text-align: center;
+        }
+
+        .game-element-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .game-element-icon {
+            font-size: 40px;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .game-element-title {
+            font-family: 'Fredoka', sans-serif;
             font-weight: 700;
-            font-size: 0.75rem;
+            font-size: 1rem;
+            margin-bottom: 8px;
+            color: var(--fg);
+        }
+
+        .game-element-desc {
+            font-size: 0.875rem;
+            color: var(--muted-fg);
+            line-height: 1.5;
+        }
+
+        /* Accessibility Section */
+        .a11y-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin: 24px 0;
+        }
+
+        .a11y-card {
+            background: var(--surface);
+            border-radius: var(--radius-md);
+            padding: 20px;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            border-left: 4px solid var(--success);
+            transition: all 0.3s var(--ease-bounce);
+        }
+
+        .a11y-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .a11y-icon {
+            font-size: 32px;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .a11y-title {
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--fg);
         }
 
         /* Copy Section - Reward Style */
@@ -649,11 +819,11 @@
             margin-top: 60px;
             padding: 48px 32px;
             background: var(--gradient-legendary);
-            border-radius: 32px;
+            border-radius: var(--radius-xl);
             text-align: center;
             position: relative;
             overflow: hidden;
-            box-shadow: var(--shadow-lg), var(--glow-legendary);
+            box-shadow: var(--shadow-xl), var(--glow-legendary);
         }
 
         .copy-section::before {
@@ -676,16 +846,6 @@
             position: relative;
         }
 
-        .copy-section h3::before {
-            content: '\2728';
-            margin-right: 8px;
-        }
-
-        .copy-section h3::after {
-            content: '\2728';
-            margin-left: 8px;
-        }
-
         .copy-section p {
             color: rgba(255, 255, 255, 0.9);
             margin-bottom: 24px;
@@ -703,7 +863,7 @@
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.05em;
-            border-radius: 9999px;
+            border-radius: var(--radius-full);
             cursor: pointer;
             transition: all 0.3s var(--ease-bounce);
             box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
@@ -753,6 +913,14 @@
             100% { transform: rotate(360deg) scale(1); }
         }
 
+        /* Rainbow Divider */
+        .rainbow-divider {
+            height: 4px;
+            background: var(--gradient-rainbow);
+            border-radius: var(--radius-full);
+            margin: 40px 0;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             body {
@@ -783,6 +951,10 @@
                 padding: 16px 32px;
                 font-size: 1rem;
             }
+
+            .vibe-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
 
         /* Reduced Motion */
@@ -798,6 +970,8 @@
 <body>
     <!-- Floating Particles -->
     <div class="particles-bg">
+        <div class="particle"></div>
+        <div class="particle"></div>
         <div class="particle"></div>
         <div class="particle"></div>
         <div class="particle"></div>
@@ -824,13 +998,13 @@
             <div class="container">
                 <span class="hero-emoji">&#127918;</span>
                 <p class="years">Born 2013 and beyond</p>
-                <h1><span class="light">level up:</span><br><span class="gradient-text">Gen Alpha</span></h1>
-                <p>Tablet natives raised on Roblox and gamified everything. Bright, bouncy, rewarding, and radically accessible. Every interaction earns XP.</p>
+                <h1><span class="light">the gamified universe:</span><br><span class="gradient-text">Gen Alpha</span></h1>
+                <p>Tablet natives raised on Roblox, Minecraft, and mobile-first everything. They don't distinguish between apps and games. Every interaction earns XP. Every milestone deserves celebration.</p>
 
                 <div class="xp-bar-demo">
                     <div class="xp-bar-container">
                         <div class="xp-bar-fill"></div>
-                        <span class="xp-bar-text">3,600 / 5,000 XP</span>
+                        <span class="xp-bar-text">2,450 / 5,000 XP</span>
                     </div>
                     <div class="xp-labels">
                         <span>&#11088; Level 7</span>
@@ -842,23 +1016,80 @@
 
         <section class="content">
             <div class="container">
-                <div class="section">
-                    <h2>design philosophy</h2>
-                    <p>The Gamified Universe. Everything is interactive, rewarding, and playful. They don't distinguish between apps and games - they expect dopamine-optimized, accessibility-first experiences where browsing feels like play.</p>
 
-                    <div class="pillar-card" style="margin-top: 24px;">
-                        <h3>&#127775; The Three Pillars</h3>
+                <!-- The Vibe Section -->
+                <div class="section">
+                    <h2>the vibe</h2>
+                    <div class="vibe-grid">
+                        <div class="vibe-card">
+                            <span class="vibe-icon">&#9728;&#65039;</span>
+                            <span class="vibe-title">Bright</span>
+                        </div>
+                        <div class="vibe-card">
+                            <span class="vibe-icon">&#128131;</span>
+                            <span class="vibe-title">Bouncy</span>
+                        </div>
+                        <div class="vibe-card">
+                            <span class="vibe-icon">&#127873;</span>
+                            <span class="vibe-title">Rewarding</span>
+                        </div>
+                        <div class="vibe-card">
+                            <span class="vibe-icon">&#129309;</span>
+                            <span class="vibe-title">Inclusive</span>
+                        </div>
+                    </div>
+                    <p style="margin-top: 16px;">Think Roblox lobby meets educational app meets AR playground. The interface celebrates you constantly, never punishes mistakes, and makes accessibility feel natural.</p>
+                </div>
+
+                <div class="rainbow-divider"></div>
+
+                <!-- Three Pillars -->
+                <div class="section">
+                    <h2>the three pillars</h2>
+                    <div class="pillar-card">
+                        <h3>&#127775; Core Design Philosophy</h3>
                         <ul class="pillar-list">
-                            <li><strong>Gamification Native</strong> - XP bars, achievements, streaks, collectibles. Progress must be visible and celebrated.</li>
-                            <li><strong>Radical Accessibility</strong> - WCAG AAA is the floor, not the ceiling. Neurodiversity-friendly patterns are mandatory.</li>
-                            <li><strong>Haptic-Audio-Visual Harmony</strong> - Sounds, vibrations, and visuals work together. Full sensory design.</li>
+                            <li><strong>Gamification Native</strong> - XP bars, achievements, streaks, collectibles. Progress must be visible, celebrated, and shareable. These aren't features, they're baseline expectations.</li>
+                            <li><strong>Radical Accessibility</strong> - WCAG AAA is the floor, not the ceiling. Neurodiversity-friendly patterns, multiple input modalities, and sensory-safe options are mandatory.</li>
+                            <li><strong>Haptic-Audio-Visual Harmony</strong> - Gen Alpha experiences interfaces synesthetically. Sounds, vibrations, and visuals work together for full sensory design.</li>
                         </ul>
                     </div>
                 </div>
 
+                <!-- Gamification Elements -->
                 <div class="section">
-                    <h2>achievement badges</h2>
-                    <p>Rarity tiers with distinct glow effects. From common to legendary, each tier has its own visual language.</p>
+                    <h2>gamification elements</h2>
+                    <p>Every interaction should feel like progress. Every milestone deserves a celebration.</p>
+                    <div class="game-elements-grid">
+                        <div class="game-element-card">
+                            <span class="game-element-icon">&#128200;</span>
+                            <span class="game-element-title">XP Systems</span>
+                            <span class="game-element-desc">Progress bars with shimmer animation. "+50 XP" floats up from actions.</span>
+                        </div>
+                        <div class="game-element-card">
+                            <span class="game-element-icon">&#127942;</span>
+                            <span class="game-element-title">Achievements</span>
+                            <span class="game-element-desc">Unlock animations, rarity tiers, particle bursts on completion.</span>
+                        </div>
+                        <div class="game-element-card">
+                            <span class="game-element-icon">&#128293;</span>
+                            <span class="game-element-title">Daily Streaks</span>
+                            <span class="game-element-desc">7-day calendars, fire animations, streak counters with rewards.</span>
+                        </div>
+                        <div class="game-element-card">
+                            <span class="game-element-icon">&#129351;</span>
+                            <span class="game-element-title">Avatar Economy</span>
+                            <span class="game-element-desc">Skins, badges, cosmetics. Identity is customizable and collectible.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="rainbow-divider"></div>
+
+                <!-- Achievement Badges -->
+                <div class="section">
+                    <h2>rarity system</h2>
+                    <p>Roblox-inspired tier colors with distinct glow effects. Each rarity has its own visual language and celebration level.</p>
 
                     <div class="badge-showcase">
                         <div class="achievement-badge badge-common">
@@ -884,9 +1115,10 @@
                     </div>
                 </div>
 
+                <!-- Color Palette -->
                 <div class="section">
                     <h2>color palette</h2>
-                    <p>Roblox-bright colors. Saturated joy with pastels for backgrounds, primaries for action.</p>
+                    <p>The "Roblox Bright" palette. Saturated joy with pastels for backgrounds, primaries for action. All combinations pass WCAG AAA contrast.</p>
 
                     <div class="color-grid">
                         <div class="color-swatch" style="background: #F0F7FF; color: #1A1A2E; border: 2px solid #E8F4FD;">
@@ -921,27 +1153,120 @@
                             <span class="color-name">Legendary</span>
                             <span class="color-hex">#FF9F43</span>
                         </div>
+                        <div class="color-swatch" style="background: #F1C40F; color: #1A1A2E;">
+                            <span class="color-name">XP</span>
+                            <span class="color-hex">#F1C40F</span>
+                        </div>
+                        <div class="color-swatch" style="background: #01A862; color: white;">
+                            <span class="color-name">Robux</span>
+                            <span class="color-hex">#01A862</span>
+                        </div>
                     </div>
                 </div>
 
+                <div class="rainbow-divider"></div>
+
+                <!-- Typography -->
                 <div class="section">
-                    <h2>signature elements</h2>
-                    <ul class="signature-list">
-                        <li>Blobby organic shapes (12px+ radius minimum)</li>
-                        <li>Bouncy spring physics on hover (overshoot easing)</li>
-                        <li>Large touch targets (56px+ buttons)</li>
-                        <li>Colored shadows with purple tint</li>
-                        <li>XP bars with shimmer animation</li>
-                        <li>Achievement badges with rarity glow</li>
-                        <li>Gradient buttons and accents</li>
-                        <li>Particle and celebration aesthetics</li>
-                        <li>Progress indicators everywhere</li>
-                        <li>Avatar-centric personalization</li>
-                    </ul>
+                    <h2>typography</h2>
+                    <p>Chunky, rounded, playful. Fredoka for display, Nunito for body. Minimum 14px font size, 18px+ for body content.</p>
+
+                    <div class="type-demo">
+                        <div class="type-sample">
+                            <span class="type-label">Fredoka - Display</span>
+                            <div class="type-fredoka" style="font-size: 48px; font-weight: 700; line-height: 1.1;">Level Up!</div>
+                        </div>
+                        <div class="type-sample">
+                            <span class="type-label">Fredoka - Headings</span>
+                            <div class="type-fredoka" style="font-size: 24px; font-weight: 600;">Achievement Unlocked</div>
+                        </div>
+                        <div class="type-sample">
+                            <span class="type-label">Nunito - Body</span>
+                            <div class="type-nunito" style="font-size: 18px; line-height: 1.6; max-width: 65ch;">Rounded terminals, highly readable, friendly. Works at small sizes for UI labels. The perfect companion for playful interfaces.</div>
+                        </div>
+                        <div class="type-sample">
+                            <span class="type-label">Monospace - Scores</span>
+                            <div style="font-family: 'JetBrains Mono', monospace; font-size: 32px; font-variant-numeric: tabular-nums; color: var(--xp);">+2,500 XP</div>
+                        </div>
+                    </div>
                 </div>
 
+                <!-- Signature Elements -->
+                <div class="section">
+                    <h2>visual signatures</h2>
+                    <div class="signature-grid">
+                        <div class="signature-item">
+                            <span class="signature-icon">&#128171;</span>
+                            <span class="signature-text">Blobby organic shapes (12px+ radius minimum)</span>
+                        </div>
+                        <div class="signature-item">
+                            <span class="signature-icon">&#10024;</span>
+                            <span class="signature-text">Bouncy spring physics on hover</span>
+                        </div>
+                        <div class="signature-item">
+                            <span class="signature-icon">&#128070;</span>
+                            <span class="signature-text">Large touch targets (56px+ buttons)</span>
+                        </div>
+                        <div class="signature-item">
+                            <span class="signature-icon">&#127912;</span>
+                            <span class="signature-text">Colored shadows with purple tint</span>
+                        </div>
+                        <div class="signature-item">
+                            <span class="signature-icon">&#128640;</span>
+                            <span class="signature-text">XP bars with shimmer animation</span>
+                        </div>
+                        <div class="signature-item">
+                            <span class="signature-icon">&#127881;</span>
+                            <span class="signature-text">Confetti and particle celebrations</span>
+                        </div>
+                        <div class="signature-item">
+                            <span class="signature-icon">&#127752;</span>
+                            <span class="signature-text">Gradient buttons and accents</span>
+                        </div>
+                        <div class="signature-item">
+                            <span class="signature-icon">&#128100;</span>
+                            <span class="signature-text">Avatar-centric personalization</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="rainbow-divider"></div>
+
+                <!-- Accessibility -->
+                <div class="section">
+                    <h2>accessibility first</h2>
+                    <p>WCAG AAA is the floor. Neurodiversity-friendly design is mandatory. Multiple input modalities supported.</p>
+                    <div class="a11y-grid">
+                        <div class="a11y-card">
+                            <span class="a11y-icon">&#127912;</span>
+                            <span class="a11y-title">7:1 Contrast Minimum</span>
+                        </div>
+                        <div class="a11y-card">
+                            <span class="a11y-icon">&#9995;</span>
+                            <span class="a11y-title">48px Touch Targets</span>
+                        </div>
+                        <div class="a11y-card">
+                            <span class="a11y-icon">&#128065;</span>
+                            <span class="a11y-title">Reduced Motion Support</span>
+                        </div>
+                        <div class="a11y-card">
+                            <span class="a11y-icon">&#128266;</span>
+                            <span class="a11y-title">Screen Reader Ready</span>
+                        </div>
+                        <div class="a11y-card">
+                            <span class="a11y-icon">&#127879;</span>
+                            <span class="a11y-title">Sensory Safe Mode</span>
+                        </div>
+                        <div class="a11y-card">
+                            <span class="a11y-icon">&#9000;</span>
+                            <span class="a11y-title">Full Keyboard Nav</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Copy Section -->
                 <div class="copy-section">
-                    <h3>Claim Your Reward</h3>
+                    <h3>&#10024; Claim Your Reward &#10024;</h3>
                     <p>Copy the full design system prompt to your clipboard!</p>
                     <button class="copy-btn" onclick="copyPrompt()">COPY PROMPT</button>
                 </div>
@@ -951,7 +1276,7 @@
 
     <footer>
         <div class="container">
-            <p><span class="star-accent">&#11088;</span> bright bouncy rewarding <span class="star-accent">&#11088;</span></p>
+            <p><span class="star-accent">&#11088;</span> bright bouncy rewarding inclusive <span class="star-accent">&#11088;</span></p>
         </div>
     </footer>
 
@@ -962,7 +1287,7 @@
                 const response = await fetch('../generations/gen-alpha.md');
                 const text = await response.text();
                 await navigator.clipboard.writeText(text);
-                btn.textContent = 'CLAIMED!';
+                btn.textContent = 'CLAIMED! +500 XP';
                 btn.classList.add('copied');
                 setTimeout(() => {
                     btn.textContent = 'COPY PROMPT';

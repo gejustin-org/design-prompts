@@ -59,6 +59,14 @@ This is the aesthetic of the generation that grew up with MTV, watched the Berli
 
 **Sound Design (Visual)**: If this design had sound, it would be the whir of a VHS rewinding, dial-up modem handshake, Sonic Youth guitar feedback, and the satisfying click-clunk of a cassette deck. The visual design echoes this through noise textures, analog imperfection, and rhythmic glitch patterns.
 
+### Pragmatic Core (Make It Feel Gen X)
+
+Gen X is not just grunge; it's efficient and distrustful of fluff. The UI should feel useful even when it looks rough:
+- **Density Is Okay**: More information per screen, fewer oversized hero sections.
+- **Utility Over Hype**: Clear labeling, obvious actions, no marketing fluff.
+- **Early Productivity DNA**: Spreadsheet vibes, email-era forms, BBS/forum layouts reinterpreted with modern accessibility.
+- **Respect My Time**: Short flows, visible status, direct feedback without fanfare.
+
 ### The "Anti-Patterns" (What This Is NOT)
 - **Not Corporate**: This aesthetic actively mocks polished professionalism
 - **Not Optimistic**: Gen X emerged from Cold War anxiety into economic uncertainty — hope is expressed through irony
