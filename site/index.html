@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generation Design Prompts</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --fg: #fafafa;
+            --muted: #71717a;
+            --border: #27272a;
+            --gen-x: #8b5cf6;
+            --millennial: #f472b6;
+            --gen-z: #22d3ee;
+            --gen-alpha: #a3e635;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background: var(--bg);
+            color: var(--fg);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header */
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+
+        .logo span {
+            opacity: 0.5;
+        }
+
+        /* Hero */
+        .hero {
+            padding: 120px 0 80px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 .gradient {
+            background: linear-gradient(135deg, var(--gen-x), var(--millennial), var(--gen-z), var(--gen-alpha));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--muted);
+            max-width: 600px;
+            margin: 0 auto 48px;
+        }
+
+        /* Generation Cards Grid */
+        .generations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            padding: 40px 0 120px;
+        }
+
+        .gen-card {
+            position: relative;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+            text-decoration: none;
+            color: var(--fg);
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .gen-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--accent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gen-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-4px);
+        }
+
+        .gen-card:hover::before {
+            opacity: 1;
+        }
+
+        .gen-card.gen-x { --accent: var(--gen-x); }
+        .gen-card.millennial { --accent: var(--millennial); }
+        .gen-card.gen-z { --accent: var(--gen-z); }
+        .gen-card.gen-alpha { --accent: var(--gen-alpha); }
+
+        .gen-card .years {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 16px;
+            padding: 4px 12px;
+            background: color-mix(in srgb, var(--accent) 15%, transparent);
+            border-radius: 100px;
+        }
+
+        .gen-card h2 {
+            font-size: 1.75rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin-bottom: 12px;
+        }
+
+        .gen-card p {
+            color: var(--muted);
+            font-size: 0.95rem;
+            margin-bottom: 24px;
+        }
+
+        .gen-card .keywords {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .gen-card .keyword {
+            font-size: 0.75rem;
+            padding: 4px 10px;
+            background: var(--border);
+            border-radius: 6px;
+            color: var(--muted);
+        }
+
+        .gen-card .arrow {
+            position: absolute;
+            bottom: 32px;
+            right: 32px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .gen-card:hover .arrow {
+            background: var(--accent);
+            color: var(--bg);
+        }
+
+        /* About Section */
+        .about {
+            padding: 80px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .about h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .about p {
+            color: var(--muted);
+            max-width: 700px;
+        }
+
+        .about a {
+            color: var(--fg);
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+
+        /* Footer */
+        footer {
+            padding: 24px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--muted);
+            font-size: 0.875rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">genprompts<span>.dev</span></div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Design Prompts for<br><span class="gradient">Every Generation</span></h1>
+                <p>AI-ready design system prompts capturing the aesthetic DNA of Gen X, Millennials, Gen Z, and Gen Alpha.</p>
+            </div>
+        </section>
+
+        <section class="container">
+            <div class="generations-grid">
+                <a href="gen-x.html" class="gen-card gen-x">
+                    <span class="years">1965 - 1980</span>
+                    <h2>Gen X</h2>
+                    <p>MTV era grunge meets early internet. VHS tracking lines, CRT phosphors, and DIY independence.</p>
+                    <div class="keywords">
+                        <span class="keyword">Grunge</span>
+                        <span class="keyword">VHS</span>
+                        <span class="keyword">Early Web</span>
+                        <span class="keyword">Analog</span>
+                    </div>
+                    <div class="arrow">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </div>
+                </a>
+
+                <a href="millennial.html" class="gen-card millennial">
+                    <span class="years">1981 - 1996</span>
+                    <h2>Millennial</h2>
+                    <p>Curated authenticity and Instagram aesthetics. Millennial pink, soft gradients, and mindful minimalism.</p>
+                    <div class="keywords">
+                        <span class="keyword">Instagram</span>
+                        <span class="keyword">Rose Gold</span>
+                        <span class="keyword">Self-Care</span>
+                        <span class="keyword">Minimal</span>
+                    </div>
+                    <div class="arrow">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </div>
+                </a>
+
+                <a href="gen-z.html" class="gen-card gen-z">
+                    <span class="years">1997 - 2012</span>
+                    <h2>Gen Z</h2>
+                    <p>TikTok-native chaos and anti-minimalism. Gradient meshes, dark mode, and intentional ugliness.</p>
+                    <div class="keywords">
+                        <span class="keyword">TikTok</span>
+                        <span class="keyword">Dark Mode</span>
+                        <span class="keyword">Y2K</span>
+                        <span class="keyword">Chaotic</span>
+                    </div>
+                    <div class="arrow">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </div>
+                </a>
+
+                <a href="gen-alpha.html" class="gen-card gen-alpha">
+                    <span class="years">2013 - Present</span>
+                    <h2>Gen Alpha</h2>
+                    <p>Gamified natives and tablet-first. Roblox palettes, achievement systems, and dopamine-optimized UI.</p>
+                    <div class="keywords">
+                        <span class="keyword">Gamified</span>
+                        <span class="keyword">Roblox</span>
+                        <span class="keyword">Touch-First</span>
+                        <span class="keyword">Accessible</span>
+                    </div>
+                    <div class="arrow">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <section class="about">
+            <div class="container">
+                <h2>What is this?</h2>
+                <p>These are AI-ready design system prompts that capture the visual DNA of different generations. Each prompt can be used with LLMs like Claude or GPT to generate UI that feels authentically tied to a generation's aesthetic sensibilities. Inspired by <a href="https://designprompts.dev" target="_blank">designprompts.dev</a>.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Built with design prompts. View the source on GitHub.</p>
+        </div>
+    </footer>
+</body>
+</html>

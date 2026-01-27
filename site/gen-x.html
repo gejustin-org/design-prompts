@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gen X Design Prompt | Generation Design Prompts</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #1a1a1a;
+            --bg-card: #242424;
+            --fg: #c9c9c9;
+            --fg-muted: #737373;
+            --border: #3d3d3d;
+            --accent: #00ff00;
+            --accent-secondary: #ff6600;
+            --accent-tertiary: #00ccff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Monaco', 'Lucida Console', 'Courier', monospace;
+            background: var(--bg);
+            color: var(--fg);
+            min-height: 100vh;
+            line-height: 1.7;
+            position: relative;
+        }
+
+        /* VHS Tracking Lines Overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent 0px,
+                transparent 2px,
+                rgba(255, 255, 255, 0.02) 2px,
+                rgba(255, 255, 255, 0.02) 4px
+            );
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        /* Static Noise */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: 999;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header */
+        header {
+            padding: 24px 0;
+            border-bottom: 1px dashed var(--border);
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .back-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 0.875rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-link:hover {
+            text-shadow: 0 0 10px var(--accent);
+        }
+
+        .gen-badge {
+            font-size: 0.75rem;
+            padding: 4px 12px;
+            background: var(--accent);
+            color: var(--bg);
+            font-weight: 700;
+        }
+
+        /* Hero */
+        .hero {
+            padding: 80px 0 60px;
+            border-bottom: 1px dashed var(--border);
+        }
+
+        .hero h1 {
+            font-family: 'Courier Prime', monospace;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 700;
+            color: var(--accent);
+            text-shadow:
+                0 0 10px var(--accent),
+                -1px 0 var(--accent-tertiary),
+                1px 0 var(--accent-secondary);
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+
+        .hero .years {
+            font-size: 1rem;
+            color: var(--fg-muted);
+            margin-bottom: 24px;
+        }
+
+        .hero p {
+            font-size: 1.125rem;
+            color: var(--fg);
+            max-width: 600px;
+        }
+
+        /* Content */
+        .content {
+            padding: 60px 0;
+        }
+
+        .section {
+            margin-bottom: 48px;
+        }
+
+        .section h2 {
+            font-family: 'Courier Prime', monospace;
+            font-size: 1.5rem;
+            color: var(--accent);
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--accent);
+            display: inline-block;
+        }
+
+        .section h3 {
+            font-size: 1.125rem;
+            color: var(--accent-secondary);
+            margin: 24px 0 12px;
+        }
+
+        .section p, .section li {
+            color: var(--fg);
+            margin-bottom: 12px;
+        }
+
+        .section ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .section li::before {
+            content: '>';
+            color: var(--accent);
+            margin-right: 12px;
+        }
+
+        /* Terminal Card */
+        .terminal-card {
+            background: #000;
+            border: 1px solid var(--accent);
+            margin: 24px 0;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.1);
+        }
+
+        .terminal-header {
+            background: var(--accent);
+            color: #000;
+            padding: 6px 12px;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+
+        .terminal-body {
+            padding: 16px;
+            font-size: 0.875rem;
+        }
+
+        .terminal-body code {
+            color: var(--accent);
+        }
+
+        /* Color Swatches */
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 12px;
+            margin: 24px 0;
+        }
+
+        .color-swatch {
+            height: 60px;
+            display: flex;
+            align-items: flex-end;
+            padding: 8px;
+            font-size: 0.625rem;
+            font-weight: 700;
+            border: 1px solid var(--border);
+        }
+
+        /* Copy Button */
+        .copy-section {
+            margin-top: 60px;
+            padding: 32px;
+            background: var(--bg-card);
+            border: 1px dashed var(--accent);
+        }
+
+        .copy-section h3 {
+            color: var(--accent);
+            margin-bottom: 16px;
+        }
+
+        .copy-btn {
+            background: var(--accent);
+            color: #000;
+            border: none;
+            padding: 12px 24px;
+            font-family: inherit;
+            font-size: 0.875rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.1s;
+        }
+
+        .copy-btn:hover {
+            box-shadow: 0 0 20px var(--accent);
+        }
+
+        .copy-btn:active {
+            transform: translate(1px, 1px);
+        }
+
+        /* Footer */
+        footer {
+            padding: 24px 0;
+            border-top: 1px dashed var(--border);
+            text-align: center;
+            color: var(--fg-muted);
+            font-size: 0.75rem;
+        }
+
+        /* Animations */
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        .cursor::after {
+            content: '_';
+            animation: blink 1s step-end infinite;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav class="nav">
+                <a href="index.html" class="back-link">
+                    <span>&lt;-</span> Back to all generations
+                </a>
+                <span class="gen-badge">1965-1980</span>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1 class="cursor">Gen X_</h1>
+                <p class="years">Born 1965 - 1980</p>
+                <p>MTV era grunge meets early internet. VHS tracking lines, CRT phosphor glow, and DIY independence. The visual language of zines, mixtapes, dial-up modems, and the belief that trying too hard is the ultimate sin.</p>
+            </div>
+        </section>
+
+        <section class="content">
+            <div class="container">
+                <div class="section">
+                    <h2>Design Philosophy</h2>
+                    <p>Deliberately imperfect, anti-corporate, analog-meets-digital. Nothing is polished. Edges are rough. Type is distressed. The aesthetic actively rejects the slick professionalism of the 80s yuppie era in favor of authenticity.</p>
+
+                    <h3>Core Pillars</h3>
+                    <ul>
+                        <li>The Zine Aesthetic: Photocopied textures, cut-and-paste collage, ransom-note typography</li>
+                        <li>VHS/CRT Artifacts: Tracking lines, static noise, RGB bleeding, phosphor glow</li>
+                        <li>Grunge Typography: Distressed fonts, typewriter keys, broken rules as features</li>
+                        <li>"Under Construction" Web 1.0: Animated GIFs, tiled backgrounds, visitor counters</li>
+                        <li>DIY Ethos: Everything looks handmade, even when it's not</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h2>Color Palette</h2>
+                    <div class="color-grid">
+                        <div class="color-swatch" style="background: #1a1a1a; color: #c9c9c9;">Background</div>
+                        <div class="color-swatch" style="background: #c9c9c9; color: #1a1a1a;">Foreground</div>
+                        <div class="color-swatch" style="background: #00ff00; color: #000;">CRT Green</div>
+                        <div class="color-swatch" style="background: #ff6600; color: #000;">Safety Orange</div>
+                        <div class="color-swatch" style="background: #00ccff; color: #000;">Hyperlink Blue</div>
+                        <div class="color-swatch" style="background: #4a5d23; color: #fff;">Earth Olive</div>
+                        <div class="color-swatch" style="background: #c4a000; color: #000;">Mustard</div>
+                        <div class="color-swatch" style="background: #808080; color: #000;">Static Gray</div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2>Typography</h2>
+                    <div class="terminal-card">
+                        <div class="terminal-header">C:\FONTS\</div>
+                        <div class="terminal-body">
+                            <code>Headings: Courier New, American Typewriter, monospace</code><br>
+                            <code>Body: Monaco, Lucida Console, monospace</code><br>
+                            <code>Display: Impact, Haettenschweiler, sans-serif</code>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2>Signature Elements</h2>
+                    <ul>
+                        <li>VHS tracking artifacts on backgrounds</li>
+                        <li>Static noise texture overlays</li>
+                        <li>Photocopied/xerox degradation effects</li>
+                        <li>CRT phosphor glow on interactive elements</li>
+                        <li>Ransom-note mixed typography</li>
+                        <li>"Under construction" and visitor counter elements</li>
+                        <li>Horizontal rules as section dividers</li>
+                        <li>Easter eggs revealed on hover</li>
+                    </ul>
+                </div>
+
+                <div class="copy-section">
+                    <h3>&gt; Get the Full Prompt</h3>
+                    <p style="margin-bottom: 16px; color: var(--fg-muted);">Copy the complete design prompt to use with your AI coding assistant.</p>
+                    <button class="copy-btn" onclick="copyPrompt()">COPY PROMPT TO CLIPBOARD</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>// Gen X Design Prompt // Whatever, man.</p>
+        </div>
+    </footer>
+
+    <script>
+        async function copyPrompt() {
+            try {
+                const response = await fetch('../generations/gen-x.md');
+                const text = await response.text();
+                await navigator.clipboard.writeText(text);
+                const btn = document.querySelector('.copy-btn');
+                btn.textContent = 'COPIED!';
+                setTimeout(() => btn.textContent = 'COPY PROMPT TO CLIPBOARD', 2000);
+            } catch (err) {
+                alert('Copy failed. Please open the .md file directly.');
+            }
+        }
+    </script>
+</body>
+</html>

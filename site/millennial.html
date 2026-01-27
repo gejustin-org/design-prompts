@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Millennial Design Prompt | Generation Design Prompts</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #FDF8F5;
+            --bg-card: #FFFFFF;
+            --fg: #3D3D3D;
+            --fg-muted: #8B8178;
+            --border: #EBE4DF;
+            --primary: #F4D1D1;
+            --secondary: #D4E5D7;
+            --accent: #E8C4B8;
+            --gold: #D4A574;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--fg);
+            min-height: 100vh;
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Floating gradient orbs */
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .orb-1 {
+            width: 400px;
+            height: 400px;
+            background: var(--primary);
+            top: -100px;
+            right: -100px;
+        }
+
+        .orb-2 {
+            width: 300px;
+            height: 300px;
+            background: var(--secondary);
+            bottom: 10%;
+            left: -100px;
+        }
+
+        /* Header */
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            position: relative;
+            z-index: 1;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .back-link {
+            color: var(--fg);
+            text-decoration: none;
+            font-size: 0.875rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.2s;
+        }
+
+        .back-link:hover {
+            color: var(--gold);
+        }
+
+        .gen-badge {
+            font-size: 0.75rem;
+            padding: 6px 16px;
+            background: var(--primary);
+            color: var(--fg);
+            border-radius: 100px;
+            font-weight: 500;
+        }
+
+        /* Hero */
+        .hero {
+            padding: 100px 0 80px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: clamp(3rem, 8vw, 5rem);
+            font-weight: 400;
+            color: var(--fg);
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+
+        .hero h1 em {
+            font-style: italic;
+            color: var(--gold);
+        }
+
+        .hero .years {
+            font-size: 0.875rem;
+            color: var(--fg-muted);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--fg-muted);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        /* Content */
+        .content {
+            padding: 60px 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section {
+            margin-bottom: 60px;
+        }
+
+        .section-label {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .section-label::before,
+        .section-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--border), transparent);
+        }
+
+        .section-label span {
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--fg-muted);
+        }
+
+        .section h2 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1.75rem;
+            font-weight: 400;
+            margin-bottom: 16px;
+        }
+
+        .section p, .section li {
+            color: var(--fg-muted);
+            margin-bottom: 12px;
+        }
+
+        .section ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .section li {
+            padding-left: 24px;
+            position: relative;
+        }
+
+        .section li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            width: 6px;
+            height: 6px;
+            background: var(--primary);
+            border-radius: 50%;
+        }
+
+        /* Card */
+        .card {
+            background: var(--bg-card);
+            border-radius: 24px;
+            padding: 32px;
+            margin: 24px 0;
+            box-shadow: 0 4px 16px rgba(61, 61, 61, 0.06);
+        }
+
+        /* Color Swatches */
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 16px;
+            margin: 24px 0;
+        }
+
+        .color-swatch {
+            aspect-ratio: 1;
+            border-radius: 16px;
+            display: flex;
+            align-items: flex-end;
+            padding: 12px;
+            font-size: 0.625rem;
+            font-weight: 600;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        /* Copy Button */
+        .copy-section {
+            text-align: center;
+            margin-top: 60px;
+            padding: 48px;
+            background: linear-gradient(135deg, var(--primary), var(--bg));
+            border-radius: 32px;
+        }
+
+        .copy-section h3 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 12px;
+        }
+
+        .copy-section p {
+            color: var(--fg-muted);
+            margin-bottom: 24px;
+        }
+
+        .copy-btn {
+            background: var(--fg);
+            color: var(--bg);
+            border: none;
+            padding: 16px 32px;
+            font-family: inherit;
+            font-size: 0.875rem;
+            font-weight: 600;
+            border-radius: 100px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 16px rgba(61, 61, 61, 0.15);
+        }
+
+        .copy-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(61, 61, 61, 0.2);
+        }
+
+        .copy-btn:active {
+            transform: scale(0.98);
+        }
+
+        /* Footer */
+        footer {
+            padding: 32px 0;
+            text-align: center;
+            color: var(--fg-muted);
+            font-size: 0.875rem;
+            position: relative;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+
+    <header>
+        <div class="container">
+            <nav class="nav">
+                <a href="index.html" class="back-link">
+                    <span>&larr;</span> Back to all
+                </a>
+                <span class="gen-badge">1981 - 1996</span>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <p class="years">Born 1981 - 1996</p>
+                <h1><em>Millennial</em></h1>
+                <p>Curated authenticity meets warm minimalism. Instagram aesthetics, millennial pink, and self-care vibes.</p>
+            </div>
+        </section>
+
+        <section class="content">
+            <div class="container">
+                <div class="section">
+                    <div class="section-label"><span>Philosophy</span></div>
+                    <h2>Curated Authenticity</h2>
+                    <p>This design system captures the aesthetic sensibility of the generation that came of age during the Instagram era - a blend of aspirational lifestyle imagery, approachable warmth, and "adulting" self-awareness.</p>
+
+                    <div class="card">
+                        <h3 style="margin-bottom: 16px; font-weight: 600;">Emotional Keywords</h3>
+                        <ul>
+                            <li><strong>Warm</strong> - Rose tones, cream backgrounds, soft gold accents</li>
+                            <li><strong>Curated</strong> - Every element feels intentionally selected</li>
+                            <li><strong>Approachable</strong> - Aspirational but not intimidating</li>
+                            <li><strong>Self-aware</strong> - Design that doesn't take itself too seriously</li>
+                            <li><strong>Genuine</strong> - Authenticity over perfection</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-label"><span>Colors</span></div>
+                    <h2>The Warm Palette</h2>
+                    <div class="color-grid">
+                        <div class="color-swatch" style="background: #FDF8F5; color: #3D3D3D; border: 1px solid #EBE4DF;">Cream</div>
+                        <div class="color-swatch" style="background: #F4D1D1; color: #3D3D3D;">Pink</div>
+                        <div class="color-swatch" style="background: #D4E5D7; color: #3D3D3D;">Sage</div>
+                        <div class="color-swatch" style="background: #E8C4B8; color: #3D3D3D;">Dusty Rose</div>
+                        <div class="color-swatch" style="background: #D4A574; color: #fff;">Soft Gold</div>
+                        <div class="color-swatch" style="background: #3D3D3D; color: #fff;">Charcoal</div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-label"><span>Typography</span></div>
+                    <h2>Clean with Personality</h2>
+                    <div class="card">
+                        <p style="font-family: 'DM Sans', sans-serif; font-size: 1.125rem; margin-bottom: 8px;"><strong>DM Sans</strong> for headings and UI</p>
+                        <p style="font-family: 'Playfair Display', serif; font-size: 1.125rem; font-style: italic;">Playfair Display for accent moments</p>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-label"><span>Signature Elements</span></div>
+                    <h2>The Bold Factor</h2>
+                    <ul>
+                        <li>Organic floating shapes with soft gradients</li>
+                        <li>Gradient orbs creating ambient depth</li>
+                        <li>Lifestyle photography integration</li>
+                        <li>Soft duotone image treatments</li>
+                        <li>Pinterest-worthy testimonial cards</li>
+                        <li>Pill tags and badges in muted colors</li>
+                        <li>Satisfying micro-interactions</li>
+                    </ul>
+                </div>
+
+                <div class="copy-section">
+                    <h3>Get the Full Prompt</h3>
+                    <p>Copy the complete design prompt for your AI coding assistant.</p>
+                    <button class="copy-btn" onclick="copyPrompt()">Copy to Clipboard</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Made with intention and a flat white.</p>
+        </div>
+    </footer>
+
+    <script>
+        async function copyPrompt() {
+            try {
+                const response = await fetch('../generations/millennial.md');
+                const text = await response.text();
+                await navigator.clipboard.writeText(text);
+                const btn = document.querySelector('.copy-btn');
+                btn.textContent = 'Copied!';
+                setTimeout(() => btn.textContent = 'Copy to Clipboard', 2000);
+            } catch (err) {
+                alert('Copy failed. Please open the .md file directly.');
+            }
+        }
+    </script>
+</body>
+</html>

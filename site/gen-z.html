@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gen Z Design Prompt | Generation Design Prompts</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0D0D0F;
+            --bg-card: #1A1A1F;
+            --fg: #FAFAFA;
+            --fg-muted: #A1A1AA;
+            --border: #252529;
+            --lime: #BFFF00;
+            --pink: #FF10F0;
+            --blue: #00D4FF;
+            --orange: #FF6B35;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Space Grotesk', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--fg);
+            min-height: 100vh;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Gradient Mesh Background */
+        .gradient-mesh {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(at 0% 100%, rgba(255, 16, 240, 0.15) 0%, transparent 50%),
+                radial-gradient(at 100% 0%, rgba(0, 212, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(at 50% 50%, rgba(191, 255, 0, 0.08) 0%, transparent 40%),
+                var(--bg);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header */
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .back-link {
+            color: var(--fg);
+            text-decoration: none;
+            font-size: 0.875rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            color: var(--lime);
+            text-shadow: 0 0 20px var(--lime);
+        }
+
+        .gen-badge {
+            font-size: 0.75rem;
+            padding: 6px 16px;
+            background: var(--lime);
+            color: var(--bg);
+            border-radius: 100px;
+            font-weight: 600;
+        }
+
+        /* Hero */
+        .hero {
+            padding: 100px 0 80px;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: clamp(3.5rem, 10vw, 6rem);
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 .gradient-text {
+            background: linear-gradient(135deg, var(--lime), var(--pink), var(--blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero h1 .light {
+            font-weight: 300;
+        }
+
+        .hero .years {
+            font-size: 0.875rem;
+            color: var(--fg-muted);
+            margin-bottom: 24px;
+            letter-spacing: 0.05em;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--fg-muted);
+            max-width: 550px;
+        }
+
+        /* Floating 3D elements */
+        .float-element {
+            position: absolute;
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            filter: blur(1px);
+            opacity: 0.6;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .float-1 {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, var(--pink), var(--blue));
+            top: 20%;
+            right: 10%;
+            animation-delay: 0s;
+        }
+
+        .float-2 {
+            width: 60px;
+            height: 60px;
+            background: var(--lime);
+            top: 60%;
+            right: 20%;
+            animation-delay: 2s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+
+        /* Content */
+        .content {
+            padding: 60px 0;
+        }
+
+        .section {
+            margin-bottom: 60px;
+        }
+
+        .section h2 {
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: var(--lime);
+        }
+
+        .section p, .section li {
+            color: var(--fg-muted);
+            margin-bottom: 12px;
+        }
+
+        .section ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .section li {
+            padding-left: 24px;
+            position: relative;
+        }
+
+        .section li::before {
+            content: '//';
+            position: absolute;
+            left: 0;
+            color: var(--lime);
+            font-weight: 600;
+        }
+
+        /* Glass Card */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 24px;
+            margin: 24px 0;
+        }
+
+        .glass-card:hover {
+            border-color: rgba(191, 255, 0, 0.3);
+            box-shadow: 0 0 30px rgba(191, 255, 0, 0.1);
+        }
+
+        /* Color Swatches */
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 12px;
+            margin: 24px 0;
+        }
+
+        .color-swatch {
+            aspect-ratio: 1;
+            border-radius: 16px;
+            display: flex;
+            align-items: flex-end;
+            padding: 12px;
+            font-size: 0.625rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .color-swatch:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px currentColor;
+        }
+
+        /* Sticker Badge */
+        .sticker {
+            display: inline-block;
+            background: var(--pink);
+            color: white;
+            padding: 8px 16px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            transform: rotate(-3deg);
+            box-shadow: 4px 4px 0 var(--bg);
+        }
+
+        /* Bento Preview */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(2, 100px);
+            gap: 12px;
+            margin: 24px 0;
+        }
+
+        .bento-item {
+            background: var(--bg-card);
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            color: var(--fg-muted);
+        }
+
+        .bento-item.large {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+
+        .bento-item.accent {
+            background: linear-gradient(135deg, var(--lime), var(--blue));
+            color: var(--bg);
+            font-weight: 600;
+        }
+
+        /* Copy Button */
+        .copy-section {
+            margin-top: 60px;
+            padding: 40px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            text-align: center;
+        }
+
+        .copy-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+        }
+
+        .copy-section p {
+            color: var(--fg-muted);
+            margin-bottom: 24px;
+        }
+
+        .copy-btn {
+            background: var(--lime);
+            color: var(--bg);
+            border: none;
+            padding: 16px 32px;
+            font-family: inherit;
+            font-size: 0.875rem;
+            font-weight: 600;
+            border-radius: 100px;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .copy-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px var(--lime);
+        }
+
+        .copy-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* Footer */
+        footer {
+            padding: 32px 0;
+            text-align: center;
+            color: var(--fg-muted);
+            font-size: 0.875rem;
+            border-top: 1px solid var(--border);
+        }
+    </style>
+</head>
+<body>
+    <div class="gradient-mesh"></div>
+
+    <header>
+        <div class="container">
+            <nav class="nav">
+                <a href="index.html" class="back-link">
+                    <span>&larr;</span> back
+                </a>
+                <span class="gen-badge">1997-2012</span>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <p class="years">Born 1997 - 2012</p>
+                <h1><span class="light">this is</span><br><span class="gradient-text">Gen Z</span></h1>
+                <p>TikTok-native chaos and anti-minimalism. Gradient meshes, dark mode, and intentional ugliness. No cap, this design system slaps.</p>
+            </div>
+            <div class="float-element float-1"></div>
+            <div class="float-element float-2"></div>
+        </section>
+
+        <section class="content">
+            <div class="container">
+                <div class="section">
+                    <h2>design philosophy</h2>
+                    <p>Chaotic Good Vibes - authenticity over polish, chaos over conformity, dark mode supremacy. The aesthetic lives in the tension between Y2K nostalgia and post-ironic internet culture.</p>
+
+                    <div class="glass-card">
+                        <span class="sticker">no cap</span>
+                        <h3 style="margin: 16px 0 12px; font-weight: 600;">Core Pillars</h3>
+                        <ul>
+                            <li>Dark Mode Supremacy - light mode is an afterthought</li>
+                            <li>Neon on Void - saturated colors that pop</li>
+                            <li>Gradient Mesh Chaos - organic blobs everywhere</li>
+                            <li>Y2K Revival - glossy surfaces, 3D floats</li>
+                            <li>Sticker Aesthetic - rotated, overlapping, chaotic</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2>color palette</h2>
+                    <div class="color-grid">
+                        <div class="color-swatch" style="background: #0D0D0F; color: #FAFAFA; border: 1px solid #252529;">Void</div>
+                        <div class="color-swatch" style="background: #BFFF00; color: #0D0D0F;">Lime</div>
+                        <div class="color-swatch" style="background: #FF10F0; color: #fff;">Hot Pink</div>
+                        <div class="color-swatch" style="background: #00D4FF; color: #0D0D0F;">Electric Blue</div>
+                        <div class="color-swatch" style="background: #FF6B35; color: #fff;">Sunset</div>
+                        <div class="color-swatch" style="background: #C4B5FD; color: #0D0D0F;">Lavender</div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2>bento grid layout</h2>
+                    <div class="bento-grid">
+                        <div class="bento-item large accent">featured</div>
+                        <div class="bento-item">sm</div>
+                        <div class="bento-item">sm</div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2>the bold factor</h2>
+                    <ul>
+                        <li>Gradient mesh backgrounds on every page</li>
+                        <li>3D floating objects with soft shadows</li>
+                        <li>Intentional "ugly" design elements</li>
+                        <li>Mixed typography weights in headlines</li>
+                        <li>Sticker overlays and rotated badges</li>
+                        <li>Neon glow on every hover state</li>
+                        <li>Glassmorphism cards with blur</li>
+                        <li>Meme-ready spaces and cultural refs</li>
+                    </ul>
+                </div>
+
+                <div class="copy-section">
+                    <h3>get the prompt fr</h3>
+                    <p>Copy the full design system for your AI assistant.</p>
+                    <button class="copy-btn" onclick="copyPrompt()">Copy Prompt</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>built different // 2024</p>
+        </div>
+    </footer>
+
+    <script>
+        async function copyPrompt() {
+            try {
+                const response = await fetch('../generations/gen-z.md');
+                const text = await response.text();
+                await navigator.clipboard.writeText(text);
+                const btn = document.querySelector('.copy-btn');
+                btn.textContent = 'copied!';
+                setTimeout(() => btn.textContent = 'Copy Prompt', 2000);
+            } catch (err) {
+                alert('Copy failed. Open the .md file directly.');
+            }
+        }
+    </script>
+</body>
+</html>
