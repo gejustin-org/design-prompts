@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SLACKTERM - Terminal Productivity for People Who Hate Bloat</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Gen X Design System - Custom Styles */
+    
+    /* Fonts */
+    @import url('https://fonts.googleapis.com/css2?family=VT323&family=Share+Tech+Mono&display=swap');
+    
+    :root {
+      --bg: #1a1a1a;
+      --fg: #c9c9c9;
+      --card: #242424;
+      --muted: #2d2d2d;
+      --muted-fg: #737373;
+      --accent-green: #00ff00;
+      --accent-orange: #ff6600;
+      --accent-cyan: #00ccff;
+      --accent-magenta: #ff00ff;
+      --border: #3d3d3d;
+    }
+    
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: 'Share Tech Mono', 'Monaco', 'Lucida Console', monospace;
+    }
+    
+    /* VHS Tracking Lines Overlay */
+    .vhs-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      pointer-events: none;
+      z-index: 9999;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent 0px,
+        transparent 2px,
+        rgba(255,255,255,0.02) 2px,
+        rgba(255,255,255,0.02) 4px
+      );
+      animation: tracking 8s steps(20) infinite;
+    }
+    
+    @keyframes tracking {
+      0%, 100% { transform: translateY(0); }
+      25% { transform: translateY(1px); }
+      50% { transform: translateY(-1px); }
+      75% { transform: translateY(2px); }
+    }
+    
+    /* Static Noise */
+    .noise-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      pointer-events: none;
+      z-index: 9998;
+      opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    }
+    
+    /* CRT Glow */
+    .crt-glow {
+      box-shadow: 0 0 20px rgba(0,255,0,0.15), inset 0 0 60px rgba(0,255,0,0.03);
+    }
+    
+    /* Terminal Glow Text */
+    .glow-text {
+      text-shadow: 0 0 10px currentColor, 0 0 20px currentColor;
+    }
+    
+    /* Chromatic Aberration */
+    .chromatic {
+      text-shadow: -1px 0 #ff0000, 1px 0 #00ffff;
+    }
+    
+    /* Blinking Cursor */
+    .cursor::after {
+      content: '█';
+      animation: blink 1s step-end infinite;
+    }
+    
+    @keyframes blink {
+      0%, 50% { opacity: 1; }
+      51%, 100% { opacity: 0; }
+    }
+    
+    /* Glitch Hover */
+    .glitch-hover:hover {
+      animation: glitch 0.3s steps(2) infinite;
+    }
+    
+    @keyframes glitch {
+      0%, 100% { transform: translate(0); }
+      25% { transform: translate(-2px, 1px); }
+      50% { transform: translate(1px, -1px); }
+      75% { transform: translate(-1px, 2px); }
+    }
+    
+    /* 90s Button */
+    .btn-90s {
+      background: #c0c0c0;
+      border: 2px outset #c0c0c0;
+      color: black;
+      font-family: 'Arial', sans-serif;
+    }
+    
+    .btn-90s:active {
+      border-style: inset;
+    }
+    
+    /* Primary CRT Button */
+    .btn-crt {
+      background: var(--accent-green);
+      color: black;
+      border: 2px solid black;
+      box-shadow: 0 0 10px rgba(0,255,0,0.3);
+      transition: all 0.1s steps(3);
+    }
+    
+    .btn-crt:hover {
+      box-shadow: 0 0 20px rgba(0,255,0,0.5), 0 0 40px rgba(0,255,0,0.2);
+    }
+    
+    .btn-crt:active {
+      transform: translate(1px, 1px);
+      box-shadow: none;
+    }
+    
+    /* Terminal Window */
+    .terminal-window {
+      background: black;
+      border: 2px solid var(--accent-green);
+      box-shadow: 0 0 20px rgba(0,255,0,0.1);
+    }
+    
+    .terminal-titlebar {
+      background: var(--accent-green);
+      color: black;
+      font-size: 12px;
+      padding: 4px 8px;
+    }
+    
+    /* Horizontal Rule - Construction Style */
+    .hr-construction {
+      height: 4px;
+      border: none;
+      background: repeating-linear-gradient(
+        90deg,
+        #000 0px,
+        #000 10px,
+        var(--accent-orange) 10px,
+        var(--accent-orange) 20px
+      );
+    }
+    
+    /* Visitor Counter */
+    .visitor-counter {
+      background: #000080;
+      border: 2px inset #c0c0c0;
+      padding: 4px 8px;
+      font-family: 'VT323', monospace;
+      color: #00ff00;
+    }
+    
+    /* Easter Egg */
+    .easter-egg {
+      position: relative;
+    }
+    
+    .easter-egg::after {
+      content: 'whatever...';
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0;
+      font-size: 10px;
+      color: var(--muted-fg);
+      transition: opacity 0.2s;
+      white-space: nowrap;
+    }
+    
+    .easter-egg:hover::after {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body class="min-h-screen">
+  <!-- VHS + Noise Overlays -->
+  <div class="vhs-overlay"></div>
+  <div class="noise-overlay"></div>
+  
+  <!-- Header -->
+  <header class="border-b border-[#3d3d3d] py-4">
+    <div class="max-w-4xl mx-auto px-4 flex justify-between items-center">
+      <div class="flex items-center gap-2">
+        <span class="text-[#00ff00] text-xl">[>_</span>
+        <span class="text-[#c9c9c9] font-bold tracking-wider">SLACKTERM</span>
+      </div>
+      <nav class="flex gap-6 text-sm">
+        <a href="#features" class="text-[#737373] hover:text-[#00ff00] transition-colors">FEATURES</a>
+        <a href="#demo" class="text-[#737373] hover:text-[#00ff00] transition-colors">DEMO</a>
+        <a href="#download" class="text-[#737373] hover:text-[#00ff00] transition-colors">DOWNLOAD</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="py-20 px-4">
+    <div class="max-w-4xl mx-auto">
+      <div class="mb-8" style="transform: rotate(-1deg);">
+        <h1 class="text-6xl md:text-8xl font-bold tracking-tight">
+          <span class="text-[#00ff00] glow-text">SLACK</span><span class="text-[#c9c9c9]">TERM</span>
+        </h1>
+        <p class="text-[#ff6600] text-xl mt-2 chromatic">v2.0.4 // PRODUCTIVITY WITHOUT THE BLOAT</p>
+      </div>
+      
+      <p class="text-[#737373] text-lg max-w-xl mb-8 leading-relaxed">
+        A terminal-based productivity tool for developers who got tired of 
+        Electron apps eating 2GB of RAM just to show a todo list.
+        <span class="text-[#00ff00]"> Built by slackers, for slackers.</span>
+      </p>
+      
+      <div class="flex flex-wrap gap-4 items-center">
+        <button class="btn-crt px-6 py-3 font-bold uppercase tracking-wide">
+          $ curl -sL slackterm.io/install | sh
+        </button>
+        <span class="text-[#737373] text-sm">or whatever</span>
+      </div>
+      
+      <!-- Visitor Counter -->
+      <div class="mt-12">
+        <div class="visitor-counter inline-block">
+          You are visitor #<span id="counter">000,000,042</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="hr-construction">
+
+  <!-- Features Section -->
+  <section id="features" class="py-16 px-4 bg-[#242424]">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-3xl text-[#00ff00] mb-2 uppercase tracking-wide">
+        > FEATURES<span class="cursor"></span>
+      </h2>
+      <p class="text-[#737373] mb-12">stuff it actually does</p>
+      
+      <div class="grid md:grid-cols-2 gap-6">
+        <!-- Feature 1 -->
+        <div class="terminal-window crt-glow">
+          <div class="terminal-titlebar flex justify-between">
+            <span>C:\FEATURES\speed.exe</span>
+            <span>[ _ □ X ]</span>
+          </div>
+          <div class="p-4 text-[#00ff00] text-sm">
+            <p class="mb-2"><span class="text-[#737373]">></span> BLAZING FAST</p>
+            <p class="text-[#c9c9c9]">Starts in 12ms. Not 12 seconds. Written in Rust because we're not animals.</p>
+          </div>
+        </div>
+        
+        <!-- Feature 2 -->
+        <div class="terminal-window crt-glow" style="transform: rotate(0.5deg);">
+          <div class="terminal-titlebar flex justify-between">
+            <span>C:\FEATURES\memory.exe</span>
+            <span>[ _ □ X ]</span>
+          </div>
+          <div class="p-4 text-[#00ff00] text-sm">
+            <p class="mb-2"><span class="text-[#737373]">></span> 4MB MEMORY</p>
+            <p class="text-[#c9c9c9]">Your browser tab uses more RAM than our entire app. Think about that.</p>
+          </div>
+        </div>
+        
+        <!-- Feature 3 -->
+        <div class="terminal-window crt-glow" style="transform: rotate(-0.5deg);">
+          <div class="terminal-titlebar flex justify-between">
+            <span>C:\FEATURES\sync.exe</span>
+            <span>[ _ □ X ]</span>
+          </div>
+          <div class="p-4 text-[#00ff00] text-sm">
+            <p class="mb-2"><span class="text-[#737373]">></span> OFFLINE FIRST</p>
+            <p class="text-[#c9c9c9]">Works without internet. Syncs when it feels like it. Your data stays yours.</p>
+          </div>
+        </div>
+        
+        <!-- Feature 4 -->
+        <div class="terminal-window crt-glow">
+          <div class="terminal-titlebar flex justify-between">
+            <span>C:\FEATURES\config.exe</span>
+            <span>[ _ □ X ]</span>
+          </div>
+          <div class="p-4 text-[#00ff00] text-sm">
+            <p class="mb-2"><span class="text-[#737373]">></span> VIM KEYBINDINGS</p>
+            <p class="text-[#c9c9c9]">hjkl navigation because your pinky deserves better than arrow keys.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="hr-construction">
+
+  <!-- Demo Section -->
+  <section id="demo" class="py-16 px-4">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-3xl text-[#ff6600] mb-2 uppercase tracking-wide chromatic">
+        > DEMO
+      </h2>
+      <p class="text-[#737373] mb-8">see it in action or don't, i'm not your mom</p>
+      
+      <div class="terminal-window crt-glow max-w-2xl">
+        <div class="terminal-titlebar flex justify-between">
+          <span>slackterm@localhost:~</span>
+          <span>bash - 80x24</span>
+        </div>
+        <div class="p-4 text-[#00ff00] text-sm font-mono leading-relaxed">
+          <p><span class="text-[#737373]">$</span> slackterm init</p>
+          <p class="text-[#c9c9c9]">Initializing workspace... done.</p>
+          <p class="mt-2"><span class="text-[#737373]">$</span> slackterm add "Ship the feature"</p>
+          <p class="text-[#c9c9c9]">Added task: Ship the feature [<span class="text-[#ff6600]">HIGH</span>]</p>
+          <p class="mt-2"><span class="text-[#737373]">$</span> slackterm add "Fix that bug eventually"</p>
+          <p class="text-[#c9c9c9]">Added task: Fix that bug eventually [<span class="text-[#00ccff]">LOW</span>]</p>
+          <p class="mt-2"><span class="text-[#737373]">$</span> slackterm list</p>
+          <p class="text-[#c9c9c9] mt-1">┌────┬─────────────────────────────┬────────┐</p>
+          <p class="text-[#c9c9c9]">│ ID │ TASK                        │ STATUS │</p>
+          <p class="text-[#c9c9c9]">├────┼─────────────────────────────┼────────┤</p>
+          <p class="text-[#c9c9c9]">│ 01 │ Ship the feature            │ <span class="text-[#ff6600]">TODO</span>   │</p>
+          <p class="text-[#c9c9c9]">│ 02 │ Fix that bug eventually     │ <span class="text-[#00ccff]">TODO</span>   │</p>
+          <p class="text-[#c9c9c9]">└────┴─────────────────────────────┴────────┘</p>
+          <p class="mt-2"><span class="text-[#737373]">$</span> <span class="cursor"></span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="hr-construction">
+
+  <!-- Download Section -->
+  <section id="download" class="py-16 px-4 bg-[#2d2d2d]">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="text-4xl text-[#00ff00] mb-4 glow-text">
+        DOWNLOAD
+      </h2>
+      <p class="text-[#737373] mb-8 max-w-md mx-auto">
+        Works on anything with a terminal. Yes, even that weird BSD box you run for some reason.
+      </p>
+      
+      <div class="flex flex-wrap justify-center gap-4 mb-8">
+        <button class="btn-crt px-8 py-4 font-bold uppercase glitch-hover easter-egg">
+          Linux / macOS
+        </button>
+        <button class="btn-90s px-8 py-4 font-bold uppercase">
+          Windows
+        </button>
+        <a href="#" class="text-[#00ccff] underline self-center hover:text-[#00ff00]">
+          Build from source →
+        </a>
+      </div>
+      
+      <div class="text-[#737373] text-sm">
+        <p>Current version: <span class="text-[#00ff00]">2.0.4</span> // Released: <span class="text-[#c9c9c9]">1997-01-27</span></p>
+        <p class="mt-1">MIT License // <a href="#" class="text-[#00ccff] hover:underline">View on GitHub</a></p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="hr-construction">
+
+  <!-- Footer -->
+  <footer class="py-8 px-4 border-t border-[#3d3d3d]">
+    <div class="max-w-4xl mx-auto">
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+        <div class="text-[#737373] text-sm">
+          <p>© 1997-2026 SLACKTERM // Made with apathy in a basement somewhere</p>
+        </div>
+        <div class="flex items-center gap-4">
+          <img src="https://web.archive.org/web/20091027015700im_/http://geocities.com/SouthBeach/Cove/8470/ieget_animated.gif" alt="Best viewed with" class="h-8" onerror="this.style.display='none'">
+          <span class="text-[#737373] text-xs">Best viewed at 800x600</span>
+        </div>
+      </div>
+      
+      <div class="mt-6 text-center">
+        <p class="text-[#3d3d3d] text-xs">
+          <!-- Under Construction -->
+          🚧 This page is eternally under construction 🚧
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Randomly increment visitor counter occasionally
+    setInterval(() => {
+      const counter = document.getElementById('counter');
+      const current = parseInt(counter.textContent.replace(/,/g, ''));
+      if (Math.random() > 0.7) {
+        counter.textContent = (current + 1).toLocaleString().padStart(10, '0');
+      }
+    }, 3000);
+  </script>
+</body>
+</html>

@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>bloom — habit tracking for the rest of us</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@400;500&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+  <style>
+    /* Millennial Design System */
+    :root {
+      --bg: #FDF8F5;
+      --fg: #3D3D3D;
+      --muted: #F9F1ED;
+      --muted-fg: #8B8178;
+      --primary: #F4D1D1;
+      --secondary: #D4E5D7;
+      --accent: #E8C4B8;
+      --gold: #D4A574;
+      --border: #EBE4DF;
+      --card: #FFFFFF;
+    }
+    
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: 'Inter', system-ui, sans-serif;
+    }
+    
+    .font-heading {
+      font-family: 'DM Sans', system-ui, sans-serif;
+    }
+    
+    .font-accent {
+      font-family: 'Playfair Display', Georgia, serif;
+    }
+    
+    /* Soft pink-tinted shadows */
+    .shadow-soft {
+      box-shadow: 0 4px 20px rgba(244, 209, 209, 0.3), 0 2px 8px rgba(0, 0, 0, 0.04);
+    }
+    
+    .shadow-dreamy {
+      box-shadow: 
+        0 4px 6px rgba(244, 209, 209, 0.2),
+        0 10px 40px rgba(244, 209, 209, 0.15),
+        0 2px 4px rgba(0, 0, 0, 0.02);
+    }
+    
+    /* Warm gradient overlays */
+    .gradient-warm {
+      background: linear-gradient(135deg, rgba(244, 209, 209, 0.3) 0%, rgba(253, 248, 245, 0) 50%);
+    }
+    
+    .gradient-sage {
+      background: linear-gradient(135deg, rgba(212, 229, 215, 0.3) 0%, rgba(253, 248, 245, 0) 50%);
+    }
+    
+    /* Pill buttons */
+    .btn-primary {
+      background: var(--primary);
+      color: var(--fg);
+      border-radius: 9999px;
+      padding: 12px 28px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+    
+    .btn-primary:hover {
+      background: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(244, 209, 209, 0.4);
+    }
+    
+    .btn-secondary {
+      background: transparent;
+      color: var(--fg);
+      border: 1.5px solid var(--border);
+      border-radius: 9999px;
+      padding: 12px 28px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+    
+    .btn-secondary:hover {
+      border-color: var(--primary);
+      background: rgba(244, 209, 209, 0.1);
+    }
+    
+    /* Cards */
+    .card {
+      background: var(--card);
+      border-radius: 24px;
+      border: 1px solid var(--border);
+    }
+    
+    /* Feature icons */
+    .feature-icon {
+      width: 56px;
+      height: 56px;
+      background: var(--muted);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+    }
+    
+    /* Testimonial card */
+    .testimonial-card {
+      background: var(--card);
+      border-radius: 20px;
+      padding: 32px;
+      border: 1px solid var(--border);
+    }
+    
+    /* Badge */
+    .badge {
+      background: var(--secondary);
+      color: #4A6B4F;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+    }
+    
+    /* Stat highlight */
+    .stat-number {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 700;
+      font-size: 2.5rem;
+      color: var(--fg);
+      line-height: 1;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="py-6 px-6 border-b border-[#EBE4DF]">
+    <div class="max-w-5xl mx-auto flex justify-between items-center">
+      <div class="flex items-center gap-2">
+        <span class="text-2xl">🌸</span>
+        <span class="font-heading font-semibold text-xl text-[#3D3D3D]">bloom</span>
+      </div>
+      <nav class="hidden md:flex gap-8 text-sm text-[#8B8178]">
+        <a href="#features" class="hover:text-[#3D3D3D] transition-colors">Features</a>
+        <a href="#pricing" class="hover:text-[#3D3D3D] transition-colors">Pricing</a>
+        <a href="#" class="hover:text-[#3D3D3D] transition-colors">Blog</a>
+      </nav>
+      <div class="flex gap-3">
+        <a href="#" class="btn-secondary text-sm">Log in</a>
+        <a href="#" class="btn-primary text-sm">Start free</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="py-20 px-6 gradient-warm">
+    <div class="max-w-5xl mx-auto">
+      <div class="max-w-2xl">
+        <span class="badge">✨ Now with daily journaling</span>
+        
+        <h1 class="font-heading font-semibold text-5xl md:text-6xl text-[#3D3D3D] mt-6 mb-6 leading-tight">
+          Build habits that<br/>
+          <span class="font-accent italic text-[#D4A574]">actually stick</span>
+        </h1>
+        
+        <p class="text-lg text-[#8B8178] mb-8 leading-relaxed max-w-lg">
+          A gentle, judgment-free habit tracker for people who've tried everything else. 
+          No streaks to break. No shame spirals. Just progress at your own pace.
+        </p>
+        
+        <div class="flex flex-wrap gap-4 items-center">
+          <a href="#" class="btn-primary">Start your free trial</a>
+          <span class="text-sm text-[#8B8178]">No credit card required</span>
+        </div>
+        
+        <!-- Social proof -->
+        <div class="mt-12 flex items-center gap-6">
+          <div class="flex -space-x-3">
+            <div class="w-10 h-10 rounded-full bg-[#F4D1D1] border-2 border-white flex items-center justify-center text-sm">🙋‍♀️</div>
+            <div class="w-10 h-10 rounded-full bg-[#D4E5D7] border-2 border-white flex items-center justify-center text-sm">🧘</div>
+            <div class="w-10 h-10 rounded-full bg-[#E8C4B8] border-2 border-white flex items-center justify-center text-sm">💆</div>
+            <div class="w-10 h-10 rounded-full bg-[#F9F1ED] border-2 border-white flex items-center justify-center text-sm">+</div>
+          </div>
+          <p class="text-sm text-[#8B8178]">
+            <span class="text-[#3D3D3D] font-medium">12,000+</span> people building better habits
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section id="features" class="py-20 px-6">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center mb-16">
+        <p class="text-xs uppercase tracking-widest text-[#8B8178] mb-3">Why bloom?</p>
+        <h2 class="font-heading font-semibold text-3xl text-[#3D3D3D]">
+          Designed for real life
+        </h2>
+      </div>
+      
+      <div class="grid md:grid-cols-3 gap-6">
+        <!-- Feature 1 -->
+        <div class="card shadow-soft p-8">
+          <div class="feature-icon mb-6">🌱</div>
+          <h3 class="font-heading font-semibold text-lg mb-3 text-[#3D3D3D]">Gentle reminders</h3>
+          <p class="text-[#8B8178] text-sm leading-relaxed">
+            Encouraging nudges, not nagging notifications. We know you're doing your best.
+          </p>
+        </div>
+        
+        <!-- Feature 2 -->
+        <div class="card shadow-soft p-8">
+          <div class="feature-icon mb-6">📊</div>
+          <h3 class="font-heading font-semibold text-lg mb-3 text-[#3D3D3D]">Progress, not perfection</h3>
+          <p class="text-[#8B8178] text-sm leading-relaxed">
+            Missed a day? No problem. Our flexible tracking celebrates effort, not streaks.
+          </p>
+        </div>
+        
+        <!-- Feature 3 -->
+        <div class="card shadow-soft p-8">
+          <div class="feature-icon mb-6">🧘</div>
+          <h3 class="font-heading font-semibold text-lg mb-3 text-[#3D3D3D]">Built-in journaling</h3>
+          <p class="text-[#8B8178] text-sm leading-relaxed">
+            Quick reflection prompts to understand your patterns and celebrate small wins.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="py-16 px-6 bg-[#F9F1ED]">
+    <div class="max-w-5xl mx-auto">
+      <div class="grid md:grid-cols-3 gap-8 text-center">
+        <div>
+          <div class="stat-number">93%</div>
+          <p class="text-[#8B8178] text-sm mt-2">feel less stressed about habit tracking</p>
+        </div>
+        <div>
+          <div class="stat-number" style="color: #D4A574;">4.8★</div>
+          <p class="text-[#8B8178] text-sm mt-2">average rating on the App Store</p>
+        </div>
+        <div>
+          <div class="stat-number">21 days</div>
+          <p class="text-[#8B8178] text-sm mt-2">average time to form a new habit</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonial Section -->
+  <section class="py-20 px-6 gradient-sage">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center mb-12">
+        <p class="text-xs uppercase tracking-widest text-[#8B8178] mb-3">Kind words</p>
+        <h2 class="font-heading font-semibold text-3xl text-[#3D3D3D]">
+          What our community says
+        </h2>
+      </div>
+      
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="testimonial-card shadow-dreamy">
+          <p class="font-accent italic text-lg text-[#3D3D3D] mb-6">
+            "Finally, a habit app that doesn't make me feel like a failure when I skip a day. 
+            It's like having a supportive friend in my pocket."
+          </p>
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 rounded-full bg-[#F4D1D1] flex items-center justify-center">👩‍💻</div>
+            <div>
+              <p class="font-heading font-medium text-[#3D3D3D]">Sarah M.</p>
+              <p class="text-sm text-[#8B8178]">Marketing Manager</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="testimonial-card shadow-dreamy">
+          <p class="font-accent italic text-lg text-[#3D3D3D] mb-6">
+            "I've tried every habit tracker out there. bloom is the first one that actually 
+            gets how exhausting modern life can be."
+          </p>
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 rounded-full bg-[#D4E5D7] flex items-center justify-center">👨‍🎨</div>
+            <div>
+              <p class="font-heading font-medium text-[#3D3D3D]">Alex R.</p>
+              <p class="text-sm text-[#8B8178]">Freelance Designer</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-20 px-6">
+    <div class="max-w-3xl mx-auto text-center">
+      <h2 class="font-heading font-semibold text-4xl text-[#3D3D3D] mb-6">
+        Ready to bloom?
+      </h2>
+      <p class="text-lg text-[#8B8178] mb-8 max-w-md mx-auto">
+        Start building habits that work with your life, not against it. 
+        Your future self will thank you.
+      </p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="#" class="btn-primary text-base">Start free trial</a>
+        <a href="#" class="btn-secondary text-base">See how it works</a>
+      </div>
+      <p class="text-sm text-[#8B8178] mt-6">
+        Free for 14 days • Cancel anytime • We really mean it
+      </p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-12 px-6 border-t border-[#EBE4DF]">
+    <div class="max-w-5xl mx-auto">
+      <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+        <div class="flex items-center gap-2">
+          <span class="text-xl">🌸</span>
+          <span class="font-heading font-semibold text-[#3D3D3D]">bloom</span>
+        </div>
+        <nav class="flex gap-8 text-sm text-[#8B8178]">
+          <a href="#" class="hover:text-[#3D3D3D] transition-colors">Privacy</a>
+          <a href="#" class="hover:text-[#3D3D3D] transition-colors">Terms</a>
+          <a href="#" class="hover:text-[#3D3D3D] transition-colors">Support</a>
+          <a href="#" class="hover:text-[#3D3D3D] transition-colors">Twitter</a>
+        </nav>
+      </div>
+      <div class="text-center mt-8 text-sm text-[#8B8178]">
+        <p>© 2026 bloom wellness, inc. • made with 💕 in brooklyn</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
