@@ -11,6 +11,7 @@
         :root {
             --bg: #FDF8F5;
             --bg-card: #FFFFFF;
+            --muted: #F9F1ED;
             --fg: #3D3D3D;
             --fg-muted: #8B8178;
             --border: #EBE4DF;
@@ -18,6 +19,20 @@
             --secondary: #D4E5D7;
             --accent: #E8C4B8;
             --gold: #D4A574;
+            --blush: #FADADD;
+            --sage-light: #E8F0E8;
+
+            --shadow-soft: 0 2px 8px rgba(61, 61, 61, 0.04);
+            --shadow-md: 0 4px 16px rgba(61, 61, 61, 0.06);
+            --shadow-lg: 0 8px 32px rgba(61, 61, 61, 0.08);
+            --shadow-pink: 0 4px 24px rgba(244, 209, 209, 0.4);
+            --shadow-warm: 0 4px 20px rgba(212, 165, 116, 0.15);
+
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+            --radius-2xl: 32px;
+            --radius-full: 9999px;
         }
 
         * {
@@ -32,6 +47,7 @@
             color: var(--fg);
             min-height: 100vh;
             line-height: 1.7;
+            overflow-x: hidden;
         }
 
         .container {
@@ -40,38 +56,59 @@
             padding: 0 24px;
         }
 
-        /* Floating gradient orbs */
+        /* Floating gradient orbs - the signature millennial element */
         .orb {
             position: fixed;
             border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.4;
+            filter: blur(100px);
+            opacity: 0.5;
             pointer-events: none;
             z-index: 0;
+            animation: float 8s ease-in-out infinite;
         }
 
         .orb-1 {
-            width: 400px;
-            height: 400px;
-            background: var(--primary);
-            top: -100px;
-            right: -100px;
+            width: 500px;
+            height: 500px;
+            background: linear-gradient(135deg, var(--primary), var(--blush));
+            top: -150px;
+            right: -150px;
+            animation-delay: 0s;
         }
 
         .orb-2 {
-            width: 300px;
-            height: 300px;
-            background: var(--secondary);
-            bottom: 10%;
-            left: -100px;
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(135deg, var(--secondary), var(--sage-light));
+            bottom: 5%;
+            left: -150px;
+            animation-delay: -3s;
+        }
+
+        .orb-3 {
+            width: 250px;
+            height: 250px;
+            background: linear-gradient(135deg, var(--gold), var(--accent));
+            top: 50%;
+            right: -80px;
+            opacity: 0.3;
+            animation-delay: -5s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-30px) rotate(3deg);
+            }
         }
 
         /* Header */
         header {
             padding: 24px 0;
-            border-bottom: 1px solid var(--border);
             position: relative;
-            z-index: 1;
+            z-index: 10;
         }
 
         .nav {
@@ -81,81 +118,100 @@
         }
 
         .back-link {
-            color: var(--fg);
+            color: var(--fg-muted);
             text-decoration: none;
             font-size: 0.875rem;
             display: flex;
             align-items: center;
             gap: 8px;
-            transition: color 0.2s;
+            transition: all 0.2s ease-out;
+            padding: 8px 16px;
+            border-radius: var(--radius-full);
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(8px);
         }
 
         .back-link:hover {
-            color: var(--gold);
+            color: var(--fg);
+            background: var(--bg-card);
+            box-shadow: var(--shadow-soft);
+            transform: translateX(-2px);
         }
 
         .gen-badge {
             font-size: 0.75rem;
-            padding: 6px 16px;
+            padding: 8px 20px;
             background: var(--primary);
             color: var(--fg);
-            border-radius: 100px;
+            border-radius: var(--radius-full);
             font-weight: 500;
+            letter-spacing: 0.05em;
+            box-shadow: var(--shadow-pink);
         }
 
         /* Hero */
         .hero {
-            padding: 100px 0 80px;
+            padding: 80px 0 60px;
             text-align: center;
             position: relative;
             z-index: 1;
         }
 
+        .hero .years {
+            display: inline-block;
+            font-size: 0.75rem;
+            color: var(--fg-muted);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            padding: 6px 16px;
+            background: var(--muted);
+            border-radius: var(--radius-full);
+        }
+
         .hero h1 {
             font-family: 'Playfair Display', Georgia, serif;
-            font-size: clamp(3rem, 8vw, 5rem);
+            font-size: clamp(3.5rem, 10vw, 6rem);
             font-weight: 400;
             color: var(--fg);
-            margin-bottom: 16px;
+            margin-bottom: 24px;
             letter-spacing: -0.02em;
+            line-height: 1.1;
         }
 
         .hero h1 em {
             font-style: italic;
-            color: var(--gold);
+            background: linear-gradient(135deg, var(--gold) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
-        .hero .years {
-            font-size: 0.875rem;
-            color: var(--fg-muted);
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            margin-bottom: 24px;
-        }
-
-        .hero p {
+        .hero .tagline {
             font-size: 1.25rem;
             color: var(--fg-muted);
-            max-width: 500px;
+            max-width: 480px;
             margin: 0 auto;
+            line-height: 1.8;
         }
 
         /* Content */
         .content {
-            padding: 60px 0;
+            padding: 40px 0 80px;
             position: relative;
             z-index: 1;
         }
 
         .section {
-            margin-bottom: 60px;
+            margin-bottom: 64px;
         }
 
+        /* Section labels with decorative lines */
         .section-label {
             display: flex;
             align-items: center;
-            gap: 16px;
-            margin-bottom: 24px;
+            gap: 20px;
+            margin-bottom: 32px;
         }
 
         .section-label::before,
@@ -167,23 +223,31 @@
         }
 
         .section-label span {
-            font-size: 0.75rem;
-            font-weight: 500;
-            letter-spacing: 0.15em;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
             text-transform: uppercase;
             color: var(--fg-muted);
+            white-space: nowrap;
         }
 
         .section h2 {
             font-family: 'Playfair Display', Georgia, serif;
-            font-size: 1.75rem;
+            font-size: 2rem;
             font-weight: 400;
             margin-bottom: 16px;
+            color: var(--fg);
         }
 
-        .section p, .section li {
+        .section h2 em {
+            font-style: italic;
+            color: var(--gold);
+        }
+
+        .section p {
             color: var(--fg-muted);
-            margin-bottom: 12px;
+            margin-bottom: 16px;
+            font-size: 1.0625rem;
         }
 
         .section ul {
@@ -192,107 +256,282 @@
         }
 
         .section li {
-            padding-left: 24px;
+            color: var(--fg-muted);
+            margin-bottom: 14px;
+            padding-left: 28px;
             position: relative;
+            font-size: 1.0625rem;
         }
 
+        /* Pink dot bullets */
         .section li::before {
             content: '';
             position: absolute;
             left: 0;
             top: 10px;
-            width: 6px;
-            height: 6px;
+            width: 8px;
+            height: 8px;
             background: var(--primary);
             border-radius: 50%;
+            box-shadow: 0 0 8px rgba(244, 209, 209, 0.6);
         }
 
-        /* Card */
+        /* Cards with gentle lift on hover */
         .card {
             background: var(--bg-card);
-            border-radius: 24px;
+            border-radius: var(--radius-xl);
             padding: 32px;
-            margin: 24px 0;
-            box-shadow: 0 4px 16px rgba(61, 61, 61, 0.06);
+            margin: 28px 0;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease-out;
+            border: 1px solid rgba(235, 228, 223, 0.5);
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .card h3 {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--fg);
+        }
+
+        .card li strong {
+            color: var(--fg);
+            font-weight: 600;
         }
 
         /* Color Swatches */
         .color-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 16px;
-            margin: 24px 0;
+            margin: 28px 0;
+        }
+
+        @media (min-width: 640px) {
+            .color-grid {
+                grid-template-columns: repeat(6, 1fr);
+            }
         }
 
         .color-swatch {
             aspect-ratio: 1;
-            border-radius: 16px;
+            border-radius: var(--radius-lg);
             display: flex;
-            align-items: flex-end;
-            padding: 12px;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            padding: 12px 8px;
             font-size: 0.625rem;
             font-weight: 600;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease-out;
+            text-align: center;
         }
 
-        /* Copy Button */
+        .color-swatch:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .color-swatch .hex {
+            font-size: 0.5rem;
+            opacity: 0.7;
+            margin-top: 4px;
+            font-weight: 500;
+        }
+
+        /* Typography showcase */
+        .type-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-xl);
+            padding: 40px;
+            margin: 28px 0;
+            box-shadow: var(--shadow-md);
+        }
+
+        .type-sample {
+            margin-bottom: 32px;
+            padding-bottom: 32px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .type-sample:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .type-sample .label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--fg-muted);
+            margin-bottom: 12px;
+        }
+
+        .type-sample.heading-sample .demo {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--fg);
+            letter-spacing: -0.01em;
+        }
+
+        .type-sample.accent-sample .demo {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 2rem;
+            font-style: italic;
+            color: var(--gold);
+        }
+
+        .type-sample .note {
+            font-size: 0.875rem;
+            color: var(--fg-muted);
+            margin-top: 8px;
+        }
+
+        /* Copy Button Section with gradient */
         .copy-section {
             text-align: center;
-            margin-top: 60px;
-            padding: 48px;
-            background: linear-gradient(135deg, var(--primary), var(--bg));
-            border-radius: 32px;
+            margin-top: 80px;
+            padding: 56px 40px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--blush) 50%, var(--bg) 100%);
+            border-radius: var(--radius-2xl);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .copy-section::before {
+            content: '';
+            position: absolute;
+            top: 20%;
+            right: 10%;
+            width: 150px;
+            height: 150px;
+            background: var(--secondary);
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.5;
         }
 
         .copy-section h3 {
             font-family: 'Playfair Display', Georgia, serif;
-            font-size: 1.5rem;
+            font-size: 1.75rem;
             font-weight: 400;
             margin-bottom: 12px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .copy-section h3 em {
+            font-style: italic;
         }
 
         .copy-section p {
             color: var(--fg-muted);
-            margin-bottom: 24px;
+            margin-bottom: 28px;
+            position: relative;
+            z-index: 1;
         }
 
+        /* Pill button */
         .copy-btn {
             background: var(--fg);
             color: var(--bg);
             border: none;
-            padding: 16px 32px;
-            font-family: inherit;
-            font-size: 0.875rem;
+            padding: 18px 40px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.9375rem;
             font-weight: 600;
-            border-radius: 100px;
+            border-radius: var(--radius-full);
             cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 16px rgba(61, 61, 61, 0.15);
+            transition: all 0.3s ease-out;
+            box-shadow: 0 4px 20px rgba(61, 61, 61, 0.2);
+            position: relative;
+            z-index: 1;
+            letter-spacing: 0.03em;
         }
 
         .copy-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(61, 61, 61, 0.2);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 32px rgba(61, 61, 61, 0.25);
+            background: #2d2d2d;
         }
 
         .copy-btn:active {
-            transform: scale(0.98);
+            transform: scale(0.98) translateY(-1px);
+        }
+
+        .copy-btn.copied {
+            background: var(--secondary);
+            color: var(--fg);
         }
 
         /* Footer */
         footer {
-            padding: 32px 0;
+            padding: 48px 0;
             text-align: center;
-            color: var(--fg-muted);
-            font-size: 0.875rem;
             position: relative;
             z-index: 1;
+        }
+
+        footer p {
+            color: var(--fg-muted);
+            font-size: 0.9375rem;
+        }
+
+        footer p em {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-style: italic;
+        }
+
+        /* Fade in animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .fade-in-delay-1 { animation-delay: 0.1s; opacity: 0; }
+        .fade-in-delay-2 { animation-delay: 0.2s; opacity: 0; }
+        .fade-in-delay-3 { animation-delay: 0.3s; opacity: 0; }
+
+        /* Reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            .orb {
+                animation: none;
+            }
+            .fade-in, .fade-in-delay-1, .fade-in-delay-2, .fade-in-delay-3 {
+                animation: none;
+                opacity: 1;
+            }
+            .card:hover, .color-swatch:hover, .copy-btn:hover {
+                transform: none;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="orb orb-1"></div>
-    <div class="orb orb-2"></div>
+    <!-- Floating gradient orbs -->
+    <div class="orb orb-1" aria-hidden="true"></div>
+    <div class="orb orb-2" aria-hidden="true"></div>
+    <div class="orb orb-3" aria-hidden="true"></div>
 
     <header>
         <div class="container">
@@ -308,70 +547,102 @@
     <main>
         <section class="hero">
             <div class="container">
-                <p class="years">Born 1981 - 1996</p>
-                <h1><em>Millennial</em></h1>
-                <p>Curated authenticity meets warm minimalism. Instagram aesthetics, millennial pink, and self-care vibes.</p>
+                <span class="years fade-in">Born 1981 - 1996</span>
+                <h1 class="fade-in fade-in-delay-1"><em>Millennial</em></h1>
+                <p class="tagline fade-in fade-in-delay-2">Curated authenticity meets warm minimalism. Instagram aesthetics, millennial pink, and the art of intentional softness.</p>
             </div>
         </section>
 
         <section class="content">
             <div class="container">
+                <!-- Philosophy Section -->
                 <div class="section">
-                    <div class="section-label"><span>Philosophy</span></div>
-                    <h2>Curated Authenticity</h2>
-                    <p>This design system captures the aesthetic sensibility of the generation that came of age during the Instagram era - a blend of aspirational lifestyle imagery, approachable warmth, and "adulting" self-awareness.</p>
+                    <div class="section-label"><span>Design Philosophy</span></div>
 
                     <div class="card">
-                        <h3 style="margin-bottom: 16px; font-weight: 600;">Emotional Keywords</h3>
+                        <h2>Curated <em>Authenticity</em></h2>
+                        <p>This design system captures the aesthetic sensibility of the generation that came of age during the Instagram era. A blend of aspirational lifestyle imagery, approachable warmth, and "adulting" self-awareness.</p>
+                        <p>Every design choice should feel like it was handpicked from a Pinterest board, arranged with intention on a marble countertop, and photographed in golden hour light.</p>
+                    </div>
+                </div>
+
+                <!-- Color Palette -->
+                <div class="section">
+                    <div class="section-label"><span>Color Palette</span></div>
+                    <h2>The <em>Warm</em> Spectrum</h2>
+                    <p>A carefully curated palette that feels simultaneously trendy and timeless. Every color could plausibly appear on a wellness brand's Instagram grid.</p>
+
+                    <div class="color-grid">
+                        <div class="color-swatch" style="background: #FDF8F5; color: #3D3D3D; border: 1px solid #EBE4DF;">
+                            Cream
+                            <span class="hex">#FDF8F5</span>
+                        </div>
+                        <div class="color-swatch" style="background: #F4D1D1; color: #3D3D3D;">
+                            Pink
+                            <span class="hex">#F4D1D1</span>
+                        </div>
+                        <div class="color-swatch" style="background: #D4E5D7; color: #3D3D3D;">
+                            Sage
+                            <span class="hex">#D4E5D7</span>
+                        </div>
+                        <div class="color-swatch" style="background: #E8C4B8; color: #3D3D3D;">
+                            Dusty Rose
+                            <span class="hex">#E8C4B8</span>
+                        </div>
+                        <div class="color-swatch" style="background: #D4A574; color: #FFFFFF;">
+                            Soft Gold
+                            <span class="hex">#D4A574</span>
+                        </div>
+                        <div class="color-swatch" style="background: #3D3D3D; color: #FFFFFF;">
+                            Charcoal
+                            <span class="hex">#3D3D3D</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Typography -->
+                <div class="section">
+                    <div class="section-label"><span>Typography</span></div>
+                    <h2>Clean with <em>Personality</em></h2>
+
+                    <div class="type-card">
+                        <div class="type-sample heading-sample">
+                            <div class="label">Headings & UI</div>
+                            <div class="demo">DM Sans</div>
+                            <div class="note">Geometric but friendly, with subtle personality in letterforms.</div>
+                        </div>
+                        <div class="type-sample accent-sample">
+                            <div class="label">Accent Moments</div>
+                            <div class="demo">Playfair Display</div>
+                            <div class="note">Used sparingly for emphasis, quotes, and decorative headings.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Signature Elements -->
+                <div class="section">
+                    <div class="section-label"><span>Signature Elements</span></div>
+                    <h2>The <em>Bold</em> Factor</h2>
+                    <p>These elements prevent generic output and create the distinctly millennial feel:</p>
+
+                    <div class="card">
                         <ul>
-                            <li><strong>Warm</strong> - Rose tones, cream backgrounds, soft gold accents</li>
-                            <li><strong>Curated</strong> - Every element feels intentionally selected</li>
-                            <li><strong>Approachable</strong> - Aspirational but not intimidating</li>
-                            <li><strong>Self-aware</strong> - Design that doesn't take itself too seriously</li>
-                            <li><strong>Genuine</strong> - Authenticity over perfection</li>
+                            <li><strong>Floating gradient orbs</strong> - Blurred circles of pink and sage creating ambient depth</li>
+                            <li><strong>Rounded everything</strong> - Sharp corners feel aggressive; soft edges invite interaction</li>
+                            <li><strong>Pink-tinted shadows</strong> - Dreamy, diffused, like golden hour light</li>
+                            <li><strong>Section labels with decorative lines</strong> - Wellness-brand inspired headers</li>
+                            <li><strong>Pill badges and tags</strong> - Creating that Pinterest board feel</li>
+                            <li><strong>Cards with gentle lift</strong> - Hover states that feel satisfying, not jarring</li>
+                            <li><strong>Lifestyle photography integration</strong> - Flat lays, marble surfaces, plants</li>
+                            <li><strong>Gradient overlays</strong> - Pink-to-peach transitions, never garish</li>
                         </ul>
                     </div>
                 </div>
 
-                <div class="section">
-                    <div class="section-label"><span>Colors</span></div>
-                    <h2>The Warm Palette</h2>
-                    <div class="color-grid">
-                        <div class="color-swatch" style="background: #FDF8F5; color: #3D3D3D; border: 1px solid #EBE4DF;">Cream</div>
-                        <div class="color-swatch" style="background: #F4D1D1; color: #3D3D3D;">Pink</div>
-                        <div class="color-swatch" style="background: #D4E5D7; color: #3D3D3D;">Sage</div>
-                        <div class="color-swatch" style="background: #E8C4B8; color: #3D3D3D;">Dusty Rose</div>
-                        <div class="color-swatch" style="background: #D4A574; color: #fff;">Soft Gold</div>
-                        <div class="color-swatch" style="background: #3D3D3D; color: #fff;">Charcoal</div>
-                    </div>
-                </div>
-
-                <div class="section">
-                    <div class="section-label"><span>Typography</span></div>
-                    <h2>Clean with Personality</h2>
-                    <div class="card">
-                        <p style="font-family: 'DM Sans', sans-serif; font-size: 1.125rem; margin-bottom: 8px;"><strong>DM Sans</strong> for headings and UI</p>
-                        <p style="font-family: 'Playfair Display', serif; font-size: 1.125rem; font-style: italic;">Playfair Display for accent moments</p>
-                    </div>
-                </div>
-
-                <div class="section">
-                    <div class="section-label"><span>Signature Elements</span></div>
-                    <h2>The Bold Factor</h2>
-                    <ul>
-                        <li>Organic floating shapes with soft gradients</li>
-                        <li>Gradient orbs creating ambient depth</li>
-                        <li>Lifestyle photography integration</li>
-                        <li>Soft duotone image treatments</li>
-                        <li>Pinterest-worthy testimonial cards</li>
-                        <li>Pill tags and badges in muted colors</li>
-                        <li>Satisfying micro-interactions</li>
-                    </ul>
-                </div>
-
+                <!-- Copy Section -->
                 <div class="copy-section">
-                    <h3>Get the Full Prompt</h3>
-                    <p>Copy the complete design prompt for your AI coding assistant.</p>
+                    <h3>Get the <em>Full Prompt</em></h3>
+                    <p>Copy the complete design system to use with your AI coding assistant.</p>
                     <button class="copy-btn" onclick="copyPrompt()">Copy to Clipboard</button>
                 </div>
             </div>
@@ -380,21 +651,26 @@
 
     <footer>
         <div class="container">
-            <p>Made with intention and a flat white.</p>
+            <p>Made with <em>intention</em> and a flat white.</p>
         </div>
     </footer>
 
     <script>
         async function copyPrompt() {
+            const btn = document.querySelector('.copy-btn');
             try {
                 const response = await fetch('../generations/millennial.md');
                 const text = await response.text();
                 await navigator.clipboard.writeText(text);
-                const btn = document.querySelector('.copy-btn');
                 btn.textContent = 'Copied!';
-                setTimeout(() => btn.textContent = 'Copy to Clipboard', 2000);
+                btn.classList.add('copied');
+                setTimeout(() => {
+                    btn.textContent = 'Copy to Clipboard';
+                    btn.classList.remove('copied');
+                }, 2500);
             } catch (err) {
-                alert('Copy failed. Please open the .md file directly.');
+                btn.textContent = 'Failed - try again';
+                setTimeout(() => btn.textContent = 'Copy to Clipboard', 2000);
             }
         }
     </script>

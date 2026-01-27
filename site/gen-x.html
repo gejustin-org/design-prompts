@@ -6,7 +6,7 @@
     <title>Gen X Design Prompt | Generation Design Prompts</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Space+Grotesk:wght@400;500;700&family=VT323&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg: #1a1a1a;
@@ -14,9 +14,12 @@
             --fg: #c9c9c9;
             --fg-muted: #737373;
             --border: #3d3d3d;
-            --accent: #00ff00;
-            --accent-secondary: #ff6600;
-            --accent-tertiary: #00ccff;
+            --green: #00ff00;
+            --orange: #ff6600;
+            --cyan: #00ccff;
+            --magenta: #ff00ff;
+            --rust: #8b4513;
+            --static-gray: #808080;
         }
 
         * {
@@ -26,11 +29,11 @@
         }
 
         body {
-            font-family: 'Monaco', 'Lucida Console', 'Courier', monospace;
+            font-family: 'Courier Prime', 'Courier New', monospace;
             background: var(--bg);
             color: var(--fg);
             min-height: 100vh;
-            line-height: 1.7;
+            line-height: 1.6;
             position: relative;
         }
 
@@ -51,9 +54,17 @@
             );
             pointer-events: none;
             z-index: 1000;
+            animation: tracking 0.4s steps(8) infinite;
         }
 
-        /* Static Noise */
+        @keyframes tracking {
+            0%, 100% { transform: translateY(0); }
+            25% { transform: translateY(1px); }
+            50% { transform: translateY(2px); }
+            75% { transform: translateY(1px); }
+        }
+
+        /* Static Noise Overlay */
         body::after {
             content: '';
             position: fixed;
@@ -61,8 +72,9 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            opacity: 0.04;
+            mix-blend-mode: overlay;
             pointer-events: none;
             z-index: 999;
         }
@@ -75,10 +87,12 @@
             z-index: 1;
         }
 
-        /* Header */
+        /* Header - Terminal Style */
         header {
-            padding: 24px 0;
-            border-bottom: 1px dashed var(--border);
+            padding: 16px 0;
+            border-bottom: 1px dashed var(--green);
+            position: relative;
+            z-index: 10;
         }
 
         .nav {
@@ -88,84 +102,157 @@
         }
 
         .back-link {
-            color: var(--accent);
+            color: var(--green);
             text-decoration: none;
             font-size: 0.875rem;
             display: flex;
             align-items: center;
             gap: 8px;
+            text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+            transition: all 100ms ease-out;
         }
 
         .back-link:hover {
-            text-shadow: 0 0 10px var(--accent);
+            text-shadow: 0 0 20px rgba(0, 255, 0, 0.8);
+        }
+
+        .back-link::before {
+            content: 'C:\\>';
+            color: var(--fg-muted);
         }
 
         .gen-badge {
             font-size: 0.75rem;
             padding: 4px 12px;
-            background: var(--accent);
-            color: var(--bg);
-            font-weight: 700;
+            background: transparent;
+            color: var(--orange);
+            border: 1px dashed var(--orange);
+            font-family: 'Courier Prime', monospace;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
-        /* Hero */
+        /* Hero Section */
         .hero {
             padding: 80px 0 60px;
-            border-bottom: 1px dashed var(--border);
-        }
-
-        .hero h1 {
-            font-family: 'Courier Prime', monospace;
-            font-size: clamp(2.5rem, 6vw, 4rem);
-            font-weight: 700;
-            color: var(--accent);
-            text-shadow:
-                0 0 10px var(--accent),
-                -1px 0 var(--accent-tertiary),
-                1px 0 var(--accent-secondary);
-            margin-bottom: 16px;
-            letter-spacing: -0.02em;
+            text-align: left;
+            position: relative;
+            z-index: 1;
         }
 
         .hero .years {
-            font-size: 1rem;
+            font-size: 0.75rem;
             color: var(--fg-muted);
-            margin-bottom: 24px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: 16px;
         }
 
-        .hero p {
+        .hero .years::before {
+            content: '// ';
+            color: var(--green);
+        }
+
+        .hero h1 {
+            font-family: 'VT323', 'Courier Prime', monospace;
+            font-size: clamp(4rem, 12vw, 8rem);
+            font-weight: 400;
+            color: var(--green);
+            margin-bottom: 24px;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            text-shadow:
+                0 0 20px rgba(0, 255, 0, 0.4),
+                0 0 40px rgba(0, 255, 0, 0.2),
+                -2px 0 #ff0000,
+                2px 0 #00ffff;
+            line-height: 0.9;
+        }
+
+        /* Blinking Cursor */
+        .cursor {
+            display: inline-block;
+            animation: blink 1s step-end infinite;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        .hero .tagline {
             font-size: 1.125rem;
             color: var(--fg);
             max-width: 600px;
+            border-left: 3px solid var(--orange);
+            padding-left: 16px;
+            margin-left: 4px;
+        }
+
+        .hero .tagline em {
+            color: var(--cyan);
+            font-style: normal;
         }
 
         /* Content */
         .content {
-            padding: 60px 0;
+            padding: 40px 0;
+            position: relative;
+            z-index: 1;
         }
 
         .section {
-            margin-bottom: 48px;
+            margin-bottom: 60px;
+        }
+
+        /* Dashed HR dividers */
+        .divider {
+            border: none;
+            border-top: 1px dashed var(--border);
+            margin: 40px 0;
+        }
+
+        .section-label {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--fg-muted);
+        }
+
+        .section-label::before {
+            content: '>';
+            color: var(--green);
+            font-weight: bold;
+        }
+
+        .section-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(to right, var(--border), transparent);
         }
 
         .section h2 {
             font-family: 'Courier Prime', monospace;
             font-size: 1.5rem;
-            color: var(--accent);
+            font-weight: 700;
             margin-bottom: 16px;
-            padding-bottom: 8px;
-            border-bottom: 2px solid var(--accent);
-            display: inline-block;
+            color: var(--fg);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
-        .section h3 {
-            font-size: 1.125rem;
-            color: var(--accent-secondary);
-            margin: 24px 0 12px;
+        .section h2::before {
+            content: '# ';
+            color: var(--orange);
         }
 
         .section p, .section li {
-            color: var(--fg);
+            color: var(--fg-muted);
             margin-bottom: 12px;
         }
 
@@ -174,38 +261,76 @@
             padding-left: 0;
         }
 
+        .section li {
+            padding-left: 28px;
+            position: relative;
+            font-family: 'Courier Prime', monospace;
+        }
+
         .section li::before {
             content: '>';
-            color: var(--accent);
-            margin-right: 12px;
+            position: absolute;
+            left: 0;
+            color: var(--green);
+            font-weight: bold;
         }
 
-        /* Terminal Card */
-        .terminal-card {
+        /* Terminal Window Card */
+        .card {
             background: #000;
-            border: 1px solid var(--accent);
+            border: 2px solid var(--green);
             margin: 24px 0;
-            box-shadow: 0 0 20px rgba(0, 255, 0, 0.1);
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.1), inset 0 0 60px rgba(0, 255, 0, 0.02);
+            position: relative;
+            overflow: hidden;
         }
 
-        .terminal-header {
-            background: var(--accent);
+        .card-header {
+            background: var(--green);
             color: #000;
-            padding: 6px 12px;
+            font-family: 'Courier Prime', monospace;
             font-size: 0.75rem;
             font-weight: 700;
+            padding: 6px 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
-        .terminal-body {
-            padding: 16px;
-            font-size: 0.875rem;
+        .card-header .controls {
+            display: flex;
+            gap: 6px;
         }
 
-        .terminal-body code {
-            color: var(--accent);
+        .card-header .control {
+            width: 10px;
+            height: 10px;
+            border: 1px solid #000;
+            font-size: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        /* Color Swatches */
+        .card-body {
+            padding: 20px;
+            font-family: 'Courier Prime', monospace;
+            color: var(--green);
+            font-size: 0.9rem;
+        }
+
+        .card-body p {
+            color: var(--green);
+            margin-bottom: 8px;
+        }
+
+        .card-body .comment {
+            color: var(--fg-muted);
+        }
+
+        /* Color Swatches - Sharp edges, no rounded corners */
         .color-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
@@ -214,66 +339,248 @@
         }
 
         .color-swatch {
-            height: 60px;
+            aspect-ratio: 1;
+            border: 1px dashed var(--border);
             display: flex;
-            align-items: flex-end;
-            padding: 8px;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 10px;
             font-size: 0.625rem;
-            font-weight: 700;
-            border: 1px solid var(--border);
+            font-family: 'Courier Prime', monospace;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            position: relative;
         }
 
-        /* Copy Button */
+        .color-swatch .hex {
+            font-size: 0.75rem;
+            font-weight: bold;
+        }
+
+        /* Typography Card */
+        .type-sample {
+            margin: 12px 0;
+            padding: 12px 0;
+            border-bottom: 1px dashed var(--border);
+        }
+
+        .type-sample:last-child {
+            border-bottom: none;
+        }
+
+        .type-label {
+            font-size: 0.625rem;
+            color: var(--fg-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 4px;
+        }
+
+        .type-display {
+            font-size: 1.5rem;
+        }
+
+        .type-mono {
+            font-family: 'Courier Prime', monospace;
+            color: var(--green);
+        }
+
+        .type-vt {
+            font-family: 'VT323', monospace;
+            font-size: 2rem;
+            color: var(--cyan);
+            text-shadow: 0 0 10px rgba(0, 204, 255, 0.5);
+        }
+
+        .type-grotesk {
+            font-family: 'Space Grotesk', sans-serif;
+            color: var(--fg);
+        }
+
+        /* Copy Section - Beveled Button */
         .copy-section {
+            text-align: center;
             margin-top: 60px;
-            padding: 32px;
-            background: var(--bg-card);
-            border: 1px dashed var(--accent);
+            padding: 48px 32px;
+            border: 2px dashed var(--border);
+            background: linear-gradient(0deg, #1a1a1a 0%, #242424 50%, #1a1a1a 100%);
+            position: relative;
+        }
+
+        .copy-section::before {
+            content: '[ PROMPT.EXE ]';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--bg);
+            padding: 0 16px;
+            font-size: 0.75rem;
+            color: var(--orange);
+            letter-spacing: 0.1em;
         }
 
         .copy-section h3 {
-            color: var(--accent);
-            margin-bottom: 16px;
+            font-family: 'Courier Prime', monospace;
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--fg);
+            text-transform: uppercase;
         }
 
+        .copy-section p {
+            color: var(--fg-muted);
+            margin-bottom: 24px;
+            font-size: 0.9rem;
+        }
+
+        /* 90s Beveled Button */
         .copy-btn {
-            background: var(--accent);
+            background: #c0c0c0;
             color: #000;
             border: none;
-            padding: 12px 24px;
-            font-family: inherit;
+            padding: 12px 32px;
+            font-family: 'Courier Prime', monospace;
             font-size: 0.875rem;
             font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
             cursor: pointer;
-            transition: all 0.1s;
+            border-style: outset;
+            border-width: 3px;
+            border-color: #ffffff #808080 #808080 #ffffff;
+            box-shadow: 2px 2px 0 #000;
+            transition: all 50ms ease-out;
         }
 
         .copy-btn:hover {
-            box-shadow: 0 0 20px var(--accent);
+            background: #d0d0d0;
         }
 
         .copy-btn:active {
+            border-style: inset;
+            border-color: #808080 #ffffff #ffffff #808080;
+            box-shadow: none;
             transform: translate(1px, 1px);
+        }
+
+        .copy-btn.copied {
+            background: var(--green);
+            color: #000;
         }
 
         /* Footer */
         footer {
-            padding: 24px 0;
-            border-top: 1px dashed var(--border);
+            padding: 40px 0;
             text-align: center;
             color: var(--fg-muted);
-            font-size: 0.75rem;
+            font-size: 0.875rem;
+            position: relative;
+            z-index: 1;
+            border-top: 1px dashed var(--border);
         }
 
-        /* Animations */
-        @keyframes blink {
-            0%, 50% { opacity: 1; }
-            51%, 100% { opacity: 0; }
+        footer p::before {
+            content: '// ';
+            color: var(--green);
         }
 
-        .cursor::after {
-            content: '_';
-            animation: blink 1s step-end infinite;
+        /* Chromatic aberration text effect class */
+        .chromatic {
+            text-shadow: -1px 0 #ff0000, 1px 0 #00ffff;
+        }
+
+        /* CRT Glow effect */
+        .crt-glow {
+            text-shadow:
+                0 0 5px currentColor,
+                0 0 10px currentColor,
+                0 0 20px currentColor;
+        }
+
+        /* Glitch hover effect */
+        .glitch:hover {
+            animation: text-glitch 0.3s ease-in-out;
+        }
+
+        @keyframes text-glitch {
+            0%, 100% {
+                transform: translate(0);
+                text-shadow: -1px 0 #ff0000, 1px 0 #00ffff;
+            }
+            25% {
+                transform: translate(-2px, 1px);
+                text-shadow: 2px 0 #ff0000, -2px 0 #00ffff;
+            }
+            50% {
+                transform: translate(1px, -1px);
+                text-shadow: -1px 0 #ff0000, 1px 0 #00ffff;
+            }
+            75% {
+                transform: translate(-1px, 2px);
+                text-shadow: 1px 0 #ff0000, -1px 0 #00ffff;
+            }
+        }
+
+        /* Xerox degradation feel for images/containers */
+        .xerox {
+            filter: contrast(1.1) blur(0.3px);
+            box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.3);
+        }
+
+        /* Philosophy quote box */
+        .philosophy-box {
+            background: var(--bg-card);
+            border-left: 4px solid var(--orange);
+            padding: 20px 24px;
+            margin: 24px 0;
+            font-style: italic;
+            color: var(--fg);
+        }
+
+        .philosophy-box::before {
+            content: '"';
+            font-size: 3rem;
+            color: var(--orange);
+            opacity: 0.5;
+            line-height: 0;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        /* Responsive */
+        @media (max-width: 640px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .color-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .card-body {
+                padding: 16px;
+                font-size: 0.8rem;
+            }
+        }
+
+        /* Reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+
+            body::before {
+                animation: none;
+            }
+
+            .cursor {
+                animation: none;
+                opacity: 1;
+            }
         }
     </style>
 </head>
@@ -281,10 +588,8 @@
     <header>
         <div class="container">
             <nav class="nav">
-                <a href="index.html" class="back-link">
-                    <span>&lt;-</span> Back to all generations
-                </a>
-                <span class="gen-badge">1965-1980</span>
+                <a href="index.html" class="back-link">cd ..</a>
+                <span class="gen-badge">1965 - 1980</span>
             </nav>
         </div>
     </header>
@@ -292,72 +597,180 @@
     <main>
         <section class="hero">
             <div class="container">
-                <h1 class="cursor">Gen X_</h1>
                 <p class="years">Born 1965 - 1980</p>
-                <p>MTV era grunge meets early internet. VHS tracking lines, CRT phosphor glow, and DIY independence. The visual language of zines, mixtapes, dial-up modems, and the belief that trying too hard is the ultimate sin.</p>
+                <h1 class="chromatic">GEN X<span class="cursor">_</span></h1>
+                <p class="tagline">Whatever, man. <em>Authentic apathy meets DIY rebellion.</em> The aesthetic of MTV, grunge, zines, and dial-up modems.</p>
             </div>
         </section>
+
+        <hr class="divider">
 
         <section class="content">
             <div class="container">
                 <div class="section">
-                    <h2>Design Philosophy</h2>
-                    <p>Deliberately imperfect, anti-corporate, analog-meets-digital. Nothing is polished. Edges are rough. Type is distressed. The aesthetic actively rejects the slick professionalism of the 80s yuppie era in favor of authenticity.</p>
+                    <div class="section-label">Philosophy</div>
+                    <h2>The Slacker Era Aesthetic</h2>
 
-                    <h3>Core Pillars</h3>
-                    <ul>
-                        <li>The Zine Aesthetic: Photocopied textures, cut-and-paste collage, ransom-note typography</li>
-                        <li>VHS/CRT Artifacts: Tracking lines, static noise, RGB bleeding, phosphor glow</li>
-                        <li>Grunge Typography: Distressed fonts, typewriter keys, broken rules as features</li>
-                        <li>"Under Construction" Web 1.0: Animated GIFs, tiled backgrounds, visitor counters</li>
-                        <li>DIY Ethos: Everything looks handmade, even when it's not</li>
-                    </ul>
-                </div>
-
-                <div class="section">
-                    <h2>Color Palette</h2>
-                    <div class="color-grid">
-                        <div class="color-swatch" style="background: #1a1a1a; color: #c9c9c9;">Background</div>
-                        <div class="color-swatch" style="background: #c9c9c9; color: #1a1a1a;">Foreground</div>
-                        <div class="color-swatch" style="background: #00ff00; color: #000;">CRT Green</div>
-                        <div class="color-swatch" style="background: #ff6600; color: #000;">Safety Orange</div>
-                        <div class="color-swatch" style="background: #00ccff; color: #000;">Hyperlink Blue</div>
-                        <div class="color-swatch" style="background: #4a5d23; color: #fff;">Earth Olive</div>
-                        <div class="color-swatch" style="background: #c4a000; color: #000;">Mustard</div>
-                        <div class="color-swatch" style="background: #808080; color: #000;">Static Gray</div>
+                    <div class="philosophy-box">
+                        Whatever, Man — Authentic Apathy Meets DIY Rebellion
                     </div>
-                </div>
 
-                <div class="section">
-                    <h2>Typography</h2>
-                    <div class="terminal-card">
-                        <div class="terminal-header">C:\FONTS\</div>
-                        <div class="terminal-body">
-                            <code>Headings: Courier New, American Typewriter, monospace</code><br>
-                            <code>Body: Monaco, Lucida Console, monospace</code><br>
-                            <code>Display: Impact, Haettenschweiler, sans-serif</code>
+                    <p>This is the visual language of the generation that grew up with MTV, watched the Berlin Wall fall, and came of age in the shadow of Boomer idealism. Gen X design captures the cynical independence, grunge authenticity, and early digital frontier of 1985-1999.</p>
+
+                    <p>It's zines, mixtapes, dial-up modems, and the belief that <em style="color: var(--cyan);">trying too hard is the ultimate sin.</em></p>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <span>C:\WINDOWS\philosophy.exe</span>
+                            <div class="controls">
+                                <span class="control">_</span>
+                                <span class="control">□</span>
+                                <span class="control">×</span>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <p class="comment">// design pillars:</p>
+                            <p>> Deliberately imperfect</p>
+                            <p>> Anti-corporate</p>
+                            <p>> Analog-meets-digital</p>
+                            <p>> Nothing is polished</p>
+                            <p>> Edges are rough</p>
+                            <p class="comment">// the moment it looks effortful, it's lost the plot</p>
                         </div>
                     </div>
                 </div>
 
+                <hr class="divider">
+
                 <div class="section">
-                    <h2>Signature Elements</h2>
+                    <div class="section-label">Colors</div>
+                    <h2>The Cynical Palette</h2>
+                    <p>Muted earth tones punctuated by aggressive neon pops — like finding a highlighter in a thrift store army jacket.</p>
+
+                    <div class="color-grid">
+                        <div class="color-swatch" style="background: #1a1a1a; color: #c9c9c9; border-color: #3d3d3d;">
+                            <span>Basement Dark</span>
+                            <span class="hex">#1a1a1a</span>
+                        </div>
+                        <div class="color-swatch" style="background: #00ff00; color: #000;">
+                            <span>CRT Phosphor</span>
+                            <span class="hex">#00ff00</span>
+                        </div>
+                        <div class="color-swatch" style="background: #ff6600; color: #000;">
+                            <span>Safety Orange</span>
+                            <span class="hex">#ff6600</span>
+                        </div>
+                        <div class="color-swatch" style="background: #00ccff; color: #000;">
+                            <span>Hyperlink Blue</span>
+                            <span class="hex">#00ccff</span>
+                        </div>
+                        <div class="color-swatch" style="background: #ff00ff; color: #000;">
+                            <span>Hot Magenta</span>
+                            <span class="hex">#ff00ff</span>
+                        </div>
+                        <div class="color-swatch" style="background: #808080; color: #000;">
+                            <span>Static Gray</span>
+                            <span class="hex">#808080</span>
+                        </div>
+                        <div class="color-swatch" style="background: #4a5d23; color: #fff;">
+                            <span>Army Surplus</span>
+                            <span class="hex">#4a5d23</span>
+                        </div>
+                        <div class="color-swatch" style="background: #8b4513; color: #fff;">
+                            <span>Rust/Coffee</span>
+                            <span class="hex">#8b4513</span>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="divider">
+
+                <div class="section">
+                    <div class="section-label">Typography</div>
+                    <h2>Breaking Every Rule</h2>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <span>xterm - fonts.conf</span>
+                            <div class="controls">
+                                <span class="control">_</span>
+                                <span class="control">□</span>
+                                <span class="control">×</span>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="type-sample">
+                                <div class="type-label">// Primary - Typewriter Authenticity</div>
+                                <div class="type-display type-mono">Courier Prime</div>
+                            </div>
+                            <div class="type-sample">
+                                <div class="type-label">// Display - Terminal Vibes</div>
+                                <div class="type-display type-vt">VT323 - MATRIX MODE</div>
+                            </div>
+                            <div class="type-sample">
+                                <div class="type-label">// Fallback - Modern Mono</div>
+                                <div class="type-display type-grotesk">Space Grotesk</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p style="margin-top: 16px;">Mix serifs with sans, distressed with clean, ALL CAPS with lowercase in the same line. Rules are meant to be broken.</p>
+                </div>
+
+                <hr class="divider">
+
+                <div class="section">
+                    <div class="section-label">Signature Elements</div>
+                    <h2>The Bold Factor</h2>
                     <ul>
-                        <li>VHS tracking artifacts on backgrounds</li>
-                        <li>Static noise texture overlays</li>
-                        <li>Photocopied/xerox degradation effects</li>
-                        <li>CRT phosphor glow on interactive elements</li>
-                        <li>Ransom-note mixed typography</li>
-                        <li>"Under construction" and visitor counter elements</li>
-                        <li>Horizontal rules as section dividers</li>
-                        <li>Easter eggs revealed on hover</li>
+                        <li>VHS tracking lines overlay (CSS pseudo-element)</li>
+                        <li>Static noise texture (SVG feTurbulence filter)</li>
+                        <li>CRT phosphor green glow effects</li>
+                        <li>Terminal/command prompt styled cards</li>
+                        <li>Dashed borders everywhere</li>
+                        <li>Photocopied/xerox degradation feel</li>
+                        <li>Chromatic aberration text shadows (RGB offset)</li>
+                        <li>Monospace typography throughout</li>
+                        <li>90s beveled web buttons</li>
+                        <li>"Under construction" elements (ironic or sincere)</li>
+                        <li>Easter eggs on hover - glitch reveals</li>
                     </ul>
                 </div>
 
+                <hr class="divider">
+
+                <div class="section">
+                    <div class="section-label">Effects</div>
+                    <h2>Glitchy, Analog, Imperfect</h2>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <span>effects.css</span>
+                            <div class="controls">
+                                <span class="control">_</span>
+                                <span class="control">□</span>
+                                <span class="control">×</span>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <p class="comment">/* VHS tracking artifact */</p>
+                            <p>box-shadow: 0 2px 0 rgba(255,255,255,0.05),</p>
+                            <p>            0 -2px 0 rgba(0,0,0,0.3);</p>
+                            <br>
+                            <p class="comment">/* Chromatic aberration */</p>
+                            <p>text-shadow: -1px 0 #ff0000, 1px 0 #00ffff;</p>
+                            <br>
+                            <p class="comment">/* CRT glow */</p>
+                            <p>box-shadow: 0 0 20px rgba(0,255,0,0.15),</p>
+                            <p>            inset 0 0 60px rgba(0,255,0,0.03);</p>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="copy-section">
-                    <h3>&gt; Get the Full Prompt</h3>
-                    <p style="margin-bottom: 16px; color: var(--fg-muted);">Copy the complete design prompt to use with your AI coding assistant.</p>
-                    <button class="copy-btn" onclick="copyPrompt()">COPY PROMPT TO CLIPBOARD</button>
+                    <h3>> Get the Full Prompt</h3>
+                    <p>Copy the complete design system for your AI coding assistant.</p>
+                    <button class="copy-btn" onclick="copyPrompt()">[ COPY TO CLIPBOARD ]</button>
                 </div>
             </div>
         </section>
@@ -365,7 +778,7 @@
 
     <footer>
         <div class="container">
-            <p>// Gen X Design Prompt // Whatever, man.</p>
+            <p>whatever, man. it's just a design system.</p>
         </div>
     </footer>
 
@@ -376,10 +789,14 @@
                 const text = await response.text();
                 await navigator.clipboard.writeText(text);
                 const btn = document.querySelector('.copy-btn');
-                btn.textContent = 'COPIED!';
-                setTimeout(() => btn.textContent = 'COPY PROMPT TO CLIPBOARD', 2000);
+                btn.textContent = '[ COPIED! ]';
+                btn.classList.add('copied');
+                setTimeout(() => {
+                    btn.textContent = '[ COPY TO CLIPBOARD ]';
+                    btn.classList.remove('copied');
+                }, 2000);
             } catch (err) {
-                alert('Copy failed. Please open the .md file directly.');
+                alert('Copy failed. Open the .md file directly, whatever.');
             }
         }
     </script>

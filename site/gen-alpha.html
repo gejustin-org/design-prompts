@@ -6,19 +6,62 @@
     <title>Gen Alpha Design Prompt | Generation Design Prompts</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
+            /* Core Light Mode */
             --bg: #F0F7FF;
-            --bg-card: #FFFFFF;
             --fg: #1A1A2E;
-            --fg-muted: #5A6B7A;
+            --surface: #FFFFFF;
+            --surface-elevated: #FAFAFF;
+            --muted: #E8F4FD;
+            --muted-fg: #5A6B7A;
+
+            /* Primary Palette */
             --primary: #6C5CE7;
             --primary-light: #A29BFE;
+            --primary-dark: #4834D4;
+
+            /* Action Colors */
             --success: #00D68F;
+            --success-light: #7EFFD2;
             --warning: #FFB830;
+            --warning-light: #FFE066;
             --danger: #FF6B9D;
+            --danger-light: #FFB8D0;
             --info: #00C9FF;
+            --info-light: #80EAFF;
+
+            /* Roblox-Inspired Extended */
+            --robux: #01A862;
+            --legendary: #FF9F43;
+            --epic: #9B59B6;
+            --rare: #3498DB;
+            --common: #95A5A6;
+            --xp: #F1C40F;
+
+            /* Gradients */
+            --gradient-primary: linear-gradient(135deg, #6C5CE7 0%, #A29BFE 50%, #74B9FF 100%);
+            --gradient-legendary: linear-gradient(135deg, #FF9F43 0%, #FFD93D 50%, #FF6B9D 100%);
+            --gradient-xp: linear-gradient(90deg, #6C5CE7 0%, #00D68F 100%);
+            --gradient-rainbow: linear-gradient(90deg, #FF6B9D, #FFB830, #00D68F, #00C9FF, #6C5CE7);
+
+            /* Shadows */
+            --shadow-sm: 0 2px 8px rgba(108, 92, 231, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
+            --shadow-md: 0 4px 16px rgba(108, 92, 231, 0.12), 0 2px 4px rgba(0, 0, 0, 0.04);
+            --shadow-lg: 0 8px 32px rgba(108, 92, 231, 0.16), 0 4px 8px rgba(0, 0, 0, 0.04);
+            --shadow-hover: 0 12px 40px rgba(108, 92, 231, 0.20), 0 6px 12px rgba(0, 0, 0, 0.06), 0 0 20px rgba(108, 92, 231, 0.15);
+
+            /* Glows */
+            --glow-primary: 0 0 20px rgba(108, 92, 231, 0.5), 0 0 40px rgba(108, 92, 231, 0.3);
+            --glow-success: 0 0 20px rgba(0, 214, 143, 0.5), 0 0 40px rgba(0, 214, 143, 0.3);
+            --glow-legendary: 0 0 20px rgba(255, 159, 67, 0.5), 0 0 40px rgba(255, 159, 67, 0.3);
+            --glow-epic: 0 0 20px rgba(155, 89, 182, 0.5), 0 0 40px rgba(155, 89, 182, 0.3);
+            --glow-rare: 0 0 20px rgba(52, 152, 219, 0.5), 0 0 40px rgba(52, 152, 219, 0.3);
+
+            /* Bouncy Easings */
+            --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            --ease-squish: cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
         * {
@@ -33,19 +76,59 @@
             color: var(--fg);
             min-height: 100vh;
             line-height: 1.6;
+            overflow-x: hidden;
+            font-size: 18px;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Fredoka', 'Nunito', system-ui, sans-serif;
+        }
+
+        /* Floating Particles Background */
+        .particles-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            animation: float-particle 8s ease-in-out infinite;
+            opacity: 0.4;
+        }
+
+        .particle:nth-child(1) { width: 20px; height: 20px; background: var(--primary-light); top: 10%; left: 5%; animation-delay: 0s; }
+        .particle:nth-child(2) { width: 15px; height: 15px; background: var(--success-light); top: 20%; left: 80%; animation-delay: 1s; }
+        .particle:nth-child(3) { width: 25px; height: 25px; background: var(--warning-light); top: 60%; left: 10%; animation-delay: 2s; }
+        .particle:nth-child(4) { width: 12px; height: 12px; background: var(--info-light); top: 75%; left: 70%; animation-delay: 3s; }
+        .particle:nth-child(5) { width: 18px; height: 18px; background: var(--danger-light); top: 40%; left: 90%; animation-delay: 4s; }
+        .particle:nth-child(6) { width: 22px; height: 22px; background: var(--primary); top: 85%; left: 25%; animation-delay: 5s; opacity: 0.3; }
+        .particle:nth-child(7) { width: 14px; height: 14px; background: var(--xp); top: 30%; left: 45%; animation-delay: 6s; }
+        .particle:nth-child(8) { width: 16px; height: 16px; background: var(--success); top: 50%; left: 60%; animation-delay: 7s; opacity: 0.3; }
+
+        @keyframes float-particle {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-30px) scale(1.1); }
         }
 
         .container {
             max-width: 900px;
             margin: 0 auto;
             padding: 0 24px;
+            position: relative;
+            z-index: 1;
         }
 
         /* Header */
         header {
             padding: 24px 0;
-            background: var(--bg-card);
-            box-shadow: 0 2px 8px rgba(108, 92, 231, 0.08);
+            border-bottom: 2px solid var(--muted);
         }
 
         .nav {
@@ -57,144 +140,155 @@
         .back-link {
             color: var(--fg);
             text-decoration: none;
-            font-size: 0.875rem;
+            font-size: 1rem;
             font-weight: 600;
             display: flex;
             align-items: center;
             gap: 8px;
-            padding: 8px 16px;
-            border-radius: 100px;
-            transition: all 0.2s;
+            padding: 12px 20px;
+            background: var(--surface);
+            border-radius: 9999px;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s var(--ease-bounce);
         }
 
         .back-link:hover {
-            background: var(--primary-light);
-            color: white;
-            transform: translateY(-2px);
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: var(--shadow-hover);
+            color: var(--primary);
+        }
+
+        .back-link:active {
+            transform: translateY(2px) scale(0.95);
         }
 
         .gen-badge {
-            font-size: 0.75rem;
-            padding: 8px 20px;
-            background: linear-gradient(135deg, var(--primary), var(--info));
+            font-family: 'Fredoka', sans-serif;
+            font-size: 0.875rem;
+            padding: 10px 20px;
+            background: var(--gradient-primary);
             color: white;
-            border-radius: 100px;
-            font-weight: 700;
-            box-shadow: 0 4px 12px rgba(108, 92, 231, 0.3);
+            border-radius: 9999px;
+            font-weight: 600;
+            box-shadow: var(--shadow-md), var(--glow-primary);
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: var(--shadow-md), 0 0 15px rgba(108, 92, 231, 0.4); }
+            50% { box-shadow: var(--shadow-md), 0 0 25px rgba(108, 92, 231, 0.6); }
         }
 
         /* Hero */
         .hero {
-            padding: 80px 0;
+            padding: 80px 0 60px;
             text-align: center;
             position: relative;
-            overflow: hidden;
         }
 
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background:
-                radial-gradient(circle at 30% 20%, rgba(108, 92, 231, 0.1) 0%, transparent 30%),
-                radial-gradient(circle at 70% 80%, rgba(0, 214, 143, 0.1) 0%, transparent 30%),
-                radial-gradient(circle at 50% 50%, rgba(0, 201, 255, 0.05) 0%, transparent 40%);
-            animation: slowRotate 30s linear infinite;
-            z-index: 0;
+        .hero-emoji {
+            font-size: 80px;
+            display: block;
+            margin-bottom: 16px;
+            animation: bounce-emoji 1s var(--ease-bounce) infinite;
         }
 
-        @keyframes slowRotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 1;
+        @keyframes bounce-emoji {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-15px) rotate(-5deg); }
+            75% { transform: translateY(-15px) rotate(5deg); }
         }
 
         .hero h1 {
             font-size: clamp(3rem, 10vw, 5rem);
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--primary), var(--success), var(--info));
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 16px;
+        }
+
+        .hero h1 .gradient-text {
+            background: var(--gradient-primary);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            margin-bottom: 16px;
         }
 
-        .hero .emoji {
-            font-size: 3rem;
-            margin-bottom: 16px;
-            animation: bounce 2s ease-in-out infinite;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+        .hero h1 .light {
+            font-weight: 400;
+            color: var(--muted-fg);
         }
 
         .hero .years {
-            display: inline-block;
-            font-size: 0.875rem;
-            color: white;
-            background: var(--primary);
-            padding: 6px 20px;
-            border-radius: 100px;
-            font-weight: 700;
-            margin-bottom: 24px;
+            font-size: 1rem;
+            color: var(--muted-fg);
+            margin-bottom: 16px;
+            letter-spacing: 0.05em;
         }
 
         .hero p {
             font-size: 1.25rem;
-            color: var(--fg-muted);
+            color: var(--muted-fg);
+            max-width: 600px;
+            margin: 0 auto 32px;
+        }
+
+        /* XP Bar Demo */
+        .xp-bar-demo {
             max-width: 500px;
             margin: 0 auto;
         }
 
-        /* XP Bar */
         .xp-bar-container {
-            max-width: 400px;
-            margin: 32px auto 0;
-            background: white;
-            border-radius: 100px;
-            padding: 8px;
-            box-shadow: 0 4px 16px rgba(108, 92, 231, 0.15);
-        }
-
-        .xp-bar {
-            height: 24px;
-            background: linear-gradient(90deg, var(--primary), var(--success));
-            border-radius: 100px;
-            width: 75%;
             position: relative;
+            height: 32px;
+            background: var(--muted);
+            border-radius: 9999px;
             overflow: hidden;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
-        .xp-bar::after {
-            content: '';
+        .xp-bar-fill {
             position: absolute;
             top: 0;
-            left: -100%;
-            width: 100%;
+            left: 0;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            animation: shimmer 2s infinite;
+            width: 72%;
+            background: var(--gradient-xp);
+            border-radius: 9999px;
+            animation: shimmer 2s linear infinite;
+            background-size: 200% 100%;
         }
 
         @keyframes shimmer {
-            100% { left: 100%; }
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
         }
 
-        .xp-label {
-            text-align: center;
-            font-size: 0.75rem;
-            font-weight: 700;
-            color: var(--fg-muted);
+        .xp-bar-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 600;
+            font-size: 0.875rem;
+            color: var(--fg);
+            text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+            z-index: 1;
+        }
+
+        .xp-labels {
+            display: flex;
+            justify-content: space-between;
             margin-top: 8px;
+            font-size: 0.875rem;
+            color: var(--muted-fg);
+        }
+
+        .xp-labels span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
         }
 
         /* Content */
@@ -203,186 +297,399 @@
         }
 
         .section {
-            margin-bottom: 48px;
+            margin-bottom: 60px;
         }
 
         .section h2 {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--primary);
+            font-size: 1.75rem;
+            font-weight: 700;
             margin-bottom: 16px;
+            color: var(--primary);
             display: flex;
             align-items: center;
             gap: 12px;
         }
 
         .section h2::before {
-            content: '★';
-            color: var(--warning);
+            content: '';
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: var(--primary);
+            border-radius: 50%;
+            animation: pulse-dot 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.5); opacity: 0.7; }
         }
 
         .section p, .section li {
-            color: var(--fg-muted);
+            color: var(--muted-fg);
             margin-bottom: 12px;
+            font-size: 1rem;
         }
 
-        /* Card */
-        .card {
-            background: var(--bg-card);
+        /* Blobby Card */
+        .blobby-card {
+            background: var(--surface);
             border-radius: 24px;
-            padding: 24px;
-            margin: 24px 0;
-            box-shadow: 0 4px 16px rgba(108, 92, 231, 0.1);
-            border: 2px solid transparent;
-            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            padding: 28px;
+            box-shadow: var(--shadow-md);
+            border: 2px solid var(--muted);
+            transition: all 0.3s var(--ease-bounce);
         }
 
-        .card:hover {
-            transform: translateY(-4px);
+        .blobby-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
             border-color: var(--primary-light);
-            box-shadow: 0 8px 32px rgba(108, 92, 231, 0.15);
         }
 
-        /* Achievement Badges */
-        .badge-grid {
+        /* Pillar Card */
+        .pillar-card {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 28px;
+            box-shadow: var(--shadow-md);
+            border: 2px solid var(--primary-light);
+        }
+
+        .pillar-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--primary);
             display: flex;
-            gap: 16px;
-            flex-wrap: wrap;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .pillar-list {
+            list-style: none;
+        }
+
+        .pillar-list li {
+            padding: 12px 0;
+            padding-left: 36px;
+            position: relative;
+            border-bottom: 1px solid var(--muted);
+        }
+
+        .pillar-list li:last-child {
+            border-bottom: none;
+        }
+
+        .pillar-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 24px;
+            height: 24px;
+            background: var(--success);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .pillar-list li::after {
+            content: '\2713';
+            position: absolute;
+            left: 6px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-weight: 700;
+            font-size: 0.875rem;
+        }
+
+        /* Achievement Badges Section */
+        .badge-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 24px;
             margin: 24px 0;
         }
 
-        .badge {
+        .achievement-badge {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 24px;
+            background: var(--surface);
+            border-radius: 24px;
+            box-shadow: var(--shadow-md);
+            transition: all 0.4s var(--ease-bounce);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .achievement-badge:hover {
+            transform: translateY(-12px) scale(1.05);
+        }
+
+        .badge-icon {
             width: 80px;
             height: 80px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2rem;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            font-size: 36px;
+            margin-bottom: 12px;
+            position: relative;
             border: 4px solid;
-            transition: all 0.3s;
         }
 
-        .badge:hover {
-            transform: scale(1.1) rotate(10deg);
+        .badge-name {
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 4px;
         }
 
-        .badge.common {
-            background: #E8F4FD;
-            border-color: #95A5A6;
+        .badge-rarity {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 700;
         }
 
-        .badge.rare {
-            background: #E3F2FD;
-            border-color: #3498DB;
-            box-shadow: 0 0 20px rgba(52, 152, 219, 0.3);
+        /* Rarity: Common */
+        .badge-common {
+            border-color: var(--muted);
+        }
+        .badge-common .badge-icon {
+            background: var(--muted);
+            border-color: var(--common);
+        }
+        .badge-common .badge-rarity {
+            color: var(--common);
         }
 
-        .badge.epic {
-            background: #F3E5F5;
-            border-color: #9B59B6;
-            box-shadow: 0 0 20px rgba(155, 89, 182, 0.3);
+        /* Rarity: Rare */
+        .badge-rare {
+            border-color: rgba(52, 152, 219, 0.3);
+        }
+        .badge-rare:hover {
+            box-shadow: var(--shadow-lg), var(--glow-rare);
+        }
+        .badge-rare .badge-icon {
+            background: linear-gradient(135deg, #E8F4FD, #D4EDFC);
+            border-color: var(--rare);
+            animation: shimmer-rare 3s linear infinite;
+        }
+        @keyframes shimmer-rare {
+            0%, 100% { box-shadow: 0 0 10px rgba(52, 152, 219, 0.3); }
+            50% { box-shadow: 0 0 20px rgba(52, 152, 219, 0.5); }
+        }
+        .badge-rare .badge-rarity {
+            color: var(--rare);
         }
 
-        .badge.legendary {
-            background: linear-gradient(135deg, #FFF3E0, #FFE0B2);
-            border-color: #FF9F43;
-            box-shadow: 0 0 30px rgba(255, 159, 67, 0.4);
-            animation: legendaryPulse 2s ease-in-out infinite;
+        /* Rarity: Epic */
+        .badge-epic {
+            border-color: rgba(155, 89, 182, 0.3);
+        }
+        .badge-epic:hover {
+            box-shadow: var(--shadow-lg), var(--glow-epic);
+        }
+        .badge-epic .badge-icon {
+            background: linear-gradient(135deg, #F3E8FF, #E9D5FF);
+            border-color: var(--epic);
+            animation: rotate-highlight 4s linear infinite;
+        }
+        @keyframes rotate-highlight {
+            0% { box-shadow: 5px 0 15px rgba(155, 89, 182, 0.4); }
+            25% { box-shadow: 0 5px 15px rgba(155, 89, 182, 0.4); }
+            50% { box-shadow: -5px 0 15px rgba(155, 89, 182, 0.4); }
+            75% { box-shadow: 0 -5px 15px rgba(155, 89, 182, 0.4); }
+            100% { box-shadow: 5px 0 15px rgba(155, 89, 182, 0.4); }
+        }
+        .badge-epic .badge-rarity {
+            color: var(--epic);
         }
 
-        @keyframes legendaryPulse {
-            0%, 100% { box-shadow: 0 0 20px rgba(255, 159, 67, 0.4); }
-            50% { box-shadow: 0 0 40px rgba(255, 159, 67, 0.6); }
+        /* Rarity: Legendary */
+        .badge-legendary {
+            border-color: rgba(255, 159, 67, 0.4);
+            background: linear-gradient(135deg, var(--surface), #FFFBF0);
+        }
+        .badge-legendary:hover {
+            box-shadow: var(--shadow-lg), var(--glow-legendary);
+        }
+        .badge-legendary .badge-icon {
+            background: var(--gradient-legendary);
+            border-color: var(--legendary);
+            animation: legendary-glow 2s ease-in-out infinite, legendary-shine 3s linear infinite;
+        }
+        @keyframes legendary-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(255, 159, 67, 0.5), 0 0 40px rgba(255, 159, 67, 0.3); }
+            50% { box-shadow: 0 0 30px rgba(255, 159, 67, 0.7), 0 0 60px rgba(255, 159, 67, 0.4); }
+        }
+        @keyframes legendary-shine {
+            0% { filter: brightness(1); }
+            50% { filter: brightness(1.2); }
+            100% { filter: brightness(1); }
+        }
+        .badge-legendary .badge-rarity {
+            color: var(--legendary);
+        }
+
+        /* Legendary particle effect */
+        .badge-legendary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
+            animation: particle-pulse 2s ease-in-out infinite;
+            pointer-events: none;
+        }
+        @keyframes particle-pulse {
+            0%, 100% { opacity: 0.5; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.1); }
         }
 
         /* Color Swatches */
         .color-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-            gap: 12px;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 16px;
             margin: 24px 0;
         }
 
         .color-swatch {
             aspect-ratio: 1;
-            border-radius: 20px;
+            border-radius: 24px;
             display: flex;
-            align-items: flex-end;
-            padding: 12px;
-            font-size: 0.625rem;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
             font-weight: 700;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            transition: all 0.2s;
+            transition: all 0.4s var(--ease-bounce);
+            box-shadow: var(--shadow-sm);
+            cursor: pointer;
         }
 
         .color-swatch:hover {
-            transform: scale(1.05) rotate(3deg);
+            transform: translateY(-8px) scale(1.08) rotate(3deg);
+            box-shadow: var(--shadow-hover);
         }
 
-        /* Features List */
-        .features-list {
+        .color-swatch:active {
+            transform: translateY(2px) scale(0.95);
+        }
+
+        .color-swatch .color-name {
+            font-family: 'Fredoka', sans-serif;
+            margin-bottom: 4px;
+        }
+
+        .color-swatch .color-hex {
+            font-size: 0.625rem;
+            opacity: 0.8;
+        }
+
+        /* Signature Elements List */
+        .signature-list {
             list-style: none;
-            padding: 0;
-        }
-
-        .features-list li {
-            display: flex;
-            align-items: flex-start;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 12px;
-            padding: 12px 0;
-            border-bottom: 1px dashed #E8F4FD;
         }
 
-        .features-list li::before {
-            content: '✓';
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .signature-list li {
+            padding: 16px 20px;
+            padding-left: 52px;
+            position: relative;
+            background: var(--surface);
+            border-radius: 16px;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s var(--ease-bounce);
+        }
+
+        .signature-list li:hover {
+            transform: translateX(8px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .signature-list li::before {
+            content: '';
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
             width: 24px;
             height: 24px;
-            background: var(--success);
-            color: white;
+            background: var(--gradient-primary);
             border-radius: 50%;
-            font-size: 0.75rem;
-            font-weight: 700;
-            flex-shrink: 0;
         }
 
-        /* Copy Button */
+        .signature-list li::after {
+            content: '\2713';
+            position: absolute;
+            left: 22px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-weight: 700;
+            font-size: 0.75rem;
+        }
+
+        /* Copy Section - Reward Style */
         .copy-section {
             margin-top: 60px;
-            padding: 48px;
-            background: linear-gradient(135deg, var(--primary), var(--info));
+            padding: 48px 32px;
+            background: var(--gradient-legendary);
             border-radius: 32px;
             text-align: center;
-            color: white;
             position: relative;
             overflow: hidden;
+            box-shadow: var(--shadow-lg), var(--glow-legendary);
         }
 
         .copy-section::before {
-            content: '🎮 🏆 ⭐ 🎯 🚀';
+            content: '';
             position: absolute;
-            font-size: 3rem;
-            opacity: 0.1;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            white-space: nowrap;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.3) 0%, transparent 40%),
+                        radial-gradient(circle at 70% 80%, rgba(255, 255, 255, 0.2) 0%, transparent 30%);
+            pointer-events: none;
         }
 
         .copy-section h3 {
-            font-size: 1.75rem;
-            font-weight: 800;
-            margin-bottom: 12px;
+            font-size: 2rem;
+            margin-bottom: 8px;
+            color: white;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
             position: relative;
         }
 
+        .copy-section h3::before {
+            content: '\2728';
+            margin-right: 8px;
+        }
+
+        .copy-section h3::after {
+            content: '\2728';
+            margin-left: 8px;
+        }
+
         .copy-section p {
-            opacity: 0.9;
+            color: rgba(255, 255, 255, 0.9);
             margin-bottom: 24px;
+            font-size: 1.125rem;
             position: relative;
         }
 
@@ -390,63 +697,145 @@
             background: white;
             color: var(--primary);
             border: none;
-            padding: 16px 40px;
-            font-family: inherit;
-            font-size: 1rem;
-            font-weight: 800;
-            border-radius: 100px;
+            padding: 20px 48px;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.125rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border-radius: 9999px;
             cursor: pointer;
-            transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            transition: all 0.3s var(--ease-bounce);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+            min-height: 56px;
             position: relative;
         }
 
         .copy-btn:hover {
-            transform: scale(1.05) translateY(-2px);
-            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+            transform: translateY(-6px) scale(1.05);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), var(--glow-primary);
         }
 
         .copy-btn:active {
-            transform: scale(0.98);
+            transform: translateY(2px) scale(0.98);
+        }
+
+        .copy-btn.copied {
+            background: var(--success);
+            color: white;
         }
 
         /* Footer */
         footer {
-            padding: 32px 0;
+            padding: 40px 0;
             text-align: center;
-            color: var(--fg-muted);
-            font-size: 0.875rem;
-            font-weight: 600;
+            color: var(--muted-fg);
+            font-size: 1rem;
+            border-top: 2px solid var(--muted);
         }
 
-        footer span {
-            color: var(--warning);
+        footer p {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .star-accent {
+            color: var(--xp);
+            font-size: 1.25rem;
+            animation: spin-star 4s linear infinite;
+        }
+
+        @keyframes spin-star {
+            0% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(180deg) scale(1.2); }
+            100% { transform: rotate(360deg) scale(1); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                font-size: 16px;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-emoji {
+                font-size: 60px;
+            }
+
+            .badge-showcase {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .color-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .copy-section {
+                padding: 32px 24px;
+            }
+
+            .copy-btn {
+                padding: 16px 32px;
+                font-size: 1rem;
+            }
+        }
+
+        /* Reduced Motion */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Floating Particles -->
+    <div class="particles-bg">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
     <header>
         <div class="container">
             <nav class="nav">
                 <a href="index.html" class="back-link">
-                    <span>←</span> Back
+                    <span>&larr;</span> back
                 </a>
-                <span class="gen-badge">2013 - Present</span>
+                <span class="gen-badge">2013+</span>
             </nav>
         </div>
     </header>
 
     <main>
         <section class="hero">
-            <div class="hero-content container">
-                <div class="emoji">🎮</div>
-                <span class="years">Born 2013 - Present</span>
-                <h1>Gen Alpha</h1>
-                <p>Tablet natives, Roblox generation, gamified everything. Bright, bouncy, and radically accessible.</p>
+            <div class="container">
+                <span class="hero-emoji">&#127918;</span>
+                <p class="years">Born 2013 and beyond</p>
+                <h1><span class="light">level up:</span><br><span class="gradient-text">Gen Alpha</span></h1>
+                <p>Tablet natives raised on Roblox and gamified everything. Bright, bouncy, rewarding, and radically accessible. Every interaction earns XP.</p>
 
-                <div class="xp-bar-container">
-                    <div class="xp-bar"></div>
-                    <div class="xp-label">Level 7 • 3,750 / 5,000 XP</div>
+                <div class="xp-bar-demo">
+                    <div class="xp-bar-container">
+                        <div class="xp-bar-fill"></div>
+                        <span class="xp-bar-text">3,600 / 5,000 XP</span>
+                    </div>
+                    <div class="xp-labels">
+                        <span>&#11088; Level 7</span>
+                        <span>Level 8 &#127942;</span>
+                    </div>
                 </div>
             </div>
         </section>
@@ -454,59 +843,107 @@
         <section class="content">
             <div class="container">
                 <div class="section">
-                    <h2>Design Philosophy</h2>
-                    <p>Dopamine-optimized, accessibility-first gamification. Every interaction should feel like progress. Every milestone deserves a celebration. The UI is a playground.</p>
+                    <h2>design philosophy</h2>
+                    <p>The Gamified Universe. Everything is interactive, rewarding, and playful. They don't distinguish between apps and games - they expect dopamine-optimized, accessibility-first experiences where browsing feels like play.</p>
 
-                    <div class="card">
-                        <h3 style="font-weight: 700; margin-bottom: 12px;">The Three Pillars</h3>
-                        <ul class="features-list">
-                            <li><strong>Gamification Native</strong> - XP bars, achievements, unlockables, streaks are baseline expectations</li>
-                            <li><strong>Radical Accessibility</strong> - WCAG AAA floor, neurodiversity-friendly patterns</li>
-                            <li><strong>Haptic-Audio-Visual Harmony</strong> - Sounds, vibrations, and visuals work together</li>
+                    <div class="pillar-card" style="margin-top: 24px;">
+                        <h3>&#127775; The Three Pillars</h3>
+                        <ul class="pillar-list">
+                            <li><strong>Gamification Native</strong> - XP bars, achievements, streaks, collectibles. Progress must be visible and celebrated.</li>
+                            <li><strong>Radical Accessibility</strong> - WCAG AAA is the floor, not the ceiling. Neurodiversity-friendly patterns are mandatory.</li>
+                            <li><strong>Haptic-Audio-Visual Harmony</strong> - Sounds, vibrations, and visuals work together. Full sensory design.</li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="section">
-                    <h2>Achievement Rarity System</h2>
-                    <div class="badge-grid">
-                        <div class="badge common" title="Common">🎯</div>
-                        <div class="badge rare" title="Rare">⭐</div>
-                        <div class="badge epic" title="Epic">🏆</div>
-                        <div class="badge legendary" title="Legendary">👑</div>
+                    <h2>achievement badges</h2>
+                    <p>Rarity tiers with distinct glow effects. From common to legendary, each tier has its own visual language.</p>
+
+                    <div class="badge-showcase">
+                        <div class="achievement-badge badge-common">
+                            <div class="badge-icon">&#128218;</div>
+                            <span class="badge-name">First Steps</span>
+                            <span class="badge-rarity">Common</span>
+                        </div>
+                        <div class="achievement-badge badge-rare">
+                            <div class="badge-icon">&#9889;</div>
+                            <span class="badge-name">Speed Runner</span>
+                            <span class="badge-rarity">Rare</span>
+                        </div>
+                        <div class="achievement-badge badge-epic">
+                            <div class="badge-icon">&#128142;</div>
+                            <span class="badge-name">Power User</span>
+                            <span class="badge-rarity">Epic</span>
+                        </div>
+                        <div class="achievement-badge badge-legendary">
+                            <div class="badge-icon">&#128081;</div>
+                            <span class="badge-name">Legend</span>
+                            <span class="badge-rarity">Legendary</span>
+                        </div>
                     </div>
                 </div>
 
                 <div class="section">
-                    <h2>Color Palette</h2>
+                    <h2>color palette</h2>
+                    <p>Roblox-bright colors. Saturated joy with pastels for backgrounds, primaries for action.</p>
+
                     <div class="color-grid">
-                        <div class="color-swatch" style="background: #6C5CE7; color: white;">Primary</div>
-                        <div class="color-swatch" style="background: #00D68F; color: white;">Success</div>
-                        <div class="color-swatch" style="background: #FFB830; color: #1A1A2E;">Warning</div>
-                        <div class="color-swatch" style="background: #00C9FF; color: white;">Info</div>
-                        <div class="color-swatch" style="background: #FF6B9D; color: white;">Danger</div>
-                        <div class="color-swatch" style="background: #FF9F43; color: white;">Legendary</div>
+                        <div class="color-swatch" style="background: #F0F7FF; color: #1A1A2E; border: 2px solid #E8F4FD;">
+                            <span class="color-name">Sky</span>
+                            <span class="color-hex">#F0F7FF</span>
+                        </div>
+                        <div class="color-swatch" style="background: #6C5CE7; color: white;">
+                            <span class="color-name">Violet</span>
+                            <span class="color-hex">#6C5CE7</span>
+                        </div>
+                        <div class="color-swatch" style="background: #00D68F; color: white;">
+                            <span class="color-name">Mint</span>
+                            <span class="color-hex">#00D68F</span>
+                        </div>
+                        <div class="color-swatch" style="background: #FFB830; color: #1A1A2E;">
+                            <span class="color-name">Gold</span>
+                            <span class="color-hex">#FFB830</span>
+                        </div>
+                        <div class="color-swatch" style="background: #FF6B9D; color: white;">
+                            <span class="color-name">Coral</span>
+                            <span class="color-hex">#FF6B9D</span>
+                        </div>
+                        <div class="color-swatch" style="background: #00C9FF; color: #1A1A2E;">
+                            <span class="color-name">Cyan</span>
+                            <span class="color-hex">#00C9FF</span>
+                        </div>
+                        <div class="color-swatch" style="background: #9B59B6; color: white;">
+                            <span class="color-name">Epic</span>
+                            <span class="color-hex">#9B59B6</span>
+                        </div>
+                        <div class="color-swatch" style="background: #FF9F43; color: white;">
+                            <span class="color-name">Legendary</span>
+                            <span class="color-hex">#FF9F43</span>
+                        </div>
                     </div>
                 </div>
 
                 <div class="section">
-                    <h2>Signature Elements</h2>
-                    <ul class="features-list">
-                        <li>Blobby organic shapes with no sharp corners</li>
-                        <li>XP bars with shimmer animations</li>
-                        <li>Achievement unlock sequences with confetti</li>
-                        <li>Daily streak calendars with fire animations</li>
-                        <li>Avatar customization systems</li>
-                        <li>Particle effects for celebrations</li>
-                        <li>Bouncy spring physics on interactions</li>
-                        <li>Sound design tokens for feedback</li>
+                    <h2>signature elements</h2>
+                    <ul class="signature-list">
+                        <li>Blobby organic shapes (12px+ radius minimum)</li>
+                        <li>Bouncy spring physics on hover (overshoot easing)</li>
+                        <li>Large touch targets (56px+ buttons)</li>
+                        <li>Colored shadows with purple tint</li>
+                        <li>XP bars with shimmer animation</li>
+                        <li>Achievement badges with rarity glow</li>
+                        <li>Gradient buttons and accents</li>
+                        <li>Particle and celebration aesthetics</li>
+                        <li>Progress indicators everywhere</li>
+                        <li>Avatar-centric personalization</li>
                     </ul>
                 </div>
 
                 <div class="copy-section">
-                    <h3>Unlock the Full Prompt! 🔓</h3>
-                    <p>Copy the complete design system for your AI assistant.</p>
-                    <button class="copy-btn" onclick="copyPrompt()">🎁 Claim Reward</button>
+                    <h3>Claim Your Reward</h3>
+                    <p>Copy the full design system prompt to your clipboard!</p>
+                    <button class="copy-btn" onclick="copyPrompt()">COPY PROMPT</button>
                 </div>
             </div>
         </section>
@@ -514,22 +951,26 @@
 
     <footer>
         <div class="container">
-            <p>Made with <span>★</span> for the next generation</p>
+            <p><span class="star-accent">&#11088;</span> bright bouncy rewarding <span class="star-accent">&#11088;</span></p>
         </div>
     </footer>
 
     <script>
         async function copyPrompt() {
+            const btn = document.querySelector('.copy-btn');
             try {
                 const response = await fetch('../generations/gen-alpha.md');
                 const text = await response.text();
                 await navigator.clipboard.writeText(text);
-                const btn = document.querySelector('.copy-btn');
-                btn.textContent = '✅ Claimed!';
-                // Add confetti effect would go here
-                setTimeout(() => btn.textContent = '🎁 Claim Reward', 2000);
+                btn.textContent = 'CLAIMED!';
+                btn.classList.add('copied');
+                setTimeout(() => {
+                    btn.textContent = 'COPY PROMPT';
+                    btn.classList.remove('copied');
+                }, 2500);
             } catch (err) {
-                alert('Copy failed. Open the .md file directly.');
+                btn.textContent = 'TRY AGAIN';
+                setTimeout(() => btn.textContent = 'COPY PROMPT', 2000);
             }
         }
     </script>
