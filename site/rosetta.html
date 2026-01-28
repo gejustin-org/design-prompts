@@ -3,17 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rosetta Design System</title>
+  <title>Rosetta Design System — Handshake</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
   <script>
     tailwind.config = {
       theme: {
         extend: {
           colors: {
-            rosetta: {
+            r: {
               'bg-primary': '#FFFFFF',
               'bg-secondary': '#F6F6F6',
               'bg-surface': '#FCFCFD',
@@ -27,151 +27,216 @@
               'fg-disabled': 'rgba(18,18,18,0.4)',
               'fg-inverted': '#FFFFFF',
               'fg-border': 'rgba(31,32,44,0.2)',
-              'interactive-primary': '#04191B',
-              'interactive-hover': '#062E32',
-              'interactive-active': '#073D42',
-              'interactive-hovered': 'rgba(18,18,18,0.06)',
-              'interactive-pressed': 'rgba(18,18,18,0.12)',
-              'focus-outline': '#003BCC',
+              'card-border': '#E2E5F3',
+              'ip': '#04191B',
+              'ip-hover': '#062E32',
+              'ip-active': '#073D42',
+              'i-hovered': 'rgba(18,18,18,0.06)',
+              'i-pressed': 'rgba(18,18,18,0.12)',
+              'focus': '#003BCC',
               'info-bg': '#CCDBFF',
               'info-fg': '#003BCC',
-              'positive-bg': '#A5E09F',
-              'positive-fg': '#327D0F',
-              'warning-bg': '#FFD999',
-              'warning-fg': '#A36700',
-              'negative-bg': '#FFC2C4',
-              'negative-fg': '#BB3643',
+              'pos-bg': '#A5E09F',
+              'pos-fg': '#327D0F',
+              'warn-bg': '#FFD999',
+              'warn-fg': '#A36700',
+              'neg-bg': '#FFC2C4',
+              'neg-fg': '#BB3643',
               'neutral-bg': '#EAEAEA',
             }
           },
           fontFamily: {
-            sans: ['"Inter"', 'system-ui', 'sans-serif'],
-            brand: ['"Bebas Neue"', 'sans-serif'],
+            sans: ['"Noi Grotesk"', 'system-ui', 'sans-serif'],
+            brand: ['"Sansplomb"', 'sans-serif'],
             mono: ['"IBM Plex Mono"', 'monospace'],
           },
-          spacing: {
-            'half': '2px',
-            'one': '4px',
-            'two': '8px',
-            'three': '12px',
-            'four': '16px',
-            'five': '20px',
-            'six': '24px',
-            'eight': '32px',
-            'twelve': '48px',
-            'sixteen': '64px',
-          },
           borderRadius: {
-            'zero': '0px',
-            'one': '4px',
-            'two': '8px',
-            'three': '12px',
-            'four': '16px',
-            'max': '9999px',
+            'r-input-sm': '4px',
+            'r-input': '8px',
+            'r-container': '16px',
+            'r-max': '9999px',
           },
           boxShadow: {
-            'elevation-one': '0 1px 2px rgba(0,0,0,0.08)',
-            'elevation-two': '0 2px 20px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.08)',
-            'elevation-three': '0 6px 30px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.08)',
+            'e0': 'none',
+            'e1': '0 1px 2px rgba(0,0,0,0.08)',
+            'e2': '0 2px 20px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.08)',
+            'e3': '0 6px 30px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.08)',
           },
-          fontSize: {
-            'brand-large': ['122px', { lineHeight: '0.8', letterSpacing: '-0.02em', fontWeight: '600' }],
-            'brand-small': ['60px', { lineHeight: '0.9', letterSpacing: '-0.01em', fontWeight: '600' }],
-            'heading-xl': ['44px', { lineHeight: '1.0', letterSpacing: '-0.04em', fontWeight: '500' }],
-            'heading-lg': ['32px', { lineHeight: '1.2', letterSpacing: '-0.03em', fontWeight: '500' }],
-            'heading-md': ['28px', { lineHeight: '1.2', letterSpacing: '-0.03em', fontWeight: '500' }],
-            'heading-sm': ['24px', { lineHeight: '1.2', letterSpacing: '-0.02em', fontWeight: '500' }],
-            'body-xl': ['19px', { lineHeight: '1.2', letterSpacing: '-0.02em' }],
-            'body-lg': ['17px', { lineHeight: '1.4', letterSpacing: '-0.02em' }],
-            'body-md': ['15px', { lineHeight: '1.2', letterSpacing: '0' }],
-            'body-sm': ['13px', { lineHeight: '1.2', letterSpacing: '0.01em' }],
-          }
         }
       }
     }
   </script>
   <style>
-    .font-sans { font-feature-settings: "ss03" on, "ss11" on; }
+    /* Noi Grotesk — Regular (1-499) and Medium (500-1000) */
+    @font-face {
+      font-family: "Noi Grotesk";
+      font-weight: 1 499;
+      font-display: swap;
+      src: url("fonts/NoiGrotesk-Regular.woff2") format("woff2"),
+           url("fonts/NoiGrotesk-Regular.woff") format("woff");
+    }
+    @font-face {
+      font-family: "Noi Grotesk";
+      font-weight: 500 1000;
+      font-display: swap;
+      src: url("fonts/NoiGrotesk-Medium.woff2") format("woff2"),
+           url("fonts/NoiGrotesk-Medium.woff") format("woff");
+    }
+
+    /* Sansplomb — brand display face */
+    @font-face {
+      font-family: "Sansplomb";
+      font-weight: 1 1000;
+      font-display: swap;
+      src: url("fonts/SansPlomb-98.woff2") format("woff2"),
+           url("fonts/SansPlomb-98.woff") format("woff");
+    }
+
+    body { font-feature-settings: "ss03" on, "ss11" on; }
+
+    /* Focus ring */
+    .focus-ring:focus-visible {
+      outline: #003BCC solid 2px;
+      outline-offset: 2px;
+    }
+
+    /* Transitions */
+    .t-bg { transition: background-color 0.2s ease-out; }
+    .t-all { transition: all 0.15s ease-out; }
+    .t-shadow { transition: box-shadow 0.2s ease-out, border-color 0.2s ease-out; }
+
+    /* Section divider */
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(31,32,44,0.15), transparent);
+    }
+
+    /* Modal animation */
+    @keyframes modalIn {
+      from { opacity: 0; transform: scale(0.95) translateY(8px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+    .anim-modal { animation: modalIn 0.2s ease-out forwards; }
+
+    /* Toast slide-in */
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .anim-toast { animation: slideUp 0.2s ease-out; }
+
+    /* Fade-in for sections */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .anim-section { animation: fadeIn 0.4s ease-out forwards; }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    /* Scrollbar */
     ::-webkit-scrollbar { width: 8px; height: 8px; }
     ::-webkit-scrollbar-track { background: #F6F6F6; }
     ::-webkit-scrollbar-thumb { background: rgba(18,18,18,0.2); border-radius: 4px; }
-    ::-webkit-scrollbar-thumb:hover { background: rgba(18,18,18,0.4); }
-    .focus-ring:focus-visible { outline: #003BCC solid 2px; outline-offset: 2px; }
-    .btn-transition { transition: background-color 0.2s ease-out, border-color 0.2s ease-out; }
-    .card-interactive { transition: box-shadow 0.2s ease-out, border-color 0.2s ease-out; }
-    @keyframes modalIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
-    .animate-modal { animation: modalIn 0.2s ease-out; }
-    @media (prefers-reduced-motion: reduce) { * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; } }
-    .copy-toast { animation: fadeInUp 0.2s ease-out; }
-    @keyframes fadeInUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
-    .section-divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(31,32,44,0.2), transparent); }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(18,18,18,0.35); }
+
+    /* Hero subtle grid pattern */
+    .hero-grid {
+      background-image:
+        linear-gradient(rgba(4,25,27,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(4,25,27,0.04) 1px, transparent 1px);
+      background-size: 32px 32px;
+    }
+
+    /* Modal overlay */
+    .modal-overlay {
+      background: rgba(18,18,18,0.5);
+      backdrop-filter: blur(4px);
+    }
   </style>
 </head>
-<body class="bg-rosetta-bg-primary text-rosetta-fg-primary font-sans antialiased">
+<body class="bg-r-bg-primary text-r-fg-primary font-sans antialiased">
 
-  <!-- Navigation -->
-  <nav class="fixed top-0 left-0 right-0 z-50 bg-rosetta-bg-primary/95 backdrop-blur-sm border-b border-rosetta-fg-border">
-    <div class="max-w-7xl mx-auto px-six flex items-center justify-between h-16">
-      <div class="flex items-center gap-four">
-        <a href="index.html" class="text-body-sm text-rosetta-fg-secondary hover:text-rosetta-fg-primary transition-colors font-mono">&larr; Back</a>
-        <span class="font-brand text-2xl tracking-tight text-rosetta-interactive-primary">ROSETTA</span>
+  <!-- ==================== NAV ==================== -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-r-bg-primary/95 backdrop-blur-sm border-b border-r-fg-border">
+    <div class="max-w-[1280px] mx-auto px-6 flex items-center justify-between h-16">
+      <div class="flex items-center gap-4">
+        <a href="index.html" class="text-[13px] text-r-fg-secondary hover:text-r-fg-primary t-all font-mono">&larr; Back</a>
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-r-input bg-r-ip flex items-center justify-center">
+            <span class="text-r-fg-inverted text-sm font-semibold">R</span>
+          </div>
+          <span class="font-brand text-[22px] tracking-tight text-r-ip leading-none mt-0.5">ROSETTA</span>
+        </div>
       </div>
-      <div class="hidden md:flex items-center gap-four">
-        <a href="#colors" class="text-body-md text-rosetta-fg-secondary hover:text-rosetta-fg-primary transition-colors">Colors</a>
-        <a href="#typography" class="text-body-md text-rosetta-fg-secondary hover:text-rosetta-fg-primary transition-colors">Typography</a>
-        <a href="#components" class="text-body-md text-rosetta-fg-secondary hover:text-rosetta-fg-primary transition-colors">Components</a>
-        <a href="#patterns" class="text-body-md text-rosetta-fg-secondary hover:text-rosetta-fg-primary transition-colors">Patterns</a>
+      <div class="hidden md:flex items-center gap-6">
+        <a href="#colors" class="text-[15px] text-r-fg-secondary hover:text-r-fg-primary t-all">Colors</a>
+        <a href="#typography" class="text-[15px] text-r-fg-secondary hover:text-r-fg-primary t-all">Type</a>
+        <a href="#components" class="text-[15px] text-r-fg-secondary hover:text-r-fg-primary t-all">Components</a>
+        <a href="#spacing" class="text-[15px] text-r-fg-secondary hover:text-r-fg-primary t-all">Spacing</a>
+        <a href="#bold-factor" class="text-[15px] text-r-fg-secondary hover:text-r-fg-primary t-all">Bold Factor</a>
       </div>
     </div>
   </nav>
 
-  <!-- Hero Section -->
-  <header class="pt-32 pb-sixteen px-six bg-rosetta-bg-surface">
-    <div class="max-w-7xl mx-auto">
-      <div class="grid lg:grid-cols-2 gap-twelve items-center">
-        <div>
-          <h1 class="font-brand text-brand-small lg:text-brand-large text-rosetta-interactive-primary leading-none mb-six">
-            ROSETTA
-          </h1>
-          <p class="text-heading-sm text-rosetta-fg-secondary mb-eight max-w-xl">
-            Professional clarity with human warmth. Built for a platform connecting students and employers.
-          </p>
-          <div class="flex flex-wrap gap-four">
-            <span class="inline-flex items-center gap-two px-four py-two bg-rosetta-bg-secondary rounded-two text-body-sm">
-              <span class="w-2 h-2 rounded-full bg-rosetta-positive-fg"></span>
-              Trustworthy
-            </span>
-            <span class="inline-flex items-center gap-two px-four py-two bg-rosetta-bg-secondary rounded-two text-body-sm">
-              <span class="w-2 h-2 rounded-full bg-rosetta-info-fg"></span>
-              Approachable
-            </span>
-            <span class="inline-flex items-center gap-two px-four py-two bg-rosetta-bg-secondary rounded-two text-body-sm">
-              <span class="w-2 h-2 rounded-full bg-rosetta-interactive-primary"></span>
-              Clear
-            </span>
-            <span class="inline-flex items-center gap-two px-four py-two bg-rosetta-bg-secondary rounded-two text-body-sm">
-              <span class="w-2 h-2 rounded-full bg-rosetta-warning-fg"></span>
-              Modern
-            </span>
+  <!-- ==================== HERO ==================== -->
+  <header class="pt-16">
+    <div class="hero-grid bg-r-bg-surface">
+      <div class="max-w-[1280px] mx-auto px-6 pt-20 pb-16">
+        <div class="grid lg:grid-cols-2 gap-16 items-center">
+          <div>
+            <div class="text-[13px] font-mono text-r-fg-secondary mb-4 tracking-wider uppercase">Handshake Design System</div>
+            <h1 class="font-brand text-[72px] lg:text-[110px] text-r-ip leading-[0.85] tracking-tight mb-6">
+              ROSETTA
+            </h1>
+            <p class="text-[24px] font-medium text-r-fg-primary leading-[1.2] tracking-[-0.02em] mb-3 max-w-lg">
+              Professional clarity with human warmth.
+            </p>
+            <p class="text-[17px] text-r-fg-secondary leading-[1.4] tracking-[-0.02em] mb-8 max-w-lg">
+              Built for a platform connecting students and employers. Readable, accessible, and trustworthy — without the coldness of enterprise software.
+            </p>
+            <div class="flex flex-wrap gap-3">
+              <span class="inline-flex items-center gap-2 px-4 py-2 bg-r-bg-secondary rounded-r-input text-[13px] font-medium">
+                <span class="w-2 h-2 rounded-full bg-r-pos-fg"></span>Trustworthy
+              </span>
+              <span class="inline-flex items-center gap-2 px-4 py-2 bg-r-bg-secondary rounded-r-input text-[13px] font-medium">
+                <span class="w-2 h-2 rounded-full bg-r-info-fg"></span>Approachable
+              </span>
+              <span class="inline-flex items-center gap-2 px-4 py-2 bg-r-bg-secondary rounded-r-input text-[13px] font-medium">
+                <span class="w-2 h-2 rounded-full bg-r-ip"></span>Clear
+              </span>
+              <span class="inline-flex items-center gap-2 px-4 py-2 bg-r-bg-secondary rounded-r-input text-[13px] font-medium">
+                <span class="w-2 h-2 rounded-full bg-r-warn-fg"></span>Modern
+              </span>
+            </div>
           </div>
-        </div>
-        <div class="relative">
-          <div class="grid grid-cols-2 gap-four">
-            <div class="bg-rosetta-interactive-primary rounded-four p-six shadow-elevation-three">
-              <div class="text-rosetta-fg-inverted text-body-lg font-medium mb-two">Find Your Path</div>
-              <div class="text-rosetta-fg-inverted/70 text-body-sm">Discover opportunities that match your goals</div>
-            </div>
-            <div class="bg-rosetta-bg-primary rounded-four p-six shadow-elevation-three border border-rosetta-fg-border">
-              <div class="text-rosetta-fg-primary text-body-lg font-medium mb-two">120k+ Jobs</div>
-              <div class="text-rosetta-fg-secondary text-body-sm">Posted this month</div>
-            </div>
-            <div class="bg-rosetta-info-bg rounded-four p-six shadow-elevation-two">
-              <div class="text-rosetta-info-fg text-body-lg font-medium mb-two">Application Sent</div>
-              <div class="text-rosetta-info-fg/70 text-body-sm">You'll hear back soon</div>
-            </div>
-            <div class="bg-rosetta-positive-bg rounded-four p-six shadow-elevation-two">
-              <div class="text-rosetta-positive-fg text-body-lg font-medium mb-two">Interview Scheduled</div>
-              <div class="text-rosetta-positive-fg/70 text-body-sm">Tomorrow at 2:00 PM</div>
+
+          <!-- Hero visual: mini product cards -->
+          <div class="relative">
+            <div class="grid grid-cols-2 gap-4">
+              <div class="bg-r-ip rounded-r-container p-6 shadow-e3">
+                <div class="text-r-fg-inverted text-[17px] font-medium tracking-[-0.02em] mb-1">Find Your Path</div>
+                <div class="text-r-fg-inverted/60 text-[13px]">Discover opportunities that match your goals</div>
+              </div>
+              <div class="bg-r-bg-primary rounded-r-container p-6 shadow-e3 border border-r-card-border">
+                <div class="text-[32px] font-medium tracking-[-0.03em] leading-[1.2] mb-1">120k+</div>
+                <div class="text-r-fg-secondary text-[13px]">Jobs posted this month</div>
+              </div>
+              <div class="bg-r-info-bg rounded-r-container p-6 shadow-e2">
+                <div class="text-r-info-fg text-[17px] font-medium tracking-[-0.02em] mb-1">Application Sent</div>
+                <div class="text-r-info-fg/60 text-[13px]">You'll hear back soon</div>
+              </div>
+              <div class="bg-r-pos-bg rounded-r-container p-6 shadow-e2">
+                <div class="text-r-pos-fg text-[17px] font-medium tracking-[-0.02em] mb-1">Interview Scheduled</div>
+                <div class="text-r-pos-fg/60 text-[13px]">Tomorrow at 2:00 PM</div>
+              </div>
             </div>
           </div>
         </div>
@@ -179,587 +244,849 @@
     </div>
   </header>
 
-  <!-- Philosophy Section -->
-  <section class="py-sixteen px-six bg-rosetta-bg-primary">
-    <div class="max-w-7xl mx-auto">
-      <h2 class="text-heading-lg text-rosetta-fg-primary mb-six">Design Philosophy</h2>
-      <div class="grid md:grid-cols-3 gap-six">
-        <div class="p-six bg-rosetta-bg-surface rounded-three border border-rosetta-fg-border">
-          <div class="w-12 h-12 rounded-two bg-rosetta-interactive-primary flex items-center justify-center mb-four">
-            <svg class="w-6 h-6 text-rosetta-fg-inverted" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-            </svg>
-          </div>
-          <h3 class="text-heading-sm text-rosetta-fg-primary mb-two">Trustworthy</h3>
-          <p class="text-body-md text-rosetta-fg-secondary">Students trust this platform with their career. The design must feel reliable, not experimental.</p>
+  <!-- ==================== SENSORY ==================== -->
+  <section class="py-16 px-6 bg-r-bg-primary">
+    <div class="max-w-[1280px] mx-auto">
+      <h2 class="text-[32px] font-medium tracking-[-0.03em] leading-[1.2] mb-2">The Vibe</h2>
+      <p class="text-[17px] text-r-fg-secondary tracking-[-0.02em] leading-[1.4] mb-10 max-w-2xl">Clean. Approachable. Trustworthy. Modern.</p>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-r-bg-surface rounded-r-container p-8 border border-r-fg-border">
+          <div class="text-[13px] font-mono text-r-fg-secondary mb-4 uppercase tracking-wider">If this design were a space</div>
+          <p class="text-[17px] text-r-fg-primary leading-[1.5] tracking-[-0.02em]">
+            A modern coworking space with clean desks and good lighting. White walls with occasional accent plants. Natural light through large windows. Professional but not stuffy — people wear nice casual. Quiet enough to focus, social enough to feel human.
+          </p>
         </div>
-        <div class="p-six bg-rosetta-bg-surface rounded-three border border-rosetta-fg-border">
-          <div class="w-12 h-12 rounded-two bg-rosetta-interactive-primary flex items-center justify-center mb-four">
-            <svg class="w-6 h-6 text-rosetta-fg-inverted" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-            </svg>
-          </div>
-          <h3 class="text-heading-sm text-rosetta-fg-primary mb-two">Approachable</h3>
-          <p class="text-body-md text-rosetta-fg-secondary">Despite handling serious workflows, it never feels cold or corporate. Warmth through typography and spacing.</p>
-        </div>
-        <div class="p-six bg-rosetta-bg-surface rounded-three border border-rosetta-fg-border">
-          <div class="w-12 h-12 rounded-two bg-rosetta-interactive-primary flex items-center justify-center mb-four">
-            <svg class="w-6 h-6 text-rosetta-fg-inverted" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6z"></path>
-            </svg>
-          </div>
-          <h3 class="text-heading-sm text-rosetta-fg-primary mb-two">Clear</h3>
-          <p class="text-body-md text-rosetta-fg-secondary">Information hierarchy is paramount. Users scan, not read. Every visual decision aids comprehension.</p>
+        <div class="bg-r-bg-surface rounded-r-container p-8 border border-r-fg-border">
+          <div class="text-[13px] font-mono text-r-fg-secondary mb-4 uppercase tracking-wider">If this design were music</div>
+          <p class="text-[17px] text-r-fg-primary leading-[1.5] tracking-[-0.02em]">
+            Lo-fi beats or ambient electronic. Professional podcast intro music. Nothing distracting, nothing boring. The kind of background that helps you focus on the work.
+          </p>
         </div>
       </div>
     </div>
   </section>
 
-  <div class="section-divider mx-six"></div>
+  <div class="divider mx-6"></div>
 
-  <!-- Colors Section -->
-  <section id="colors" class="py-sixteen px-six bg-rosetta-bg-primary">
-    <div class="max-w-7xl mx-auto">
-      <h2 class="text-heading-lg text-rosetta-fg-primary mb-two">Color System</h2>
-      <p class="text-body-lg text-rosetta-fg-secondary mb-eight max-w-2xl">Neutral foundation with semantic accents. The palette is intentionally restrained.</p>
+  <!-- ==================== COLORS ==================== -->
+  <section id="colors" class="py-16 px-6 bg-r-bg-primary">
+    <div class="max-w-[1280px] mx-auto">
+      <h2 class="text-[32px] font-medium tracking-[-0.03em] leading-[1.2] mb-2">Color System</h2>
+      <p class="text-[17px] text-r-fg-secondary tracking-[-0.02em] leading-[1.4] mb-10 max-w-2xl">
+        Neutral foundation with semantic accents. Color is intentionally restrained — it appears meaningfully for status, actions, and hierarchy.
+      </p>
 
-      <h3 class="text-heading-sm text-rosetta-fg-primary mb-four">Backgrounds</h3>
-      <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-four mb-eight">
-        <div class="color-swatch cursor-pointer group" data-color="#FFFFFF">
-          <div class="aspect-square rounded-three bg-[#FFFFFF] border border-rosetta-fg-border shadow-elevation-one group-hover:shadow-elevation-two transition-shadow"></div>
-          <div class="mt-two">
-            <div class="text-body-sm font-medium">bg-primary</div>
-            <div class="text-body-sm text-rosetta-fg-secondary font-mono">#FFFFFF</div>
-          </div>
+      <!-- Backgrounds -->
+      <h3 class="text-[24px] font-medium tracking-[-0.02em] mb-5">Backgrounds</h3>
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4 mb-10">
+        <div class="swatch cursor-pointer group" data-color="#FFFFFF" data-name="bg-primary">
+          <div class="aspect-square rounded-r-container bg-[#FFFFFF] border border-r-fg-border shadow-e1 group-hover:shadow-e2 t-shadow"></div>
+          <div class="mt-2"><div class="text-[13px] font-medium">bg-primary</div><div class="text-[13px] text-r-fg-secondary font-mono">#FFFFFF</div></div>
         </div>
-        <div class="color-swatch cursor-pointer group" data-color="#F6F6F6">
-          <div class="aspect-square rounded-three bg-[#F6F6F6] border border-rosetta-fg-border shadow-elevation-one group-hover:shadow-elevation-two transition-shadow"></div>
-          <div class="mt-two">
-            <div class="text-body-sm font-medium">bg-secondary</div>
-            <div class="text-body-sm text-rosetta-fg-secondary font-mono">#F6F6F6</div>
-          </div>
+        <div class="swatch cursor-pointer group" data-color="#F6F6F6" data-name="bg-secondary">
+          <div class="aspect-square rounded-r-container bg-[#F6F6F6] border border-r-fg-border shadow-e1 group-hover:shadow-e2 t-shadow"></div>
+          <div class="mt-2"><div class="text-[13px] font-medium">bg-secondary</div><div class="text-[13px] text-r-fg-secondary font-mono">#F6F6F6</div></div>
         </div>
-        <div class="color-swatch cursor-pointer group" data-color="#FCFCFD">
-          <div class="aspect-square rounded-three bg-[#FCFCFD] border border-rosetta-fg-border shadow-elevation-one group-hover:shadow-elevation-two transition-shadow"></div>
-          <div class="mt-two">
-            <div class="text-body-sm font-medium">bg-surface</div>
-            <div class="text-body-sm text-rosetta-fg-secondary font-mono">#FCFCFD</div>
-          </div>
+        <div class="swatch cursor-pointer group" data-color="#FCFCFD" data-name="bg-surface">
+          <div class="aspect-square rounded-r-container bg-[#FCFCFD] border border-r-fg-border shadow-e1 group-hover:shadow-e2 t-shadow"></div>
+          <div class="mt-2"><div class="text-[13px] font-medium">bg-surface</div><div class="text-[13px] text-r-fg-secondary font-mono">#FCFCFD</div></div>
         </div>
-        <div class="color-swatch cursor-pointer group" data-color="#121212">
-          <div class="aspect-square rounded-three bg-[#121212] shadow-elevation-one group-hover:shadow-elevation-two transition-shadow"></div>
-          <div class="mt-two">
-            <div class="text-body-sm font-medium">bg-inverted</div>
-            <div class="text-body-sm text-rosetta-fg-secondary font-mono">#121212</div>
-          </div>
+        <div class="swatch cursor-pointer group" data-color="#121212" data-name="bg-inverted">
+          <div class="aspect-square rounded-r-container bg-[#121212] shadow-e1 group-hover:shadow-e2 t-shadow"></div>
+          <div class="mt-2"><div class="text-[13px] font-medium">bg-inverted</div><div class="text-[13px] text-r-fg-secondary font-mono">#121212</div></div>
         </div>
-        <div class="color-swatch cursor-pointer group" data-color="#EAEAEA">
-          <div class="aspect-square rounded-three bg-[#EAEAEA] border border-rosetta-fg-border shadow-elevation-one group-hover:shadow-elevation-two transition-shadow"></div>
-          <div class="mt-two">
-            <div class="text-body-sm font-medium">bg-selected</div>
-            <div class="text-body-sm text-rosetta-fg-secondary font-mono">#EAEAEA</div>
-          </div>
+        <div class="swatch cursor-pointer group" data-color="#EAEAEA" data-name="bg-selected">
+          <div class="aspect-square rounded-r-container bg-[#EAEAEA] border border-r-fg-border shadow-e1 group-hover:shadow-e2 t-shadow"></div>
+          <div class="mt-2"><div class="text-[13px] font-medium">bg-selected</div><div class="text-[13px] text-r-fg-secondary font-mono">#EAEAEA</div></div>
         </div>
-        <div class="color-swatch cursor-pointer group" data-color="#EEEEEE">
-          <div class="aspect-square rounded-three bg-[#EEEEEE] border border-rosetta-fg-border shadow-elevation-one group-hover:shadow-elevation-two transition-shadow"></div>
-          <div class="mt-two">
-            <div class="text-body-sm font-medium">bg-disabled</div>
-            <div class="text-body-sm text-rosetta-fg-secondary font-mono">#EEEEEE</div>
-          </div>
+        <div class="swatch cursor-pointer group" data-color="#EEEEEE" data-name="bg-disabled">
+          <div class="aspect-square rounded-r-container bg-[#EEEEEE] border border-r-fg-border shadow-e1 group-hover:shadow-e2 t-shadow"></div>
+          <div class="mt-2"><div class="text-[13px] font-medium">bg-disabled</div><div class="text-[13px] text-r-fg-secondary font-mono">#EEEEEE</div></div>
         </div>
       </div>
 
-      <h3 class="text-heading-sm text-rosetta-fg-primary mb-four">Interactive</h3>
-      <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-four mb-eight">
-        <div class="color-swatch cursor-pointer group" data-color="#04191B">
-          <div class="aspect-square rounded-three bg-[#04191B] shadow-elevation-one group-hover:shadow-elevation-two transition-shadow"></div>
-          <div class="mt-two">
-            <div class="text-body-sm font-medium">interactive-primary</div>
-            <div class="text-body-sm text-rosetta-fg-secondary font-mono">#04191B</div>
-          </div>
+      <!-- Foreground & Interactive -->
+      <h3 class="text-[24px] font-medium tracking-[-0.02em] mb-5">Foreground & Interactive</h3>
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 mb-10">
+        <div class="swatch cursor-pointer group" data-color="#121212" data-name="fg-primary">
+          <div class="aspect-square rounded-r-container bg-[#121212] shadow-e1 group-hover:shadow-e2 t-shadow"></div>
+          <div class="mt-2"><div class="text-[13px] font-medium">fg-primary</div><div class="text-[13px] text-r-fg-secondary font-mono">#121212</div></div>
         </div>
-        <div class="color-swatch cursor-pointer group" data-color="#062E32">
-          <div class="aspect-square rounded-three bg-[#062E32] shadow-elevation-one group-hover:shadow-elevation-two transition-shadow"></div>
-          <div class="mt-two">
-            <div class="text-body-sm font-medium">interactive-hover</div>
-            <div class="text-body-sm text-rosetta-fg-secondary font-mono">#062E32</div>
-          </div>
+        <div class="swatch cursor-pointer group" data-color="#04191B" data-name="interactive-primary">
+          <div class="aspect-square rounded-r-container bg-[#04191B] shadow-e1 group-hover:shadow-e2 t-shadow"></div>
+          <div class="mt-2"><div class="text-[13px] font-medium">interactive-primary</div><div class="text-[13px] text-r-fg-secondary font-mono">#04191B</div></div>
         </div>
-        <div class="color-swatch cursor-pointer group" data-color="#073D42">
-          <div class="aspect-square rounded-three bg-[#073D42] shadow-elevation-one group-hover:shadow-elevation-two transition-shadow"></div>
-          <div class="mt-two">
-            <div class="text-body-sm font-medium">interactive-active</div>
-            <div class="text-body-sm text-rosetta-fg-secondary font-mono">#073D42</div>
-          </div>
+        <div class="swatch cursor-pointer group" data-color="#062E32" data-name="interactive-hover">
+          <div class="aspect-square rounded-r-container bg-[#062E32] shadow-e1 group-hover:shadow-e2 t-shadow"></div>
+          <div class="mt-2"><div class="text-[13px] font-medium">hover</div><div class="text-[13px] text-r-fg-secondary font-mono">#062E32</div></div>
         </div>
-        <div class="color-swatch cursor-pointer group" data-color="#003BCC">
-          <div class="aspect-square rounded-three bg-[#003BCC] shadow-elevation-one group-hover:shadow-elevation-two transition-shadow"></div>
-          <div class="mt-two">
-            <div class="text-body-sm font-medium">focus-outline</div>
-            <div class="text-body-sm text-rosetta-fg-secondary font-mono">#003BCC</div>
-          </div>
+        <div class="swatch cursor-pointer group" data-color="#073D42" data-name="interactive-active">
+          <div class="aspect-square rounded-r-container bg-[#073D42] shadow-e1 group-hover:shadow-e2 t-shadow"></div>
+          <div class="mt-2"><div class="text-[13px] font-medium">active</div><div class="text-[13px] text-r-fg-secondary font-mono">#073D42</div></div>
         </div>
-        <div class="color-swatch cursor-pointer group" data-color="#121212">
-          <div class="aspect-square rounded-three bg-[#121212] shadow-elevation-one group-hover:shadow-elevation-two transition-shadow"></div>
-          <div class="mt-two">
-            <div class="text-body-sm font-medium">fg-primary</div>
-            <div class="text-body-sm text-rosetta-fg-secondary font-mono">#121212</div>
-          </div>
+        <div class="swatch cursor-pointer group" data-color="#003BCC" data-name="focus-outline">
+          <div class="aspect-square rounded-r-container bg-[#003BCC] shadow-e1 group-hover:shadow-e2 t-shadow"></div>
+          <div class="mt-2"><div class="text-[13px] font-medium">focus-outline</div><div class="text-[13px] text-r-fg-secondary font-mono">#003BCC</div></div>
         </div>
       </div>
 
-      <h3 class="text-heading-sm text-rosetta-fg-primary mb-four">Status Colors</h3>
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-four">
-        <div class="rounded-three overflow-hidden border border-rosetta-fg-border">
-          <div class="color-swatch cursor-pointer p-four bg-rosetta-info-bg" data-color="#CCDBFF">
-            <div class="text-body-sm font-medium text-rosetta-info-fg">Info Background</div>
-            <div class="text-body-sm text-rosetta-info-fg/70 font-mono">#CCDBFF</div>
+      <!-- Status Colors -->
+      <h3 class="text-[24px] font-medium tracking-[-0.02em] mb-5">Status Colors</h3>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="rounded-r-container overflow-hidden border border-r-fg-border">
+          <div class="swatch cursor-pointer p-5 bg-r-info-bg" data-color="#CCDBFF">
+            <div class="text-[13px] font-semibold text-r-info-fg mb-0.5">Info Background</div>
+            <div class="text-[13px] text-r-info-fg/70 font-mono">#CCDBFF</div>
           </div>
-          <div class="color-swatch cursor-pointer p-four bg-rosetta-info-fg" data-color="#003BCC">
-            <div class="text-body-sm font-medium text-white">Info Foreground</div>
-            <div class="text-body-sm text-white/70 font-mono">#003BCC</div>
-          </div>
-        </div>
-        <div class="rounded-three overflow-hidden border border-rosetta-fg-border">
-          <div class="color-swatch cursor-pointer p-four bg-rosetta-positive-bg" data-color="#A5E09F">
-            <div class="text-body-sm font-medium text-rosetta-positive-fg">Positive Background</div>
-            <div class="text-body-sm text-rosetta-positive-fg/70 font-mono">#A5E09F</div>
-          </div>
-          <div class="color-swatch cursor-pointer p-four bg-rosetta-positive-fg" data-color="#327D0F">
-            <div class="text-body-sm font-medium text-white">Positive Foreground</div>
-            <div class="text-body-sm text-white/70 font-mono">#327D0F</div>
+          <div class="swatch cursor-pointer p-5 bg-r-info-fg" data-color="#003BCC">
+            <div class="text-[13px] font-semibold text-white mb-0.5">Info Foreground</div>
+            <div class="text-[13px] text-white/70 font-mono">#003BCC</div>
           </div>
         </div>
-        <div class="rounded-three overflow-hidden border border-rosetta-fg-border">
-          <div class="color-swatch cursor-pointer p-four bg-rosetta-warning-bg" data-color="#FFD999">
-            <div class="text-body-sm font-medium text-rosetta-warning-fg">Warning Background</div>
-            <div class="text-body-sm text-rosetta-warning-fg/70 font-mono">#FFD999</div>
+        <div class="rounded-r-container overflow-hidden border border-r-fg-border">
+          <div class="swatch cursor-pointer p-5 bg-r-pos-bg" data-color="#A5E09F">
+            <div class="text-[13px] font-semibold text-r-pos-fg mb-0.5">Positive Background</div>
+            <div class="text-[13px] text-r-pos-fg/70 font-mono">#A5E09F</div>
           </div>
-          <div class="color-swatch cursor-pointer p-four bg-rosetta-warning-fg" data-color="#A36700">
-            <div class="text-body-sm font-medium text-white">Warning Foreground</div>
-            <div class="text-body-sm text-white/70 font-mono">#A36700</div>
+          <div class="swatch cursor-pointer p-5 bg-r-pos-fg" data-color="#327D0F">
+            <div class="text-[13px] font-semibold text-white mb-0.5">Positive Foreground</div>
+            <div class="text-[13px] text-white/70 font-mono">#327D0F</div>
           </div>
         </div>
-        <div class="rounded-three overflow-hidden border border-rosetta-fg-border">
-          <div class="color-swatch cursor-pointer p-four bg-rosetta-negative-bg" data-color="#FFC2C4">
-            <div class="text-body-sm font-medium text-rosetta-negative-fg">Negative Background</div>
-            <div class="text-body-sm text-rosetta-negative-fg/70 font-mono">#FFC2C4</div>
+        <div class="rounded-r-container overflow-hidden border border-r-fg-border">
+          <div class="swatch cursor-pointer p-5 bg-r-warn-bg" data-color="#FFD999">
+            <div class="text-[13px] font-semibold text-r-warn-fg mb-0.5">Warning Background</div>
+            <div class="text-[13px] text-r-warn-fg/70 font-mono">#FFD999</div>
           </div>
-          <div class="color-swatch cursor-pointer p-four bg-rosetta-negative-fg" data-color="#BB3643">
-            <div class="text-body-sm font-medium text-white">Negative Foreground</div>
-            <div class="text-body-sm text-white/70 font-mono">#BB3643</div>
+          <div class="swatch cursor-pointer p-5 bg-r-warn-fg" data-color="#A36700">
+            <div class="text-[13px] font-semibold text-white mb-0.5">Warning Foreground</div>
+            <div class="text-[13px] text-white/70 font-mono">#A36700</div>
+          </div>
+        </div>
+        <div class="rounded-r-container overflow-hidden border border-r-fg-border">
+          <div class="swatch cursor-pointer p-5 bg-r-neg-bg" data-color="#FFC2C4">
+            <div class="text-[13px] font-semibold text-r-neg-fg mb-0.5">Negative Background</div>
+            <div class="text-[13px] text-r-neg-fg/70 font-mono">#FFC2C4</div>
+          </div>
+          <div class="swatch cursor-pointer p-5 bg-r-neg-fg" data-color="#BB3643">
+            <div class="text-[13px] font-semibold text-white mb-0.5">Negative Foreground</div>
+            <div class="text-[13px] text-white/70 font-mono">#BB3643</div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <div class="section-divider mx-six"></div>
+  <div class="divider mx-6"></div>
 
-  <!-- Typography Section -->
-  <section id="typography" class="py-sixteen px-six bg-rosetta-bg-secondary">
-    <div class="max-w-7xl mx-auto">
-      <h2 class="text-heading-lg text-rosetta-fg-primary mb-two">Typography</h2>
-      <p class="text-body-lg text-rosetta-fg-secondary mb-eight max-w-2xl">Three font families: Noi Grotesk for UI (Inter fallback), Sansplomb for brand (Bebas Neue fallback), IBM Plex Mono for code.</p>
+  <!-- ==================== TYPOGRAPHY ==================== -->
+  <section id="typography" class="py-16 px-6 bg-r-bg-secondary">
+    <div class="max-w-[1280px] mx-auto">
+      <h2 class="text-[32px] font-medium tracking-[-0.03em] leading-[1.2] mb-2">Typography</h2>
+      <p class="text-[17px] text-r-fg-secondary tracking-[-0.02em] leading-[1.4] mb-10 max-w-2xl">
+        Three font families. Noi Grotesk for product UI, Sansplomb for brand impact, IBM Plex Mono for code and labels.
+      </p>
 
-      <div class="grid md:grid-cols-3 gap-six mb-twelve">
-        <div class="bg-rosetta-bg-primary rounded-four p-six shadow-elevation-two">
-          <div class="text-body-sm text-rosetta-fg-secondary mb-two font-mono">font-sans</div>
-          <div class="text-heading-md font-sans mb-four">Noi Grotesk</div>
-          <p class="text-body-md text-rosetta-fg-secondary">Geometric sans-serif with humanist touches. Using Inter as web fallback.</p>
+      <!-- Font families -->
+      <div class="grid md:grid-cols-3 gap-5 mb-12">
+        <div class="bg-r-bg-primary rounded-r-container p-6 shadow-e2">
+          <div class="text-[13px] text-r-fg-secondary mb-3 font-mono">font-sans</div>
+          <div class="text-[28px] font-medium tracking-[-0.03em] leading-[1.2] mb-1">Noi Grotesk</div>
+          <div class="text-[13px] text-r-fg-secondary font-mono mb-4">ss03 + ss11 stylistic alternates</div>
+          <p class="text-[15px] text-r-fg-secondary leading-[1.4]">Geometric sans-serif with optical corrections and humanist touches. Regular (1-499) and Medium (500-1000) weight ranges.</p>
         </div>
-        <div class="bg-rosetta-bg-primary rounded-four p-six shadow-elevation-two">
-          <div class="text-body-sm text-rosetta-fg-secondary mb-two font-mono">font-brand</div>
-          <div class="text-heading-md font-brand tracking-wide mb-four">SANSPLOMB</div>
-          <p class="text-body-md text-rosetta-fg-secondary">Bold condensed for marketing and brand moments. Using Bebas Neue as web fallback.</p>
+        <div class="bg-r-bg-primary rounded-r-container p-6 shadow-e2">
+          <div class="text-[13px] text-r-fg-secondary mb-3 font-mono">font-brand</div>
+          <div class="text-[28px] font-brand tracking-wide mb-1">SANSPLOMB</div>
+          <div class="text-[13px] text-r-fg-secondary font-mono mb-4">SansPlomb-98</div>
+          <p class="text-[15px] text-r-fg-secondary leading-[1.4]">Bold condensed face that commands attention. Reserved for marketing and brand moments — stays out of product UI.</p>
         </div>
-        <div class="bg-rosetta-bg-primary rounded-four p-six shadow-elevation-two">
-          <div class="text-body-sm text-rosetta-fg-secondary mb-two font-mono">font-mono</div>
-          <div class="text-heading-md font-mono mb-four">IBM Plex Mono</div>
-          <p class="text-body-md text-rosetta-fg-secondary">Clean monospace for code and technical labels.</p>
+        <div class="bg-r-bg-primary rounded-r-container p-6 shadow-e2">
+          <div class="text-[13px] text-r-fg-secondary mb-3 font-mono">font-mono</div>
+          <div class="text-[28px] font-mono font-medium mb-1">IBM Plex Mono</div>
+          <div class="text-[13px] text-r-fg-secondary font-mono mb-4">monospace</div>
+          <p class="text-[15px] text-r-fg-secondary leading-[1.4]">Clean monospace for code blocks, technical labels, and metadata. Available in 400 and 500 weights.</p>
         </div>
       </div>
 
-      <h3 class="text-heading-sm text-rosetta-fg-primary mb-six">Type Scale</h3>
-      <div class="bg-rosetta-bg-primary rounded-four p-six shadow-elevation-two overflow-x-auto">
-        <table class="w-full min-w-[600px]">
-          <thead>
-            <tr class="text-left text-body-sm text-rosetta-fg-secondary border-b border-rosetta-fg-border">
-              <th class="pb-four">Style</th>
-              <th class="pb-four">Preview</th>
-              <th class="pb-four font-mono">Size</th>
-            </tr>
-          </thead>
-          <tbody class="divide-y divide-rosetta-fg-border">
-            <tr>
-              <td class="py-four text-body-sm font-mono text-rosetta-fg-secondary">brand-large</td>
-              <td class="py-four"><span class="font-brand text-5xl lg:text-7xl text-rosetta-interactive-primary tracking-tight">HEADLINE</span></td>
-              <td class="py-four text-body-sm font-mono text-rosetta-fg-secondary">122px</td>
-            </tr>
-            <tr>
-              <td class="py-four text-body-sm font-mono text-rosetta-fg-secondary">heading-xl</td>
-              <td class="py-four"><span class="text-heading-xl">Page Title</span></td>
-              <td class="py-four text-body-sm font-mono text-rosetta-fg-secondary">44px</td>
-            </tr>
-            <tr>
-              <td class="py-four text-body-sm font-mono text-rosetta-fg-secondary">heading-lg</td>
-              <td class="py-four"><span class="text-heading-lg">Section Header</span></td>
-              <td class="py-four text-body-sm font-mono text-rosetta-fg-secondary">32px</td>
-            </tr>
-            <tr>
-              <td class="py-four text-body-sm font-mono text-rosetta-fg-secondary">heading-md</td>
-              <td class="py-four"><span class="text-heading-md">Card Title</span></td>
-              <td class="py-four text-body-sm font-mono text-rosetta-fg-secondary">28px</td>
-            </tr>
-            <tr>
-              <td class="py-four text-body-sm font-mono text-rosetta-fg-secondary">heading-sm</td>
-              <td class="py-four"><span class="text-heading-sm">Subsection Header</span></td>
-              <td class="py-four text-body-sm font-mono text-rosetta-fg-secondary">24px</td>
-            </tr>
-            <tr>
-              <td class="py-four text-body-sm font-mono text-rosetta-fg-secondary">body-xl</td>
-              <td class="py-four"><span class="text-body-xl">Large body for introductions</span></td>
-              <td class="py-four text-body-sm font-mono text-rosetta-fg-secondary">19px</td>
-            </tr>
-            <tr>
-              <td class="py-four text-body-sm font-mono text-rosetta-fg-secondary">body-lg</td>
-              <td class="py-four"><span class="text-body-lg">Primary body text</span></td>
-              <td class="py-four text-body-sm font-mono text-rosetta-fg-secondary">17px</td>
-            </tr>
-            <tr>
-              <td class="py-four text-body-sm font-mono text-rosetta-fg-secondary">body-md</td>
-              <td class="py-four"><span class="text-body-md">Default UI text</span></td>
-              <td class="py-four text-body-sm font-mono text-rosetta-fg-secondary">15px</td>
-            </tr>
-            <tr>
-              <td class="py-four text-body-sm font-mono text-rosetta-fg-secondary">body-sm</td>
-              <td class="py-four"><span class="text-body-sm">Captions and metadata</span></td>
-              <td class="py-four text-body-sm font-mono text-rosetta-fg-secondary">13px</td>
-            </tr>
-          </tbody>
-        </table>
+      <!-- Type scale -->
+      <h3 class="text-[24px] font-medium tracking-[-0.02em] mb-5">Type Scale</h3>
+      <div class="bg-r-bg-primary rounded-r-container shadow-e2 overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="w-full min-w-[700px]">
+            <thead>
+              <tr class="text-left text-[13px] text-r-fg-secondary border-b border-r-fg-border">
+                <th class="p-5 pb-3 font-medium w-40">Style</th>
+                <th class="p-5 pb-3 font-medium">Preview</th>
+                <th class="p-5 pb-3 font-medium font-mono w-24">Size</th>
+                <th class="p-5 pb-3 font-medium font-mono w-24">Weight</th>
+                <th class="p-5 pb-3 font-medium font-mono w-24">Leading</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-r-fg-border">
+              <tr>
+                <td class="p-5 text-[13px] font-mono text-r-fg-secondary">Brand Large</td>
+                <td class="p-5"><span class="font-brand text-[56px] lg:text-[80px] text-r-ip leading-[0.8] tracking-tight">HEADLINE</span></td>
+                <td class="p-5 text-[13px] font-mono text-r-fg-secondary">122px</td>
+                <td class="p-5 text-[13px] font-mono text-r-fg-secondary">600</td>
+                <td class="p-5 text-[13px] font-mono text-r-fg-secondary">0.8</td>
+              </tr>
+              <tr>
+                <td class="p-5 text-[13px] font-mono text-r-fg-secondary">Brand Small</td>
+                <td class="p-5"><span class="font-brand text-[40px] lg:text-[60px] text-r-ip leading-[0.9] tracking-tight">SECTION</span></td>
+                <td class="p-5 text-[13px] font-mono text-r-fg-secondary">60px</td>
+                <td class="p-5 text-[13px] font-mono text-r-fg-secondary">600</td>
+                <td class="p-5 text-[13px] font-mono text-r-fg-secondary">0.9</td>
+              </tr>
+              <tr>
+                <td class="p-5 text-[13px] font-mono text-r-fg-secondary">Heading XL</td>
+                <td class="p-5"><span class="text-[44px] font-medium tracking-[-0.04em] leading-[1.0]">Page Title</span></td>
+                <td class="p-5 text-[13px] font-mono text-r-fg-secondary">44px</td>
+                <td class="p-5 text-[13px] font-mono text-r-fg-secondary">500</td>
+                <td class="p-5 text-[13px] font-mono text-r-fg-secondary">1.0</td>
+              </tr>
+              <tr>
+                <td class="p-5 text-[13px] font-mono text-r-fg-secondary">Heading Large</td>
+                <td class="p-5"><span class="text-[32px] font-medium tracking-[-0.03em] leading-[1.2]">Section Header</span></td>
+                <td class="p-5 text-[13px] font-mono text-r-fg-secondary">32px</td>
+                <td class="p-5 text-[13px] font-mono text-r-fg-secondary">500</td>
+                <td class="p-5 text-[13px] font-mono text-r-fg-secondary">1.2</td>
+              </tr>
+              <tr>
+                <td class="p-5 text-[13px] font-mono text-r-fg-secondary">Heading Medium</td>
+                <td class="p-5"><span class="text-[28px] font-medium tracking-[-0.03em] leading-[1.2]">Card Title</span></td>
+                <td class="p-5 text-[13px] font-mono text-r-fg-secondary">28px</td>
+                <td class="p-5 text-[13px] font-mono text-r-fg-secondary">500</td>
+                <td class="p-5 text-[13px] font-mono text-r-fg-secondary">1.2</td>
+              </tr>
+              <tr>
+                <td class="p-5 text-[13px] font-mono text-r-fg-secondary">Heading Small</td>
+                <td class="p-5"><span class="text-[24px] font-medium tracking-[-0.02em] leading-[1.2]">Subsection Header</span></td>
+                <td class="p-5 text-[13px] font-mono text-r-fg-secondary">24px</td>
+                <td class="p-5 text-[13px] font-mono text-r-fg-secondary">500</td>
+                <td class="p-5 text-[13px] font-mono text-r-fg-secondary">1.2</td>
+              </tr>
+              <tr>
+                <td class="p-5 text-[13px] font-mono text-r-fg-secondary">Body XL</td>
+                <td class="p-5"><span class="text-[19px] tracking-[-0.02em] leading-[1.2]">Large body text for introductions and featured content</span></td>
+                <td class="p-5 text-[13px] font-mono text-r-fg-secondary">19px</td>
+                <td class="p-5 text-[13px] font-mono text-r-fg-secondary">400/500</td>
+                <td class="p-5 text-[13px] font-mono text-r-fg-secondary">1.2</td>
+              </tr>
+              <tr>
+                <td class="p-5 text-[13px] font-mono text-r-fg-secondary">Body Large</td>
+                <td class="p-5"><span class="text-[17px] tracking-[-0.02em] leading-[1.4]">Primary body text for longer passages and descriptions</span></td>
+                <td class="p-5 text-[13px] font-mono text-r-fg-secondary">17px</td>
+                <td class="p-5 text-[13px] font-mono text-r-fg-secondary">400/500</td>
+                <td class="p-5 text-[13px] font-mono text-r-fg-secondary">1.4</td>
+              </tr>
+              <tr>
+                <td class="p-5 text-[13px] font-mono text-r-fg-secondary">Body Medium</td>
+                <td class="p-5"><span class="text-[15px] leading-[1.2]">Default UI text for buttons, labels, and general interface elements</span></td>
+                <td class="p-5 text-[13px] font-mono text-r-fg-secondary">15px</td>
+                <td class="p-5 text-[13px] font-mono text-r-fg-secondary">400/500</td>
+                <td class="p-5 text-[13px] font-mono text-r-fg-secondary">1.2</td>
+              </tr>
+              <tr>
+                <td class="p-5 text-[13px] font-mono text-r-fg-secondary">Body Small</td>
+                <td class="p-5"><span class="text-[13px] leading-[1.2] tracking-[0.01em]">Captions, metadata, timestamps, and supplementary information</span></td>
+                <td class="p-5 text-[13px] font-mono text-r-fg-secondary">13px</td>
+                <td class="p-5 text-[13px] font-mono text-r-fg-secondary">400/500</td>
+                <td class="p-5 text-[13px] font-mono text-r-fg-secondary">1.2</td>
+              </tr>
+              <tr>
+                <td class="p-5 text-[13px] font-mono text-r-fg-secondary">Mono</td>
+                <td class="p-5"><span class="font-mono text-[15px] leading-[1.2]">const token = "spacing-four"; // 16px</span></td>
+                <td class="p-5 text-[13px] font-mono text-r-fg-secondary">11-17px</td>
+                <td class="p-5 text-[13px] font-mono text-r-fg-secondary">400/500</td>
+                <td class="p-5 text-[13px] font-mono text-r-fg-secondary">1.2</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </section>
 
-  <div class="section-divider mx-six"></div>
+  <div class="divider mx-6"></div>
 
-  <!-- Components Section -->
-  <section id="components" class="py-sixteen px-six bg-rosetta-bg-primary">
-    <div class="max-w-7xl mx-auto">
-      <h2 class="text-heading-lg text-rosetta-fg-primary mb-two">Components</h2>
-      <p class="text-body-lg text-rosetta-fg-secondary mb-eight max-w-2xl">Functional, accessible components on the 4px grid with consistent elevation.</p>
+  <!-- ==================== COMPONENTS ==================== -->
+  <section id="components" class="py-16 px-6 bg-r-bg-primary">
+    <div class="max-w-[1280px] mx-auto">
+      <h2 class="text-[32px] font-medium tracking-[-0.03em] leading-[1.2] mb-2">Components</h2>
+      <p class="text-[17px] text-r-fg-secondary tracking-[-0.02em] leading-[1.4] mb-10 max-w-2xl">
+        Functional, accessible building blocks on the 4px grid. Shadow-first elevation, semantic color restraint.
+      </p>
 
-      <h3 class="text-heading-sm text-rosetta-fg-primary mb-six">Buttons</h3>
-      <div class="bg-rosetta-bg-surface rounded-four p-six border border-rosetta-fg-border mb-eight">
-        <div class="flex flex-wrap gap-four items-center mb-six">
-          <button class="btn-transition focus-ring h-12 px-six bg-rosetta-interactive-primary text-rosetta-fg-inverted font-semibold rounded-two hover:bg-rosetta-interactive-hover active:bg-rosetta-interactive-active">
-            Primary Button
+      <!-- Buttons -->
+      <h3 class="text-[24px] font-medium tracking-[-0.02em] mb-5">Buttons</h3>
+      <div class="bg-r-bg-surface rounded-r-container p-8 border border-r-fg-border mb-10">
+        <div class="text-[13px] font-mono text-r-fg-secondary mb-4">Variants</div>
+        <div class="flex flex-wrap gap-4 items-center mb-8">
+          <button class="t-bg focus-ring h-12 px-6 bg-r-ip text-r-fg-inverted font-semibold rounded-r-input text-[15px] hover:bg-r-ip-hover active:bg-r-ip-active">
+            Primary
           </button>
-          <button class="btn-transition focus-ring h-12 px-six bg-rosetta-bg-primary text-rosetta-fg-primary font-semibold rounded-two border border-rosetta-fg-border hover:bg-rosetta-bg-tertiary active:bg-rosetta-bg-quaternary">
-            Secondary Button
+          <button class="t-bg focus-ring h-12 px-6 bg-r-bg-primary text-r-fg-primary font-semibold rounded-r-input text-[15px] border border-r-fg-border hover:bg-r-bg-tertiary active:bg-r-bg-quaternary">
+            Secondary
           </button>
-          <button class="btn-transition focus-ring h-12 px-six bg-transparent text-rosetta-fg-primary font-semibold rounded-two hover:bg-rosetta-interactive-hovered active:bg-rosetta-interactive-pressed">
-            Ghost Button
+          <button class="t-bg focus-ring h-12 px-6 bg-transparent text-r-fg-primary font-semibold rounded-r-input text-[15px] hover:bg-r-i-hovered active:bg-r-i-pressed">
+            Ghost
           </button>
-          <button class="btn-transition focus-ring h-12 px-six bg-rosetta-negative-fg text-white font-semibold rounded-two hover:opacity-90 active:opacity-80">
+          <button class="t-bg focus-ring h-12 px-6 bg-r-neg-fg text-white font-semibold rounded-r-input text-[15px] hover:opacity-90 active:opacity-80">
             Destructive
           </button>
+          <button class="t-bg focus-ring h-12 px-6 bg-r-bg-primary text-r-neg-fg font-semibold rounded-r-input text-[15px] border border-r-neg-fg hover:bg-r-neg-bg/20">
+            Destructive Secondary
+          </button>
         </div>
-        <div class="flex flex-wrap gap-four items-center mb-six">
-          <button class="btn-transition focus-ring h-9 px-four bg-rosetta-interactive-primary text-rosetta-fg-inverted text-body-sm font-semibold rounded-two hover:bg-rosetta-interactive-hover">Small</button>
-          <button class="btn-transition focus-ring h-12 px-six bg-rosetta-interactive-primary text-rosetta-fg-inverted font-semibold rounded-two hover:bg-rosetta-interactive-hover">Medium</button>
-          <button class="btn-transition focus-ring h-[60px] px-eight bg-rosetta-interactive-primary text-rosetta-fg-inverted text-body-lg font-semibold rounded-two hover:bg-rosetta-interactive-hover">Large</button>
+
+        <div class="text-[13px] font-mono text-r-fg-secondary mb-4">Sizes — 36px / 48px / 60px</div>
+        <div class="flex flex-wrap gap-4 items-center mb-8">
+          <button class="t-bg focus-ring h-9 px-4 bg-r-ip text-r-fg-inverted text-[13px] font-semibold rounded-r-input hover:bg-r-ip-hover">Small (36px)</button>
+          <button class="t-bg focus-ring h-12 px-6 bg-r-ip text-r-fg-inverted text-[15px] font-semibold rounded-r-input hover:bg-r-ip-hover">Medium (48px)</button>
+          <button class="t-bg focus-ring h-[60px] px-8 bg-r-ip text-r-fg-inverted text-[17px] font-semibold rounded-r-input hover:bg-r-ip-hover">Large (60px)</button>
         </div>
-        <div class="flex flex-wrap gap-four items-center">
-          <button class="h-12 px-six bg-rosetta-bg-disabled text-rosetta-fg-disabled font-semibold rounded-two cursor-not-allowed">Disabled</button>
-          <button class="btn-transition focus-ring w-12 h-12 bg-rosetta-interactive-primary text-rosetta-fg-inverted rounded-max hover:bg-rosetta-interactive-hover flex items-center justify-center">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+
+        <div class="text-[13px] font-mono text-r-fg-secondary mb-4">States & icon-only</div>
+        <div class="flex flex-wrap gap-4 items-center">
+          <button class="h-12 px-6 bg-r-bg-disabled text-r-fg-disabled font-semibold rounded-r-input text-[15px] cursor-not-allowed">Disabled</button>
+          <button class="t-bg focus-ring w-12 h-12 bg-r-ip text-r-fg-inverted rounded-r-max hover:bg-r-ip-hover flex items-center justify-center">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+          </button>
+          <button class="t-bg focus-ring w-12 h-12 bg-r-bg-primary text-r-fg-primary rounded-r-max border border-r-fg-border hover:bg-r-bg-tertiary flex items-center justify-center">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"/></svg>
           </button>
         </div>
       </div>
 
-      <h3 class="text-heading-sm text-rosetta-fg-primary mb-six">Inputs</h3>
-      <div class="bg-rosetta-bg-surface rounded-four p-six border border-rosetta-fg-border mb-eight">
-        <div class="grid md:grid-cols-2 gap-six">
+      <!-- Inputs -->
+      <h3 class="text-[24px] font-medium tracking-[-0.02em] mb-5">Inputs</h3>
+      <div class="bg-r-bg-surface rounded-r-container p-8 border border-r-fg-border mb-10">
+        <div class="grid md:grid-cols-2 gap-6 mb-6">
           <div>
-            <label class="block text-body-sm font-medium text-rosetta-fg-primary mb-two">Text Input</label>
-            <input type="text" placeholder="Enter your name" class="focus-ring w-full h-12 px-four border border-rosetta-fg-border rounded-one bg-transparent text-rosetta-fg-primary placeholder:text-rosetta-fg-secondary hover:border-rosetta-fg-primary focus:border-rosetta-focus-outline">
+            <label class="block text-[13px] font-medium text-r-fg-primary mb-2">Text Input</label>
+            <input type="text" placeholder="Enter your name" class="focus-ring t-all w-full h-12 px-4 border border-r-fg-border rounded-r-input-sm bg-transparent text-r-fg-primary placeholder:text-r-fg-secondary hover:border-r-fg-primary text-[15px]">
           </div>
           <div>
-            <label class="block text-body-sm font-medium text-rosetta-fg-primary mb-two">Select</label>
-            <select class="focus-ring w-full h-12 px-four border border-rosetta-fg-border rounded-one bg-rosetta-bg-primary text-rosetta-fg-primary hover:border-rosetta-fg-primary">
-              <option>Select an option</option>
-              <option>Software Engineering</option>
-              <option>Product Management</option>
-              <option>Design</option>
+            <label class="block text-[13px] font-medium text-r-fg-primary mb-2">Select</label>
+            <select class="focus-ring t-all w-full h-12 px-4 border border-r-fg-border rounded-r-input-sm bg-r-bg-primary text-r-fg-primary hover:border-r-fg-primary text-[15px]">
+              <option>Select a field of study</option>
+              <option>Computer Science</option>
+              <option>Product Design</option>
+              <option>Business Administration</option>
             </select>
           </div>
-          <div class="md:col-span-2">
-            <label class="block text-body-sm font-medium text-rosetta-fg-primary mb-two">Textarea</label>
-            <textarea rows="3" placeholder="Tell us about yourself..." class="focus-ring w-full p-four border border-rosetta-fg-border rounded-one bg-transparent text-rosetta-fg-primary placeholder:text-rosetta-fg-secondary hover:border-rosetta-fg-primary resize-none"></textarea>
+        </div>
+        <div class="mb-6">
+          <label class="block text-[13px] font-medium text-r-fg-primary mb-2">Textarea</label>
+          <textarea rows="3" placeholder="Tell us about your career interests..." class="focus-ring t-all w-full p-4 border border-r-fg-border rounded-r-input-sm bg-transparent text-r-fg-primary placeholder:text-r-fg-secondary hover:border-r-fg-primary resize-none text-[15px]"></textarea>
+        </div>
+        <div class="flex flex-wrap gap-6">
+          <label class="flex items-center gap-3 cursor-pointer">
+            <input type="checkbox" class="w-5 h-5 rounded-r-input border-r-fg-border accent-r-ip focus-ring" checked>
+            <span class="text-[15px]">I agree to the terms</span>
+          </label>
+          <label class="flex items-center gap-3 cursor-pointer">
+            <input type="checkbox" class="w-5 h-5 rounded-r-input border-r-fg-border accent-r-ip focus-ring">
+            <span class="text-[15px]">Send me job alerts</span>
+          </label>
+        </div>
+        <div class="mt-6">
+          <label class="block text-[13px] font-medium text-r-fg-primary mb-2">Disabled Input</label>
+          <input type="text" value="Cannot be edited" disabled class="w-full h-12 px-4 border border-r-fg-border rounded-r-input-sm bg-r-bg-disabled text-r-fg-disabled cursor-not-allowed text-[15px]">
+        </div>
+      </div>
+
+      <!-- Cards -->
+      <h3 class="text-[24px] font-medium tracking-[-0.02em] mb-5">Cards</h3>
+      <div class="grid md:grid-cols-3 gap-5 mb-10">
+        <!-- Static card -->
+        <div class="bg-r-bg-primary rounded-r-container p-6 shadow-e2 border border-r-card-border">
+          <div class="text-[13px] font-mono text-r-fg-secondary mb-4">Static Card</div>
+          <h4 class="text-[28px] font-medium tracking-[-0.03em] leading-[1.2] mb-2">elevation-two</h4>
+          <p class="text-[15px] text-r-fg-secondary leading-[1.4] mb-4">Cards use soft shadows for depth. No heavy borders needed.</p>
+          <div class="flex gap-2">
+            <span class="inline-flex items-center px-3 py-1 bg-r-info-bg text-r-info-fg text-[13px] font-semibold rounded-r-input-sm">Remote</span>
+            <span class="inline-flex items-center px-3 py-1 bg-r-neutral-bg text-r-fg-primary text-[13px] font-semibold rounded-r-input-sm">Full-time</span>
           </div>
-          <div class="flex items-center gap-three">
-            <input type="checkbox" id="check1" class="w-5 h-5 rounded-one border-rosetta-fg-border accent-rosetta-interactive-primary focus-ring">
-            <label for="check1" class="text-body-md text-rosetta-fg-primary">I agree to the terms</label>
+        </div>
+        <!-- Interactive card -->
+        <div class="t-shadow cursor-pointer bg-r-bg-primary rounded-r-container p-6 shadow-e2 border border-r-card-border hover:shadow-e3 hover:border-r-fg-border">
+          <div class="text-[13px] font-mono text-r-fg-secondary mb-4">Interactive Card — hover me</div>
+          <h4 class="text-[28px] font-medium tracking-[-0.03em] leading-[1.2] mb-2">Shadow deepens</h4>
+          <p class="text-[15px] text-r-fg-secondary leading-[1.4] mb-4">Interactive cards elevate on hover with deeper shadow and subtle border shift.</p>
+          <div class="flex gap-2">
+            <span class="inline-flex items-center px-3 py-1 bg-r-pos-bg text-r-pos-fg text-[13px] font-semibold rounded-r-input-sm">Actively Hiring</span>
+          </div>
+        </div>
+        <!-- Structured card -->
+        <div class="t-shadow cursor-pointer bg-r-bg-primary rounded-r-container shadow-e2 border border-r-card-border hover:shadow-e3 hover:border-r-fg-border overflow-hidden">
+          <div class="p-6 border-b border-r-fg-border">
+            <div class="flex items-start justify-between mb-3">
+              <div class="w-12 h-12 bg-r-ip rounded-r-input flex items-center justify-center text-r-fg-inverted font-brand text-xl">HS</div>
+              <span class="inline-flex items-center px-3 py-1 bg-r-warn-bg text-r-warn-fg text-[13px] font-semibold rounded-r-input-sm">2 days left</span>
+            </div>
+            <h4 class="text-[28px] font-medium tracking-[-0.03em] leading-[1.2] mb-1">Software Engineer</h4>
+            <p class="text-[15px] text-r-fg-secondary">Handshake — San Francisco, CA</p>
+          </div>
+          <div class="p-6 bg-r-bg-surface">
+            <div class="flex gap-2 flex-wrap">
+              <span class="inline-flex items-center px-2 py-1 bg-r-bg-primary text-r-fg-secondary text-[13px] rounded-r-input-sm border border-r-fg-border">React</span>
+              <span class="inline-flex items-center px-2 py-1 bg-r-bg-primary text-r-fg-secondary text-[13px] rounded-r-input-sm border border-r-fg-border">TypeScript</span>
+              <span class="inline-flex items-center px-2 py-1 bg-r-bg-primary text-r-fg-secondary text-[13px] rounded-r-input-sm border border-r-fg-border">Node.js</span>
+            </div>
           </div>
         </div>
       </div>
 
-      <h3 class="text-heading-sm text-rosetta-fg-primary mb-six">Cards</h3>
-      <div class="grid md:grid-cols-3 gap-six mb-eight">
-        <div class="bg-rosetta-bg-primary rounded-four p-six shadow-elevation-two border border-[#E2E5F3]">
-          <h4 class="text-heading-md text-rosetta-fg-primary mb-two">Static Card</h4>
-          <p class="text-body-md text-rosetta-fg-secondary mb-four">Cards use soft shadows for elevation instead of heavy borders.</p>
-          <div class="flex gap-two">
-            <span class="inline-flex items-center px-three py-one bg-rosetta-info-bg text-rosetta-info-fg text-body-sm font-semibold rounded-one">Remote</span>
-            <span class="inline-flex items-center px-three py-one bg-rosetta-neutral-bg text-rosetta-fg-primary text-body-sm font-semibold rounded-one">Full-time</span>
-          </div>
+      <!-- Badges & Tags -->
+      <h3 class="text-[24px] font-medium tracking-[-0.02em] mb-5">Badges & Tags</h3>
+      <div class="bg-r-bg-surface rounded-r-container p-8 border border-r-fg-border mb-10">
+        <div class="text-[13px] font-mono text-r-fg-secondary mb-4">Status variants</div>
+        <div class="flex flex-wrap gap-3 items-center mb-6">
+          <span class="inline-flex items-center px-3 py-1 bg-r-info-bg text-r-info-fg text-[13px] font-semibold rounded-r-input-sm">Info</span>
+          <span class="inline-flex items-center px-3 py-1 bg-r-pos-bg text-r-pos-fg text-[13px] font-semibold rounded-r-input-sm">Positive</span>
+          <span class="inline-flex items-center px-3 py-1 bg-r-warn-bg text-r-warn-fg text-[13px] font-semibold rounded-r-input-sm">Warning</span>
+          <span class="inline-flex items-center px-3 py-1 bg-r-neg-bg text-r-neg-fg text-[13px] font-semibold rounded-r-input-sm">Negative</span>
+          <span class="inline-flex items-center px-3 py-1 bg-r-neutral-bg text-r-fg-primary text-[13px] font-semibold rounded-r-input-sm">Neutral</span>
         </div>
-        <div class="card-interactive cursor-pointer bg-rosetta-bg-primary rounded-four p-six shadow-elevation-two border border-[#E2E5F3] hover:shadow-elevation-three hover:border-rosetta-fg-border">
-          <h4 class="text-heading-md text-rosetta-fg-primary mb-two">Interactive Card</h4>
-          <p class="text-body-md text-rosetta-fg-secondary mb-four">Hover to see shadow and border transitions. Cards float rather than sit.</p>
-          <div class="flex gap-two">
-            <span class="inline-flex items-center px-three py-one bg-rosetta-positive-bg text-rosetta-positive-fg text-body-sm font-semibold rounded-one">Hiring</span>
-          </div>
-        </div>
-        <div class="card-interactive cursor-pointer bg-rosetta-bg-primary rounded-four shadow-elevation-two border border-[#E2E5F3] hover:shadow-elevation-three hover:border-rosetta-fg-border overflow-hidden">
-          <div class="p-six border-b border-rosetta-fg-border">
-            <div class="flex items-start justify-between mb-three">
-              <div class="w-12 h-12 bg-rosetta-interactive-primary rounded-two flex items-center justify-center text-rosetta-fg-inverted font-brand text-xl">HS</div>
-              <span class="inline-flex items-center px-three py-one bg-rosetta-warning-bg text-rosetta-warning-fg text-body-sm font-semibold rounded-one">2 days left</span>
-            </div>
-            <h4 class="text-heading-md text-rosetta-fg-primary mb-one">Software Engineer</h4>
-            <p class="text-body-md text-rosetta-fg-secondary">Handshake, San Francisco</p>
-          </div>
-          <div class="p-six bg-rosetta-bg-surface">
-            <div class="flex gap-two flex-wrap">
-              <span class="inline-flex items-center px-two py-one bg-rosetta-bg-primary text-rosetta-fg-secondary text-body-sm rounded-one border border-rosetta-fg-border">React</span>
-              <span class="inline-flex items-center px-two py-one bg-rosetta-bg-primary text-rosetta-fg-secondary text-body-sm rounded-one border border-rosetta-fg-border">TypeScript</span>
-              <span class="inline-flex items-center px-two py-one bg-rosetta-bg-primary text-rosetta-fg-secondary text-body-sm rounded-one border border-rosetta-fg-border">Node.js</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <h3 class="text-heading-sm text-rosetta-fg-primary mb-six">Badges & Tags</h3>
-      <div class="bg-rosetta-bg-surface rounded-four p-six border border-rosetta-fg-border">
-        <div class="flex flex-wrap gap-four items-center">
-          <span class="inline-flex items-center px-three py-one bg-rosetta-info-bg text-rosetta-info-fg text-body-sm font-semibold rounded-one">Info</span>
-          <span class="inline-flex items-center px-three py-one bg-rosetta-positive-bg text-rosetta-positive-fg text-body-sm font-semibold rounded-one">Positive</span>
-          <span class="inline-flex items-center px-three py-one bg-rosetta-warning-bg text-rosetta-warning-fg text-body-sm font-semibold rounded-one">Warning</span>
-          <span class="inline-flex items-center px-three py-one bg-rosetta-negative-bg text-rosetta-negative-fg text-body-sm font-semibold rounded-one">Negative</span>
-          <span class="inline-flex items-center px-three py-one bg-rosetta-neutral-bg text-rosetta-fg-primary text-body-sm font-semibold rounded-one">Neutral</span>
-          <span class="inline-flex items-center gap-two px-three py-one bg-rosetta-interactive-primary text-rosetta-fg-inverted text-body-sm font-semibold rounded-max">
-            <span class="w-1.5 h-1.5 bg-rosetta-positive-bg rounded-full"></span>Active
+        <div class="text-[13px] font-mono text-r-fg-secondary mb-4">Pill & compound</div>
+        <div class="flex flex-wrap gap-3 items-center">
+          <span class="inline-flex items-center gap-2 px-3 py-1 bg-r-ip text-r-fg-inverted text-[13px] font-semibold rounded-r-max">
+            <span class="w-1.5 h-1.5 bg-r-pos-bg rounded-full"></span>Active
+          </span>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-r-bg-primary text-r-fg-primary text-[13px] font-medium rounded-r-max border border-r-fg-border">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            San Francisco
+          </span>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-r-bg-primary text-r-fg-primary text-[13px] font-medium rounded-r-max border border-r-fg-border">
+            $140K - $180K
           </span>
         </div>
       </div>
-    </div>
-  </section>
 
-  <div class="section-divider mx-six"></div>
-
-  <!-- Spacing Section -->
-  <section id="patterns" class="py-sixteen px-six bg-rosetta-bg-secondary">
-    <div class="max-w-7xl mx-auto">
-      <h2 class="text-heading-lg text-rosetta-fg-primary mb-two">Spacing & Layout</h2>
-      <p class="text-body-lg text-rosetta-fg-secondary mb-eight max-w-2xl">Everything aligns to a 4px grid. Spacing tokens create subconscious harmony.</p>
-
-      <div class="bg-rosetta-bg-primary rounded-four p-six shadow-elevation-two mb-eight overflow-x-auto">
-        <table class="w-full min-w-[500px]">
-          <thead>
-            <tr class="text-left text-body-sm text-rosetta-fg-secondary border-b border-rosetta-fg-border">
-              <th class="pb-four">Token</th>
-              <th class="pb-four">Value</th>
-              <th class="pb-four">Visual</th>
-            </tr>
-          </thead>
-          <tbody class="divide-y divide-rosetta-fg-border">
-            <tr><td class="py-three text-body-sm font-mono">spacing-one</td><td class="py-three text-body-sm">4px</td><td class="py-three"><div class="h-4 bg-rosetta-interactive-primary rounded-zero" style="width: 4px"></div></td></tr>
-            <tr><td class="py-three text-body-sm font-mono">spacing-two</td><td class="py-three text-body-sm">8px</td><td class="py-three"><div class="h-4 bg-rosetta-interactive-primary rounded-zero" style="width: 8px"></div></td></tr>
-            <tr><td class="py-three text-body-sm font-mono">spacing-three</td><td class="py-three text-body-sm">12px</td><td class="py-three"><div class="h-4 bg-rosetta-interactive-primary rounded-zero" style="width: 12px"></div></td></tr>
-            <tr><td class="py-three text-body-sm font-mono">spacing-four</td><td class="py-three text-body-sm">16px</td><td class="py-three"><div class="h-4 bg-rosetta-interactive-primary rounded-zero" style="width: 16px"></div></td></tr>
-            <tr><td class="py-three text-body-sm font-mono">spacing-six</td><td class="py-three text-body-sm">24px</td><td class="py-three"><div class="h-4 bg-rosetta-interactive-primary rounded-zero" style="width: 24px"></div></td></tr>
-            <tr><td class="py-three text-body-sm font-mono">spacing-eight</td><td class="py-three text-body-sm">32px</td><td class="py-three"><div class="h-4 bg-rosetta-interactive-primary rounded-zero" style="width: 32px"></div></td></tr>
-            <tr><td class="py-three text-body-sm font-mono">spacing-twelve</td><td class="py-three text-body-sm">48px</td><td class="py-three"><div class="h-4 bg-rosetta-interactive-primary rounded-zero" style="width: 48px"></div></td></tr>
-            <tr><td class="py-three text-body-sm font-mono">spacing-sixteen</td><td class="py-three text-body-sm">64px</td><td class="py-three"><div class="h-4 bg-rosetta-interactive-primary rounded-zero" style="width: 64px"></div></td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <h3 class="text-heading-sm text-rosetta-fg-primary mb-six">Border Radius</h3>
-      <div class="grid grid-cols-3 md:grid-cols-6 gap-four mb-eight">
-        <div class="text-center"><div class="aspect-square bg-rosetta-interactive-primary rounded-zero mb-two"></div><div class="text-body-sm font-mono">0px</div></div>
-        <div class="text-center"><div class="aspect-square bg-rosetta-interactive-primary rounded-one mb-two"></div><div class="text-body-sm font-mono">4px</div></div>
-        <div class="text-center"><div class="aspect-square bg-rosetta-interactive-primary rounded-two mb-two"></div><div class="text-body-sm font-mono">8px</div></div>
-        <div class="text-center"><div class="aspect-square bg-rosetta-interactive-primary rounded-three mb-two"></div><div class="text-body-sm font-mono">12px</div></div>
-        <div class="text-center"><div class="aspect-square bg-rosetta-interactive-primary rounded-four mb-two"></div><div class="text-body-sm font-mono">16px</div></div>
-        <div class="text-center"><div class="aspect-square bg-rosetta-interactive-primary rounded-max mb-two"></div><div class="text-body-sm font-mono">max</div></div>
-      </div>
-
-      <h3 class="text-heading-sm text-rosetta-fg-primary mb-six">Elevation</h3>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-six">
-        <div class="bg-rosetta-bg-primary rounded-four p-six shadow-elevation-one">
-          <div class="text-body-sm font-mono text-rosetta-fg-secondary mb-two">elevation-one</div>
-          <div class="text-body-md text-rosetta-fg-primary">Subtle lift</div>
-        </div>
-        <div class="bg-rosetta-bg-primary rounded-four p-six shadow-elevation-two">
-          <div class="text-body-sm font-mono text-rosetta-fg-secondary mb-two">elevation-two</div>
-          <div class="text-body-md text-rosetta-fg-primary">Standard cards</div>
-        </div>
-        <div class="bg-rosetta-bg-primary rounded-four p-six shadow-elevation-three">
-          <div class="text-body-sm font-mono text-rosetta-fg-secondary mb-two">elevation-three</div>
-          <div class="text-body-md text-rosetta-fg-primary">Modals, dropdowns</div>
-        </div>
+      <!-- Modal demo -->
+      <h3 class="text-[24px] font-medium tracking-[-0.02em] mb-5">Modal Animation</h3>
+      <div class="bg-r-bg-surface rounded-r-container p-8 border border-r-fg-border">
+        <p class="text-[15px] text-r-fg-secondary mb-4">Modals use a subtle scale + fade entrance. Click to preview.</p>
+        <button id="modalTrigger" class="t-bg focus-ring h-12 px-6 bg-r-ip text-r-fg-inverted font-semibold rounded-r-input text-[15px] hover:bg-r-ip-hover active:bg-r-ip-active">
+          Open Modal
+        </button>
       </div>
     </div>
   </section>
 
-  <div class="section-divider mx-six"></div>
+  <div class="divider mx-6"></div>
 
-  <!-- Bold Factor Section -->
-  <section class="py-sixteen px-six bg-rosetta-interactive-primary text-rosetta-fg-inverted">
-    <div class="max-w-7xl mx-auto">
-      <h2 class="font-brand text-brand-small lg:text-6xl tracking-tight mb-eight">THE BOLD FACTOR</h2>
-      <p class="text-body-xl text-rosetta-fg-inverted/80 mb-twelve max-w-2xl">Signature elements that make Rosetta distinctive.</p>
-      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-six">
-        <div class="bg-white/10 backdrop-blur-sm rounded-four p-six">
-          <div class="text-3xl mb-four">1</div>
-          <h3 class="text-heading-sm mb-two">Dark Teal, Not Blue</h3>
-          <p class="text-body-md text-rosetta-fg-inverted/70">#04191B is sophisticated. Avoids "generic SaaS blue."</p>
+  <!-- ==================== SPACING & LAYOUT ==================== -->
+  <section id="spacing" class="py-16 px-6 bg-r-bg-secondary">
+    <div class="max-w-[1280px] mx-auto">
+      <h2 class="text-[32px] font-medium tracking-[-0.03em] leading-[1.2] mb-2">Spacing & Layout</h2>
+      <p class="text-[17px] text-r-fg-secondary tracking-[-0.02em] leading-[1.4] mb-10 max-w-2xl">
+        Everything aligns to a 4px base grid. This consistency creates subconscious harmony across the entire system.
+      </p>
+
+      <!-- Spacing scale -->
+      <h3 class="text-[24px] font-medium tracking-[-0.02em] mb-5">Spacing Scale</h3>
+      <div class="bg-r-bg-primary rounded-r-container shadow-e2 overflow-hidden mb-10">
+        <div class="overflow-x-auto">
+          <table class="w-full min-w-[500px]">
+            <thead>
+              <tr class="text-left text-[13px] text-r-fg-secondary border-b border-r-fg-border">
+                <th class="p-5 pb-3 font-medium font-mono">Token</th>
+                <th class="p-5 pb-3 font-medium font-mono">Value</th>
+                <th class="p-5 pb-3 font-medium">Usage</th>
+                <th class="p-5 pb-3 font-medium">Visual</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-r-fg-border">
+              <tr><td class="p-4 text-[13px] font-mono">spacing-half</td><td class="p-4 text-[13px] font-mono">2px</td><td class="p-4 text-[13px] text-r-fg-secondary">Micro adjustments</td><td class="p-4"><div class="h-3 bg-r-ip rounded-sm" style="width:2px"></div></td></tr>
+              <tr><td class="p-4 text-[13px] font-mono">spacing-one</td><td class="p-4 text-[13px] font-mono">4px</td><td class="p-4 text-[13px] text-r-fg-secondary">Icon margins, tight gaps</td><td class="p-4"><div class="h-3 bg-r-ip rounded-sm" style="width:4px"></div></td></tr>
+              <tr><td class="p-4 text-[13px] font-mono">spacing-two</td><td class="p-4 text-[13px] font-mono">8px</td><td class="p-4 text-[13px] text-r-fg-secondary">Default element spacing</td><td class="p-4"><div class="h-3 bg-r-ip rounded-sm" style="width:8px"></div></td></tr>
+              <tr><td class="p-4 text-[13px] font-mono">spacing-three</td><td class="p-4 text-[13px] font-mono">12px</td><td class="p-4 text-[13px] text-r-fg-secondary">Small component padding</td><td class="p-4"><div class="h-3 bg-r-ip rounded-sm" style="width:12px"></div></td></tr>
+              <tr><td class="p-4 text-[13px] font-mono">spacing-four</td><td class="p-4 text-[13px] font-mono">16px</td><td class="p-4 text-[13px] text-r-fg-secondary">Standard padding</td><td class="p-4"><div class="h-3 bg-r-ip rounded-sm" style="width:16px"></div></td></tr>
+              <tr><td class="p-4 text-[13px] font-mono">spacing-five</td><td class="p-4 text-[13px] font-mono">20px</td><td class="p-4 text-[13px] text-r-fg-secondary">Medium padding</td><td class="p-4"><div class="h-3 bg-r-ip rounded-sm" style="width:20px"></div></td></tr>
+              <tr><td class="p-4 text-[13px] font-mono">spacing-six</td><td class="p-4 text-[13px] font-mono">24px</td><td class="p-4 text-[13px] text-r-fg-secondary">Section spacing</td><td class="p-4"><div class="h-3 bg-r-ip rounded-sm" style="width:24px"></div></td></tr>
+              <tr><td class="p-4 text-[13px] font-mono">spacing-eight</td><td class="p-4 text-[13px] font-mono">32px</td><td class="p-4 text-[13px] text-r-fg-secondary">Large gaps</td><td class="p-4"><div class="h-3 bg-r-ip rounded-sm" style="width:32px"></div></td></tr>
+              <tr><td class="p-4 text-[13px] font-mono">spacing-twelve</td><td class="p-4 text-[13px] font-mono">48px</td><td class="p-4 text-[13px] text-r-fg-secondary">Section margins</td><td class="p-4"><div class="h-3 bg-r-ip rounded-sm" style="width:48px"></div></td></tr>
+              <tr><td class="p-4 text-[13px] font-mono">spacing-sixteen</td><td class="p-4 text-[13px] font-mono">64px</td><td class="p-4 text-[13px] text-r-fg-secondary">Page-level spacing</td><td class="p-4"><div class="h-3 bg-r-ip rounded-sm" style="width:64px"></div></td></tr>
+            </tbody>
+          </table>
         </div>
-        <div class="bg-white/10 backdrop-blur-sm rounded-four p-six">
-          <div class="text-3xl mb-four">2</div>
-          <h3 class="text-heading-sm mb-two">Shadow-First Elevation</h3>
-          <p class="text-body-md text-rosetta-fg-inverted/70">Soft shadows over heavy borders. Cards float.</p>
+      </div>
+
+      <!-- Border radius -->
+      <h3 class="text-[24px] font-medium tracking-[-0.02em] mb-5">Border Radius</h3>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-5 mb-10">
+        <div class="bg-r-bg-primary rounded-r-container p-6 shadow-e2 text-center">
+          <div class="w-20 h-20 bg-r-ip rounded-r-input-sm mx-auto mb-4"></div>
+          <div class="text-[15px] font-medium mb-1">radius-input-small</div>
+          <div class="text-[13px] font-mono text-r-fg-secondary">4px</div>
+          <div class="text-[13px] text-r-fg-secondary mt-1">Interactive elements</div>
         </div>
-        <div class="bg-white/10 backdrop-blur-sm rounded-four p-six">
-          <div class="text-3xl mb-four">3</div>
-          <h3 class="text-heading-sm mb-two">4px Grid Discipline</h3>
-          <p class="text-body-md text-rosetta-fg-inverted/70">Everything snaps to 4px. Subconscious harmony.</p>
+        <div class="bg-r-bg-primary rounded-r-container p-6 shadow-e2 text-center">
+          <div class="w-20 h-20 bg-r-ip rounded-r-input mx-auto mb-4"></div>
+          <div class="text-[15px] font-medium mb-1">radius-input-regular</div>
+          <div class="text-[13px] font-mono text-r-fg-secondary">8px</div>
+          <div class="text-[13px] text-r-fg-secondary mt-1">Small interactive elements</div>
         </div>
-        <div class="bg-white/10 backdrop-blur-sm rounded-four p-six">
-          <div class="text-3xl mb-four">4</div>
-          <h3 class="text-heading-sm mb-two">White Space as Feature</h3>
-          <p class="text-body-md text-rosetta-fg-inverted/70">Generous padding. The interface breathes.</p>
+        <div class="bg-r-bg-primary rounded-r-container p-6 shadow-e2 text-center">
+          <div class="w-20 h-20 bg-r-ip rounded-r-container mx-auto mb-4"></div>
+          <div class="text-[15px] font-medium mb-1">radius-container</div>
+          <div class="text-[13px] font-mono text-r-fg-secondary">16px</div>
+          <div class="text-[13px] text-r-fg-secondary mt-1">Cards, large surfaces</div>
+        </div>
+        <div class="bg-r-bg-primary rounded-r-container p-6 shadow-e2 text-center">
+          <div class="w-20 h-20 bg-r-ip rounded-r-max mx-auto mb-4"></div>
+          <div class="text-[15px] font-medium mb-1">radius-max</div>
+          <div class="text-[13px] font-mono text-r-fg-secondary">9999px</div>
+          <div class="text-[13px] text-r-fg-secondary mt-1">Pills, icon buttons</div>
+        </div>
+      </div>
+
+      <!-- Elevation -->
+      <h3 class="text-[24px] font-medium tracking-[-0.02em] mb-5">Elevation</h3>
+      <div class="grid md:grid-cols-4 gap-5">
+        <div class="bg-r-bg-primary rounded-r-container p-6 border border-r-fg-border">
+          <div class="text-[13px] font-mono text-r-fg-secondary mb-2">elevation-zero</div>
+          <div class="text-[15px] font-medium">Flat</div>
+          <div class="text-[13px] text-r-fg-secondary mt-1">No shadow</div>
+        </div>
+        <div class="bg-r-bg-primary rounded-r-container p-6 shadow-e1">
+          <div class="text-[13px] font-mono text-r-fg-secondary mb-2">elevation-one</div>
+          <div class="text-[15px] font-medium">Subtle lift</div>
+          <div class="text-[13px] text-r-fg-secondary mt-1">Slight separation</div>
+        </div>
+        <div class="bg-r-bg-primary rounded-r-container p-6 shadow-e2">
+          <div class="text-[13px] font-mono text-r-fg-secondary mb-2">elevation-two</div>
+          <div class="text-[15px] font-medium">Standard card</div>
+          <div class="text-[13px] text-r-fg-secondary mt-1">Default card elevation</div>
+        </div>
+        <div class="bg-r-bg-primary rounded-r-container p-6 shadow-e3">
+          <div class="text-[13px] font-mono text-r-fg-secondary mb-2">elevation-three</div>
+          <div class="text-[15px] font-medium">Modals</div>
+          <div class="text-[13px] text-r-fg-secondary mt-1">Dropdowns, popovers</div>
         </div>
       </div>
     </div>
   </section>
 
-  <div class="section-divider mx-six"></div>
+  <div class="divider mx-6"></div>
 
-  <!-- Do's and Don'ts -->
-  <section class="py-sixteen px-six bg-rosetta-bg-primary">
-    <div class="max-w-7xl mx-auto">
-      <h2 class="text-heading-lg text-rosetta-fg-primary mb-eight">Do's and Don'ts</h2>
-      <div class="grid md:grid-cols-2 gap-six">
-        <div class="bg-rosetta-positive-bg/20 rounded-four p-six border border-rosetta-positive-fg/30">
-          <div class="flex items-center gap-two mb-four">
-            <svg class="w-6 h-6 text-rosetta-positive-fg" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-            <h3 class="text-heading-sm text-rosetta-positive-fg">Do</h3>
+  <!-- ==================== BOLD FACTOR ==================== -->
+  <section id="bold-factor" class="py-20 px-6 bg-r-ip text-r-fg-inverted">
+    <div class="max-w-[1280px] mx-auto">
+      <div class="font-brand text-[48px] lg:text-[72px] tracking-tight leading-[0.9] mb-3">THE BOLD FACTOR</div>
+      <p class="text-[19px] text-white/70 tracking-[-0.02em] leading-[1.3] mb-12 max-w-xl">Signature elements that make Rosetta unmistakably Rosetta.</p>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div class="bg-white/10 backdrop-blur-sm rounded-r-container p-6">
+          <div class="font-brand text-[36px] leading-none mb-3 text-white/40">01</div>
+          <h3 class="text-[24px] font-medium tracking-[-0.02em] leading-[1.2] mb-2">Dark Teal, Not Blue</h3>
+          <p class="text-[15px] text-white/60 leading-[1.4]">#04191B is the hero color. Sophisticated, distinctive. Avoids the "generic SaaS blue" trap.</p>
+        </div>
+        <div class="bg-white/10 backdrop-blur-sm rounded-r-container p-6">
+          <div class="font-brand text-[36px] leading-none mb-3 text-white/40">02</div>
+          <h3 class="text-[24px] font-medium tracking-[-0.02em] leading-[1.2] mb-2">Noi Grotesk + Alternates</h3>
+          <p class="text-[15px] text-white/60 leading-[1.4]">ss03 and ss11 features give subtle character. Geometric precision with humanist warmth.</p>
+        </div>
+        <div class="bg-white/10 backdrop-blur-sm rounded-r-container p-6">
+          <div class="font-brand text-[36px] leading-none mb-3 text-white/40">03</div>
+          <h3 class="text-[24px] font-medium tracking-[-0.02em] leading-[1.2] mb-2">Shadow-First Elevation</h3>
+          <p class="text-[15px] text-white/60 leading-[1.4]">Soft shadows over heavy borders. Cards float rather than sit. Depth without visual noise.</p>
+        </div>
+        <div class="bg-white/10 backdrop-blur-sm rounded-r-container p-6">
+          <div class="font-brand text-[36px] leading-none mb-3 text-white/40">04</div>
+          <h3 class="text-[24px] font-medium tracking-[-0.02em] leading-[1.2] mb-2">4px Grid Discipline</h3>
+          <p class="text-[15px] text-white/60 leading-[1.4]">Every measurement snaps to the 4px grid. Subconscious harmony across the entire system.</p>
+        </div>
+        <div class="bg-white/10 backdrop-blur-sm rounded-r-container p-6">
+          <div class="font-brand text-[36px] leading-none mb-3 text-white/40">05</div>
+          <h3 class="text-[24px] font-medium tracking-[-0.02em] leading-[1.2] mb-2">Status Dual Variants</h3>
+          <p class="text-[15px] text-white/60 leading-[1.4]">Each status has both a light background tint and saturated foreground. Flexible, consistent patterns.</p>
+        </div>
+        <div class="bg-white/10 backdrop-blur-sm rounded-r-container p-6">
+          <div class="font-brand text-[36px] leading-none mb-3 text-white/40">06</div>
+          <h3 class="text-[24px] font-medium tracking-[-0.02em] leading-[1.2] mb-2">Sansplomb for Impact</h3>
+          <p class="text-[15px] text-white/60 leading-[1.4]">Bold condensed energy reserved for hero headlines and marketing. Never in product UI.</p>
+        </div>
+        <div class="bg-white/10 backdrop-blur-sm rounded-r-container p-6">
+          <div class="font-brand text-[36px] leading-none mb-3 text-white/40">07</div>
+          <h3 class="text-[24px] font-medium tracking-[-0.02em] leading-[1.2] mb-2">White Space as Feature</h3>
+          <p class="text-[15px] text-white/60 leading-[1.4]">Generous padding and margins. The interface breathes. Content has room to be comprehended.</p>
+        </div>
+        <div class="bg-white/10 backdrop-blur-sm rounded-r-container p-6">
+          <div class="font-brand text-[36px] leading-none mb-3 text-white/40">08</div>
+          <h3 class="text-[24px] font-medium tracking-[-0.02em] leading-[1.2] mb-2">Semantic Color Restraint</h3>
+          <p class="text-[15px] text-white/60 leading-[1.4]">Color means something. Blue = info. Green = success. Red = error. Never decorative.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== DO'S & DON'TS ==================== -->
+  <section class="py-16 px-6 bg-r-bg-primary">
+    <div class="max-w-[1280px] mx-auto">
+      <h2 class="text-[32px] font-medium tracking-[-0.03em] leading-[1.2] mb-2">Do's and Don'ts</h2>
+      <p class="text-[17px] text-r-fg-secondary tracking-[-0.02em] leading-[1.4] mb-10 max-w-2xl">
+        Visual comparisons of correct Rosetta usage vs. common anti-patterns.
+      </p>
+
+      <!-- Side-by-side examples -->
+      <div class="space-y-8">
+        <!-- Example 1: Color usage -->
+        <div class="grid md:grid-cols-2 gap-5">
+          <div class="rounded-r-container overflow-hidden border-2 border-r-pos-fg/30">
+            <div class="px-5 py-3 bg-r-pos-bg/30 flex items-center gap-2">
+              <svg class="w-5 h-5 text-r-pos-fg" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              <span class="text-[13px] font-semibold text-r-pos-fg uppercase tracking-wider">Do</span>
+            </div>
+            <div class="p-5 bg-r-bg-primary">
+              <div class="flex gap-3 items-center mb-3">
+                <button class="t-bg h-10 px-5 bg-r-ip text-r-fg-inverted text-[13px] font-semibold rounded-r-input">Apply Now</button>
+                <span class="inline-flex items-center px-3 py-1 bg-r-pos-bg text-r-pos-fg text-[13px] font-semibold rounded-r-input-sm">Hired</span>
+                <span class="inline-flex items-center px-3 py-1 bg-r-neg-bg text-r-neg-fg text-[13px] font-semibold rounded-r-input-sm">Rejected</span>
+              </div>
+              <p class="text-[13px] text-r-fg-secondary">Use semantic colors only for meaningful status and actions. The dark teal primary anchors the interface.</p>
+            </div>
           </div>
-          <ul class="space-y-three text-body-md text-rosetta-fg-primary">
-            <li class="flex items-start gap-two"><span class="text-rosetta-positive-fg mt-1">+</span>Use semantic colors for meaning</li>
-            <li class="flex items-start gap-two"><span class="text-rosetta-positive-fg mt-1">+</span>Rely on shadows for elevation</li>
-            <li class="flex items-start gap-two"><span class="text-rosetta-positive-fg mt-1">+</span>Use generous whitespace</li>
-            <li class="flex items-start gap-two"><span class="text-rosetta-positive-fg mt-1">+</span>Maintain the 4px grid</li>
-            <li class="flex items-start gap-two"><span class="text-rosetta-positive-fg mt-1">+</span>Keep animations functional</li>
-          </ul>
-        </div>
-        <div class="bg-rosetta-negative-bg/20 rounded-four p-six border border-rosetta-negative-fg/30">
-          <div class="flex items-center gap-two mb-four">
-            <svg class="w-6 h-6 text-rosetta-negative-fg" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-            <h3 class="text-heading-sm text-rosetta-negative-fg">Don't</h3>
+          <div class="rounded-r-container overflow-hidden border-2 border-r-neg-fg/30">
+            <div class="px-5 py-3 bg-r-neg-bg/30 flex items-center gap-2">
+              <svg class="w-5 h-5 text-r-neg-fg" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+              <span class="text-[13px] font-semibold text-r-neg-fg uppercase tracking-wider">Don't</span>
+            </div>
+            <div class="p-5 bg-r-bg-primary">
+              <div class="flex gap-3 items-center mb-3">
+                <button class="h-10 px-5 bg-gradient-to-r from-purple-500 to-pink-500 text-white text-[13px] font-semibold rounded-full">Apply Now</button>
+                <span class="inline-flex items-center px-3 py-1 bg-orange-200 text-orange-700 text-[13px] font-semibold rounded-full">Hired</span>
+                <span class="inline-flex items-center px-3 py-1 bg-cyan-200 text-cyan-700 text-[13px] font-semibold rounded-full">Rejected</span>
+              </div>
+              <p class="text-[13px] text-r-fg-secondary">Don't use decorative gradients, off-palette colors, or rounded pills where the system specifies squared radii.</p>
+            </div>
           </div>
-          <ul class="space-y-three text-body-md text-rosetta-fg-primary">
-            <li class="flex items-start gap-two"><span class="text-rosetta-negative-fg mt-1">-</span>Use color decoratively</li>
-            <li class="flex items-start gap-two"><span class="text-rosetta-negative-fg mt-1">-</span>Add playful or whimsical elements</li>
-            <li class="flex items-start gap-two"><span class="text-rosetta-negative-fg mt-1">-</span>Create dark or moody interfaces</li>
-            <li class="flex items-start gap-two"><span class="text-rosetta-negative-fg mt-1">-</span>Add decorative or ornate elements</li>
-            <li class="flex items-start gap-two"><span class="text-rosetta-negative-fg mt-1">-</span>Use trendy or experimental patterns</li>
-          </ul>
+        </div>
+
+        <!-- Example 2: Elevation -->
+        <div class="grid md:grid-cols-2 gap-5">
+          <div class="rounded-r-container overflow-hidden border-2 border-r-pos-fg/30">
+            <div class="px-5 py-3 bg-r-pos-bg/30 flex items-center gap-2">
+              <svg class="w-5 h-5 text-r-pos-fg" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              <span class="text-[13px] font-semibold text-r-pos-fg uppercase tracking-wider">Do</span>
+            </div>
+            <div class="p-5 bg-r-bg-secondary">
+              <div class="bg-r-bg-primary rounded-r-container p-4 shadow-e2 border border-r-card-border mb-3">
+                <div class="text-[15px] font-medium mb-1">Product Manager at Airbnb</div>
+                <div class="text-[13px] text-r-fg-secondary">Soft shadow for elevation. Card floats naturally.</div>
+              </div>
+              <p class="text-[13px] text-r-fg-secondary">Cards use elevation shadows, not heavy borders. Subtle card-border (#E2E5F3) for definition.</p>
+            </div>
+          </div>
+          <div class="rounded-r-container overflow-hidden border-2 border-r-neg-fg/30">
+            <div class="px-5 py-3 bg-r-neg-bg/30 flex items-center gap-2">
+              <svg class="w-5 h-5 text-r-neg-fg" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+              <span class="text-[13px] font-semibold text-r-neg-fg uppercase tracking-wider">Don't</span>
+            </div>
+            <div class="p-5 bg-r-bg-secondary">
+              <div class="bg-r-bg-primary rounded-lg p-4 border-2 border-gray-400 mb-3">
+                <div class="text-[15px] font-medium mb-1">Product Manager at Airbnb</div>
+                <div class="text-[13px] text-r-fg-secondary">Heavy border, no shadow. Card looks flat and heavy.</div>
+              </div>
+              <p class="text-[13px] text-r-fg-secondary">Don't rely on thick borders for containment. Shadow-first elevation creates depth without visual weight.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Example 3: Tone -->
+        <div class="grid md:grid-cols-2 gap-5">
+          <div class="rounded-r-container overflow-hidden border-2 border-r-pos-fg/30">
+            <div class="px-5 py-3 bg-r-pos-bg/30 flex items-center gap-2">
+              <svg class="w-5 h-5 text-r-pos-fg" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              <span class="text-[13px] font-semibold text-r-pos-fg uppercase tracking-wider">Do</span>
+            </div>
+            <div class="p-5 bg-r-bg-primary">
+              <div class="text-[32px] font-medium tracking-[-0.03em] leading-[1.2] mb-1">Find your next role</div>
+              <div class="text-[17px] text-r-fg-secondary tracking-[-0.02em] leading-[1.4]">Discover opportunities at companies that match your values.</div>
+              <p class="text-[13px] text-r-fg-secondary mt-3">Clean, professional, warm. Generous whitespace. Content is the hero.</p>
+            </div>
+          </div>
+          <div class="rounded-r-container overflow-hidden border-2 border-r-neg-fg/30">
+            <div class="px-5 py-3 bg-r-neg-bg/30 flex items-center gap-2">
+              <svg class="w-5 h-5 text-r-neg-fg" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+              <span class="text-[13px] font-semibold text-r-neg-fg uppercase tracking-wider">Don't</span>
+            </div>
+            <div class="p-5 bg-gray-900">
+              <div class="text-[32px] font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400 leading-[1.2] mb-1">LAND YOUR DREAM JOB!!!</div>
+              <div class="text-[17px] text-gray-400 leading-[1.4]">Join the revolution. We're disrupting career discovery.</div>
+              <p class="text-[13px] text-r-fg-secondary mt-3 text-gray-500">Not dark or moody. Not playful or whimsical. Not trendy or experimental.</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Copy Prompt Section -->
-  <section class="py-sixteen px-six bg-rosetta-bg-secondary">
-    <div class="max-w-7xl mx-auto text-center">
-      <h2 class="text-heading-lg text-rosetta-fg-primary mb-four">Get the Full Prompt</h2>
-      <p class="text-body-lg text-rosetta-fg-secondary mb-eight max-w-xl mx-auto">Copy the complete Rosetta design system prompt for your AI coding assistant.</p>
-      <button id="copyBtn" class="btn-transition focus-ring h-14 px-eight bg-rosetta-interactive-primary text-rosetta-fg-inverted text-body-lg font-semibold rounded-two hover:bg-rosetta-interactive-hover active:bg-rosetta-interactive-active">
-        Copy to Clipboard
+  <div class="divider mx-6"></div>
+
+  <!-- ==================== RESPONSIVE ==================== -->
+  <section class="py-16 px-6 bg-r-bg-secondary">
+    <div class="max-w-[1280px] mx-auto">
+      <h2 class="text-[32px] font-medium tracking-[-0.03em] leading-[1.2] mb-2">Responsive Strategy</h2>
+      <p class="text-[17px] text-r-fg-secondary tracking-[-0.02em] leading-[1.4] mb-10 max-w-2xl">
+        Mobile-first. Typography scales down ~20-30%. Multi-column layouts collapse to single column. All touch targets minimum 44px.
+      </p>
+
+      <div class="bg-r-bg-primary rounded-r-container shadow-e2 overflow-hidden mb-8">
+        <div class="overflow-x-auto">
+          <table class="w-full">
+            <thead>
+              <tr class="text-left text-[13px] text-r-fg-secondary border-b border-r-fg-border">
+                <th class="p-5 pb-3 font-medium">Breakpoint</th>
+                <th class="p-5 pb-3 font-medium font-mono">Width</th>
+                <th class="p-5 pb-3 font-medium">Target</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-r-fg-border">
+              <tr><td class="p-4 text-[15px] font-medium">sm</td><td class="p-4 text-[15px] font-mono">640px</td><td class="p-4 text-[15px] text-r-fg-secondary">Large phones, small tablets</td></tr>
+              <tr><td class="p-4 text-[15px] font-medium">md</td><td class="p-4 text-[15px] font-mono">768px</td><td class="p-4 text-[15px] text-r-fg-secondary">Tablets</td></tr>
+              <tr><td class="p-4 text-[15px] font-medium">lg</td><td class="p-4 text-[15px] font-mono">1024px</td><td class="p-4 text-[15px] text-r-fg-secondary">Small laptops</td></tr>
+              <tr><td class="p-4 text-[15px] font-medium">xl</td><td class="p-4 text-[15px] font-mono">1280px</td><td class="p-4 text-[15px] text-r-fg-secondary">Desktops</td></tr>
+              <tr><td class="p-4 text-[15px] font-medium">2xl</td><td class="p-4 text-[15px] font-mono">1536px</td><td class="p-4 text-[15px] text-r-fg-secondary">Large screens</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-5">
+        <div class="bg-r-bg-primary rounded-r-container p-6 shadow-e2">
+          <div class="text-[13px] font-mono text-r-fg-secondary mb-3">Touch targets</div>
+          <div class="text-[15px] font-medium mb-2">Minimum 44px height</div>
+          <div class="flex items-center gap-3">
+            <div class="w-11 h-11 border-2 border-dashed border-r-pos-fg rounded-r-input flex items-center justify-center text-[11px] font-mono text-r-pos-fg">44px</div>
+            <div class="w-12 h-12 bg-r-ip rounded-r-input flex items-center justify-center text-[11px] font-mono text-r-fg-inverted">48px</div>
+          </div>
+        </div>
+        <div class="bg-r-bg-primary rounded-r-container p-6 shadow-e2">
+          <div class="text-[13px] font-mono text-r-fg-secondary mb-3">Mobile buttons</div>
+          <div class="text-[15px] font-medium mb-2">Full-width on narrow screens</div>
+          <button class="t-bg w-full h-12 bg-r-ip text-r-fg-inverted font-semibold rounded-r-input text-[15px]">Apply Now</button>
+        </div>
+        <div class="bg-r-bg-primary rounded-r-container p-6 shadow-e2">
+          <div class="text-[13px] font-mono text-r-fg-secondary mb-3">Layout</div>
+          <div class="text-[15px] font-medium mb-2">Stack instead of grid</div>
+          <p class="text-[13px] text-r-fg-secondary">Multi-column layouts collapse to single column. Prefer stacking over horizontal scroll.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== COPY PROMPT ==================== -->
+  <section class="py-16 px-6 bg-r-bg-primary">
+    <div class="max-w-[1280px] mx-auto text-center">
+      <h2 class="text-[32px] font-medium tracking-[-0.03em] leading-[1.2] mb-3">Get the Prompt</h2>
+      <p class="text-[17px] text-r-fg-secondary tracking-[-0.02em] leading-[1.4] mb-8 max-w-md mx-auto">Copy the complete Rosetta design system prompt for your AI assistant.</p>
+      <button id="copyPromptBtn" class="t-bg focus-ring h-14 px-8 bg-r-ip text-r-fg-inverted text-[17px] font-semibold rounded-r-input hover:bg-r-ip-hover active:bg-r-ip-active">
+        Copy Rosetta Prompt
       </button>
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer class="py-twelve px-six bg-rosetta-bg-inverted text-rosetta-fg-inverted">
-    <div class="max-w-7xl mx-auto">
-      <div class="flex flex-col md:flex-row items-center justify-between gap-six">
-        <div class="flex items-center gap-four">
-          <span class="font-brand text-3xl tracking-tight">ROSETTA</span>
-          <span class="text-body-sm text-rosetta-fg-inverted/60">Handshake Design System</span>
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="py-12 px-6 bg-r-bg-inverted text-r-fg-inverted">
+    <div class="max-w-[1280px] mx-auto">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="flex items-center gap-4">
+          <span class="font-brand text-[28px] tracking-tight leading-none">ROSETTA</span>
+          <span class="text-[13px] text-white/50">Handshake Design System</span>
         </div>
-        <div class="text-body-sm text-rosetta-fg-inverted/60">Professional clarity with human warmth</div>
+        <div class="text-[13px] text-white/50">Professional clarity with human warmth</div>
       </div>
     </div>
   </footer>
 
-  <!-- Toast -->
-  <div id="toast" class="fixed bottom-six right-six z-50 hidden">
-    <div class="copy-toast bg-rosetta-bg-inverted text-rosetta-fg-inverted px-four py-three rounded-two shadow-elevation-three flex items-center gap-two">
-      <svg class="w-4 h-4 text-rosetta-positive-bg" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-      <span id="toastMessage" class="text-body-sm">Copied to clipboard</span>
+  <!-- ==================== MODAL ==================== -->
+  <div id="modal" class="fixed inset-0 z-[100] hidden items-center justify-center">
+    <div class="modal-overlay absolute inset-0" id="modalOverlay"></div>
+    <div class="anim-modal relative bg-r-bg-primary rounded-r-container shadow-e3 w-full max-w-md mx-4 p-6">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-[28px] font-medium tracking-[-0.03em] leading-[1.2]">Apply to this role?</h3>
+        <button id="modalClose" class="t-bg focus-ring w-10 h-10 rounded-r-input flex items-center justify-center hover:bg-r-i-hovered">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <p class="text-[15px] text-r-fg-secondary leading-[1.4] mb-6">Your profile will be shared with the employer. Make sure your resume and portfolio are up to date before applying.</p>
+      <div class="mb-6">
+        <label class="block text-[13px] font-medium mb-2">Cover note (optional)</label>
+        <textarea rows="3" placeholder="Add a personal note to the recruiter..." class="focus-ring t-all w-full p-4 border border-r-fg-border rounded-r-input-sm bg-transparent placeholder:text-r-fg-secondary hover:border-r-fg-primary resize-none text-[15px]"></textarea>
+      </div>
+      <div class="flex gap-3 justify-end">
+        <button id="modalCancel" class="t-bg focus-ring h-12 px-6 bg-r-bg-primary text-r-fg-primary font-semibold rounded-r-input text-[15px] border border-r-fg-border hover:bg-r-bg-tertiary">Cancel</button>
+        <button class="t-bg focus-ring h-12 px-6 bg-r-ip text-r-fg-inverted font-semibold rounded-r-input text-[15px] hover:bg-r-ip-hover active:bg-r-ip-active">Submit Application</button>
+      </div>
     </div>
   </div>
 
-  <script>
-    // Copy to clipboard
-    const toast = document.getElementById('toast');
-    const toastMessage = document.getElementById('toastMessage');
-    let toastTimeout;
+  <!-- ==================== TOAST ==================== -->
+  <div id="toast" class="fixed bottom-6 right-6 z-[200] hidden">
+    <div class="anim-toast bg-r-bg-inverted text-r-fg-inverted px-4 py-3 rounded-r-input shadow-e3 flex items-center gap-2">
+      <svg class="w-4 h-4 text-r-pos-bg" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+      <span id="toastMsg" class="text-[13px]">Copied</span>
+    </div>
+  </div>
 
-    function showToast(message) {
-      toastMessage.textContent = message;
+  <!-- ==================== JS ==================== -->
+  <script>
+    // Toast
+    const toast = document.getElementById('toast');
+    const toastMsg = document.getElementById('toastMsg');
+    let toastTimer;
+    function showToast(msg) {
+      toastMsg.textContent = msg;
       toast.classList.remove('hidden');
-      clearTimeout(toastTimeout);
-      toastTimeout = setTimeout(() => toast.classList.add('hidden'), 2000);
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.add('hidden'), 2000);
     }
 
-    document.querySelectorAll('.color-swatch').forEach(swatch => {
-      swatch.addEventListener('click', async () => {
-        const color = swatch.dataset.color;
-        if (color) {
-          try {
-            await navigator.clipboard.writeText(color);
-            showToast(`Copied ${color}`);
-          } catch (err) {
-            showToast('Failed to copy');
-          }
-        }
+    // Color swatches — click to copy
+    document.querySelectorAll('.swatch').forEach(el => {
+      el.addEventListener('click', async () => {
+        const color = el.dataset.color;
+        if (!color) return;
+        try {
+          await navigator.clipboard.writeText(color);
+          showToast('Copied ' + color);
+        } catch { showToast('Copy failed'); }
       });
     });
 
-    document.getElementById('copyBtn').addEventListener('click', async () => {
+    // Copy prompt button
+    document.getElementById('copyPromptBtn').addEventListener('click', async () => {
       try {
-        const response = await fetch('../design-prompts/rosetta.md');
-        const text = await response.text();
+        const res = await fetch('../design-prompts/rosetta.md');
+        const text = await res.text();
         await navigator.clipboard.writeText(text);
-        showToast('Copied to clipboard!');
-      } catch (err) {
-        showToast('Failed to copy');
-      }
+        showToast('Prompt copied!');
+      } catch { showToast('Copy failed'); }
     });
 
-    // Smooth scroll
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
+    // Modal
+    const modal = document.getElementById('modal');
+    document.getElementById('modalTrigger').addEventListener('click', () => {
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    });
+    function closeModal() {
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+    document.getElementById('modalOverlay').addEventListener('click', closeModal);
+    document.getElementById('modalClose').addEventListener('click', closeModal);
+    document.getElementById('modalCancel').addEventListener('click', closeModal);
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
         e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
+        const target = document.querySelector(a.getAttribute('href'));
         if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
     });
