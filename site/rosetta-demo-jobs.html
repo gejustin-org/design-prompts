@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Job Search — Handshake (Rosetta Demo)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            r: {
+              'bg-primary': '#FFFFFF',
+              'bg-secondary': '#F6F6F6',
+              'bg-surface': '#FCFCFD',
+              'bg-inverted': '#121212',
+              'bg-selected': '#EAEAEA',
+              'bg-disabled': '#EEEEEE',
+              'bg-tertiary': '#F3F3F3',
+              'bg-quaternary': '#E7E7E7',
+              'fg-primary': '#121212',
+              'fg-secondary': 'rgba(18,18,18,0.7)',
+              'fg-disabled': 'rgba(18,18,18,0.4)',
+              'fg-inverted': '#FFFFFF',
+              'fg-border': 'rgba(31,32,44,0.2)',
+              'card-border': '#E2E5F3',
+              'ip': '#04191B',
+              'ip-hover': '#062E32',
+              'ip-active': '#073D42',
+              'i-hovered': 'rgba(18,18,18,0.06)',
+              'i-pressed': 'rgba(18,18,18,0.12)',
+              'focus': '#003BCC',
+              'info-bg': '#CCDBFF',
+              'info-fg': '#003BCC',
+              'pos-bg': '#A5E09F',
+              'pos-fg': '#327D0F',
+              'warn-bg': '#FFD999',
+              'warn-fg': '#A36700',
+              'neg-bg': '#FFC2C4',
+              'neg-fg': '#BB3643',
+              'neutral-bg': '#EAEAEA',
+            }
+          },
+          fontFamily: {
+            sans: ['"Noi Grotesk"', 'system-ui', 'sans-serif'],
+            brand: ['"Sansplomb"', 'sans-serif'],
+            mono: ['"IBM Plex Mono"', 'monospace'],
+          },
+          borderRadius: {
+            'r-input-sm': '4px',
+            'r-input': '8px',
+            'r-container': '16px',
+            'r-max': '9999px',
+          },
+          boxShadow: {
+            'e0': 'none',
+            'e1': '0 1px 2px rgba(0,0,0,0.08)',
+            'e2': '0 2px 20px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.08)',
+            'e3': '0 6px 30px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.08)',
+          },
+        }
+      }
+    }
+  </script>
+  <style>
+    @font-face {
+      font-family: "Noi Grotesk";
+      font-weight: 1 499;
+      font-display: swap;
+      src: url("fonts/NoiGrotesk-Regular.woff2") format("woff2"),
+           url("fonts/NoiGrotesk-Regular.woff") format("woff");
+    }
+    @font-face {
+      font-family: "Noi Grotesk";
+      font-weight: 500 1000;
+      font-display: swap;
+      src: url("fonts/NoiGrotesk-Medium.woff2") format("woff2"),
+           url("fonts/NoiGrotesk-Medium.woff") format("woff");
+    }
+    @font-face {
+      font-family: "Sansplomb";
+      font-weight: 1 1000;
+      font-display: swap;
+      src: url("fonts/SansPlomb-98.woff2") format("woff2"),
+           url("fonts/SansPlomb-98.woff") format("woff");
+    }
+
+    body { font-feature-settings: "ss03" on, "ss11" on; }
+    .focus-ring:focus-visible { outline: #003BCC solid 2px; outline-offset: 2px; }
+    .t-bg { transition: background-color 0.2s ease-out; }
+    .t-all { transition: all 0.15s ease-out; }
+    .t-shadow { transition: box-shadow 0.2s ease-out, border-color 0.2s ease-out; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body class="bg-r-bg-secondary text-r-fg-primary font-sans antialiased">
+
+  <!-- ============================================================
+       TOP BAR
+       ============================================================ -->
+  <header class="fixed top-0 inset-x-0 z-50 h-16 bg-r-bg-primary border-b border-r-fg-border flex items-center px-5 gap-4">
+    <!-- Left: brand -->
+    <a href="rosetta.html" class="flex items-center gap-2.5 shrink-0">
+      <div class="w-8 h-8 bg-r-ip rounded-r-input flex items-center justify-center">
+        <span class="text-white text-sm font-medium leading-none">R</span>
+      </div>
+      <span class="font-brand text-[20px] tracking-tight hidden sm:inline">Handshake</span>
+    </a>
+
+    <!-- Center: search -->
+    <div class="flex-1 max-w-xl mx-auto">
+      <div class="relative">
+        <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-[18px] h-[18px] text-r-fg-secondary pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/>
+        </svg>
+        <input type="text" placeholder="Search jobs, companies, keywords..." class="focus-ring w-full h-10 pl-10 pr-4 text-[14px] rounded-r-input border border-r-fg-border bg-r-bg-secondary placeholder:text-r-fg-disabled">
+      </div>
+    </div>
+
+    <!-- Right: back link -->
+    <a href="rosetta.html" class="focus-ring text-[13px] text-r-fg-secondary hover:text-r-fg-primary t-bg shrink-0 hidden sm:flex items-center gap-1">
+      <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"/></svg>
+      Back to Rosetta Reference
+    </a>
+  </header>
+
+  <!-- ============================================================
+       MAIN LAYOUT
+       ============================================================ -->
+  <div class="pt-16 min-h-screen flex">
+
+    <!-- --------------------------------------------------------
+         LEFT SIDEBAR — FILTERS
+         -------------------------------------------------------- -->
+    <aside class="hidden lg:block w-[260px] shrink-0 border-r border-r-fg-border bg-r-bg-primary overflow-y-auto" style="height:calc(100vh - 64px); position:sticky; top:64px;">
+      <div class="p-5 space-y-6">
+
+        <!-- Filters header -->
+        <div class="flex items-center justify-between">
+          <h2 class="text-[15px] font-medium">Filters</h2>
+          <button class="focus-ring text-[13px] text-r-fg-secondary hover:text-r-fg-primary t-bg">Clear all</button>
+        </div>
+
+        <!-- Location -->
+        <fieldset class="space-y-2.5">
+          <legend class="text-[13px] font-medium text-r-fg-secondary">Location</legend>
+          <input type="text" placeholder="City, state, or remote" class="focus-ring w-full h-10 px-3 text-[14px] rounded-r-input-sm border border-r-fg-border bg-r-bg-primary placeholder:text-r-fg-disabled">
+          <div class="flex flex-wrap gap-1.5">
+            <span class="inline-flex items-center gap-1 h-7 px-2.5 text-[12px] font-medium bg-r-bg-selected rounded-r-max">
+              San Francisco
+              <button class="focus-ring text-r-fg-secondary hover:text-r-fg-primary ml-0.5" aria-label="Remove San Francisco">&times;</button>
+            </span>
+            <span class="inline-flex items-center gap-1 h-7 px-2.5 text-[12px] font-medium bg-r-bg-selected rounded-r-max">
+              Remote
+              <button class="focus-ring text-r-fg-secondary hover:text-r-fg-primary ml-0.5" aria-label="Remove Remote">&times;</button>
+            </span>
+            <span class="inline-flex items-center gap-1 h-7 px-2.5 text-[12px] font-medium bg-r-bg-selected rounded-r-max">
+              New York
+              <button class="focus-ring text-r-fg-secondary hover:text-r-fg-primary ml-0.5" aria-label="Remove New York">&times;</button>
+            </span>
+          </div>
+        </fieldset>
+
+        <!-- Job Type -->
+        <fieldset class="space-y-2.5">
+          <legend class="text-[13px] font-medium text-r-fg-secondary">Job Type</legend>
+          <label class="flex items-center gap-2.5 cursor-pointer group">
+            <input type="checkbox" checked class="focus-ring w-4 h-4 rounded-r-input-sm border-r-fg-border accent-r-ip">
+            <span class="text-[14px] group-hover:text-r-fg-primary">Full-time</span>
+          </label>
+          <label class="flex items-center gap-2.5 cursor-pointer group">
+            <input type="checkbox" class="focus-ring w-4 h-4 rounded-r-input-sm border-r-fg-border accent-r-ip">
+            <span class="text-[14px] text-r-fg-secondary group-hover:text-r-fg-primary">Part-time</span>
+          </label>
+          <label class="flex items-center gap-2.5 cursor-pointer group">
+            <input type="checkbox" class="focus-ring w-4 h-4 rounded-r-input-sm border-r-fg-border accent-r-ip">
+            <span class="text-[14px] text-r-fg-secondary group-hover:text-r-fg-primary">Internship</span>
+          </label>
+          <label class="flex items-center gap-2.5 cursor-pointer group">
+            <input type="checkbox" class="focus-ring w-4 h-4 rounded-r-input-sm border-r-fg-border accent-r-ip">
+            <span class="text-[14px] text-r-fg-secondary group-hover:text-r-fg-primary">Contract</span>
+          </label>
+        </fieldset>
+
+        <!-- Date Posted -->
+        <fieldset class="space-y-2.5">
+          <legend class="text-[13px] font-medium text-r-fg-secondary">Date Posted</legend>
+          <div class="relative">
+            <select class="focus-ring w-full h-10 px-3 text-[14px] rounded-r-input-sm border border-r-fg-border bg-r-bg-primary appearance-none cursor-pointer">
+              <option>Past week</option>
+              <option>Past 24 hours</option>
+              <option>Past month</option>
+              <option>Any time</option>
+            </select>
+            <svg class="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-r-fg-secondary pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
+          </div>
+        </fieldset>
+
+        <!-- Experience Level -->
+        <fieldset class="space-y-2.5">
+          <legend class="text-[13px] font-medium text-r-fg-secondary">Experience Level</legend>
+          <label class="flex items-center gap-2.5 cursor-pointer group">
+            <input type="checkbox" checked class="focus-ring w-4 h-4 rounded-r-input-sm border-r-fg-border accent-r-ip">
+            <span class="text-[14px] group-hover:text-r-fg-primary">Entry Level</span>
+          </label>
+          <label class="flex items-center gap-2.5 cursor-pointer group">
+            <input type="checkbox" class="focus-ring w-4 h-4 rounded-r-input-sm border-r-fg-border accent-r-ip">
+            <span class="text-[14px] text-r-fg-secondary group-hover:text-r-fg-primary">Mid Level</span>
+          </label>
+          <label class="flex items-center gap-2.5 cursor-pointer group">
+            <input type="checkbox" class="focus-ring w-4 h-4 rounded-r-input-sm border-r-fg-border accent-r-ip">
+            <span class="text-[14px] text-r-fg-secondary group-hover:text-r-fg-primary">Senior</span>
+          </label>
+        </fieldset>
+
+      </div>
+    </aside>
+
+    <!-- --------------------------------------------------------
+         MAIN CONTENT — JOB CARDS
+         -------------------------------------------------------- -->
+    <main class="flex-1 min-w-0 overflow-y-auto" style="height:calc(100vh - 64px);">
+      <div class="p-5 max-w-2xl mx-auto lg:mx-0 lg:max-w-none">
+
+        <!-- Mobile filters button -->
+        <div class="lg:hidden mb-4">
+          <button class="focus-ring inline-flex items-center gap-2 h-10 px-4 text-[14px] font-medium rounded-r-input border border-r-fg-border bg-r-bg-primary hover:bg-r-i-hovered t-bg">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6h9.75M10.5 6a1.5 1.5 0 11-3 0m3 0a1.5 1.5 0 10-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-9.75 0h9.75"/></svg>
+            Filters
+          </button>
+        </div>
+
+        <!-- Results header -->
+        <div class="flex items-center justify-between mb-4">
+          <p class="text-[14px] text-r-fg-secondary"><span class="font-medium text-r-fg-primary">237</span> jobs found</p>
+          <div class="relative">
+            <select class="focus-ring h-9 pl-3 pr-8 text-[13px] rounded-r-input-sm border border-r-fg-border bg-r-bg-primary appearance-none cursor-pointer">
+              <option>Most relevant</option>
+              <option>Most recent</option>
+              <option>Highest salary</option>
+            </select>
+            <svg class="absolute right-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-r-fg-secondary pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
+          </div>
+        </div>
+
+        <!-- Job cards -->
+        <div class="space-y-3">
+
+          <!-- Card 1 — Software Engineer @ Handshake [SELECTED] -->
+          <article class="t-shadow bg-r-bg-selected rounded-r-container shadow-e2 border-2 border-r-fg-border p-5 cursor-pointer">
+            <div class="flex gap-4">
+              <div class="w-12 h-12 bg-r-ip rounded-r-input flex items-center justify-center shrink-0">
+                <span class="text-white text-[13px] font-brand leading-none">HS</span>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-start justify-between gap-2">
+                  <h3 class="text-[17px] font-medium leading-snug">Software Engineer</h3>
+                  <span class="inline-flex items-center h-6 px-2.5 text-[11px] font-medium rounded-r-max bg-r-pos-bg text-r-pos-fg shrink-0">Actively Hiring</span>
+                </div>
+                <p class="text-[13px] text-r-fg-secondary mt-0.5">Handshake &middot; San Francisco, CA</p>
+                <div class="flex flex-wrap gap-1.5 mt-3">
+                  <span class="h-6 px-2.5 text-[11px] font-medium rounded-r-max bg-r-bg-tertiary text-r-fg-secondary inline-flex items-center">Full-time</span>
+                  <span class="h-6 px-2.5 text-[11px] font-medium rounded-r-max bg-r-bg-tertiary text-r-fg-secondary inline-flex items-center">$140K–$180K</span>
+                  <span class="h-6 px-2.5 text-[11px] font-medium rounded-r-max bg-r-bg-tertiary text-r-fg-secondary inline-flex items-center">React</span>
+                  <span class="h-6 px-2.5 text-[11px] font-medium rounded-r-max bg-r-bg-tertiary text-r-fg-secondary inline-flex items-center">TypeScript</span>
+                </div>
+                <p class="text-[12px] text-r-fg-disabled mt-3">Posted 2 days ago</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 2 — Product Designer @ Figma -->
+          <article class="t-shadow bg-r-bg-primary rounded-r-container shadow-e2 border border-r-card-border p-5 cursor-pointer hover:shadow-e3 hover:border-r-fg-border">
+            <div class="flex gap-4">
+              <div class="w-12 h-12 bg-[#A259FF] rounded-r-input flex items-center justify-center shrink-0">
+                <span class="text-white text-[13px] font-brand leading-none">FG</span>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-start justify-between gap-2">
+                  <h3 class="text-[17px] font-medium leading-snug">Product Designer</h3>
+                  <span class="inline-flex items-center h-6 px-2.5 text-[11px] font-medium rounded-r-max bg-r-info-bg text-r-info-fg shrink-0">New</span>
+                </div>
+                <p class="text-[13px] text-r-fg-secondary mt-0.5">Figma &middot; San Francisco, CA</p>
+                <div class="flex flex-wrap gap-1.5 mt-3">
+                  <span class="h-6 px-2.5 text-[11px] font-medium rounded-r-max bg-r-bg-tertiary text-r-fg-secondary inline-flex items-center">Full-time</span>
+                  <span class="h-6 px-2.5 text-[11px] font-medium rounded-r-max bg-r-bg-tertiary text-r-fg-secondary inline-flex items-center">$130K–$160K</span>
+                  <span class="h-6 px-2.5 text-[11px] font-medium rounded-r-max bg-r-bg-tertiary text-r-fg-secondary inline-flex items-center">Figma</span>
+                  <span class="h-6 px-2.5 text-[11px] font-medium rounded-r-max bg-r-bg-tertiary text-r-fg-secondary inline-flex items-center">Design Systems</span>
+                </div>
+                <p class="text-[12px] text-r-fg-disabled mt-3">Posted 1 day ago</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 3 — Data Analyst @ Stripe -->
+          <article class="t-shadow bg-r-bg-primary rounded-r-container shadow-e2 border border-r-card-border p-5 cursor-pointer hover:shadow-e3 hover:border-r-fg-border">
+            <div class="flex gap-4">
+              <div class="w-12 h-12 bg-[#635BFF] rounded-r-input flex items-center justify-center shrink-0">
+                <span class="text-white text-[13px] font-brand leading-none">ST</span>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-start justify-between gap-2">
+                  <h3 class="text-[17px] font-medium leading-snug">Data Analyst</h3>
+                </div>
+                <p class="text-[13px] text-r-fg-secondary mt-0.5">Stripe &middot; Remote</p>
+                <div class="flex flex-wrap gap-1.5 mt-3">
+                  <span class="h-6 px-2.5 text-[11px] font-medium rounded-r-max bg-r-bg-tertiary text-r-fg-secondary inline-flex items-center">Full-time</span>
+                  <span class="h-6 px-2.5 text-[11px] font-medium rounded-r-max bg-r-bg-tertiary text-r-fg-secondary inline-flex items-center">$110K–$140K</span>
+                  <span class="h-6 px-2.5 text-[11px] font-medium rounded-r-max bg-r-bg-tertiary text-r-fg-secondary inline-flex items-center">SQL</span>
+                  <span class="h-6 px-2.5 text-[11px] font-medium rounded-r-max bg-r-bg-tertiary text-r-fg-secondary inline-flex items-center">Python</span>
+                </div>
+                <p class="text-[12px] text-r-fg-disabled mt-3">Posted 3 days ago</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 4 — Marketing Coordinator @ Notion -->
+          <article class="t-shadow bg-r-bg-primary rounded-r-container shadow-e2 border border-r-card-border p-5 cursor-pointer hover:shadow-e3 hover:border-r-fg-border">
+            <div class="flex gap-4">
+              <div class="w-12 h-12 bg-r-fg-primary rounded-r-input flex items-center justify-center shrink-0">
+                <span class="text-white text-[13px] font-brand leading-none">NT</span>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-start justify-between gap-2">
+                  <h3 class="text-[17px] font-medium leading-snug">Marketing Coordinator</h3>
+                  <span class="inline-flex items-center h-6 px-2.5 text-[11px] font-medium rounded-r-max bg-r-warn-bg text-r-warn-fg shrink-0">Closing Soon</span>
+                </div>
+                <p class="text-[13px] text-r-fg-secondary mt-0.5">Notion &middot; New York, NY</p>
+                <div class="flex flex-wrap gap-1.5 mt-3">
+                  <span class="h-6 px-2.5 text-[11px] font-medium rounded-r-max bg-r-bg-tertiary text-r-fg-secondary inline-flex items-center">Full-time</span>
+                  <span class="h-6 px-2.5 text-[11px] font-medium rounded-r-max bg-r-bg-tertiary text-r-fg-secondary inline-flex items-center">$70K–$90K</span>
+                  <span class="h-6 px-2.5 text-[11px] font-medium rounded-r-max bg-r-bg-tertiary text-r-fg-secondary inline-flex items-center">Content</span>
+                  <span class="h-6 px-2.5 text-[11px] font-medium rounded-r-max bg-r-bg-tertiary text-r-fg-secondary inline-flex items-center">Social</span>
+                </div>
+                <p class="text-[12px] text-r-fg-disabled mt-3">Posted 5 days ago</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 5 — Frontend Engineer @ Vercel -->
+          <article class="t-shadow bg-r-bg-primary rounded-r-container shadow-e2 border border-r-card-border p-5 cursor-pointer hover:shadow-e3 hover:border-r-fg-border">
+            <div class="flex gap-4">
+              <div class="w-12 h-12 bg-r-fg-primary rounded-r-input flex items-center justify-center shrink-0">
+                <span class="text-white text-[13px] font-brand leading-none">VC</span>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-start justify-between gap-2">
+                  <h3 class="text-[17px] font-medium leading-snug">Frontend Engineer</h3>
+                  <span class="inline-flex items-center h-6 px-2.5 text-[11px] font-medium rounded-r-max bg-r-pos-bg text-r-pos-fg shrink-0">Actively Hiring</span>
+                </div>
+                <p class="text-[13px] text-r-fg-secondary mt-0.5">Vercel &middot; Remote</p>
+                <div class="flex flex-wrap gap-1.5 mt-3">
+                  <span class="h-6 px-2.5 text-[11px] font-medium rounded-r-max bg-r-bg-tertiary text-r-fg-secondary inline-flex items-center">Full-time</span>
+                  <span class="h-6 px-2.5 text-[11px] font-medium rounded-r-max bg-r-bg-tertiary text-r-fg-secondary inline-flex items-center">$150K–$190K</span>
+                  <span class="h-6 px-2.5 text-[11px] font-medium rounded-r-max bg-r-bg-tertiary text-r-fg-secondary inline-flex items-center">Next.js</span>
+                  <span class="h-6 px-2.5 text-[11px] font-medium rounded-r-max bg-r-bg-tertiary text-r-fg-secondary inline-flex items-center">TypeScript</span>
+                </div>
+                <p class="text-[12px] text-r-fg-disabled mt-3">Posted 1 day ago</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 6 — UX Researcher @ Dropbox -->
+          <article class="t-shadow bg-r-bg-primary rounded-r-container shadow-e2 border border-r-card-border p-5 cursor-pointer hover:shadow-e3 hover:border-r-fg-border">
+            <div class="flex gap-4">
+              <div class="w-12 h-12 bg-r-info-fg rounded-r-input flex items-center justify-center shrink-0">
+                <span class="text-white text-[13px] font-brand leading-none">DB</span>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-start justify-between gap-2">
+                  <h3 class="text-[17px] font-medium leading-snug">UX Researcher</h3>
+                </div>
+                <p class="text-[13px] text-r-fg-secondary mt-0.5">Dropbox &middot; San Francisco, CA</p>
+                <div class="flex flex-wrap gap-1.5 mt-3">
+                  <span class="h-6 px-2.5 text-[11px] font-medium rounded-r-max bg-r-bg-tertiary text-r-fg-secondary inline-flex items-center">Full-time</span>
+                  <span class="h-6 px-2.5 text-[11px] font-medium rounded-r-max bg-r-bg-tertiary text-r-fg-secondary inline-flex items-center">$120K–$150K</span>
+                  <span class="h-6 px-2.5 text-[11px] font-medium rounded-r-max bg-r-bg-tertiary text-r-fg-secondary inline-flex items-center">User Research</span>
+                  <span class="h-6 px-2.5 text-[11px] font-medium rounded-r-max bg-r-bg-tertiary text-r-fg-secondary inline-flex items-center">Surveys</span>
+                </div>
+                <p class="text-[12px] text-r-fg-disabled mt-3">Posted 4 days ago</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 7 — Backend Engineer @ Coinbase -->
+          <article class="t-shadow bg-r-bg-primary rounded-r-container shadow-e2 border border-r-card-border p-5 cursor-pointer hover:shadow-e3 hover:border-r-fg-border">
+            <div class="flex gap-4">
+              <div class="w-12 h-12 bg-r-info-fg rounded-r-input flex items-center justify-center shrink-0">
+                <span class="text-white text-[13px] font-brand leading-none">CB</span>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-start justify-between gap-2">
+                  <h3 class="text-[17px] font-medium leading-snug">Backend Engineer</h3>
+                </div>
+                <p class="text-[13px] text-r-fg-secondary mt-0.5">Coinbase &middot; Remote</p>
+                <div class="flex flex-wrap gap-1.5 mt-3">
+                  <span class="h-6 px-2.5 text-[11px] font-medium rounded-r-max bg-r-bg-tertiary text-r-fg-secondary inline-flex items-center">Full-time</span>
+                  <span class="h-6 px-2.5 text-[11px] font-medium rounded-r-max bg-r-bg-tertiary text-r-fg-secondary inline-flex items-center">$160K–$200K</span>
+                  <span class="h-6 px-2.5 text-[11px] font-medium rounded-r-max bg-r-bg-tertiary text-r-fg-secondary inline-flex items-center">Go</span>
+                  <span class="h-6 px-2.5 text-[11px] font-medium rounded-r-max bg-r-bg-tertiary text-r-fg-secondary inline-flex items-center">PostgreSQL</span>
+                </div>
+                <p class="text-[12px] text-r-fg-disabled mt-3">Posted 6 days ago</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 8 — Program Manager @ Google -->
+          <article class="t-shadow bg-r-bg-primary rounded-r-container shadow-e2 border border-r-card-border p-5 cursor-pointer hover:shadow-e3 hover:border-r-fg-border">
+            <div class="flex gap-4">
+              <div class="w-12 h-12 bg-r-pos-fg rounded-r-input flex items-center justify-center shrink-0">
+                <span class="text-white text-[13px] font-brand leading-none">GO</span>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-start justify-between gap-2">
+                  <h3 class="text-[17px] font-medium leading-snug">Program Manager</h3>
+                  <span class="inline-flex items-center h-6 px-2.5 text-[11px] font-medium rounded-r-max bg-r-info-bg text-r-info-fg shrink-0">New</span>
+                </div>
+                <p class="text-[13px] text-r-fg-secondary mt-0.5">Google &middot; Mountain View, CA</p>
+                <div class="flex flex-wrap gap-1.5 mt-3">
+                  <span class="h-6 px-2.5 text-[11px] font-medium rounded-r-max bg-r-bg-tertiary text-r-fg-secondary inline-flex items-center">Full-time</span>
+                  <span class="h-6 px-2.5 text-[11px] font-medium rounded-r-max bg-r-bg-tertiary text-r-fg-secondary inline-flex items-center">$130K–$170K</span>
+                  <span class="h-6 px-2.5 text-[11px] font-medium rounded-r-max bg-r-bg-tertiary text-r-fg-secondary inline-flex items-center">Agile</span>
+                  <span class="h-6 px-2.5 text-[11px] font-medium rounded-r-max bg-r-bg-tertiary text-r-fg-secondary inline-flex items-center">Cross-functional</span>
+                </div>
+                <p class="text-[12px] text-r-fg-disabled mt-3">Posted 1 day ago</p>
+              </div>
+            </div>
+          </article>
+
+        </div><!-- /space-y-3 -->
+      </div>
+    </main>
+
+    <!-- --------------------------------------------------------
+         RIGHT PANEL — JOB DETAIL
+         -------------------------------------------------------- -->
+    <aside class="hidden xl:block w-[400px] shrink-0 border-l border-r-fg-border bg-r-bg-primary overflow-y-auto" style="height:calc(100vh - 64px); position:sticky; top:64px;">
+      <div class="p-6 space-y-6">
+
+        <!-- Header -->
+        <div class="space-y-4">
+          <div class="w-16 h-16 bg-r-ip rounded-r-input flex items-center justify-center">
+            <span class="text-white text-[22px] font-brand leading-none">HS</span>
+          </div>
+          <div>
+            <h2 class="text-[28px] font-medium leading-tight">Software Engineer</h2>
+            <p class="text-[14px] text-r-fg-secondary mt-1">Handshake &middot; San Francisco, CA</p>
+          </div>
+          <div class="flex flex-wrap gap-1.5">
+            <span class="h-6 px-2.5 text-[11px] font-medium rounded-r-max bg-r-bg-tertiary text-r-fg-secondary inline-flex items-center">Full-time</span>
+            <span class="h-6 px-2.5 text-[11px] font-medium rounded-r-max bg-r-bg-tertiary text-r-fg-secondary inline-flex items-center">$140K–$180K</span>
+            <span class="h-6 px-2.5 text-[11px] font-medium rounded-r-max bg-r-bg-tertiary text-r-fg-secondary inline-flex items-center">React</span>
+            <span class="h-6 px-2.5 text-[11px] font-medium rounded-r-max bg-r-bg-tertiary text-r-fg-secondary inline-flex items-center">TypeScript</span>
+            <span class="inline-flex items-center h-6 px-2.5 text-[11px] font-medium rounded-r-max bg-r-pos-bg text-r-pos-fg">Actively Hiring</span>
+          </div>
+        </div>
+
+        <!-- Actions -->
+        <div class="flex gap-3">
+          <button class="focus-ring flex-1 h-12 text-[14px] font-medium rounded-r-input bg-r-ip text-r-fg-inverted hover:bg-r-ip-hover active:bg-r-ip-active t-bg">
+            Apply Now
+          </button>
+          <button class="focus-ring h-12 w-12 rounded-r-input border border-r-fg-border bg-r-bg-primary hover:bg-r-i-hovered active:bg-r-i-pressed t-bg flex items-center justify-center" aria-label="Save job">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0z"/></svg>
+          </button>
+        </div>
+
+        <hr class="border-r-fg-border">
+
+        <!-- About this role -->
+        <section class="space-y-3">
+          <h3 class="text-[15px] font-medium">About this role</h3>
+          <div class="text-[14px] leading-relaxed text-r-fg-secondary space-y-3">
+            <p>We're looking for a Software Engineer to join the Core Product team at Handshake. You'll build features that connect students with employers, helping millions of early-talent job seekers launch their careers.</p>
+            <p>You'll work across the full stack with a focus on frontend, collaborating closely with product designers and data scientists to ship experiments and iterate quickly. Our stack is React, TypeScript, and GraphQL on the frontend with Ruby on Rails powering the API layer.</p>
+            <p>This role is ideal for engineers who care deeply about user experience and want their work to have a tangible impact on the career outcomes of the next generation.</p>
+          </div>
+        </section>
+
+        <hr class="border-r-fg-border">
+
+        <!-- Requirements -->
+        <section class="space-y-3">
+          <h3 class="text-[15px] font-medium">Requirements</h3>
+          <ul class="text-[14px] leading-relaxed text-r-fg-secondary space-y-2">
+            <li class="flex gap-2">
+              <span class="text-r-fg-disabled mt-1 shrink-0">&bull;</span>
+              <span>2+ years of professional experience building web applications with React and TypeScript</span>
+            </li>
+            <li class="flex gap-2">
+              <span class="text-r-fg-disabled mt-1 shrink-0">&bull;</span>
+              <span>Strong understanding of modern frontend patterns, state management, and component architecture</span>
+            </li>
+            <li class="flex gap-2">
+              <span class="text-r-fg-disabled mt-1 shrink-0">&bull;</span>
+              <span>Experience with GraphQL or RESTful APIs and comfort working across the stack when needed</span>
+            </li>
+            <li class="flex gap-2">
+              <span class="text-r-fg-disabled mt-1 shrink-0">&bull;</span>
+              <span>Track record of shipping user-facing features and iterating based on data and feedback</span>
+            </li>
+            <li class="flex gap-2">
+              <span class="text-r-fg-disabled mt-1 shrink-0">&bull;</span>
+              <span>BS/MS in Computer Science or equivalent practical experience</span>
+            </li>
+          </ul>
+        </section>
+
+        <hr class="border-r-fg-border">
+
+        <!-- Benefits -->
+        <section class="space-y-3">
+          <h3 class="text-[15px] font-medium">Benefits</h3>
+          <ul class="text-[14px] leading-relaxed text-r-fg-secondary space-y-2">
+            <li class="flex gap-2">
+              <span class="text-r-fg-disabled mt-1 shrink-0">&bull;</span>
+              <span>Competitive equity package and 401(k) with company match</span>
+            </li>
+            <li class="flex gap-2">
+              <span class="text-r-fg-disabled mt-1 shrink-0">&bull;</span>
+              <span>Comprehensive medical, dental, and vision coverage for you and your dependents</span>
+            </li>
+            <li class="flex gap-2">
+              <span class="text-r-fg-disabled mt-1 shrink-0">&bull;</span>
+              <span>Flexible PTO, 16 weeks parental leave, and monthly wellness stipend</span>
+            </li>
+            <li class="flex gap-2">
+              <span class="text-r-fg-disabled mt-1 shrink-0">&bull;</span>
+              <span>$1,000 annual learning and development budget</span>
+            </li>
+          </ul>
+        </section>
+
+        <hr class="border-r-fg-border">
+
+        <!-- Footer meta -->
+        <div class="flex items-center justify-between text-[13px] text-r-fg-disabled">
+          <span>Posted 2 days ago</span>
+          <span>142 applicants</span>
+        </div>
+
+      </div>
+    </aside>
+
+  </div><!-- /flex layout -->
+
+</body>
+</html>

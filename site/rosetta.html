@@ -67,7 +67,6 @@
     }
   </script>
   <style>
-    /* Noi Grotesk — Regular (1-499) and Medium (500-1000) */
     @font-face {
       font-family: "Noi Grotesk";
       font-weight: 1 499;
@@ -82,8 +81,6 @@
       src: url("fonts/NoiGrotesk-Medium.woff2") format("woff2"),
            url("fonts/NoiGrotesk-Medium.woff") format("woff");
     }
-
-    /* Sansplomb — brand display face */
     @font-face {
       font-family: "Sansplomb";
       font-weight: 1 1000;
@@ -91,81 +88,31 @@
       src: url("fonts/SansPlomb-98.woff2") format("woff2"),
            url("fonts/SansPlomb-98.woff") format("woff");
     }
-
     body { font-feature-settings: "ss03" on, "ss11" on; }
-
-    /* Focus ring */
-    .focus-ring:focus-visible {
-      outline: #003BCC solid 2px;
-      outline-offset: 2px;
-    }
-
-    /* Transitions */
+    .focus-ring:focus-visible { outline: #003BCC solid 2px; outline-offset: 2px; }
     .t-bg { transition: background-color 0.2s ease-out; }
     .t-all { transition: all 0.15s ease-out; }
     .t-shadow { transition: box-shadow 0.2s ease-out, border-color 0.2s ease-out; }
-
-    /* Section divider */
-    .divider {
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(31,32,44,0.15), transparent);
-    }
-
-    /* Modal animation */
-    @keyframes modalIn {
-      from { opacity: 0; transform: scale(0.95) translateY(8px); }
-      to { opacity: 1; transform: scale(1) translateY(0); }
-    }
+    .divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(31,32,44,0.15), transparent); }
+    @keyframes modalIn { from { opacity: 0; transform: scale(0.95) translateY(8px); } to { opacity: 1; transform: scale(1) translateY(0); } }
     .anim-modal { animation: modalIn 0.2s ease-out forwards; }
-
-    /* Toast slide-in */
-    @keyframes slideUp {
-      from { opacity: 0; transform: translateY(12px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+    @keyframes slideUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
     .anim-toast { animation: slideUp 0.2s ease-out; }
-
-    /* Fade-in for sections */
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(16px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
     .anim-section { animation: fadeIn 0.4s ease-out forwards; }
-
-    /* Reduced motion */
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-      }
-    }
-
-    /* Scrollbar */
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; } }
     ::-webkit-scrollbar { width: 8px; height: 8px; }
     ::-webkit-scrollbar-track { background: #F6F6F6; }
     ::-webkit-scrollbar-thumb { background: rgba(18,18,18,0.2); border-radius: 4px; }
     ::-webkit-scrollbar-thumb:hover { background: rgba(18,18,18,0.35); }
-
-    /* Hero subtle grid pattern */
-    .hero-grid {
-      background-image:
-        linear-gradient(rgba(4,25,27,0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(4,25,27,0.04) 1px, transparent 1px);
-      background-size: 32px 32px;
-    }
-
-    /* Modal overlay */
-    .modal-overlay {
-      background: rgba(18,18,18,0.5);
-      backdrop-filter: blur(4px);
-    }
+    .hero-grid { background-image: linear-gradient(rgba(4,25,27,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(4,25,27,0.04) 1px, transparent 1px); background-size: 32px 32px; }
+    .modal-overlay { background: rgba(18,18,18,0.5); backdrop-filter: blur(4px); }
   </style>
 </head>
 <body class="bg-r-bg-primary text-r-fg-primary font-sans antialiased">
 
   <!-- ==================== NAV ==================== -->
-  <nav class="fixed top-0 left-0 right-0 z-50 bg-r-bg-primary/95 backdrop-blur-sm border-b border-r-fg-border">
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-r-bg-primary/95 backdrop-blur-sm border-b border-r-fg-border h-16">
     <div class="max-w-[1280px] mx-auto px-6 flex items-center justify-between h-16">
       <div class="flex items-center gap-4">
         <a href="index.html" class="text-[13px] text-r-fg-secondary hover:text-r-fg-primary t-all font-mono">&larr; Back</a>
@@ -176,24 +123,20 @@
           <span class="font-brand text-[22px] tracking-tight text-r-ip leading-none mt-0.5">ROSETTA</span>
         </div>
       </div>
-      <div class="hidden md:flex items-center gap-6">
-        <a href="#colors" class="text-[15px] text-r-fg-secondary hover:text-r-fg-primary t-all">Colors</a>
-        <a href="#typography" class="text-[15px] text-r-fg-secondary hover:text-r-fg-primary t-all">Type</a>
-        <a href="#components" class="text-[15px] text-r-fg-secondary hover:text-r-fg-primary t-all">Components</a>
-        <a href="#spacing" class="text-[15px] text-r-fg-secondary hover:text-r-fg-primary t-all">Spacing</a>
-        <a href="#bold-factor" class="text-[15px] text-r-fg-secondary hover:text-r-fg-primary t-all">Bold Factor</a>
-      </div>
+      <a href="rosetta-demo-jobs.html" class="text-[13px] text-r-fg-secondary hover:text-r-fg-primary t-all font-mono">View Demo &rarr;</a>
     </div>
   </nav>
 
-  <!-- ==================== HERO ==================== -->
-  <header class="pt-16">
-    <div class="hero-grid bg-r-bg-surface">
-      <div class="max-w-[1280px] mx-auto px-6 pt-20 pb-16">
+  <!-- ==================== MAIN CONTENT ==================== -->
+  <div class="pt-16">
+
+    <!-- ==================== HERO ==================== -->
+    <header class="hero-grid bg-r-bg-surface">
+      <div class="max-w-[1120px] mx-auto px-6 pt-20 pb-16">
         <div class="grid lg:grid-cols-2 gap-16 items-center">
           <div>
             <div class="text-[13px] font-mono text-r-fg-secondary mb-4 tracking-wider uppercase">Handshake Design System</div>
-            <h1 class="font-brand text-[72px] lg:text-[110px] text-r-ip leading-[0.85] tracking-tight mb-6">
+            <h1 class="font-brand text-[96px] lg:text-[120px] text-r-ip leading-[0.85] tracking-tight mb-6">
               ROSETTA
             </h1>
             <p class="text-[24px] font-medium text-r-fg-primary leading-[1.2] tracking-[-0.02em] mb-3 max-w-lg">
@@ -241,855 +184,1249 @@
           </div>
         </div>
       </div>
-    </div>
-  </header>
+    </header>
 
-  <!-- ==================== SENSORY ==================== -->
-  <section class="py-16 px-6 bg-r-bg-primary">
-    <div class="max-w-[1280px] mx-auto">
-      <h2 class="text-[32px] font-medium tracking-[-0.03em] leading-[1.2] mb-2">The Vibe</h2>
-      <p class="text-[17px] text-r-fg-secondary tracking-[-0.02em] leading-[1.4] mb-10 max-w-2xl">Clean. Approachable. Trustworthy. Modern.</p>
-      <div class="grid md:grid-cols-2 gap-6">
-        <div class="bg-r-bg-surface rounded-r-container p-8 border border-r-fg-border">
-          <div class="text-[13px] font-mono text-r-fg-secondary mb-4 uppercase tracking-wider">If this design were a space</div>
-          <p class="text-[17px] text-r-fg-primary leading-[1.5] tracking-[-0.02em]">
-            A modern coworking space with clean desks and good lighting. White walls with occasional accent plants. Natural light through large windows. Professional but not stuffy — people wear nice casual. Quiet enough to focus, social enough to feel human.
-          </p>
+    <!-- ==================== OVERVIEW ==================== -->
+    <section id="overview" class="py-16 px-6 bg-r-bg-primary">
+      <div class="max-w-[1120px] mx-auto">
+        <h2 class="text-[32px] font-medium tracking-[-0.03em] leading-[1.2] mb-2">Overview</h2>
+        <p class="text-[17px] text-r-fg-secondary tracking-[-0.02em] leading-[1.4] mb-10 max-w-2xl">
+          Rosetta is Handshake's design system — a shared language for building interfaces that feel professional, approachable, and trustworthy. Every token, component, and pattern serves this intent.
+        </p>
+
+        <!-- The Vibe -->
+        <h3 class="text-[24px] font-medium tracking-[-0.02em] mb-5">The Vibe</h3>
+        <p class="text-[17px] text-r-fg-secondary tracking-[-0.02em] leading-[1.4] mb-6">Clean. Approachable. Trustworthy. Modern.</p>
+        <div class="grid md:grid-cols-2 gap-6 mb-12">
+          <div class="bg-r-bg-surface rounded-r-container p-8 border border-r-fg-border">
+            <div class="text-[13px] font-mono text-r-fg-secondary mb-4 uppercase tracking-wider">If this design were a space</div>
+            <p class="text-[17px] text-r-fg-primary leading-[1.5] tracking-[-0.02em]">
+              A modern coworking space with clean desks and good lighting. White walls with occasional accent plants. Natural light through large windows. Professional but not stuffy — people wear nice casual. Quiet enough to focus, social enough to feel human.
+            </p>
+          </div>
+          <div class="bg-r-bg-surface rounded-r-container p-8 border border-r-fg-border">
+            <div class="text-[13px] font-mono text-r-fg-secondary mb-4 uppercase tracking-wider">If this design were music</div>
+            <p class="text-[17px] text-r-fg-primary leading-[1.5] tracking-[-0.02em]">
+              Lo-fi beats or ambient electronic. Professional podcast intro music. Nothing distracting, nothing boring. The kind of background that helps you focus on the work.
+            </p>
+          </div>
         </div>
-        <div class="bg-r-bg-surface rounded-r-container p-8 border border-r-fg-border">
-          <div class="text-[13px] font-mono text-r-fg-secondary mb-4 uppercase tracking-wider">If this design were music</div>
-          <p class="text-[17px] text-r-fg-primary leading-[1.5] tracking-[-0.02em]">
-            Lo-fi beats or ambient electronic. Professional podcast intro music. Nothing distracting, nothing boring. The kind of background that helps you focus on the work.
-          </p>
+
+        <!-- What This Design Is NOT -->
+        <h3 class="text-[24px] font-medium tracking-[-0.02em] mb-5">What This Design Is NOT</h3>
+        <div class="flex flex-wrap gap-3">
+          <span class="inline-flex items-center gap-2 px-4 py-2 bg-r-neg-bg text-r-neg-fg text-[13px] font-semibold rounded-r-max">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            Dark or moody
+          </span>
+          <span class="inline-flex items-center gap-2 px-4 py-2 bg-r-neg-bg text-r-neg-fg text-[13px] font-semibold rounded-r-max">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            Playful or whimsical
+          </span>
+          <span class="inline-flex items-center gap-2 px-4 py-2 bg-r-neg-bg text-r-neg-fg text-[13px] font-semibold rounded-r-max">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            Trendy or experimental
+          </span>
+          <span class="inline-flex items-center gap-2 px-4 py-2 bg-r-neg-bg text-r-neg-fg text-[13px] font-semibold rounded-r-max">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            Corporate or sterile
+          </span>
+          <span class="inline-flex items-center gap-2 px-4 py-2 bg-r-neg-bg text-r-neg-fg text-[13px] font-semibold rounded-r-max">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            Loud or attention-seeking
+          </span>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <div class="divider mx-6"></div>
+    <div class="divider mx-6"></div>
 
-  <!-- ==================== COLORS ==================== -->
-  <section id="colors" class="py-16 px-6 bg-r-bg-primary">
-    <div class="max-w-[1280px] mx-auto">
-      <h2 class="text-[32px] font-medium tracking-[-0.03em] leading-[1.2] mb-2">Color System</h2>
-      <p class="text-[17px] text-r-fg-secondary tracking-[-0.02em] leading-[1.4] mb-10 max-w-2xl">
-        Neutral foundation with semantic accents. Color is intentionally restrained — it appears meaningfully for status, actions, and hierarchy.
-      </p>
+    <!-- ==================== COLORS ==================== -->
+    <section id="colors" class="py-16 px-6 bg-r-bg-primary">
+      <div class="max-w-[1120px] mx-auto">
+        <h2 class="text-[32px] font-medium tracking-[-0.03em] leading-[1.2] mb-2">Color System</h2>
+        <p class="text-[17px] text-r-fg-secondary tracking-[-0.02em] leading-[1.4] mb-10 max-w-2xl">
+          Neutral foundation with semantic accents. Color is intentionally restrained — it appears meaningfully for status, actions, and hierarchy.
+        </p>
 
-      <!-- Backgrounds -->
-      <h3 class="text-[24px] font-medium tracking-[-0.02em] mb-5">Backgrounds</h3>
-      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4 mb-10">
-        <div class="swatch cursor-pointer group" data-color="#FFFFFF" data-name="bg-primary">
-          <div class="aspect-square rounded-r-container bg-[#FFFFFF] border border-r-fg-border shadow-e1 group-hover:shadow-e2 t-shadow"></div>
-          <div class="mt-2"><div class="text-[13px] font-medium">bg-primary</div><div class="text-[13px] text-r-fg-secondary font-mono">#FFFFFF</div></div>
-        </div>
-        <div class="swatch cursor-pointer group" data-color="#F6F6F6" data-name="bg-secondary">
-          <div class="aspect-square rounded-r-container bg-[#F6F6F6] border border-r-fg-border shadow-e1 group-hover:shadow-e2 t-shadow"></div>
-          <div class="mt-2"><div class="text-[13px] font-medium">bg-secondary</div><div class="text-[13px] text-r-fg-secondary font-mono">#F6F6F6</div></div>
-        </div>
-        <div class="swatch cursor-pointer group" data-color="#FCFCFD" data-name="bg-surface">
-          <div class="aspect-square rounded-r-container bg-[#FCFCFD] border border-r-fg-border shadow-e1 group-hover:shadow-e2 t-shadow"></div>
-          <div class="mt-2"><div class="text-[13px] font-medium">bg-surface</div><div class="text-[13px] text-r-fg-secondary font-mono">#FCFCFD</div></div>
-        </div>
-        <div class="swatch cursor-pointer group" data-color="#121212" data-name="bg-inverted">
-          <div class="aspect-square rounded-r-container bg-[#121212] shadow-e1 group-hover:shadow-e2 t-shadow"></div>
-          <div class="mt-2"><div class="text-[13px] font-medium">bg-inverted</div><div class="text-[13px] text-r-fg-secondary font-mono">#121212</div></div>
-        </div>
-        <div class="swatch cursor-pointer group" data-color="#EAEAEA" data-name="bg-selected">
-          <div class="aspect-square rounded-r-container bg-[#EAEAEA] border border-r-fg-border shadow-e1 group-hover:shadow-e2 t-shadow"></div>
-          <div class="mt-2"><div class="text-[13px] font-medium">bg-selected</div><div class="text-[13px] text-r-fg-secondary font-mono">#EAEAEA</div></div>
-        </div>
-        <div class="swatch cursor-pointer group" data-color="#EEEEEE" data-name="bg-disabled">
-          <div class="aspect-square rounded-r-container bg-[#EEEEEE] border border-r-fg-border shadow-e1 group-hover:shadow-e2 t-shadow"></div>
-          <div class="mt-2"><div class="text-[13px] font-medium">bg-disabled</div><div class="text-[13px] text-r-fg-secondary font-mono">#EEEEEE</div></div>
-        </div>
-      </div>
-
-      <!-- Foreground & Interactive -->
-      <h3 class="text-[24px] font-medium tracking-[-0.02em] mb-5">Foreground & Interactive</h3>
-      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 mb-10">
-        <div class="swatch cursor-pointer group" data-color="#121212" data-name="fg-primary">
-          <div class="aspect-square rounded-r-container bg-[#121212] shadow-e1 group-hover:shadow-e2 t-shadow"></div>
-          <div class="mt-2"><div class="text-[13px] font-medium">fg-primary</div><div class="text-[13px] text-r-fg-secondary font-mono">#121212</div></div>
-        </div>
-        <div class="swatch cursor-pointer group" data-color="#04191B" data-name="interactive-primary">
-          <div class="aspect-square rounded-r-container bg-[#04191B] shadow-e1 group-hover:shadow-e2 t-shadow"></div>
-          <div class="mt-2"><div class="text-[13px] font-medium">interactive-primary</div><div class="text-[13px] text-r-fg-secondary font-mono">#04191B</div></div>
-        </div>
-        <div class="swatch cursor-pointer group" data-color="#062E32" data-name="interactive-hover">
-          <div class="aspect-square rounded-r-container bg-[#062E32] shadow-e1 group-hover:shadow-e2 t-shadow"></div>
-          <div class="mt-2"><div class="text-[13px] font-medium">hover</div><div class="text-[13px] text-r-fg-secondary font-mono">#062E32</div></div>
-        </div>
-        <div class="swatch cursor-pointer group" data-color="#073D42" data-name="interactive-active">
-          <div class="aspect-square rounded-r-container bg-[#073D42] shadow-e1 group-hover:shadow-e2 t-shadow"></div>
-          <div class="mt-2"><div class="text-[13px] font-medium">active</div><div class="text-[13px] text-r-fg-secondary font-mono">#073D42</div></div>
-        </div>
-        <div class="swatch cursor-pointer group" data-color="#003BCC" data-name="focus-outline">
-          <div class="aspect-square rounded-r-container bg-[#003BCC] shadow-e1 group-hover:shadow-e2 t-shadow"></div>
-          <div class="mt-2"><div class="text-[13px] font-medium">focus-outline</div><div class="text-[13px] text-r-fg-secondary font-mono">#003BCC</div></div>
-        </div>
-      </div>
-
-      <!-- Status Colors -->
-      <h3 class="text-[24px] font-medium tracking-[-0.02em] mb-5">Status Colors</h3>
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <div class="rounded-r-container overflow-hidden border border-r-fg-border">
-          <div class="swatch cursor-pointer p-5 bg-r-info-bg" data-color="#CCDBFF">
-            <div class="text-[13px] font-semibold text-r-info-fg mb-0.5">Info Background</div>
-            <div class="text-[13px] text-r-info-fg/70 font-mono">#CCDBFF</div>
+        <!-- Backgrounds -->
+        <h3 class="text-[24px] font-medium tracking-[-0.02em] mb-5">Backgrounds</h3>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4 mb-10">
+          <div class="swatch cursor-pointer group" data-color="#FFFFFF" data-name="bg-primary">
+            <div class="aspect-square rounded-r-container bg-[#FFFFFF] border border-r-fg-border shadow-e1 group-hover:shadow-e2 t-shadow"></div>
+            <div class="mt-2"><div class="text-[13px] font-medium">bg-primary</div><div class="text-[13px] text-r-fg-secondary font-mono">#FFFFFF</div></div>
           </div>
-          <div class="swatch cursor-pointer p-5 bg-r-info-fg" data-color="#003BCC">
-            <div class="text-[13px] font-semibold text-white mb-0.5">Info Foreground</div>
-            <div class="text-[13px] text-white/70 font-mono">#003BCC</div>
+          <div class="swatch cursor-pointer group" data-color="#F6F6F6" data-name="bg-secondary">
+            <div class="aspect-square rounded-r-container bg-[#F6F6F6] border border-r-fg-border shadow-e1 group-hover:shadow-e2 t-shadow"></div>
+            <div class="mt-2"><div class="text-[13px] font-medium">bg-secondary</div><div class="text-[13px] text-r-fg-secondary font-mono">#F6F6F6</div></div>
+          </div>
+          <div class="swatch cursor-pointer group" data-color="#FCFCFD" data-name="bg-surface">
+            <div class="aspect-square rounded-r-container bg-[#FCFCFD] border border-r-fg-border shadow-e1 group-hover:shadow-e2 t-shadow"></div>
+            <div class="mt-2"><div class="text-[13px] font-medium">bg-surface</div><div class="text-[13px] text-r-fg-secondary font-mono">#FCFCFD</div></div>
+          </div>
+          <div class="swatch cursor-pointer group" data-color="#121212" data-name="bg-inverted">
+            <div class="aspect-square rounded-r-container bg-[#121212] shadow-e1 group-hover:shadow-e2 t-shadow"></div>
+            <div class="mt-2"><div class="text-[13px] font-medium">bg-inverted</div><div class="text-[13px] text-r-fg-secondary font-mono">#121212</div></div>
+          </div>
+          <div class="swatch cursor-pointer group" data-color="#EAEAEA" data-name="bg-selected">
+            <div class="aspect-square rounded-r-container bg-[#EAEAEA] border border-r-fg-border shadow-e1 group-hover:shadow-e2 t-shadow"></div>
+            <div class="mt-2"><div class="text-[13px] font-medium">bg-selected</div><div class="text-[13px] text-r-fg-secondary font-mono">#EAEAEA</div></div>
+          </div>
+          <div class="swatch cursor-pointer group" data-color="#EEEEEE" data-name="bg-disabled">
+            <div class="aspect-square rounded-r-container bg-[#EEEEEE] border border-r-fg-border shadow-e1 group-hover:shadow-e2 t-shadow"></div>
+            <div class="mt-2"><div class="text-[13px] font-medium">bg-disabled</div><div class="text-[13px] text-r-fg-secondary font-mono">#EEEEEE</div></div>
           </div>
         </div>
-        <div class="rounded-r-container overflow-hidden border border-r-fg-border">
-          <div class="swatch cursor-pointer p-5 bg-r-pos-bg" data-color="#A5E09F">
-            <div class="text-[13px] font-semibold text-r-pos-fg mb-0.5">Positive Background</div>
-            <div class="text-[13px] text-r-pos-fg/70 font-mono">#A5E09F</div>
+
+        <!-- Foreground & Interactive -->
+        <h3 class="text-[24px] font-medium tracking-[-0.02em] mb-5">Foreground &amp; Interactive</h3>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 mb-10">
+          <div class="swatch cursor-pointer group" data-color="#121212" data-name="fg-primary">
+            <div class="aspect-square rounded-r-container bg-[#121212] shadow-e1 group-hover:shadow-e2 t-shadow"></div>
+            <div class="mt-2"><div class="text-[13px] font-medium">fg-primary</div><div class="text-[13px] text-r-fg-secondary font-mono">#121212</div></div>
           </div>
-          <div class="swatch cursor-pointer p-5 bg-r-pos-fg" data-color="#327D0F">
-            <div class="text-[13px] font-semibold text-white mb-0.5">Positive Foreground</div>
-            <div class="text-[13px] text-white/70 font-mono">#327D0F</div>
+          <div class="swatch cursor-pointer group" data-color="#04191B" data-name="interactive-primary">
+            <div class="aspect-square rounded-r-container bg-[#04191B] shadow-e1 group-hover:shadow-e2 t-shadow"></div>
+            <div class="mt-2"><div class="text-[13px] font-medium">interactive-primary</div><div class="text-[13px] text-r-fg-secondary font-mono">#04191B</div></div>
           </div>
-        </div>
-        <div class="rounded-r-container overflow-hidden border border-r-fg-border">
-          <div class="swatch cursor-pointer p-5 bg-r-warn-bg" data-color="#FFD999">
-            <div class="text-[13px] font-semibold text-r-warn-fg mb-0.5">Warning Background</div>
-            <div class="text-[13px] text-r-warn-fg/70 font-mono">#FFD999</div>
+          <div class="swatch cursor-pointer group" data-color="#062E32" data-name="interactive-hover">
+            <div class="aspect-square rounded-r-container bg-[#062E32] shadow-e1 group-hover:shadow-e2 t-shadow"></div>
+            <div class="mt-2"><div class="text-[13px] font-medium">hover</div><div class="text-[13px] text-r-fg-secondary font-mono">#062E32</div></div>
           </div>
-          <div class="swatch cursor-pointer p-5 bg-r-warn-fg" data-color="#A36700">
-            <div class="text-[13px] font-semibold text-white mb-0.5">Warning Foreground</div>
-            <div class="text-[13px] text-white/70 font-mono">#A36700</div>
+          <div class="swatch cursor-pointer group" data-color="#073D42" data-name="interactive-active">
+            <div class="aspect-square rounded-r-container bg-[#073D42] shadow-e1 group-hover:shadow-e2 t-shadow"></div>
+            <div class="mt-2"><div class="text-[13px] font-medium">active</div><div class="text-[13px] text-r-fg-secondary font-mono">#073D42</div></div>
           </div>
-        </div>
-        <div class="rounded-r-container overflow-hidden border border-r-fg-border">
-          <div class="swatch cursor-pointer p-5 bg-r-neg-bg" data-color="#FFC2C4">
-            <div class="text-[13px] font-semibold text-r-neg-fg mb-0.5">Negative Background</div>
-            <div class="text-[13px] text-r-neg-fg/70 font-mono">#FFC2C4</div>
-          </div>
-          <div class="swatch cursor-pointer p-5 bg-r-neg-fg" data-color="#BB3643">
-            <div class="text-[13px] font-semibold text-white mb-0.5">Negative Foreground</div>
-            <div class="text-[13px] text-white/70 font-mono">#BB3643</div>
+          <div class="swatch cursor-pointer group" data-color="#003BCC" data-name="focus-outline">
+            <div class="aspect-square rounded-r-container bg-[#003BCC] shadow-e1 group-hover:shadow-e2 t-shadow"></div>
+            <div class="mt-2"><div class="text-[13px] font-medium">focus-outline</div><div class="text-[13px] text-r-fg-secondary font-mono">#003BCC</div></div>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
 
-  <div class="divider mx-6"></div>
-
-  <!-- ==================== TYPOGRAPHY ==================== -->
-  <section id="typography" class="py-16 px-6 bg-r-bg-secondary">
-    <div class="max-w-[1280px] mx-auto">
-      <h2 class="text-[32px] font-medium tracking-[-0.03em] leading-[1.2] mb-2">Typography</h2>
-      <p class="text-[17px] text-r-fg-secondary tracking-[-0.02em] leading-[1.4] mb-10 max-w-2xl">
-        Three font families. Noi Grotesk for product UI, Sansplomb for brand impact, IBM Plex Mono for code and labels.
-      </p>
-
-      <!-- Font families -->
-      <div class="grid md:grid-cols-3 gap-5 mb-12">
-        <div class="bg-r-bg-primary rounded-r-container p-6 shadow-e2">
-          <div class="text-[13px] text-r-fg-secondary mb-3 font-mono">font-sans</div>
-          <div class="text-[28px] font-medium tracking-[-0.03em] leading-[1.2] mb-1">Noi Grotesk</div>
-          <div class="text-[13px] text-r-fg-secondary font-mono mb-4">ss03 + ss11 stylistic alternates</div>
-          <p class="text-[15px] text-r-fg-secondary leading-[1.4]">Geometric sans-serif with optical corrections and humanist touches. Regular (1-499) and Medium (500-1000) weight ranges.</p>
-        </div>
-        <div class="bg-r-bg-primary rounded-r-container p-6 shadow-e2">
-          <div class="text-[13px] text-r-fg-secondary mb-3 font-mono">font-brand</div>
-          <div class="text-[28px] font-brand tracking-wide mb-1">SANSPLOMB</div>
-          <div class="text-[13px] text-r-fg-secondary font-mono mb-4">SansPlomb-98</div>
-          <p class="text-[15px] text-r-fg-secondary leading-[1.4]">Bold condensed face that commands attention. Reserved for marketing and brand moments — stays out of product UI.</p>
-        </div>
-        <div class="bg-r-bg-primary rounded-r-container p-6 shadow-e2">
-          <div class="text-[13px] text-r-fg-secondary mb-3 font-mono">font-mono</div>
-          <div class="text-[28px] font-mono font-medium mb-1">IBM Plex Mono</div>
-          <div class="text-[13px] text-r-fg-secondary font-mono mb-4">monospace</div>
-          <p class="text-[15px] text-r-fg-secondary leading-[1.4]">Clean monospace for code blocks, technical labels, and metadata. Available in 400 and 500 weights.</p>
-        </div>
-      </div>
-
-      <!-- Type scale -->
-      <h3 class="text-[24px] font-medium tracking-[-0.02em] mb-5">Type Scale</h3>
-      <div class="bg-r-bg-primary rounded-r-container shadow-e2 overflow-hidden">
-        <div class="overflow-x-auto">
-          <table class="w-full min-w-[700px]">
-            <thead>
-              <tr class="text-left text-[13px] text-r-fg-secondary border-b border-r-fg-border">
-                <th class="p-5 pb-3 font-medium w-40">Style</th>
-                <th class="p-5 pb-3 font-medium">Preview</th>
-                <th class="p-5 pb-3 font-medium font-mono w-24">Size</th>
-                <th class="p-5 pb-3 font-medium font-mono w-24">Weight</th>
-                <th class="p-5 pb-3 font-medium font-mono w-24">Leading</th>
-              </tr>
-            </thead>
-            <tbody class="divide-y divide-r-fg-border">
-              <tr>
-                <td class="p-5 text-[13px] font-mono text-r-fg-secondary">Brand Large</td>
-                <td class="p-5"><span class="font-brand text-[56px] lg:text-[80px] text-r-ip leading-[0.8] tracking-tight">HEADLINE</span></td>
-                <td class="p-5 text-[13px] font-mono text-r-fg-secondary">122px</td>
-                <td class="p-5 text-[13px] font-mono text-r-fg-secondary">600</td>
-                <td class="p-5 text-[13px] font-mono text-r-fg-secondary">0.8</td>
-              </tr>
-              <tr>
-                <td class="p-5 text-[13px] font-mono text-r-fg-secondary">Brand Small</td>
-                <td class="p-5"><span class="font-brand text-[40px] lg:text-[60px] text-r-ip leading-[0.9] tracking-tight">SECTION</span></td>
-                <td class="p-5 text-[13px] font-mono text-r-fg-secondary">60px</td>
-                <td class="p-5 text-[13px] font-mono text-r-fg-secondary">600</td>
-                <td class="p-5 text-[13px] font-mono text-r-fg-secondary">0.9</td>
-              </tr>
-              <tr>
-                <td class="p-5 text-[13px] font-mono text-r-fg-secondary">Heading XL</td>
-                <td class="p-5"><span class="text-[44px] font-medium tracking-[-0.04em] leading-[1.0]">Page Title</span></td>
-                <td class="p-5 text-[13px] font-mono text-r-fg-secondary">44px</td>
-                <td class="p-5 text-[13px] font-mono text-r-fg-secondary">500</td>
-                <td class="p-5 text-[13px] font-mono text-r-fg-secondary">1.0</td>
-              </tr>
-              <tr>
-                <td class="p-5 text-[13px] font-mono text-r-fg-secondary">Heading Large</td>
-                <td class="p-5"><span class="text-[32px] font-medium tracking-[-0.03em] leading-[1.2]">Section Header</span></td>
-                <td class="p-5 text-[13px] font-mono text-r-fg-secondary">32px</td>
-                <td class="p-5 text-[13px] font-mono text-r-fg-secondary">500</td>
-                <td class="p-5 text-[13px] font-mono text-r-fg-secondary">1.2</td>
-              </tr>
-              <tr>
-                <td class="p-5 text-[13px] font-mono text-r-fg-secondary">Heading Medium</td>
-                <td class="p-5"><span class="text-[28px] font-medium tracking-[-0.03em] leading-[1.2]">Card Title</span></td>
-                <td class="p-5 text-[13px] font-mono text-r-fg-secondary">28px</td>
-                <td class="p-5 text-[13px] font-mono text-r-fg-secondary">500</td>
-                <td class="p-5 text-[13px] font-mono text-r-fg-secondary">1.2</td>
-              </tr>
-              <tr>
-                <td class="p-5 text-[13px] font-mono text-r-fg-secondary">Heading Small</td>
-                <td class="p-5"><span class="text-[24px] font-medium tracking-[-0.02em] leading-[1.2]">Subsection Header</span></td>
-                <td class="p-5 text-[13px] font-mono text-r-fg-secondary">24px</td>
-                <td class="p-5 text-[13px] font-mono text-r-fg-secondary">500</td>
-                <td class="p-5 text-[13px] font-mono text-r-fg-secondary">1.2</td>
-              </tr>
-              <tr>
-                <td class="p-5 text-[13px] font-mono text-r-fg-secondary">Body XL</td>
-                <td class="p-5"><span class="text-[19px] tracking-[-0.02em] leading-[1.2]">Large body text for introductions and featured content</span></td>
-                <td class="p-5 text-[13px] font-mono text-r-fg-secondary">19px</td>
-                <td class="p-5 text-[13px] font-mono text-r-fg-secondary">400/500</td>
-                <td class="p-5 text-[13px] font-mono text-r-fg-secondary">1.2</td>
-              </tr>
-              <tr>
-                <td class="p-5 text-[13px] font-mono text-r-fg-secondary">Body Large</td>
-                <td class="p-5"><span class="text-[17px] tracking-[-0.02em] leading-[1.4]">Primary body text for longer passages and descriptions</span></td>
-                <td class="p-5 text-[13px] font-mono text-r-fg-secondary">17px</td>
-                <td class="p-5 text-[13px] font-mono text-r-fg-secondary">400/500</td>
-                <td class="p-5 text-[13px] font-mono text-r-fg-secondary">1.4</td>
-              </tr>
-              <tr>
-                <td class="p-5 text-[13px] font-mono text-r-fg-secondary">Body Medium</td>
-                <td class="p-5"><span class="text-[15px] leading-[1.2]">Default UI text for buttons, labels, and general interface elements</span></td>
-                <td class="p-5 text-[13px] font-mono text-r-fg-secondary">15px</td>
-                <td class="p-5 text-[13px] font-mono text-r-fg-secondary">400/500</td>
-                <td class="p-5 text-[13px] font-mono text-r-fg-secondary">1.2</td>
-              </tr>
-              <tr>
-                <td class="p-5 text-[13px] font-mono text-r-fg-secondary">Body Small</td>
-                <td class="p-5"><span class="text-[13px] leading-[1.2] tracking-[0.01em]">Captions, metadata, timestamps, and supplementary information</span></td>
-                <td class="p-5 text-[13px] font-mono text-r-fg-secondary">13px</td>
-                <td class="p-5 text-[13px] font-mono text-r-fg-secondary">400/500</td>
-                <td class="p-5 text-[13px] font-mono text-r-fg-secondary">1.2</td>
-              </tr>
-              <tr>
-                <td class="p-5 text-[13px] font-mono text-r-fg-secondary">Mono</td>
-                <td class="p-5"><span class="font-mono text-[15px] leading-[1.2]">const token = "spacing-four"; // 16px</span></td>
-                <td class="p-5 text-[13px] font-mono text-r-fg-secondary">11-17px</td>
-                <td class="p-5 text-[13px] font-mono text-r-fg-secondary">400/500</td>
-                <td class="p-5 text-[13px] font-mono text-r-fg-secondary">1.2</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="divider mx-6"></div>
-
-  <!-- ==================== COMPONENTS ==================== -->
-  <section id="components" class="py-16 px-6 bg-r-bg-primary">
-    <div class="max-w-[1280px] mx-auto">
-      <h2 class="text-[32px] font-medium tracking-[-0.03em] leading-[1.2] mb-2">Components</h2>
-      <p class="text-[17px] text-r-fg-secondary tracking-[-0.02em] leading-[1.4] mb-10 max-w-2xl">
-        Functional, accessible building blocks on the 4px grid. Shadow-first elevation, semantic color restraint.
-      </p>
-
-      <!-- Buttons -->
-      <h3 class="text-[24px] font-medium tracking-[-0.02em] mb-5">Buttons</h3>
-      <div class="bg-r-bg-surface rounded-r-container p-8 border border-r-fg-border mb-10">
-        <div class="text-[13px] font-mono text-r-fg-secondary mb-4">Variants</div>
-        <div class="flex flex-wrap gap-4 items-center mb-8">
-          <button class="t-bg focus-ring h-12 px-6 bg-r-ip text-r-fg-inverted font-semibold rounded-r-input text-[15px] hover:bg-r-ip-hover active:bg-r-ip-active">
-            Primary
-          </button>
-          <button class="t-bg focus-ring h-12 px-6 bg-r-bg-primary text-r-fg-primary font-semibold rounded-r-input text-[15px] border border-r-fg-border hover:bg-r-bg-tertiary active:bg-r-bg-quaternary">
-            Secondary
-          </button>
-          <button class="t-bg focus-ring h-12 px-6 bg-transparent text-r-fg-primary font-semibold rounded-r-input text-[15px] hover:bg-r-i-hovered active:bg-r-i-pressed">
-            Ghost
-          </button>
-          <button class="t-bg focus-ring h-12 px-6 bg-r-neg-fg text-white font-semibold rounded-r-input text-[15px] hover:opacity-90 active:opacity-80">
-            Destructive
-          </button>
-          <button class="t-bg focus-ring h-12 px-6 bg-r-bg-primary text-r-neg-fg font-semibold rounded-r-input text-[15px] border border-r-neg-fg hover:bg-r-neg-bg/20">
-            Destructive Secondary
-          </button>
-        </div>
-
-        <div class="text-[13px] font-mono text-r-fg-secondary mb-4">Sizes — 36px / 48px / 60px</div>
-        <div class="flex flex-wrap gap-4 items-center mb-8">
-          <button class="t-bg focus-ring h-9 px-4 bg-r-ip text-r-fg-inverted text-[13px] font-semibold rounded-r-input hover:bg-r-ip-hover">Small (36px)</button>
-          <button class="t-bg focus-ring h-12 px-6 bg-r-ip text-r-fg-inverted text-[15px] font-semibold rounded-r-input hover:bg-r-ip-hover">Medium (48px)</button>
-          <button class="t-bg focus-ring h-[60px] px-8 bg-r-ip text-r-fg-inverted text-[17px] font-semibold rounded-r-input hover:bg-r-ip-hover">Large (60px)</button>
-        </div>
-
-        <div class="text-[13px] font-mono text-r-fg-secondary mb-4">States & icon-only</div>
-        <div class="flex flex-wrap gap-4 items-center">
-          <button class="h-12 px-6 bg-r-bg-disabled text-r-fg-disabled font-semibold rounded-r-input text-[15px] cursor-not-allowed">Disabled</button>
-          <button class="t-bg focus-ring w-12 h-12 bg-r-ip text-r-fg-inverted rounded-r-max hover:bg-r-ip-hover flex items-center justify-center">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
-          </button>
-          <button class="t-bg focus-ring w-12 h-12 bg-r-bg-primary text-r-fg-primary rounded-r-max border border-r-fg-border hover:bg-r-bg-tertiary flex items-center justify-center">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"/></svg>
-          </button>
-        </div>
-      </div>
-
-      <!-- Inputs -->
-      <h3 class="text-[24px] font-medium tracking-[-0.02em] mb-5">Inputs</h3>
-      <div class="bg-r-bg-surface rounded-r-container p-8 border border-r-fg-border mb-10">
-        <div class="grid md:grid-cols-2 gap-6 mb-6">
-          <div>
-            <label class="block text-[13px] font-medium text-r-fg-primary mb-2">Text Input</label>
-            <input type="text" placeholder="Enter your name" class="focus-ring t-all w-full h-12 px-4 border border-r-fg-border rounded-r-input-sm bg-transparent text-r-fg-primary placeholder:text-r-fg-secondary hover:border-r-fg-primary text-[15px]">
-          </div>
-          <div>
-            <label class="block text-[13px] font-medium text-r-fg-primary mb-2">Select</label>
-            <select class="focus-ring t-all w-full h-12 px-4 border border-r-fg-border rounded-r-input-sm bg-r-bg-primary text-r-fg-primary hover:border-r-fg-primary text-[15px]">
-              <option>Select a field of study</option>
-              <option>Computer Science</option>
-              <option>Product Design</option>
-              <option>Business Administration</option>
-            </select>
-          </div>
-        </div>
-        <div class="mb-6">
-          <label class="block text-[13px] font-medium text-r-fg-primary mb-2">Textarea</label>
-          <textarea rows="3" placeholder="Tell us about your career interests..." class="focus-ring t-all w-full p-4 border border-r-fg-border rounded-r-input-sm bg-transparent text-r-fg-primary placeholder:text-r-fg-secondary hover:border-r-fg-primary resize-none text-[15px]"></textarea>
-        </div>
-        <div class="flex flex-wrap gap-6">
-          <label class="flex items-center gap-3 cursor-pointer">
-            <input type="checkbox" class="w-5 h-5 rounded-r-input border-r-fg-border accent-r-ip focus-ring" checked>
-            <span class="text-[15px]">I agree to the terms</span>
-          </label>
-          <label class="flex items-center gap-3 cursor-pointer">
-            <input type="checkbox" class="w-5 h-5 rounded-r-input border-r-fg-border accent-r-ip focus-ring">
-            <span class="text-[15px]">Send me job alerts</span>
-          </label>
-        </div>
-        <div class="mt-6">
-          <label class="block text-[13px] font-medium text-r-fg-primary mb-2">Disabled Input</label>
-          <input type="text" value="Cannot be edited" disabled class="w-full h-12 px-4 border border-r-fg-border rounded-r-input-sm bg-r-bg-disabled text-r-fg-disabled cursor-not-allowed text-[15px]">
-        </div>
-      </div>
-
-      <!-- Cards -->
-      <h3 class="text-[24px] font-medium tracking-[-0.02em] mb-5">Cards</h3>
-      <div class="grid md:grid-cols-3 gap-5 mb-10">
-        <!-- Static card -->
-        <div class="bg-r-bg-primary rounded-r-container p-6 shadow-e2 border border-r-card-border">
-          <div class="text-[13px] font-mono text-r-fg-secondary mb-4">Static Card</div>
-          <h4 class="text-[28px] font-medium tracking-[-0.03em] leading-[1.2] mb-2">elevation-two</h4>
-          <p class="text-[15px] text-r-fg-secondary leading-[1.4] mb-4">Cards use soft shadows for depth. No heavy borders needed.</p>
-          <div class="flex gap-2">
-            <span class="inline-flex items-center px-3 py-1 bg-r-info-bg text-r-info-fg text-[13px] font-semibold rounded-r-input-sm">Remote</span>
-            <span class="inline-flex items-center px-3 py-1 bg-r-neutral-bg text-r-fg-primary text-[13px] font-semibold rounded-r-input-sm">Full-time</span>
-          </div>
-        </div>
-        <!-- Interactive card -->
-        <div class="t-shadow cursor-pointer bg-r-bg-primary rounded-r-container p-6 shadow-e2 border border-r-card-border hover:shadow-e3 hover:border-r-fg-border">
-          <div class="text-[13px] font-mono text-r-fg-secondary mb-4">Interactive Card — hover me</div>
-          <h4 class="text-[28px] font-medium tracking-[-0.03em] leading-[1.2] mb-2">Shadow deepens</h4>
-          <p class="text-[15px] text-r-fg-secondary leading-[1.4] mb-4">Interactive cards elevate on hover with deeper shadow and subtle border shift.</p>
-          <div class="flex gap-2">
-            <span class="inline-flex items-center px-3 py-1 bg-r-pos-bg text-r-pos-fg text-[13px] font-semibold rounded-r-input-sm">Actively Hiring</span>
-          </div>
-        </div>
-        <!-- Structured card -->
-        <div class="t-shadow cursor-pointer bg-r-bg-primary rounded-r-container shadow-e2 border border-r-card-border hover:shadow-e3 hover:border-r-fg-border overflow-hidden">
-          <div class="p-6 border-b border-r-fg-border">
-            <div class="flex items-start justify-between mb-3">
-              <div class="w-12 h-12 bg-r-ip rounded-r-input flex items-center justify-center text-r-fg-inverted font-brand text-xl">HS</div>
-              <span class="inline-flex items-center px-3 py-1 bg-r-warn-bg text-r-warn-fg text-[13px] font-semibold rounded-r-input-sm">2 days left</span>
+        <!-- Status Colors -->
+        <h3 class="text-[24px] font-medium tracking-[-0.02em] mb-5">Status Colors</h3>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div class="rounded-r-container overflow-hidden border border-r-fg-border">
+            <div class="swatch cursor-pointer p-5 bg-r-info-bg" data-color="#CCDBFF" data-name="info-bg">
+              <div class="text-[13px] font-semibold text-r-info-fg mb-0.5">Info Background</div>
+              <div class="text-[13px] text-r-info-fg/70 font-mono">#CCDBFF</div>
             </div>
-            <h4 class="text-[28px] font-medium tracking-[-0.03em] leading-[1.2] mb-1">Software Engineer</h4>
-            <p class="text-[15px] text-r-fg-secondary">Handshake — San Francisco, CA</p>
+            <div class="swatch cursor-pointer p-5 bg-r-info-fg" data-color="#003BCC" data-name="info-fg">
+              <div class="text-[13px] font-semibold text-white mb-0.5">Info Foreground</div>
+              <div class="text-[13px] text-white/70 font-mono">#003BCC</div>
+            </div>
           </div>
-          <div class="p-6 bg-r-bg-surface">
-            <div class="flex gap-2 flex-wrap">
-              <span class="inline-flex items-center px-2 py-1 bg-r-bg-primary text-r-fg-secondary text-[13px] rounded-r-input-sm border border-r-fg-border">React</span>
-              <span class="inline-flex items-center px-2 py-1 bg-r-bg-primary text-r-fg-secondary text-[13px] rounded-r-input-sm border border-r-fg-border">TypeScript</span>
-              <span class="inline-flex items-center px-2 py-1 bg-r-bg-primary text-r-fg-secondary text-[13px] rounded-r-input-sm border border-r-fg-border">Node.js</span>
+          <div class="rounded-r-container overflow-hidden border border-r-fg-border">
+            <div class="swatch cursor-pointer p-5 bg-r-pos-bg" data-color="#A5E09F" data-name="pos-bg">
+              <div class="text-[13px] font-semibold text-r-pos-fg mb-0.5">Positive Background</div>
+              <div class="text-[13px] text-r-pos-fg/70 font-mono">#A5E09F</div>
+            </div>
+            <div class="swatch cursor-pointer p-5 bg-r-pos-fg" data-color="#327D0F" data-name="pos-fg">
+              <div class="text-[13px] font-semibold text-white mb-0.5">Positive Foreground</div>
+              <div class="text-[13px] text-white/70 font-mono">#327D0F</div>
+            </div>
+          </div>
+          <div class="rounded-r-container overflow-hidden border border-r-fg-border">
+            <div class="swatch cursor-pointer p-5 bg-r-warn-bg" data-color="#FFD999" data-name="warn-bg">
+              <div class="text-[13px] font-semibold text-r-warn-fg mb-0.5">Warning Background</div>
+              <div class="text-[13px] text-r-warn-fg/70 font-mono">#FFD999</div>
+            </div>
+            <div class="swatch cursor-pointer p-5 bg-r-warn-fg" data-color="#A36700" data-name="warn-fg">
+              <div class="text-[13px] font-semibold text-white mb-0.5">Warning Foreground</div>
+              <div class="text-[13px] text-white/70 font-mono">#A36700</div>
+            </div>
+          </div>
+          <div class="rounded-r-container overflow-hidden border border-r-fg-border">
+            <div class="swatch cursor-pointer p-5 bg-r-neg-bg" data-color="#FFC2C4" data-name="neg-bg">
+              <div class="text-[13px] font-semibold text-r-neg-fg mb-0.5">Negative Background</div>
+              <div class="text-[13px] text-r-neg-fg/70 font-mono">#FFC2C4</div>
+            </div>
+            <div class="swatch cursor-pointer p-5 bg-r-neg-fg" data-color="#BB3643" data-name="neg-fg">
+              <div class="text-[13px] font-semibold text-white mb-0.5">Negative Foreground</div>
+              <div class="text-[13px] text-white/70 font-mono">#BB3643</div>
             </div>
           </div>
         </div>
       </div>
+    </section>
 
-      <!-- Badges & Tags -->
-      <h3 class="text-[24px] font-medium tracking-[-0.02em] mb-5">Badges & Tags</h3>
-      <div class="bg-r-bg-surface rounded-r-container p-8 border border-r-fg-border mb-10">
-        <div class="text-[13px] font-mono text-r-fg-secondary mb-4">Status variants</div>
-        <div class="flex flex-wrap gap-3 items-center mb-6">
-          <span class="inline-flex items-center px-3 py-1 bg-r-info-bg text-r-info-fg text-[13px] font-semibold rounded-r-input-sm">Info</span>
-          <span class="inline-flex items-center px-3 py-1 bg-r-pos-bg text-r-pos-fg text-[13px] font-semibold rounded-r-input-sm">Positive</span>
-          <span class="inline-flex items-center px-3 py-1 bg-r-warn-bg text-r-warn-fg text-[13px] font-semibold rounded-r-input-sm">Warning</span>
-          <span class="inline-flex items-center px-3 py-1 bg-r-neg-bg text-r-neg-fg text-[13px] font-semibold rounded-r-input-sm">Negative</span>
-          <span class="inline-flex items-center px-3 py-1 bg-r-neutral-bg text-r-fg-primary text-[13px] font-semibold rounded-r-input-sm">Neutral</span>
+    <div class="divider mx-6"></div>
+
+    <!-- ==================== TYPOGRAPHY ==================== -->
+    <section id="typography" class="py-16 px-6 bg-r-bg-secondary">
+      <div class="max-w-[1120px] mx-auto">
+        <h2 class="text-[32px] font-medium tracking-[-0.03em] leading-[1.2] mb-2">Typography</h2>
+        <p class="text-[17px] text-r-fg-secondary tracking-[-0.02em] leading-[1.4] mb-10 max-w-2xl">
+          Three font families. Noi Grotesk for product UI, Sansplomb for brand impact, IBM Plex Mono for code and labels.
+        </p>
+
+        <!-- Font families -->
+        <div class="grid md:grid-cols-3 gap-5 mb-12">
+          <div class="bg-r-bg-primary rounded-r-container p-6 shadow-e2">
+            <div class="text-[13px] text-r-fg-secondary mb-3 font-mono">font-sans</div>
+            <div class="text-[28px] font-medium tracking-[-0.03em] leading-[1.2] mb-1">Noi Grotesk</div>
+            <div class="text-[13px] text-r-fg-secondary font-mono mb-4">ss03 + ss11 stylistic alternates</div>
+            <p class="text-[15px] text-r-fg-secondary leading-[1.4]">Geometric sans-serif with optical corrections and humanist touches. Regular (1-499) and Medium (500-1000) weight ranges.</p>
+          </div>
+          <div class="bg-r-bg-primary rounded-r-container p-6 shadow-e2">
+            <div class="text-[13px] text-r-fg-secondary mb-3 font-mono">font-brand</div>
+            <div class="text-[28px] font-brand tracking-wide mb-1">SANSPLOMB</div>
+            <div class="text-[13px] text-r-fg-secondary font-mono mb-4">SansPlomb-98</div>
+            <p class="text-[15px] text-r-fg-secondary leading-[1.4]">Bold condensed face that commands attention. Reserved for marketing and brand moments — stays out of product UI.</p>
+          </div>
+          <div class="bg-r-bg-primary rounded-r-container p-6 shadow-e2">
+            <div class="text-[13px] text-r-fg-secondary mb-3 font-mono">font-mono</div>
+            <div class="text-[28px] font-mono font-medium mb-1">IBM Plex Mono</div>
+            <div class="text-[13px] text-r-fg-secondary font-mono mb-4">monospace</div>
+            <p class="text-[15px] text-r-fg-secondary leading-[1.4]">Clean monospace for code blocks, technical labels, and metadata. Available in 400 and 500 weights.</p>
+          </div>
         </div>
-        <div class="text-[13px] font-mono text-r-fg-secondary mb-4">Pill & compound</div>
-        <div class="flex flex-wrap gap-3 items-center">
-          <span class="inline-flex items-center gap-2 px-3 py-1 bg-r-ip text-r-fg-inverted text-[13px] font-semibold rounded-r-max">
-            <span class="w-1.5 h-1.5 bg-r-pos-bg rounded-full"></span>Active
-          </span>
-          <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-r-bg-primary text-r-fg-primary text-[13px] font-medium rounded-r-max border border-r-fg-border">
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-            San Francisco
-          </span>
-          <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-r-bg-primary text-r-fg-primary text-[13px] font-medium rounded-r-max border border-r-fg-border">
-            $140K - $180K
-          </span>
+
+        <!-- Type scale -->
+        <h3 class="text-[24px] font-medium tracking-[-0.02em] mb-5">Type Scale</h3>
+        <div class="bg-r-bg-primary rounded-r-container shadow-e2 overflow-hidden">
+          <div class="overflow-x-auto">
+            <table class="w-full min-w-[700px]">
+              <thead>
+                <tr class="text-left text-[13px] text-r-fg-secondary border-b border-r-fg-border">
+                  <th class="p-5 pb-3 font-medium w-40">Style</th>
+                  <th class="p-5 pb-3 font-medium">Preview</th>
+                  <th class="p-5 pb-3 font-medium font-mono w-24">Size</th>
+                  <th class="p-5 pb-3 font-medium font-mono w-24">Weight</th>
+                  <th class="p-5 pb-3 font-medium font-mono w-24">Leading</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-r-fg-border">
+                <tr>
+                  <td class="p-5 text-[13px] font-mono text-r-fg-secondary">Brand Large</td>
+                  <td class="p-5"><span class="font-brand text-[56px] lg:text-[80px] text-r-ip leading-[0.8] tracking-tight">HEADLINE</span></td>
+                  <td class="p-5 text-[13px] font-mono text-r-fg-secondary">122px</td>
+                  <td class="p-5 text-[13px] font-mono text-r-fg-secondary">600</td>
+                  <td class="p-5 text-[13px] font-mono text-r-fg-secondary">0.8</td>
+                </tr>
+                <tr>
+                  <td class="p-5 text-[13px] font-mono text-r-fg-secondary">Brand Small</td>
+                  <td class="p-5"><span class="font-brand text-[40px] lg:text-[60px] text-r-ip leading-[0.9] tracking-tight">SECTION</span></td>
+                  <td class="p-5 text-[13px] font-mono text-r-fg-secondary">60px</td>
+                  <td class="p-5 text-[13px] font-mono text-r-fg-secondary">600</td>
+                  <td class="p-5 text-[13px] font-mono text-r-fg-secondary">0.9</td>
+                </tr>
+                <tr>
+                  <td class="p-5 text-[13px] font-mono text-r-fg-secondary">Heading XL</td>
+                  <td class="p-5"><span class="text-[44px] font-medium tracking-[-0.04em] leading-[1.0]">Page Title</span></td>
+                  <td class="p-5 text-[13px] font-mono text-r-fg-secondary">44px</td>
+                  <td class="p-5 text-[13px] font-mono text-r-fg-secondary">500</td>
+                  <td class="p-5 text-[13px] font-mono text-r-fg-secondary">1.0</td>
+                </tr>
+                <tr>
+                  <td class="p-5 text-[13px] font-mono text-r-fg-secondary">Heading Large</td>
+                  <td class="p-5"><span class="text-[32px] font-medium tracking-[-0.03em] leading-[1.2]">Section Header</span></td>
+                  <td class="p-5 text-[13px] font-mono text-r-fg-secondary">32px</td>
+                  <td class="p-5 text-[13px] font-mono text-r-fg-secondary">500</td>
+                  <td class="p-5 text-[13px] font-mono text-r-fg-secondary">1.2</td>
+                </tr>
+                <tr>
+                  <td class="p-5 text-[13px] font-mono text-r-fg-secondary">Heading Medium</td>
+                  <td class="p-5"><span class="text-[28px] font-medium tracking-[-0.03em] leading-[1.2]">Card Title</span></td>
+                  <td class="p-5 text-[13px] font-mono text-r-fg-secondary">28px</td>
+                  <td class="p-5 text-[13px] font-mono text-r-fg-secondary">500</td>
+                  <td class="p-5 text-[13px] font-mono text-r-fg-secondary">1.2</td>
+                </tr>
+                <tr>
+                  <td class="p-5 text-[13px] font-mono text-r-fg-secondary">Heading Small</td>
+                  <td class="p-5"><span class="text-[24px] font-medium tracking-[-0.02em] leading-[1.2]">Subsection Header</span></td>
+                  <td class="p-5 text-[13px] font-mono text-r-fg-secondary">24px</td>
+                  <td class="p-5 text-[13px] font-mono text-r-fg-secondary">500</td>
+                  <td class="p-5 text-[13px] font-mono text-r-fg-secondary">1.2</td>
+                </tr>
+                <tr>
+                  <td class="p-5 text-[13px] font-mono text-r-fg-secondary">Body XL</td>
+                  <td class="p-5"><span class="text-[19px] tracking-[-0.02em] leading-[1.2]">Large body text for introductions and featured content</span></td>
+                  <td class="p-5 text-[13px] font-mono text-r-fg-secondary">19px</td>
+                  <td class="p-5 text-[13px] font-mono text-r-fg-secondary">400/500</td>
+                  <td class="p-5 text-[13px] font-mono text-r-fg-secondary">1.2</td>
+                </tr>
+                <tr>
+                  <td class="p-5 text-[13px] font-mono text-r-fg-secondary">Body Large</td>
+                  <td class="p-5"><span class="text-[17px] tracking-[-0.02em] leading-[1.4]">Primary body text for longer passages and descriptions</span></td>
+                  <td class="p-5 text-[13px] font-mono text-r-fg-secondary">17px</td>
+                  <td class="p-5 text-[13px] font-mono text-r-fg-secondary">400/500</td>
+                  <td class="p-5 text-[13px] font-mono text-r-fg-secondary">1.4</td>
+                </tr>
+                <tr>
+                  <td class="p-5 text-[13px] font-mono text-r-fg-secondary">Body Medium</td>
+                  <td class="p-5"><span class="text-[15px] leading-[1.2]">Default UI text for buttons, labels, and general interface elements</span></td>
+                  <td class="p-5 text-[13px] font-mono text-r-fg-secondary">15px</td>
+                  <td class="p-5 text-[13px] font-mono text-r-fg-secondary">400/500</td>
+                  <td class="p-5 text-[13px] font-mono text-r-fg-secondary">1.2</td>
+                </tr>
+                <tr>
+                  <td class="p-5 text-[13px] font-mono text-r-fg-secondary">Body Small</td>
+                  <td class="p-5"><span class="text-[13px] leading-[1.2] tracking-[0.01em]">Captions, metadata, timestamps, and supplementary information</span></td>
+                  <td class="p-5 text-[13px] font-mono text-r-fg-secondary">13px</td>
+                  <td class="p-5 text-[13px] font-mono text-r-fg-secondary">400/500</td>
+                  <td class="p-5 text-[13px] font-mono text-r-fg-secondary">1.2</td>
+                </tr>
+                <tr>
+                  <td class="p-5 text-[13px] font-mono text-r-fg-secondary">Mono</td>
+                  <td class="p-5"><span class="font-mono text-[15px] leading-[1.2]">const token = "spacing-four"; // 16px</span></td>
+                  <td class="p-5 text-[13px] font-mono text-r-fg-secondary">11-17px</td>
+                  <td class="p-5 text-[13px] font-mono text-r-fg-secondary">400/500</td>
+                  <td class="p-5 text-[13px] font-mono text-r-fg-secondary">1.2</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider mx-6"></div>
+
+    <!-- ==================== SPACING & LAYOUT ==================== -->
+    <section id="spacing" class="py-16 px-6 bg-r-bg-secondary">
+      <div class="max-w-[1120px] mx-auto">
+        <h2 class="text-[32px] font-medium tracking-[-0.03em] leading-[1.2] mb-2">Spacing &amp; Layout</h2>
+        <p class="text-[17px] text-r-fg-secondary tracking-[-0.02em] leading-[1.4] mb-10 max-w-2xl">
+          Everything aligns to a 4px base grid. This consistency creates subconscious harmony across the entire system.
+        </p>
+
+        <!-- Spacing scale -->
+        <h3 class="text-[24px] font-medium tracking-[-0.02em] mb-5">Spacing Scale</h3>
+        <div class="bg-r-bg-primary rounded-r-container shadow-e2 overflow-hidden mb-10">
+          <div class="overflow-x-auto">
+            <table class="w-full min-w-[500px]">
+              <thead>
+                <tr class="text-left text-[13px] text-r-fg-secondary border-b border-r-fg-border">
+                  <th class="p-5 pb-3 font-medium font-mono">Token</th>
+                  <th class="p-5 pb-3 font-medium font-mono">Value</th>
+                  <th class="p-5 pb-3 font-medium">Usage</th>
+                  <th class="p-5 pb-3 font-medium">Visual</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-r-fg-border">
+                <tr><td class="p-4 text-[13px] font-mono">spacing-half</td><td class="p-4 text-[13px] font-mono">2px</td><td class="p-4 text-[13px] text-r-fg-secondary">Micro adjustments</td><td class="p-4"><div class="h-3 bg-r-ip rounded-sm" style="width:2px"></div></td></tr>
+                <tr><td class="p-4 text-[13px] font-mono">spacing-one</td><td class="p-4 text-[13px] font-mono">4px</td><td class="p-4 text-[13px] text-r-fg-secondary">Icon margins, tight gaps</td><td class="p-4"><div class="h-3 bg-r-ip rounded-sm" style="width:4px"></div></td></tr>
+                <tr><td class="p-4 text-[13px] font-mono">spacing-two</td><td class="p-4 text-[13px] font-mono">8px</td><td class="p-4 text-[13px] text-r-fg-secondary">Default element spacing</td><td class="p-4"><div class="h-3 bg-r-ip rounded-sm" style="width:8px"></div></td></tr>
+                <tr><td class="p-4 text-[13px] font-mono">spacing-three</td><td class="p-4 text-[13px] font-mono">12px</td><td class="p-4 text-[13px] text-r-fg-secondary">Small component padding</td><td class="p-4"><div class="h-3 bg-r-ip rounded-sm" style="width:12px"></div></td></tr>
+                <tr><td class="p-4 text-[13px] font-mono">spacing-four</td><td class="p-4 text-[13px] font-mono">16px</td><td class="p-4 text-[13px] text-r-fg-secondary">Standard padding</td><td class="p-4"><div class="h-3 bg-r-ip rounded-sm" style="width:16px"></div></td></tr>
+                <tr><td class="p-4 text-[13px] font-mono">spacing-five</td><td class="p-4 text-[13px] font-mono">20px</td><td class="p-4 text-[13px] text-r-fg-secondary">Medium padding</td><td class="p-4"><div class="h-3 bg-r-ip rounded-sm" style="width:20px"></div></td></tr>
+                <tr><td class="p-4 text-[13px] font-mono">spacing-six</td><td class="p-4 text-[13px] font-mono">24px</td><td class="p-4 text-[13px] text-r-fg-secondary">Section spacing</td><td class="p-4"><div class="h-3 bg-r-ip rounded-sm" style="width:24px"></div></td></tr>
+                <tr><td class="p-4 text-[13px] font-mono">spacing-eight</td><td class="p-4 text-[13px] font-mono">32px</td><td class="p-4 text-[13px] text-r-fg-secondary">Large gaps</td><td class="p-4"><div class="h-3 bg-r-ip rounded-sm" style="width:32px"></div></td></tr>
+                <tr><td class="p-4 text-[13px] font-mono">spacing-twelve</td><td class="p-4 text-[13px] font-mono">48px</td><td class="p-4 text-[13px] text-r-fg-secondary">Section margins</td><td class="p-4"><div class="h-3 bg-r-ip rounded-sm" style="width:48px"></div></td></tr>
+                <tr><td class="p-4 text-[13px] font-mono">spacing-sixteen</td><td class="p-4 text-[13px] font-mono">64px</td><td class="p-4 text-[13px] text-r-fg-secondary">Page-level spacing</td><td class="p-4"><div class="h-3 bg-r-ip rounded-sm" style="width:64px"></div></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Component Sizes -->
+        <h3 class="text-[24px] font-medium tracking-[-0.02em] mb-5">Component Sizes</h3>
+        <div class="grid md:grid-cols-3 gap-5">
+          <div class="bg-r-bg-primary rounded-r-container p-6 shadow-e2">
+            <div class="text-[13px] font-mono text-r-fg-secondary mb-3">Touch targets</div>
+            <div class="text-[15px] font-medium mb-2">Minimum 44px height</div>
+            <div class="flex items-center gap-3">
+              <div class="w-11 h-11 border-2 border-dashed border-r-pos-fg rounded-r-input flex items-center justify-center text-[11px] font-mono text-r-pos-fg">44px</div>
+              <div class="w-12 h-12 bg-r-ip rounded-r-input flex items-center justify-center text-[11px] font-mono text-r-fg-inverted">48px</div>
+            </div>
+          </div>
+          <div class="bg-r-bg-primary rounded-r-container p-6 shadow-e2">
+            <div class="text-[13px] font-mono text-r-fg-secondary mb-3">Mobile buttons</div>
+            <div class="text-[15px] font-medium mb-2">Full-width on narrow screens</div>
+            <button class="t-bg w-full h-12 bg-r-ip text-r-fg-inverted font-semibold rounded-r-input text-[15px]">Apply Now</button>
+          </div>
+          <div class="bg-r-bg-primary rounded-r-container p-6 shadow-e2">
+            <div class="text-[13px] font-mono text-r-fg-secondary mb-3">Layout</div>
+            <div class="text-[15px] font-medium mb-2">Stack instead of grid</div>
+            <p class="text-[13px] text-r-fg-secondary">Multi-column layouts collapse to single column. Prefer stacking over horizontal scroll.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider mx-6"></div>
+
+    <!-- ==================== ELEVATION & RADII ==================== -->
+    <section id="elevation" class="py-16 px-6 bg-r-bg-secondary">
+      <div class="max-w-[1120px] mx-auto">
+        <h2 class="text-[32px] font-medium tracking-[-0.03em] leading-[1.2] mb-2">Elevation &amp; Radii</h2>
+        <p class="text-[17px] text-r-fg-secondary tracking-[-0.02em] leading-[1.4] mb-10 max-w-2xl">
+          Shadow-first depth hierarchy with consistent border radii. Cards float rather than sit — depth without visual noise.
+        </p>
+
+        <!-- Elevation -->
+        <h3 class="text-[24px] font-medium tracking-[-0.02em] mb-5">Elevation</h3>
+        <div class="grid md:grid-cols-4 gap-5 mb-10">
+          <div class="bg-r-bg-primary rounded-r-container p-6 border border-r-fg-border">
+            <div class="text-[13px] font-mono text-r-fg-secondary mb-2">elevation-zero</div>
+            <div class="text-[15px] font-medium">Flat</div>
+            <div class="text-[13px] text-r-fg-secondary mt-1">No shadow</div>
+          </div>
+          <div class="bg-r-bg-primary rounded-r-container p-6 shadow-e1">
+            <div class="text-[13px] font-mono text-r-fg-secondary mb-2">elevation-one</div>
+            <div class="text-[15px] font-medium">Subtle lift</div>
+            <div class="text-[13px] text-r-fg-secondary mt-1">Slight separation</div>
+          </div>
+          <div class="bg-r-bg-primary rounded-r-container p-6 shadow-e2">
+            <div class="text-[13px] font-mono text-r-fg-secondary mb-2">elevation-two</div>
+            <div class="text-[15px] font-medium">Standard card</div>
+            <div class="text-[13px] text-r-fg-secondary mt-1">Default card elevation</div>
+          </div>
+          <div class="bg-r-bg-primary rounded-r-container p-6 shadow-e3">
+            <div class="text-[13px] font-mono text-r-fg-secondary mb-2">elevation-three</div>
+            <div class="text-[15px] font-medium">Modals</div>
+            <div class="text-[13px] text-r-fg-secondary mt-1">Dropdowns, popovers</div>
+          </div>
+        </div>
+
+        <!-- Border Radius -->
+        <h3 class="text-[24px] font-medium tracking-[-0.02em] mb-5">Border Radius</h3>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-5">
+          <div class="bg-r-bg-primary rounded-r-container p-6 shadow-e2 text-center">
+            <div class="w-20 h-20 bg-r-ip rounded-r-input-sm mx-auto mb-4"></div>
+            <div class="text-[15px] font-medium mb-1">radius-input-small</div>
+            <div class="text-[13px] font-mono text-r-fg-secondary">4px</div>
+            <div class="text-[13px] text-r-fg-secondary mt-1">Interactive elements</div>
+          </div>
+          <div class="bg-r-bg-primary rounded-r-container p-6 shadow-e2 text-center">
+            <div class="w-20 h-20 bg-r-ip rounded-r-input mx-auto mb-4"></div>
+            <div class="text-[15px] font-medium mb-1">radius-input-regular</div>
+            <div class="text-[13px] font-mono text-r-fg-secondary">8px</div>
+            <div class="text-[13px] text-r-fg-secondary mt-1">Small interactive elements</div>
+          </div>
+          <div class="bg-r-bg-primary rounded-r-container p-6 shadow-e2 text-center">
+            <div class="w-20 h-20 bg-r-ip rounded-r-container mx-auto mb-4"></div>
+            <div class="text-[15px] font-medium mb-1">radius-container</div>
+            <div class="text-[13px] font-mono text-r-fg-secondary">16px</div>
+            <div class="text-[13px] text-r-fg-secondary mt-1">Cards, large surfaces</div>
+          </div>
+          <div class="bg-r-bg-primary rounded-r-container p-6 shadow-e2 text-center">
+            <div class="w-20 h-20 bg-r-ip rounded-r-max mx-auto mb-4"></div>
+            <div class="text-[15px] font-medium mb-1">radius-max</div>
+            <div class="text-[13px] font-mono text-r-fg-secondary">9999px</div>
+            <div class="text-[13px] text-r-fg-secondary mt-1">Pills, icon buttons</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider mx-6"></div>
+
+    <!-- ==================== COMPONENTS ==================== -->
+    <section id="buttons" class="py-16 px-6 bg-r-bg-primary">
+      <div class="max-w-[1120px] mx-auto">
+        <h2 class="text-[32px] font-medium tracking-[-0.03em] leading-[1.2] mb-2">Components</h2>
+        <p class="text-[17px] text-r-fg-secondary tracking-[-0.02em] leading-[1.4] mb-10 max-w-2xl">
+          Functional, accessible building blocks on the 4px grid. Shadow-first elevation, semantic color restraint.
+        </p>
+
+        <!-- Buttons -->
+        <h3 class="text-[24px] font-medium tracking-[-0.02em] mb-5">Buttons</h3>
+        <div class="bg-r-bg-surface rounded-r-container p-8 border border-r-fg-border mb-10">
+          <div class="text-[13px] font-mono text-r-fg-secondary mb-4">Variants</div>
+          <div class="flex flex-wrap gap-4 items-center mb-8">
+            <button class="t-bg focus-ring h-12 px-6 bg-r-ip text-r-fg-inverted font-semibold rounded-r-input text-[15px] hover:bg-r-ip-hover active:bg-r-ip-active">
+              Primary
+            </button>
+            <button class="t-bg focus-ring h-12 px-6 bg-r-bg-primary text-r-fg-primary font-semibold rounded-r-input text-[15px] border border-r-fg-border hover:bg-r-bg-tertiary active:bg-r-bg-quaternary">
+              Secondary
+            </button>
+            <button class="t-bg focus-ring h-12 px-6 bg-transparent text-r-fg-primary font-semibold rounded-r-input text-[15px] hover:bg-r-i-hovered active:bg-r-i-pressed">
+              Ghost
+            </button>
+            <button class="t-bg focus-ring h-12 px-6 bg-r-neg-fg text-white font-semibold rounded-r-input text-[15px] hover:opacity-90 active:opacity-80">
+              Destructive
+            </button>
+            <button class="t-bg focus-ring h-12 px-6 bg-r-bg-primary text-r-neg-fg font-semibold rounded-r-input text-[15px] border border-r-neg-fg hover:bg-r-neg-bg/20">
+              Destructive Secondary
+            </button>
+          </div>
+
+          <div class="text-[13px] font-mono text-r-fg-secondary mb-4">Sizes — 36px / 48px / 60px</div>
+          <div class="flex flex-wrap gap-4 items-center mb-8">
+            <button class="t-bg focus-ring h-9 px-4 bg-r-ip text-r-fg-inverted text-[13px] font-semibold rounded-r-input hover:bg-r-ip-hover">Small (36px)</button>
+            <button class="t-bg focus-ring h-12 px-6 bg-r-ip text-r-fg-inverted text-[15px] font-semibold rounded-r-input hover:bg-r-ip-hover">Medium (48px)</button>
+            <button class="t-bg focus-ring h-[60px] px-8 bg-r-ip text-r-fg-inverted text-[17px] font-semibold rounded-r-input hover:bg-r-ip-hover">Large (60px)</button>
+          </div>
+
+          <div class="text-[13px] font-mono text-r-fg-secondary mb-4">States &amp; icon-only</div>
+          <div class="flex flex-wrap gap-4 items-center">
+            <button class="h-12 px-6 bg-r-bg-disabled text-r-fg-disabled font-semibold rounded-r-input text-[15px] cursor-not-allowed">Disabled</button>
+            <button class="t-bg focus-ring w-12 h-12 bg-r-ip text-r-fg-inverted rounded-r-max hover:bg-r-ip-hover flex items-center justify-center">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+            </button>
+            <button class="t-bg focus-ring w-12 h-12 bg-r-bg-primary text-r-fg-primary rounded-r-max border border-r-fg-border hover:bg-r-bg-tertiary flex items-center justify-center">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Inputs -->
+        <h3 id="inputs" class="text-[24px] font-medium tracking-[-0.02em] mb-5">Inputs</h3>
+        <div class="bg-r-bg-surface rounded-r-container p-8 border border-r-fg-border mb-10">
+          <div class="grid md:grid-cols-2 gap-6 mb-6">
+            <div>
+              <label class="block text-[13px] font-medium text-r-fg-primary mb-2">Text Input</label>
+              <input type="text" placeholder="Enter your name" class="focus-ring t-all w-full h-12 px-4 border border-r-fg-border rounded-r-input-sm bg-transparent text-r-fg-primary placeholder:text-r-fg-secondary hover:border-r-fg-primary text-[15px]">
+            </div>
+            <div>
+              <label class="block text-[13px] font-medium text-r-fg-primary mb-2">Select</label>
+              <select class="focus-ring t-all w-full h-12 px-4 border border-r-fg-border rounded-r-input-sm bg-r-bg-primary text-r-fg-primary hover:border-r-fg-primary text-[15px]">
+                <option>Select a field of study</option>
+                <option>Computer Science</option>
+                <option>Product Design</option>
+                <option>Business Administration</option>
+              </select>
+            </div>
+          </div>
+          <div class="mb-6">
+            <label class="block text-[13px] font-medium text-r-fg-primary mb-2">Textarea</label>
+            <textarea rows="3" placeholder="Tell us about your career interests..." class="focus-ring t-all w-full p-4 border border-r-fg-border rounded-r-input-sm bg-transparent text-r-fg-primary placeholder:text-r-fg-secondary hover:border-r-fg-primary resize-none text-[15px]"></textarea>
+          </div>
+          <div class="flex flex-wrap gap-6">
+            <label class="flex items-center gap-3 cursor-pointer">
+              <input type="checkbox" class="w-5 h-5 rounded-r-input border-r-fg-border accent-r-ip focus-ring" checked>
+              <span class="text-[15px]">I agree to the terms</span>
+            </label>
+            <label class="flex items-center gap-3 cursor-pointer">
+              <input type="checkbox" class="w-5 h-5 rounded-r-input border-r-fg-border accent-r-ip focus-ring">
+              <span class="text-[15px]">Send me job alerts</span>
+            </label>
+          </div>
+          <div class="mt-6">
+            <label class="block text-[13px] font-medium text-r-fg-primary mb-2">Disabled Input</label>
+            <input type="text" value="Cannot be edited" disabled class="w-full h-12 px-4 border border-r-fg-border rounded-r-input-sm bg-r-bg-disabled text-r-fg-disabled cursor-not-allowed text-[15px]">
+          </div>
+        </div>
+
+        <!-- Cards -->
+        <h3 id="cards" class="text-[24px] font-medium tracking-[-0.02em] mb-5">Cards</h3>
+        <div class="grid md:grid-cols-3 gap-5 mb-10">
+          <!-- Static card -->
+          <div class="bg-r-bg-primary rounded-r-container p-6 shadow-e2 border border-r-card-border">
+            <div class="text-[13px] font-mono text-r-fg-secondary mb-4">Static Card</div>
+            <h4 class="text-[28px] font-medium tracking-[-0.03em] leading-[1.2] mb-2">elevation-two</h4>
+            <p class="text-[15px] text-r-fg-secondary leading-[1.4] mb-4">Cards use soft shadows for depth. No heavy borders needed.</p>
+            <div class="flex gap-2">
+              <span class="inline-flex items-center px-3 py-1 bg-r-info-bg text-r-info-fg text-[13px] font-semibold rounded-r-input-sm">Remote</span>
+              <span class="inline-flex items-center px-3 py-1 bg-r-neutral-bg text-r-fg-primary text-[13px] font-semibold rounded-r-input-sm">Full-time</span>
+            </div>
+          </div>
+          <!-- Interactive card -->
+          <div class="t-shadow cursor-pointer bg-r-bg-primary rounded-r-container p-6 shadow-e2 border border-r-card-border hover:shadow-e3 hover:border-r-fg-border">
+            <div class="text-[13px] font-mono text-r-fg-secondary mb-4">Interactive Card — hover me</div>
+            <h4 class="text-[28px] font-medium tracking-[-0.03em] leading-[1.2] mb-2">Shadow deepens</h4>
+            <p class="text-[15px] text-r-fg-secondary leading-[1.4] mb-4">Interactive cards elevate on hover with deeper shadow and subtle border shift.</p>
+            <div class="flex gap-2">
+              <span class="inline-flex items-center px-3 py-1 bg-r-pos-bg text-r-pos-fg text-[13px] font-semibold rounded-r-input-sm">Actively Hiring</span>
+            </div>
+          </div>
+          <!-- Structured card -->
+          <div class="t-shadow cursor-pointer bg-r-bg-primary rounded-r-container shadow-e2 border border-r-card-border hover:shadow-e3 hover:border-r-fg-border overflow-hidden">
+            <div class="p-6 border-b border-r-fg-border">
+              <div class="flex items-start justify-between mb-3">
+                <div class="w-12 h-12 bg-r-ip rounded-r-input flex items-center justify-center text-r-fg-inverted font-brand text-xl">HS</div>
+                <span class="inline-flex items-center px-3 py-1 bg-r-warn-bg text-r-warn-fg text-[13px] font-semibold rounded-r-input-sm">2 days left</span>
+              </div>
+              <h4 class="text-[28px] font-medium tracking-[-0.03em] leading-[1.2] mb-1">Software Engineer</h4>
+              <p class="text-[15px] text-r-fg-secondary">Handshake — San Francisco, CA</p>
+            </div>
+            <div class="p-6 bg-r-bg-surface">
+              <div class="flex gap-2 flex-wrap">
+                <span class="inline-flex items-center px-2 py-1 bg-r-bg-primary text-r-fg-secondary text-[13px] rounded-r-input-sm border border-r-fg-border">React</span>
+                <span class="inline-flex items-center px-2 py-1 bg-r-bg-primary text-r-fg-secondary text-[13px] rounded-r-input-sm border border-r-fg-border">TypeScript</span>
+                <span class="inline-flex items-center px-2 py-1 bg-r-bg-primary text-r-fg-secondary text-[13px] rounded-r-input-sm border border-r-fg-border">Node.js</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Badges & Tags -->
+        <h3 id="tags" class="text-[24px] font-medium tracking-[-0.02em] mb-5">Badges &amp; Tags</h3>
+        <div class="bg-r-bg-surface rounded-r-container p-8 border border-r-fg-border mb-10">
+          <div class="text-[13px] font-mono text-r-fg-secondary mb-4">Status variants</div>
+          <div class="flex flex-wrap gap-3 items-center mb-6">
+            <span class="inline-flex items-center px-3 py-1 bg-r-info-bg text-r-info-fg text-[13px] font-semibold rounded-r-input-sm">Info</span>
+            <span class="inline-flex items-center px-3 py-1 bg-r-pos-bg text-r-pos-fg text-[13px] font-semibold rounded-r-input-sm">Positive</span>
+            <span class="inline-flex items-center px-3 py-1 bg-r-warn-bg text-r-warn-fg text-[13px] font-semibold rounded-r-input-sm">Warning</span>
+            <span class="inline-flex items-center px-3 py-1 bg-r-neg-bg text-r-neg-fg text-[13px] font-semibold rounded-r-input-sm">Negative</span>
+            <span class="inline-flex items-center px-3 py-1 bg-r-neutral-bg text-r-fg-primary text-[13px] font-semibold rounded-r-input-sm">Neutral</span>
+          </div>
+          <div class="text-[13px] font-mono text-r-fg-secondary mb-4">Pill &amp; compound</div>
+          <div class="flex flex-wrap gap-3 items-center">
+            <span class="inline-flex items-center gap-2 px-3 py-1 bg-r-ip text-r-fg-inverted text-[13px] font-semibold rounded-r-max">
+              <span class="w-1.5 h-1.5 bg-r-pos-bg rounded-full"></span>Active
+            </span>
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-r-bg-primary text-r-fg-primary text-[13px] font-medium rounded-r-max border border-r-fg-border">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+              San Francisco
+            </span>
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-r-bg-primary text-r-fg-primary text-[13px] font-medium rounded-r-max border border-r-fg-border">
+              $140K - $180K
+            </span>
+          </div>
+        </div>
+
+        <!-- Modal Animation -->
+        <h3 id="modal-section" class="text-[24px] font-medium tracking-[-0.02em] mb-5">Modal Animation</h3>
+        <div class="bg-r-bg-surface rounded-r-container p-8 border border-r-fg-border">
+          <p class="text-[15px] text-r-fg-secondary mb-4">Modals use a subtle scale + fade entrance. Click to preview.</p>
+          <button id="modalTrigger" class="t-bg focus-ring h-12 px-6 bg-r-ip text-r-fg-inverted font-semibold rounded-r-input text-[15px] hover:bg-r-ip-hover active:bg-r-ip-active">
+            Open Modal
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider mx-6"></div>
+<!-- ==================== PATTERNS ==================== -->
+<div class="divider mx-6"></div>
+
+<section id="patterns" class="py-16 px-6 bg-r-bg-primary">
+  <div class="max-w-[1120px] mx-auto">
+    <h2 class="text-[32px] font-medium tracking-[-0.03em] leading-[1.2] mb-2">Patterns</h2>
+    <p class="text-[17px] text-r-fg-secondary tracking-[-0.02em] leading-[1.4] mb-10 max-w-2xl">
+      Reusable behavioral rules that govern how components compose and interact. The grammar of the design system.
+    </p>
+
+    <!-- Interaction States -->
+    <h3 id="interactions" class="text-[24px] font-medium tracking-[-0.02em] mb-5">Interaction States</h3>
+    <div class="space-y-6 mb-12">
+      <!-- Follow/Toggle -->
+      <div class="grid md:grid-cols-2 gap-5">
+        <div class="rounded-r-container overflow-hidden border-2 border-r-pos-fg/30">
+          <div class="px-5 py-3 bg-r-pos-bg/30 flex items-center gap-2">
+            <svg class="w-5 h-5 text-r-pos-fg" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            <span class="text-[13px] font-semibold text-r-pos-fg uppercase tracking-wider">Do</span>
+          </div>
+          <div class="p-5 bg-r-bg-primary">
+            <div class="flex gap-3 items-center mb-3">
+              <button class="t-bg h-10 px-5 bg-r-bg-primary text-r-fg-primary text-[13px] font-semibold rounded-r-input border border-r-fg-border">Follow</button>
+              <button class="t-bg h-10 px-5 bg-r-ip text-r-fg-inverted text-[13px] font-semibold rounded-r-input">Following &#10003;</button>
+            </div>
+            <p class="text-[13px] text-r-fg-secondary">Label describes current state. Toggle is clear and reversible.</p>
+          </div>
+        </div>
+        <div class="rounded-r-container overflow-hidden border-2 border-r-neg-fg/30">
+          <div class="px-5 py-3 bg-r-neg-bg/30 flex items-center gap-2">
+            <svg class="w-5 h-5 text-r-neg-fg" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            <span class="text-[13px] font-semibold text-r-neg-fg uppercase tracking-wider">Don't</span>
+          </div>
+          <div class="p-5 bg-r-bg-primary">
+            <div class="flex gap-3 items-center mb-3">
+              <button class="t-bg h-10 px-5 bg-r-bg-primary text-r-fg-primary text-[13px] font-semibold rounded-r-input border border-r-fg-border">Follow</button>
+              <button class="t-bg h-10 px-5 bg-r-neg-fg text-white text-[13px] font-semibold rounded-r-input">Unfollow</button>
+            </div>
+            <p class="text-[13px] text-r-fg-secondary">Label describes destructive action &mdash; creates anxiety. Red implies danger for a safe action.</p>
+          </div>
         </div>
       </div>
 
-      <!-- Modal demo -->
-      <h3 class="text-[24px] font-medium tracking-[-0.02em] mb-5">Modal Animation</h3>
+      <!-- List Hover -->
+      <div class="grid md:grid-cols-2 gap-5">
+        <div class="rounded-r-container overflow-hidden border-2 border-r-pos-fg/30">
+          <div class="px-5 py-3 bg-r-pos-bg/30 flex items-center gap-2">
+            <svg class="w-5 h-5 text-r-pos-fg" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            <span class="text-[13px] font-semibold text-r-pos-fg uppercase tracking-wider">Do</span>
+          </div>
+          <div class="p-5 bg-r-bg-primary">
+            <div class="space-y-1 mb-3">
+              <div class="px-3 py-2 rounded-r-input-sm bg-r-bg-secondary">
+                <span class="text-[15px] underline text-r-fg-primary">Product Designer at Stripe</span>
+              </div>
+              <div class="px-3 py-2 rounded-r-input-sm">
+                <span class="text-[15px] text-r-fg-primary">Software Engineer at Figma</span>
+              </div>
+            </div>
+            <p class="text-[13px] text-r-fg-secondary">Background change AND underlined text signals clickability.</p>
+          </div>
+        </div>
+        <div class="rounded-r-container overflow-hidden border-2 border-r-neg-fg/30">
+          <div class="px-5 py-3 bg-r-neg-bg/30 flex items-center gap-2">
+            <svg class="w-5 h-5 text-r-neg-fg" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            <span class="text-[13px] font-semibold text-r-neg-fg uppercase tracking-wider">Don't</span>
+          </div>
+          <div class="p-5 bg-r-bg-primary">
+            <div class="space-y-1 mb-3">
+              <div class="px-3 py-2 rounded-r-input-sm bg-r-bg-secondary/50">
+                <span class="text-[15px] text-r-fg-primary">Product Designer at Stripe</span>
+              </div>
+              <div class="px-3 py-2 rounded-r-input-sm">
+                <span class="text-[15px] text-r-fg-primary">Software Engineer at Figma</span>
+              </div>
+            </div>
+            <p class="text-[13px] text-r-fg-secondary">Subtle color shift alone &mdash; insufficient contrast. No text affordance for clickability.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Action Hierarchy -->
+    <h3 id="actions" class="text-[24px] font-medium tracking-[-0.02em] mb-5">Action Hierarchy</h3>
+    <div class="space-y-6 mb-12">
+      <!-- One Primary Per Screen -->
+      <div class="grid md:grid-cols-2 gap-5">
+        <div class="rounded-r-container overflow-hidden border-2 border-r-pos-fg/30">
+          <div class="px-5 py-3 bg-r-pos-bg/30 flex items-center gap-2">
+            <svg class="w-5 h-5 text-r-pos-fg" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            <span class="text-[13px] font-semibold text-r-pos-fg uppercase tracking-wider">Do</span>
+          </div>
+          <div class="p-5 bg-r-bg-primary">
+            <div class="flex flex-wrap gap-3 items-center mb-3">
+              <button class="t-bg h-10 px-5 bg-r-ip text-r-fg-inverted text-[13px] font-semibold rounded-r-input">Apply Now</button>
+              <button class="t-bg h-10 px-5 bg-r-bg-primary text-r-fg-primary text-[13px] font-semibold rounded-r-input border border-r-fg-border">Save</button>
+              <a href="#" class="text-[13px] text-r-fg-secondary underline hover:text-r-fg-primary">Learn more</a>
+            </div>
+            <p class="text-[13px] text-r-fg-secondary">One primary action per screen. Secondary and text links for supporting actions.</p>
+          </div>
+        </div>
+        <div class="rounded-r-container overflow-hidden border-2 border-r-neg-fg/30">
+          <div class="px-5 py-3 bg-r-neg-bg/30 flex items-center gap-2">
+            <svg class="w-5 h-5 text-r-neg-fg" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            <span class="text-[13px] font-semibold text-r-neg-fg uppercase tracking-wider">Don't</span>
+          </div>
+          <div class="p-5 bg-r-bg-primary">
+            <div class="flex flex-wrap gap-3 items-center mb-3">
+              <button class="t-bg h-10 px-5 bg-r-ip text-r-fg-inverted text-[13px] font-semibold rounded-r-input">Apply Now</button>
+              <button class="t-bg h-10 px-5 bg-r-ip text-r-fg-inverted text-[13px] font-semibold rounded-r-input">Save Job</button>
+              <button class="t-bg h-10 px-5 bg-r-ip text-r-fg-inverted text-[13px] font-semibold rounded-r-input">Learn More</button>
+            </div>
+            <p class="text-[13px] text-r-fg-secondary">Three competing primary buttons. No clear hierarchy &mdash; user doesn't know what to do first.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Group Controls -->
+      <div class="grid md:grid-cols-2 gap-5">
+        <div class="rounded-r-container overflow-hidden border-2 border-r-pos-fg/30">
+          <div class="px-5 py-3 bg-r-pos-bg/30 flex items-center gap-2">
+            <svg class="w-5 h-5 text-r-pos-fg" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            <span class="text-[13px] font-semibold text-r-pos-fg uppercase tracking-wider">Do</span>
+          </div>
+          <div class="p-5 bg-r-bg-primary">
+            <div class="space-y-0 mb-3 border border-r-fg-border rounded-r-input overflow-hidden">
+              <div class="px-4 py-3 flex items-center justify-between border-b border-r-fg-border hover:bg-r-bg-secondary t-bg cursor-pointer">
+                <span class="text-[15px]">Engineering roles</span>
+                <svg class="w-5 h-5 text-r-fg-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+              </div>
+              <div class="px-4 py-3 flex items-center justify-between border-b border-r-fg-border hover:bg-r-bg-secondary t-bg cursor-pointer">
+                <span class="text-[15px]">Design roles</span>
+                <svg class="w-5 h-5 text-r-fg-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+              </div>
+              <div class="px-4 py-3 flex items-center justify-between hover:bg-r-bg-secondary t-bg cursor-pointer">
+                <span class="text-[15px]">Marketing roles</span>
+                <svg class="w-5 h-5 text-r-fg-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+              </div>
+            </div>
+            <p class="text-[13px] text-r-fg-secondary">List items with inline chevrons. Action is contextual and grouped.</p>
+          </div>
+        </div>
+        <div class="rounded-r-container overflow-hidden border-2 border-r-neg-fg/30">
+          <div class="px-5 py-3 bg-r-neg-bg/30 flex items-center gap-2">
+            <svg class="w-5 h-5 text-r-neg-fg" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            <span class="text-[13px] font-semibold text-r-neg-fg uppercase tracking-wider">Don't</span>
+          </div>
+          <div class="p-5 bg-r-bg-primary">
+            <div class="space-y-2 mb-3">
+              <div class="px-4 py-3 border border-r-fg-border rounded-r-input">
+                <span class="text-[15px]">Engineering roles</span>
+              </div>
+              <div class="px-4 py-3 border border-r-fg-border rounded-r-input">
+                <span class="text-[15px]">Design roles</span>
+              </div>
+              <div class="px-4 py-3 border border-r-fg-border rounded-r-input">
+                <span class="text-[15px]">Marketing roles</span>
+              </div>
+              <a href="#" class="inline-block text-[13px] text-r-fg-secondary underline mt-1">View all categories</a>
+            </div>
+            <p class="text-[13px] text-r-fg-secondary">Detached "View all" link. No inline affordance &mdash; action feels disconnected from the list.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Content Constraints -->
+    <h3 id="content" class="text-[24px] font-medium tracking-[-0.02em] mb-5">Content Constraints</h3>
+    <div class="space-y-6 mb-12">
+      <!-- No Ornamentation -->
+      <div class="grid md:grid-cols-2 gap-5">
+        <div class="rounded-r-container overflow-hidden border-2 border-r-pos-fg/30">
+          <div class="px-5 py-3 bg-r-pos-bg/30 flex items-center gap-2">
+            <svg class="w-5 h-5 text-r-pos-fg" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            <span class="text-[13px] font-semibold text-r-pos-fg uppercase tracking-wider">Do</span>
+          </div>
+          <div class="p-5 bg-r-bg-primary">
+            <div class="bg-r-bg-primary rounded-r-container p-4 shadow-e2 border border-r-card-border mb-3">
+              <div class="text-[15px] font-medium mb-1">Product Designer</div>
+              <div class="text-[13px] text-r-fg-secondary">Stripe &middot; San Francisco, CA</div>
+              <div class="flex gap-2 mt-2">
+                <span class="inline-flex items-center px-2 py-1 bg-r-pos-bg text-r-pos-fg text-[11px] font-semibold rounded-r-input-sm">Remote</span>
+                <span class="inline-flex items-center px-2 py-1 bg-r-neutral-bg text-r-fg-primary text-[11px] font-semibold rounded-r-input-sm">Full-time</span>
+              </div>
+            </div>
+            <p class="text-[13px] text-r-fg-secondary">Clean card. Content speaks for itself. No decorative elements.</p>
+          </div>
+        </div>
+        <div class="rounded-r-container overflow-hidden border-2 border-r-neg-fg/30">
+          <div class="px-5 py-3 bg-r-neg-bg/30 flex items-center gap-2">
+            <svg class="w-5 h-5 text-r-neg-fg" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            <span class="text-[13px] font-semibold text-r-neg-fg uppercase tracking-wider">Don't</span>
+          </div>
+          <div class="p-5 bg-r-bg-primary">
+            <div class="bg-r-bg-primary rounded-r-container p-4 shadow-e2 border border-r-card-border mb-3">
+              <div class="flex items-center gap-2 mb-1">
+                <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <span class="text-[15px] font-medium">Product Designer</span>
+                <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              </div>
+              <div class="text-[13px] text-r-fg-secondary">Stripe &middot; San Francisco, CA</div>
+              <div class="flex gap-2 mt-2">
+                <span class="inline-flex items-center px-2 py-1 bg-r-pos-bg text-r-pos-fg text-[11px] font-semibold rounded-full">&#9733; Remote</span>
+                <span class="inline-flex items-center px-2 py-1 bg-r-neutral-bg text-r-fg-primary text-[11px] font-semibold rounded-full">&#9733; Full-time</span>
+              </div>
+            </div>
+            <p class="text-[13px] text-r-fg-secondary">Star icons, decorative elements, rounded pills. Ornamentation adds noise, not meaning.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Character Count -->
+      <div class="grid md:grid-cols-2 gap-5">
+        <div class="rounded-r-container overflow-hidden border-2 border-r-pos-fg/30">
+          <div class="px-5 py-3 bg-r-pos-bg/30 flex items-center gap-2">
+            <svg class="w-5 h-5 text-r-pos-fg" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            <span class="text-[13px] font-semibold text-r-pos-fg uppercase tracking-wider">Do</span>
+          </div>
+          <div class="p-5 bg-r-bg-primary">
+            <p class="text-[15px] text-r-fg-primary leading-[1.5] max-w-[65ch] mb-3">
+              At Handshake, we believe every student deserves the chance to build a meaningful career. Our platform connects students and recent graduates with employers who value potential over pedigree. This role will help shape the future of how early-career talent finds opportunity.
+            </p>
+            <p class="text-[13px] text-r-fg-secondary">Constrained to max-width: 65ch. Comfortable reading measure for body text.</p>
+          </div>
+        </div>
+        <div class="rounded-r-container overflow-hidden border-2 border-r-neg-fg/30">
+          <div class="px-5 py-3 bg-r-neg-bg/30 flex items-center gap-2">
+            <svg class="w-5 h-5 text-r-neg-fg" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            <span class="text-[13px] font-semibold text-r-neg-fg uppercase tracking-wider">Don't</span>
+          </div>
+          <div class="p-5 bg-r-bg-primary">
+            <p class="text-[15px] text-r-fg-primary leading-[1.5] mb-3">
+              At Handshake, we believe every student deserves the chance to build a meaningful career. Our platform connects students and recent graduates with employers who value potential over pedigree. This role will help shape the future of how early-career talent finds opportunity. We are looking for passionate individuals who share our vision of democratizing access to meaningful work for all students regardless of background.
+            </p>
+            <p class="text-[13px] text-r-fg-secondary">Full-width paragraph. Lines are too long &mdash; reader loses their place. No measure constraint.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Component Behavior -->
+    <h3 id="behavior" class="text-[24px] font-medium tracking-[-0.02em] mb-5">Component Behavior</h3>
+    <div class="space-y-6 mb-12">
+      <!-- Tooltips -->
       <div class="bg-r-bg-surface rounded-r-container p-8 border border-r-fg-border">
-        <p class="text-[15px] text-r-fg-secondary mb-4">Modals use a subtle scale + fade entrance. Click to preview.</p>
-        <button id="modalTrigger" class="t-bg focus-ring h-12 px-6 bg-r-ip text-r-fg-inverted font-semibold rounded-r-input text-[15px] hover:bg-r-ip-hover active:bg-r-ip-active">
-          Open Modal
+        <div class="text-[13px] font-mono text-r-fg-secondary mb-4 uppercase tracking-wider">Tooltips</div>
+        <div class="flex items-center gap-6">
+          <div class="relative inline-flex flex-col items-center">
+            <div class="mb-2 px-3 py-1.5 bg-r-bg-inverted text-r-fg-inverted text-[13px] rounded-r-input-sm shadow-e3 whitespace-nowrap">
+              Add to favorites
+              <div class="absolute left-1/2 -translate-x-1/2 -bottom-1 w-2 h-2 bg-r-bg-inverted rotate-45"></div>
+            </div>
+            <button class="t-bg focus-ring w-10 h-10 bg-r-bg-primary text-r-fg-primary rounded-r-max border border-r-fg-border hover:bg-r-bg-tertiary flex items-center justify-center">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+            </button>
+          </div>
+          <p class="text-[13px] text-r-fg-secondary max-w-sm">Icon-only buttons require tooltips. Tooltip appears above the trigger, centered, with an inverted background and small caret.</p>
+        </div>
+      </div>
+
+      <!-- Tabs -->
+      <div class="bg-r-bg-surface rounded-r-container p-8 border border-r-fg-border">
+        <div class="text-[13px] font-mono text-r-fg-secondary mb-4 uppercase tracking-wider">Tabs</div>
+        <div class="border-b border-r-fg-border mb-4">
+          <div class="flex gap-0">
+            <button class="px-4 py-3 text-[15px] font-medium text-r-ip border-b-2 border-r-ip -mb-px">Overview</button>
+            <button class="px-4 py-3 text-[15px] text-r-fg-secondary hover:text-r-fg-primary t-all -mb-px border-b-2 border-transparent">Details</button>
+            <button class="px-4 py-3 text-[15px] text-r-fg-secondary hover:text-r-fg-primary t-all -mb-px border-b-2 border-transparent">Activity</button>
+          </div>
+        </div>
+        <div class="bg-r-bg-primary rounded-r-input p-4 border border-r-fg-border">
+          <p class="text-[15px] text-r-fg-secondary">Tab content area. Tabs are left-aligned, active tab uses interactive-primary color with a 2px bottom border. Content swaps in-place below.</p>
+        </div>
+      </div>
+
+      <!-- More/Expand -->
+      <div class="bg-r-bg-surface rounded-r-container p-8 border border-r-fg-border">
+        <div class="text-[13px] font-mono text-r-fg-secondary mb-4 uppercase tracking-wider">More / Expand</div>
+        <div class="space-y-0 border border-r-fg-border rounded-r-input overflow-hidden mb-3">
+          <div class="px-4 py-3 border-b border-r-fg-border flex items-center justify-between">
+            <div>
+              <div class="text-[15px] font-medium">Software Engineer</div>
+              <div class="text-[13px] text-r-fg-secondary">Handshake &middot; San Francisco</div>
+            </div>
+            <svg class="w-5 h-5 text-r-fg-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          </div>
+          <div class="px-4 py-3 border-b border-r-fg-border flex items-center justify-between">
+            <div>
+              <div class="text-[15px] font-medium">Product Designer</div>
+              <div class="text-[13px] text-r-fg-secondary">Stripe &middot; Remote</div>
+            </div>
+            <svg class="w-5 h-5 text-r-fg-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          </div>
+          <div class="px-4 py-3 flex items-center justify-between">
+            <div>
+              <div class="text-[15px] font-medium">Data Analyst</div>
+              <div class="text-[13px] text-r-fg-secondary">Figma &middot; New York</div>
+            </div>
+            <svg class="w-5 h-5 text-r-fg-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          </div>
+        </div>
+        <a href="#" class="text-[15px] font-medium text-r-ip hover:text-r-ip-hover t-all">Show 5 more &#8250;</a>
+      </div>
+    </div>
+
+    <!-- Unresolved Patterns -->
+    <h3 id="unresolved" class="text-[24px] font-medium tracking-[-0.02em] mb-5">Unresolved Patterns</h3>
+    <div class="bg-r-bg-primary rounded-r-container shadow-e2 overflow-hidden">
+      <div class="overflow-x-auto">
+        <table class="w-full min-w-[500px]">
+          <thead>
+            <tr class="text-left text-[13px] text-r-fg-secondary border-b border-r-fg-border">
+              <th class="p-5 pb-3 font-medium">Pattern</th>
+              <th class="p-5 pb-3 font-medium">Open Question</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-r-fg-border">
+            <tr>
+              <td class="p-4 text-[15px] font-medium">Carousels</td>
+              <td class="p-4 text-[15px] text-r-fg-secondary">Swipe/scroll physics, item count per viewport, peek behavior</td>
+            </tr>
+            <tr>
+              <td class="p-4 text-[15px] font-medium">Skeleton vs. spinner loaders</td>
+              <td class="p-4 text-[15px] text-r-fg-secondary">When to use each; skeleton shape fidelity</td>
+            </tr>
+            <tr>
+              <td class="p-4 text-[15px] font-medium">Truncated text / "Show full copy"</td>
+              <td class="p-4 text-[15px] text-r-fg-secondary">Ellipsis vs. full text; expand-in-place vs. popover</td>
+            </tr>
+            <tr>
+              <td class="p-4 text-[15px] font-medium">Profile popover</td>
+              <td class="p-4 text-[15px] text-r-fg-secondary">Trigger behavior, content hierarchy, dismissal</td>
+            </tr>
+            <tr>
+              <td class="p-4 text-[15px] font-medium">Menus on mobile</td>
+              <td class="p-4 text-[15px] text-r-fg-secondary">Full-screen vs. bottom sheet vs. inline expansion</td>
+            </tr>
+            <tr>
+              <td class="p-4 text-[15px] font-medium">List vs. cards</td>
+              <td class="p-4 text-[15px] text-r-fg-secondary">Decision criteria (data density, scanability, action count)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== BOLD FACTOR ==================== -->
+<section id="bold-factor" class="py-20 px-6 bg-r-ip text-r-fg-inverted">
+  <div class="max-w-[1120px] mx-auto">
+    <div class="font-brand text-[48px] lg:text-[72px] tracking-tight leading-[0.9] mb-3">THE BOLD FACTOR</div>
+    <p class="text-[19px] text-white/70 tracking-[-0.02em] leading-[1.3] mb-12 max-w-xl">Signature elements that make Rosetta unmistakably Rosetta.</p>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      <div class="bg-white/10 backdrop-blur-sm rounded-r-container p-6">
+        <div class="font-brand text-[36px] leading-none mb-3 text-white/40">01</div>
+        <h3 class="text-[24px] font-medium tracking-[-0.02em] leading-[1.2] mb-2">Dark Teal, Not Blue</h3>
+        <p class="text-[15px] text-white/60 leading-[1.4]">#04191B is the hero color. Sophisticated, distinctive. Avoids the "generic SaaS blue" trap.</p>
+      </div>
+      <div class="bg-white/10 backdrop-blur-sm rounded-r-container p-6">
+        <div class="font-brand text-[36px] leading-none mb-3 text-white/40">02</div>
+        <h3 class="text-[24px] font-medium tracking-[-0.02em] leading-[1.2] mb-2">Noi Grotesk + Alternates</h3>
+        <p class="text-[15px] text-white/60 leading-[1.4]">ss03 and ss11 features give subtle character. Geometric precision with humanist warmth.</p>
+      </div>
+      <div class="bg-white/10 backdrop-blur-sm rounded-r-container p-6">
+        <div class="font-brand text-[36px] leading-none mb-3 text-white/40">03</div>
+        <h3 class="text-[24px] font-medium tracking-[-0.02em] leading-[1.2] mb-2">Shadow-First Elevation</h3>
+        <p class="text-[15px] text-white/60 leading-[1.4]">Soft shadows over heavy borders. Cards float rather than sit. Depth without visual noise.</p>
+      </div>
+      <div class="bg-white/10 backdrop-blur-sm rounded-r-container p-6">
+        <div class="font-brand text-[36px] leading-none mb-3 text-white/40">04</div>
+        <h3 class="text-[24px] font-medium tracking-[-0.02em] leading-[1.2] mb-2">4px Grid Discipline</h3>
+        <p class="text-[15px] text-white/60 leading-[1.4]">Every measurement snaps to the 4px grid. Subconscious harmony across the entire system.</p>
+      </div>
+      <div class="bg-white/10 backdrop-blur-sm rounded-r-container p-6">
+        <div class="font-brand text-[36px] leading-none mb-3 text-white/40">05</div>
+        <h3 class="text-[24px] font-medium tracking-[-0.02em] leading-[1.2] mb-2">Status Dual Variants</h3>
+        <p class="text-[15px] text-white/60 leading-[1.4]">Each status has both a light background tint and saturated foreground. Flexible, consistent patterns.</p>
+      </div>
+      <div class="bg-white/10 backdrop-blur-sm rounded-r-container p-6">
+        <div class="font-brand text-[36px] leading-none mb-3 text-white/40">06</div>
+        <h3 class="text-[24px] font-medium tracking-[-0.02em] leading-[1.2] mb-2">Sansplomb for Impact</h3>
+        <p class="text-[15px] text-white/60 leading-[1.4]">Bold condensed energy reserved for hero headlines and marketing. Never in product UI.</p>
+      </div>
+      <div class="bg-white/10 backdrop-blur-sm rounded-r-container p-6">
+        <div class="font-brand text-[36px] leading-none mb-3 text-white/40">07</div>
+        <h3 class="text-[24px] font-medium tracking-[-0.02em] leading-[1.2] mb-2">White Space as Feature</h3>
+        <p class="text-[15px] text-white/60 leading-[1.4]">Generous padding and margins. The interface breathes. Content has room to be comprehended.</p>
+      </div>
+      <div class="bg-white/10 backdrop-blur-sm rounded-r-container p-6">
+        <div class="font-brand text-[36px] leading-none mb-3 text-white/40">08</div>
+        <h3 class="text-[24px] font-medium tracking-[-0.02em] leading-[1.2] mb-2">Semantic Color Restraint</h3>
+        <p class="text-[15px] text-white/60 leading-[1.4]">Color means something. Blue = info. Green = success. Red = error. Never decorative.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== DO'S & DON'TS ==================== -->
+<section id="dos-donts" class="py-16 px-6 bg-r-bg-primary">
+  <div class="max-w-[1120px] mx-auto">
+    <h2 class="text-[32px] font-medium tracking-[-0.03em] leading-[1.2] mb-2">Do's and Don'ts</h2>
+    <p class="text-[17px] text-r-fg-secondary tracking-[-0.02em] leading-[1.4] mb-10 max-w-2xl">
+      Visual comparisons of correct Rosetta usage vs. common anti-patterns.
+    </p>
+
+    <div class="space-y-8">
+      <!-- Example 1: Color usage -->
+      <div class="grid md:grid-cols-2 gap-5">
+        <div class="rounded-r-container overflow-hidden border-2 border-r-pos-fg/30">
+          <div class="px-5 py-3 bg-r-pos-bg/30 flex items-center gap-2">
+            <svg class="w-5 h-5 text-r-pos-fg" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            <span class="text-[13px] font-semibold text-r-pos-fg uppercase tracking-wider">Do</span>
+          </div>
+          <div class="p-5 bg-r-bg-primary">
+            <div class="flex gap-3 items-center mb-3">
+              <button class="t-bg h-10 px-5 bg-r-ip text-r-fg-inverted text-[13px] font-semibold rounded-r-input">Apply Now</button>
+              <span class="inline-flex items-center px-3 py-1 bg-r-pos-bg text-r-pos-fg text-[13px] font-semibold rounded-r-input-sm">Hired</span>
+              <span class="inline-flex items-center px-3 py-1 bg-r-neg-bg text-r-neg-fg text-[13px] font-semibold rounded-r-input-sm">Rejected</span>
+            </div>
+            <p class="text-[13px] text-r-fg-secondary">Use semantic colors only for meaningful status and actions. The dark teal primary anchors the interface.</p>
+          </div>
+        </div>
+        <div class="rounded-r-container overflow-hidden border-2 border-r-neg-fg/30">
+          <div class="px-5 py-3 bg-r-neg-bg/30 flex items-center gap-2">
+            <svg class="w-5 h-5 text-r-neg-fg" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            <span class="text-[13px] font-semibold text-r-neg-fg uppercase tracking-wider">Don't</span>
+          </div>
+          <div class="p-5 bg-r-bg-primary">
+            <div class="flex gap-3 items-center mb-3">
+              <button class="h-10 px-5 bg-gradient-to-r from-purple-500 to-pink-500 text-white text-[13px] font-semibold rounded-full">Apply Now</button>
+              <span class="inline-flex items-center px-3 py-1 bg-orange-200 text-orange-700 text-[13px] font-semibold rounded-full">Hired</span>
+              <span class="inline-flex items-center px-3 py-1 bg-cyan-200 text-cyan-700 text-[13px] font-semibold rounded-full">Rejected</span>
+            </div>
+            <p class="text-[13px] text-r-fg-secondary">Don't use decorative gradients, off-palette colors, or rounded pills where the system specifies squared radii.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Example 2: Elevation -->
+      <div class="grid md:grid-cols-2 gap-5">
+        <div class="rounded-r-container overflow-hidden border-2 border-r-pos-fg/30">
+          <div class="px-5 py-3 bg-r-pos-bg/30 flex items-center gap-2">
+            <svg class="w-5 h-5 text-r-pos-fg" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            <span class="text-[13px] font-semibold text-r-pos-fg uppercase tracking-wider">Do</span>
+          </div>
+          <div class="p-5 bg-r-bg-secondary">
+            <div class="bg-r-bg-primary rounded-r-container p-4 shadow-e2 border border-r-card-border mb-3">
+              <div class="text-[15px] font-medium mb-1">Product Manager at Airbnb</div>
+              <div class="text-[13px] text-r-fg-secondary">Soft shadow for elevation. Card floats naturally.</div>
+            </div>
+            <p class="text-[13px] text-r-fg-secondary">Cards use elevation shadows, not heavy borders. Subtle card-border (#E2E5F3) for definition.</p>
+          </div>
+        </div>
+        <div class="rounded-r-container overflow-hidden border-2 border-r-neg-fg/30">
+          <div class="px-5 py-3 bg-r-neg-bg/30 flex items-center gap-2">
+            <svg class="w-5 h-5 text-r-neg-fg" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            <span class="text-[13px] font-semibold text-r-neg-fg uppercase tracking-wider">Don't</span>
+          </div>
+          <div class="p-5 bg-r-bg-secondary">
+            <div class="bg-r-bg-primary rounded-lg p-4 border-2 border-gray-400 mb-3">
+              <div class="text-[15px] font-medium mb-1">Product Manager at Airbnb</div>
+              <div class="text-[13px] text-r-fg-secondary">Heavy border, no shadow. Card looks flat and heavy.</div>
+            </div>
+            <p class="text-[13px] text-r-fg-secondary">Don't rely on thick borders for containment. Shadow-first elevation creates depth without visual weight.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Example 3: Tone -->
+      <div class="grid md:grid-cols-2 gap-5">
+        <div class="rounded-r-container overflow-hidden border-2 border-r-pos-fg/30">
+          <div class="px-5 py-3 bg-r-pos-bg/30 flex items-center gap-2">
+            <svg class="w-5 h-5 text-r-pos-fg" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            <span class="text-[13px] font-semibold text-r-pos-fg uppercase tracking-wider">Do</span>
+          </div>
+          <div class="p-5 bg-r-bg-primary">
+            <div class="text-[32px] font-medium tracking-[-0.03em] leading-[1.2] mb-1">Find your next role</div>
+            <div class="text-[17px] text-r-fg-secondary tracking-[-0.02em] leading-[1.4]">Discover opportunities at companies that match your values.</div>
+            <p class="text-[13px] text-r-fg-secondary mt-3">Clean, professional, warm. Generous whitespace. Content is the hero.</p>
+          </div>
+        </div>
+        <div class="rounded-r-container overflow-hidden border-2 border-r-neg-fg/30">
+          <div class="px-5 py-3 bg-r-neg-bg/30 flex items-center gap-2">
+            <svg class="w-5 h-5 text-r-neg-fg" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            <span class="text-[13px] font-semibold text-r-neg-fg uppercase tracking-wider">Don't</span>
+          </div>
+          <div class="p-5 bg-gray-900">
+            <div class="text-[32px] font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400 leading-[1.2] mb-1">LAND YOUR DREAM JOB!!!</div>
+            <div class="text-[17px] text-gray-400 leading-[1.4]">Join the revolution. We're disrupting career discovery.</div>
+            <p class="text-[13px] text-gray-500 mt-3">Not dark or moody. Not playful or whimsical. Not trendy or experimental.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider mx-6"></div>
+
+<!-- ==================== PRODUCT DEMOS ==================== -->
+<section id="demos" class="py-16 px-6 bg-r-bg-secondary">
+  <div class="max-w-[1120px] mx-auto">
+    <h2 class="text-[32px] font-medium tracking-[-0.03em] leading-[1.2] mb-2">Product Demos</h2>
+    <p class="text-[17px] text-r-fg-secondary tracking-[-0.02em] leading-[1.4] mb-10 max-w-2xl">
+      Live implementations of Rosetta in product-like contexts.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-5">
+      <!-- Job Search Demo -->
+      <a href="rosetta-demo-jobs.html" class="t-shadow group block bg-r-bg-primary rounded-r-container shadow-e2 border border-r-card-border hover:shadow-e3 hover:border-r-fg-border overflow-hidden">
+        <div class="p-6">
+          <div class="flex items-start justify-between mb-3">
+            <div class="w-12 h-12 bg-r-ip rounded-r-input flex items-center justify-center">
+              <svg class="w-6 h-6 text-r-fg-inverted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+            </div>
+            <span class="inline-flex items-center px-3 py-1 bg-r-pos-bg text-r-pos-fg text-[13px] font-semibold rounded-r-input-sm">Live Demo</span>
+          </div>
+          <h3 class="text-[24px] font-medium tracking-[-0.02em] leading-[1.2] mb-2 group-hover:text-r-ip t-all">Job Search</h3>
+          <p class="text-[15px] text-r-fg-secondary leading-[1.4]">Search, filter, and browse job listings. Cards, badges, inputs, and action hierarchy in context.</p>
+        </div>
+      </a>
+
+      <!-- Placeholder -->
+      <div class="rounded-r-container border-2 border-dashed border-r-fg-border p-6 flex flex-col items-center justify-center text-center min-h-[200px]">
+        <svg class="w-8 h-8 text-r-fg-disabled mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg>
+        <div class="text-[15px] font-medium text-r-fg-disabled mb-1">More demos coming soon</div>
+        <div class="text-[13px] text-r-fg-disabled">Profile, messaging, employer dashboard</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== FOOTER ==================== -->
+<footer class="py-12 px-6 bg-r-bg-inverted text-r-fg-inverted">
+  <div class="max-w-[1120px] mx-auto">
+    <div class="flex flex-col md:flex-row items-center justify-between gap-6 mb-6">
+      <div class="flex items-center gap-4">
+        <span class="font-brand text-[28px] tracking-tight leading-none">ROSETTA</span>
+        <span class="text-[13px] text-white/50">Handshake Design System</span>
+      </div>
+      <div class="flex items-center gap-4">
+        <button id="copyPromptBtn" class="t-bg focus-ring h-10 px-5 bg-white/10 text-r-fg-inverted text-[13px] font-semibold rounded-r-input hover:bg-white/20 backdrop-blur-sm">
+          Copy Rosetta Prompt
         </button>
+        <a href="index.html" class="text-[13px] text-white/50 hover:text-white t-all">&larr; All Prompts</a>
       </div>
     </div>
-  </section>
+    <div class="text-center text-[13px] text-white/50">Professional clarity with human warmth</div>
+  </div>
+</footer>
 
-  <div class="divider mx-6"></div>
+</div><!-- close main content wrapper -->
 
-  <!-- ==================== SPACING & LAYOUT ==================== -->
-  <section id="spacing" class="py-16 px-6 bg-r-bg-secondary">
-    <div class="max-w-[1280px] mx-auto">
-      <h2 class="text-[32px] font-medium tracking-[-0.03em] leading-[1.2] mb-2">Spacing & Layout</h2>
-      <p class="text-[17px] text-r-fg-secondary tracking-[-0.02em] leading-[1.4] mb-10 max-w-2xl">
-        Everything aligns to a 4px base grid. This consistency creates subconscious harmony across the entire system.
-      </p>
-
-      <!-- Spacing scale -->
-      <h3 class="text-[24px] font-medium tracking-[-0.02em] mb-5">Spacing Scale</h3>
-      <div class="bg-r-bg-primary rounded-r-container shadow-e2 overflow-hidden mb-10">
-        <div class="overflow-x-auto">
-          <table class="w-full min-w-[500px]">
-            <thead>
-              <tr class="text-left text-[13px] text-r-fg-secondary border-b border-r-fg-border">
-                <th class="p-5 pb-3 font-medium font-mono">Token</th>
-                <th class="p-5 pb-3 font-medium font-mono">Value</th>
-                <th class="p-5 pb-3 font-medium">Usage</th>
-                <th class="p-5 pb-3 font-medium">Visual</th>
-              </tr>
-            </thead>
-            <tbody class="divide-y divide-r-fg-border">
-              <tr><td class="p-4 text-[13px] font-mono">spacing-half</td><td class="p-4 text-[13px] font-mono">2px</td><td class="p-4 text-[13px] text-r-fg-secondary">Micro adjustments</td><td class="p-4"><div class="h-3 bg-r-ip rounded-sm" style="width:2px"></div></td></tr>
-              <tr><td class="p-4 text-[13px] font-mono">spacing-one</td><td class="p-4 text-[13px] font-mono">4px</td><td class="p-4 text-[13px] text-r-fg-secondary">Icon margins, tight gaps</td><td class="p-4"><div class="h-3 bg-r-ip rounded-sm" style="width:4px"></div></td></tr>
-              <tr><td class="p-4 text-[13px] font-mono">spacing-two</td><td class="p-4 text-[13px] font-mono">8px</td><td class="p-4 text-[13px] text-r-fg-secondary">Default element spacing</td><td class="p-4"><div class="h-3 bg-r-ip rounded-sm" style="width:8px"></div></td></tr>
-              <tr><td class="p-4 text-[13px] font-mono">spacing-three</td><td class="p-4 text-[13px] font-mono">12px</td><td class="p-4 text-[13px] text-r-fg-secondary">Small component padding</td><td class="p-4"><div class="h-3 bg-r-ip rounded-sm" style="width:12px"></div></td></tr>
-              <tr><td class="p-4 text-[13px] font-mono">spacing-four</td><td class="p-4 text-[13px] font-mono">16px</td><td class="p-4 text-[13px] text-r-fg-secondary">Standard padding</td><td class="p-4"><div class="h-3 bg-r-ip rounded-sm" style="width:16px"></div></td></tr>
-              <tr><td class="p-4 text-[13px] font-mono">spacing-five</td><td class="p-4 text-[13px] font-mono">20px</td><td class="p-4 text-[13px] text-r-fg-secondary">Medium padding</td><td class="p-4"><div class="h-3 bg-r-ip rounded-sm" style="width:20px"></div></td></tr>
-              <tr><td class="p-4 text-[13px] font-mono">spacing-six</td><td class="p-4 text-[13px] font-mono">24px</td><td class="p-4 text-[13px] text-r-fg-secondary">Section spacing</td><td class="p-4"><div class="h-3 bg-r-ip rounded-sm" style="width:24px"></div></td></tr>
-              <tr><td class="p-4 text-[13px] font-mono">spacing-eight</td><td class="p-4 text-[13px] font-mono">32px</td><td class="p-4 text-[13px] text-r-fg-secondary">Large gaps</td><td class="p-4"><div class="h-3 bg-r-ip rounded-sm" style="width:32px"></div></td></tr>
-              <tr><td class="p-4 text-[13px] font-mono">spacing-twelve</td><td class="p-4 text-[13px] font-mono">48px</td><td class="p-4 text-[13px] text-r-fg-secondary">Section margins</td><td class="p-4"><div class="h-3 bg-r-ip rounded-sm" style="width:48px"></div></td></tr>
-              <tr><td class="p-4 text-[13px] font-mono">spacing-sixteen</td><td class="p-4 text-[13px] font-mono">64px</td><td class="p-4 text-[13px] text-r-fg-secondary">Page-level spacing</td><td class="p-4"><div class="h-3 bg-r-ip rounded-sm" style="width:64px"></div></td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <!-- Border radius -->
-      <h3 class="text-[24px] font-medium tracking-[-0.02em] mb-5">Border Radius</h3>
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-5 mb-10">
-        <div class="bg-r-bg-primary rounded-r-container p-6 shadow-e2 text-center">
-          <div class="w-20 h-20 bg-r-ip rounded-r-input-sm mx-auto mb-4"></div>
-          <div class="text-[15px] font-medium mb-1">radius-input-small</div>
-          <div class="text-[13px] font-mono text-r-fg-secondary">4px</div>
-          <div class="text-[13px] text-r-fg-secondary mt-1">Interactive elements</div>
-        </div>
-        <div class="bg-r-bg-primary rounded-r-container p-6 shadow-e2 text-center">
-          <div class="w-20 h-20 bg-r-ip rounded-r-input mx-auto mb-4"></div>
-          <div class="text-[15px] font-medium mb-1">radius-input-regular</div>
-          <div class="text-[13px] font-mono text-r-fg-secondary">8px</div>
-          <div class="text-[13px] text-r-fg-secondary mt-1">Small interactive elements</div>
-        </div>
-        <div class="bg-r-bg-primary rounded-r-container p-6 shadow-e2 text-center">
-          <div class="w-20 h-20 bg-r-ip rounded-r-container mx-auto mb-4"></div>
-          <div class="text-[15px] font-medium mb-1">radius-container</div>
-          <div class="text-[13px] font-mono text-r-fg-secondary">16px</div>
-          <div class="text-[13px] text-r-fg-secondary mt-1">Cards, large surfaces</div>
-        </div>
-        <div class="bg-r-bg-primary rounded-r-container p-6 shadow-e2 text-center">
-          <div class="w-20 h-20 bg-r-ip rounded-r-max mx-auto mb-4"></div>
-          <div class="text-[15px] font-medium mb-1">radius-max</div>
-          <div class="text-[13px] font-mono text-r-fg-secondary">9999px</div>
-          <div class="text-[13px] text-r-fg-secondary mt-1">Pills, icon buttons</div>
-        </div>
-      </div>
-
-      <!-- Elevation -->
-      <h3 class="text-[24px] font-medium tracking-[-0.02em] mb-5">Elevation</h3>
-      <div class="grid md:grid-cols-4 gap-5">
-        <div class="bg-r-bg-primary rounded-r-container p-6 border border-r-fg-border">
-          <div class="text-[13px] font-mono text-r-fg-secondary mb-2">elevation-zero</div>
-          <div class="text-[15px] font-medium">Flat</div>
-          <div class="text-[13px] text-r-fg-secondary mt-1">No shadow</div>
-        </div>
-        <div class="bg-r-bg-primary rounded-r-container p-6 shadow-e1">
-          <div class="text-[13px] font-mono text-r-fg-secondary mb-2">elevation-one</div>
-          <div class="text-[15px] font-medium">Subtle lift</div>
-          <div class="text-[13px] text-r-fg-secondary mt-1">Slight separation</div>
-        </div>
-        <div class="bg-r-bg-primary rounded-r-container p-6 shadow-e2">
-          <div class="text-[13px] font-mono text-r-fg-secondary mb-2">elevation-two</div>
-          <div class="text-[15px] font-medium">Standard card</div>
-          <div class="text-[13px] text-r-fg-secondary mt-1">Default card elevation</div>
-        </div>
-        <div class="bg-r-bg-primary rounded-r-container p-6 shadow-e3">
-          <div class="text-[13px] font-mono text-r-fg-secondary mb-2">elevation-three</div>
-          <div class="text-[15px] font-medium">Modals</div>
-          <div class="text-[13px] text-r-fg-secondary mt-1">Dropdowns, popovers</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="divider mx-6"></div>
-
-  <!-- ==================== BOLD FACTOR ==================== -->
-  <section id="bold-factor" class="py-20 px-6 bg-r-ip text-r-fg-inverted">
-    <div class="max-w-[1280px] mx-auto">
-      <div class="font-brand text-[48px] lg:text-[72px] tracking-tight leading-[0.9] mb-3">THE BOLD FACTOR</div>
-      <p class="text-[19px] text-white/70 tracking-[-0.02em] leading-[1.3] mb-12 max-w-xl">Signature elements that make Rosetta unmistakably Rosetta.</p>
-      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-        <div class="bg-white/10 backdrop-blur-sm rounded-r-container p-6">
-          <div class="font-brand text-[36px] leading-none mb-3 text-white/40">01</div>
-          <h3 class="text-[24px] font-medium tracking-[-0.02em] leading-[1.2] mb-2">Dark Teal, Not Blue</h3>
-          <p class="text-[15px] text-white/60 leading-[1.4]">#04191B is the hero color. Sophisticated, distinctive. Avoids the "generic SaaS blue" trap.</p>
-        </div>
-        <div class="bg-white/10 backdrop-blur-sm rounded-r-container p-6">
-          <div class="font-brand text-[36px] leading-none mb-3 text-white/40">02</div>
-          <h3 class="text-[24px] font-medium tracking-[-0.02em] leading-[1.2] mb-2">Noi Grotesk + Alternates</h3>
-          <p class="text-[15px] text-white/60 leading-[1.4]">ss03 and ss11 features give subtle character. Geometric precision with humanist warmth.</p>
-        </div>
-        <div class="bg-white/10 backdrop-blur-sm rounded-r-container p-6">
-          <div class="font-brand text-[36px] leading-none mb-3 text-white/40">03</div>
-          <h3 class="text-[24px] font-medium tracking-[-0.02em] leading-[1.2] mb-2">Shadow-First Elevation</h3>
-          <p class="text-[15px] text-white/60 leading-[1.4]">Soft shadows over heavy borders. Cards float rather than sit. Depth without visual noise.</p>
-        </div>
-        <div class="bg-white/10 backdrop-blur-sm rounded-r-container p-6">
-          <div class="font-brand text-[36px] leading-none mb-3 text-white/40">04</div>
-          <h3 class="text-[24px] font-medium tracking-[-0.02em] leading-[1.2] mb-2">4px Grid Discipline</h3>
-          <p class="text-[15px] text-white/60 leading-[1.4]">Every measurement snaps to the 4px grid. Subconscious harmony across the entire system.</p>
-        </div>
-        <div class="bg-white/10 backdrop-blur-sm rounded-r-container p-6">
-          <div class="font-brand text-[36px] leading-none mb-3 text-white/40">05</div>
-          <h3 class="text-[24px] font-medium tracking-[-0.02em] leading-[1.2] mb-2">Status Dual Variants</h3>
-          <p class="text-[15px] text-white/60 leading-[1.4]">Each status has both a light background tint and saturated foreground. Flexible, consistent patterns.</p>
-        </div>
-        <div class="bg-white/10 backdrop-blur-sm rounded-r-container p-6">
-          <div class="font-brand text-[36px] leading-none mb-3 text-white/40">06</div>
-          <h3 class="text-[24px] font-medium tracking-[-0.02em] leading-[1.2] mb-2">Sansplomb for Impact</h3>
-          <p class="text-[15px] text-white/60 leading-[1.4]">Bold condensed energy reserved for hero headlines and marketing. Never in product UI.</p>
-        </div>
-        <div class="bg-white/10 backdrop-blur-sm rounded-r-container p-6">
-          <div class="font-brand text-[36px] leading-none mb-3 text-white/40">07</div>
-          <h3 class="text-[24px] font-medium tracking-[-0.02em] leading-[1.2] mb-2">White Space as Feature</h3>
-          <p class="text-[15px] text-white/60 leading-[1.4]">Generous padding and margins. The interface breathes. Content has room to be comprehended.</p>
-        </div>
-        <div class="bg-white/10 backdrop-blur-sm rounded-r-container p-6">
-          <div class="font-brand text-[36px] leading-none mb-3 text-white/40">08</div>
-          <h3 class="text-[24px] font-medium tracking-[-0.02em] leading-[1.2] mb-2">Semantic Color Restraint</h3>
-          <p class="text-[15px] text-white/60 leading-[1.4]">Color means something. Blue = info. Green = success. Red = error. Never decorative.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==================== DO'S & DON'TS ==================== -->
-  <section class="py-16 px-6 bg-r-bg-primary">
-    <div class="max-w-[1280px] mx-auto">
-      <h2 class="text-[32px] font-medium tracking-[-0.03em] leading-[1.2] mb-2">Do's and Don'ts</h2>
-      <p class="text-[17px] text-r-fg-secondary tracking-[-0.02em] leading-[1.4] mb-10 max-w-2xl">
-        Visual comparisons of correct Rosetta usage vs. common anti-patterns.
-      </p>
-
-      <!-- Side-by-side examples -->
-      <div class="space-y-8">
-        <!-- Example 1: Color usage -->
-        <div class="grid md:grid-cols-2 gap-5">
-          <div class="rounded-r-container overflow-hidden border-2 border-r-pos-fg/30">
-            <div class="px-5 py-3 bg-r-pos-bg/30 flex items-center gap-2">
-              <svg class="w-5 h-5 text-r-pos-fg" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-              <span class="text-[13px] font-semibold text-r-pos-fg uppercase tracking-wider">Do</span>
-            </div>
-            <div class="p-5 bg-r-bg-primary">
-              <div class="flex gap-3 items-center mb-3">
-                <button class="t-bg h-10 px-5 bg-r-ip text-r-fg-inverted text-[13px] font-semibold rounded-r-input">Apply Now</button>
-                <span class="inline-flex items-center px-3 py-1 bg-r-pos-bg text-r-pos-fg text-[13px] font-semibold rounded-r-input-sm">Hired</span>
-                <span class="inline-flex items-center px-3 py-1 bg-r-neg-bg text-r-neg-fg text-[13px] font-semibold rounded-r-input-sm">Rejected</span>
-              </div>
-              <p class="text-[13px] text-r-fg-secondary">Use semantic colors only for meaningful status and actions. The dark teal primary anchors the interface.</p>
-            </div>
-          </div>
-          <div class="rounded-r-container overflow-hidden border-2 border-r-neg-fg/30">
-            <div class="px-5 py-3 bg-r-neg-bg/30 flex items-center gap-2">
-              <svg class="w-5 h-5 text-r-neg-fg" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-              <span class="text-[13px] font-semibold text-r-neg-fg uppercase tracking-wider">Don't</span>
-            </div>
-            <div class="p-5 bg-r-bg-primary">
-              <div class="flex gap-3 items-center mb-3">
-                <button class="h-10 px-5 bg-gradient-to-r from-purple-500 to-pink-500 text-white text-[13px] font-semibold rounded-full">Apply Now</button>
-                <span class="inline-flex items-center px-3 py-1 bg-orange-200 text-orange-700 text-[13px] font-semibold rounded-full">Hired</span>
-                <span class="inline-flex items-center px-3 py-1 bg-cyan-200 text-cyan-700 text-[13px] font-semibold rounded-full">Rejected</span>
-              </div>
-              <p class="text-[13px] text-r-fg-secondary">Don't use decorative gradients, off-palette colors, or rounded pills where the system specifies squared radii.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Example 2: Elevation -->
-        <div class="grid md:grid-cols-2 gap-5">
-          <div class="rounded-r-container overflow-hidden border-2 border-r-pos-fg/30">
-            <div class="px-5 py-3 bg-r-pos-bg/30 flex items-center gap-2">
-              <svg class="w-5 h-5 text-r-pos-fg" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-              <span class="text-[13px] font-semibold text-r-pos-fg uppercase tracking-wider">Do</span>
-            </div>
-            <div class="p-5 bg-r-bg-secondary">
-              <div class="bg-r-bg-primary rounded-r-container p-4 shadow-e2 border border-r-card-border mb-3">
-                <div class="text-[15px] font-medium mb-1">Product Manager at Airbnb</div>
-                <div class="text-[13px] text-r-fg-secondary">Soft shadow for elevation. Card floats naturally.</div>
-              </div>
-              <p class="text-[13px] text-r-fg-secondary">Cards use elevation shadows, not heavy borders. Subtle card-border (#E2E5F3) for definition.</p>
-            </div>
-          </div>
-          <div class="rounded-r-container overflow-hidden border-2 border-r-neg-fg/30">
-            <div class="px-5 py-3 bg-r-neg-bg/30 flex items-center gap-2">
-              <svg class="w-5 h-5 text-r-neg-fg" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-              <span class="text-[13px] font-semibold text-r-neg-fg uppercase tracking-wider">Don't</span>
-            </div>
-            <div class="p-5 bg-r-bg-secondary">
-              <div class="bg-r-bg-primary rounded-lg p-4 border-2 border-gray-400 mb-3">
-                <div class="text-[15px] font-medium mb-1">Product Manager at Airbnb</div>
-                <div class="text-[13px] text-r-fg-secondary">Heavy border, no shadow. Card looks flat and heavy.</div>
-              </div>
-              <p class="text-[13px] text-r-fg-secondary">Don't rely on thick borders for containment. Shadow-first elevation creates depth without visual weight.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Example 3: Tone -->
-        <div class="grid md:grid-cols-2 gap-5">
-          <div class="rounded-r-container overflow-hidden border-2 border-r-pos-fg/30">
-            <div class="px-5 py-3 bg-r-pos-bg/30 flex items-center gap-2">
-              <svg class="w-5 h-5 text-r-pos-fg" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-              <span class="text-[13px] font-semibold text-r-pos-fg uppercase tracking-wider">Do</span>
-            </div>
-            <div class="p-5 bg-r-bg-primary">
-              <div class="text-[32px] font-medium tracking-[-0.03em] leading-[1.2] mb-1">Find your next role</div>
-              <div class="text-[17px] text-r-fg-secondary tracking-[-0.02em] leading-[1.4]">Discover opportunities at companies that match your values.</div>
-              <p class="text-[13px] text-r-fg-secondary mt-3">Clean, professional, warm. Generous whitespace. Content is the hero.</p>
-            </div>
-          </div>
-          <div class="rounded-r-container overflow-hidden border-2 border-r-neg-fg/30">
-            <div class="px-5 py-3 bg-r-neg-bg/30 flex items-center gap-2">
-              <svg class="w-5 h-5 text-r-neg-fg" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-              <span class="text-[13px] font-semibold text-r-neg-fg uppercase tracking-wider">Don't</span>
-            </div>
-            <div class="p-5 bg-gray-900">
-              <div class="text-[32px] font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400 leading-[1.2] mb-1">LAND YOUR DREAM JOB!!!</div>
-              <div class="text-[17px] text-gray-400 leading-[1.4]">Join the revolution. We're disrupting career discovery.</div>
-              <p class="text-[13px] text-r-fg-secondary mt-3 text-gray-500">Not dark or moody. Not playful or whimsical. Not trendy or experimental.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="divider mx-6"></div>
-
-  <!-- ==================== RESPONSIVE ==================== -->
-  <section class="py-16 px-6 bg-r-bg-secondary">
-    <div class="max-w-[1280px] mx-auto">
-      <h2 class="text-[32px] font-medium tracking-[-0.03em] leading-[1.2] mb-2">Responsive Strategy</h2>
-      <p class="text-[17px] text-r-fg-secondary tracking-[-0.02em] leading-[1.4] mb-10 max-w-2xl">
-        Mobile-first. Typography scales down ~20-30%. Multi-column layouts collapse to single column. All touch targets minimum 44px.
-      </p>
-
-      <div class="bg-r-bg-primary rounded-r-container shadow-e2 overflow-hidden mb-8">
-        <div class="overflow-x-auto">
-          <table class="w-full">
-            <thead>
-              <tr class="text-left text-[13px] text-r-fg-secondary border-b border-r-fg-border">
-                <th class="p-5 pb-3 font-medium">Breakpoint</th>
-                <th class="p-5 pb-3 font-medium font-mono">Width</th>
-                <th class="p-5 pb-3 font-medium">Target</th>
-              </tr>
-            </thead>
-            <tbody class="divide-y divide-r-fg-border">
-              <tr><td class="p-4 text-[15px] font-medium">sm</td><td class="p-4 text-[15px] font-mono">640px</td><td class="p-4 text-[15px] text-r-fg-secondary">Large phones, small tablets</td></tr>
-              <tr><td class="p-4 text-[15px] font-medium">md</td><td class="p-4 text-[15px] font-mono">768px</td><td class="p-4 text-[15px] text-r-fg-secondary">Tablets</td></tr>
-              <tr><td class="p-4 text-[15px] font-medium">lg</td><td class="p-4 text-[15px] font-mono">1024px</td><td class="p-4 text-[15px] text-r-fg-secondary">Small laptops</td></tr>
-              <tr><td class="p-4 text-[15px] font-medium">xl</td><td class="p-4 text-[15px] font-mono">1280px</td><td class="p-4 text-[15px] text-r-fg-secondary">Desktops</td></tr>
-              <tr><td class="p-4 text-[15px] font-medium">2xl</td><td class="p-4 text-[15px] font-mono">1536px</td><td class="p-4 text-[15px] text-r-fg-secondary">Large screens</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <div class="grid md:grid-cols-3 gap-5">
-        <div class="bg-r-bg-primary rounded-r-container p-6 shadow-e2">
-          <div class="text-[13px] font-mono text-r-fg-secondary mb-3">Touch targets</div>
-          <div class="text-[15px] font-medium mb-2">Minimum 44px height</div>
-          <div class="flex items-center gap-3">
-            <div class="w-11 h-11 border-2 border-dashed border-r-pos-fg rounded-r-input flex items-center justify-center text-[11px] font-mono text-r-pos-fg">44px</div>
-            <div class="w-12 h-12 bg-r-ip rounded-r-input flex items-center justify-center text-[11px] font-mono text-r-fg-inverted">48px</div>
-          </div>
-        </div>
-        <div class="bg-r-bg-primary rounded-r-container p-6 shadow-e2">
-          <div class="text-[13px] font-mono text-r-fg-secondary mb-3">Mobile buttons</div>
-          <div class="text-[15px] font-medium mb-2">Full-width on narrow screens</div>
-          <button class="t-bg w-full h-12 bg-r-ip text-r-fg-inverted font-semibold rounded-r-input text-[15px]">Apply Now</button>
-        </div>
-        <div class="bg-r-bg-primary rounded-r-container p-6 shadow-e2">
-          <div class="text-[13px] font-mono text-r-fg-secondary mb-3">Layout</div>
-          <div class="text-[15px] font-medium mb-2">Stack instead of grid</div>
-          <p class="text-[13px] text-r-fg-secondary">Multi-column layouts collapse to single column. Prefer stacking over horizontal scroll.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==================== COPY PROMPT ==================== -->
-  <section class="py-16 px-6 bg-r-bg-primary">
-    <div class="max-w-[1280px] mx-auto text-center">
-      <h2 class="text-[32px] font-medium tracking-[-0.03em] leading-[1.2] mb-3">Get the Prompt</h2>
-      <p class="text-[17px] text-r-fg-secondary tracking-[-0.02em] leading-[1.4] mb-8 max-w-md mx-auto">Copy the complete Rosetta design system prompt for your AI assistant.</p>
-      <button id="copyPromptBtn" class="t-bg focus-ring h-14 px-8 bg-r-ip text-r-fg-inverted text-[17px] font-semibold rounded-r-input hover:bg-r-ip-hover active:bg-r-ip-active">
-        Copy Rosetta Prompt
+<!-- ==================== MODAL ==================== -->
+<div id="modal" class="fixed inset-0 z-[100] hidden items-center justify-center">
+  <div class="modal-overlay absolute inset-0" id="modalOverlay"></div>
+  <div class="anim-modal relative bg-r-bg-primary rounded-r-container shadow-e3 w-full max-w-md mx-4 p-6">
+    <div class="flex items-center justify-between mb-4">
+      <h3 class="text-[28px] font-medium tracking-[-0.03em] leading-[1.2]">Apply to this role?</h3>
+      <button id="modalClose" class="t-bg focus-ring w-10 h-10 rounded-r-input flex items-center justify-center hover:bg-r-i-hovered">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
       </button>
     </div>
-  </section>
-
-  <!-- ==================== FOOTER ==================== -->
-  <footer class="py-12 px-6 bg-r-bg-inverted text-r-fg-inverted">
-    <div class="max-w-[1280px] mx-auto">
-      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
-        <div class="flex items-center gap-4">
-          <span class="font-brand text-[28px] tracking-tight leading-none">ROSETTA</span>
-          <span class="text-[13px] text-white/50">Handshake Design System</span>
-        </div>
-        <div class="text-[13px] text-white/50">Professional clarity with human warmth</div>
-      </div>
+    <p class="text-[15px] text-r-fg-secondary leading-[1.4] mb-6">Your profile will be shared with the employer. Make sure your resume and portfolio are up to date before applying.</p>
+    <div class="mb-6">
+      <label class="block text-[13px] font-medium mb-2">Cover note (optional)</label>
+      <textarea rows="3" placeholder="Add a personal note to the recruiter..." class="focus-ring t-all w-full p-4 border border-r-fg-border rounded-r-input-sm bg-transparent placeholder:text-r-fg-secondary hover:border-r-fg-primary resize-none text-[15px]"></textarea>
     </div>
-  </footer>
-
-  <!-- ==================== MODAL ==================== -->
-  <div id="modal" class="fixed inset-0 z-[100] hidden items-center justify-center">
-    <div class="modal-overlay absolute inset-0" id="modalOverlay"></div>
-    <div class="anim-modal relative bg-r-bg-primary rounded-r-container shadow-e3 w-full max-w-md mx-4 p-6">
-      <div class="flex items-center justify-between mb-4">
-        <h3 class="text-[28px] font-medium tracking-[-0.03em] leading-[1.2]">Apply to this role?</h3>
-        <button id="modalClose" class="t-bg focus-ring w-10 h-10 rounded-r-input flex items-center justify-center hover:bg-r-i-hovered">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-        </button>
-      </div>
-      <p class="text-[15px] text-r-fg-secondary leading-[1.4] mb-6">Your profile will be shared with the employer. Make sure your resume and portfolio are up to date before applying.</p>
-      <div class="mb-6">
-        <label class="block text-[13px] font-medium mb-2">Cover note (optional)</label>
-        <textarea rows="3" placeholder="Add a personal note to the recruiter..." class="focus-ring t-all w-full p-4 border border-r-fg-border rounded-r-input-sm bg-transparent placeholder:text-r-fg-secondary hover:border-r-fg-primary resize-none text-[15px]"></textarea>
-      </div>
-      <div class="flex gap-3 justify-end">
-        <button id="modalCancel" class="t-bg focus-ring h-12 px-6 bg-r-bg-primary text-r-fg-primary font-semibold rounded-r-input text-[15px] border border-r-fg-border hover:bg-r-bg-tertiary">Cancel</button>
-        <button class="t-bg focus-ring h-12 px-6 bg-r-ip text-r-fg-inverted font-semibold rounded-r-input text-[15px] hover:bg-r-ip-hover active:bg-r-ip-active">Submit Application</button>
-      </div>
+    <div class="flex gap-3 justify-end">
+      <button id="modalCancel" class="t-bg focus-ring h-12 px-6 bg-r-bg-primary text-r-fg-primary font-semibold rounded-r-input text-[15px] border border-r-fg-border hover:bg-r-bg-tertiary">Cancel</button>
+      <button class="t-bg focus-ring h-12 px-6 bg-r-ip text-r-fg-inverted font-semibold rounded-r-input text-[15px] hover:bg-r-ip-hover active:bg-r-ip-active">Submit Application</button>
     </div>
   </div>
+</div>
 
-  <!-- ==================== TOAST ==================== -->
-  <div id="toast" class="fixed bottom-6 right-6 z-[200] hidden">
-    <div class="anim-toast bg-r-bg-inverted text-r-fg-inverted px-4 py-3 rounded-r-input shadow-e3 flex items-center gap-2">
-      <svg class="w-4 h-4 text-r-pos-bg" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-      <span id="toastMsg" class="text-[13px]">Copied</span>
-    </div>
+<!-- ==================== TOAST ==================== -->
+<div id="toast" class="fixed bottom-6 right-6 z-[200] hidden">
+  <div class="anim-toast bg-r-bg-inverted text-r-fg-inverted px-4 py-3 rounded-r-input shadow-e3 flex items-center gap-2">
+    <svg class="w-5 h-5 text-r-pos-bg" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+    <span id="toastMsg" class="text-[13px]">Copied</span>
   </div>
+</div>
 
-  <!-- ==================== JS ==================== -->
-  <script>
-    // Toast
-    const toast = document.getElementById('toast');
-    const toastMsg = document.getElementById('toastMsg');
-    let toastTimer;
-    function showToast(msg) {
-      toastMsg.textContent = msg;
-      toast.classList.remove('hidden');
-      clearTimeout(toastTimer);
-      toastTimer = setTimeout(() => toast.classList.add('hidden'), 2000);
-    }
+<!-- ==================== JS ==================== -->
+<script>
+  // Toast
+  const toast = document.getElementById('toast');
+  const toastMsg = document.getElementById('toastMsg');
+  let toastTimer;
+  function showToast(msg) {
+    toastMsg.textContent = msg;
+    toast.classList.remove('hidden');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.add('hidden'), 2000);
+  }
 
-    // Color swatches — click to copy
-    document.querySelectorAll('.swatch').forEach(el => {
-      el.addEventListener('click', async () => {
-        const color = el.dataset.color;
-        if (!color) return;
-        try {
-          await navigator.clipboard.writeText(color);
-          showToast('Copied ' + color);
-        } catch { showToast('Copy failed'); }
-      });
-    });
-
-    // Copy prompt button
-    document.getElementById('copyPromptBtn').addEventListener('click', async () => {
+  // Color swatches — click to copy
+  document.querySelectorAll('.swatch').forEach(el => {
+    el.addEventListener('click', async () => {
+      const color = el.dataset.color;
+      if (!color) return;
       try {
-        const res = await fetch('../design-prompts/rosetta.md');
-        const text = await res.text();
-        await navigator.clipboard.writeText(text);
-        showToast('Prompt copied!');
+        await navigator.clipboard.writeText(color);
+        showToast('Copied ' + color);
       } catch { showToast('Copy failed'); }
     });
+  });
 
-    // Modal
-    const modal = document.getElementById('modal');
-    document.getElementById('modalTrigger').addEventListener('click', () => {
-      modal.classList.remove('hidden');
-      modal.classList.add('flex');
-    });
-    function closeModal() {
-      modal.classList.add('hidden');
-      modal.classList.remove('flex');
-    }
-    document.getElementById('modalOverlay').addEventListener('click', closeModal);
-    document.getElementById('modalClose').addEventListener('click', closeModal);
-    document.getElementById('modalCancel').addEventListener('click', closeModal);
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+  // Copy prompt button
+  document.getElementById('copyPromptBtn').addEventListener('click', async () => {
+    try {
+      const res = await fetch('../design-prompts/rosetta.md');
+      const text = await res.text();
+      await navigator.clipboard.writeText(text);
+      showToast('Prompt copied!');
+    } catch { showToast('Copy failed'); }
+  });
 
-    // Smooth scroll for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-      a.addEventListener('click', e => {
-        e.preventDefault();
-        const target = document.querySelector(a.getAttribute('href'));
-        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      });
+  // Modal
+  const modal = document.getElementById('modal');
+  document.getElementById('modalTrigger').addEventListener('click', () => {
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+  });
+  function closeModal() {
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+  }
+  document.getElementById('modalOverlay').addEventListener('click', closeModal);
+  document.getElementById('modalClose').addEventListener('click', closeModal);
+  document.getElementById('modalCancel').addEventListener('click', closeModal);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        const offset = 80;
+        const top = target.getBoundingClientRect().top + window.scrollY - offset;
+        window.scrollTo({ top, behavior: 'smooth' });
+      }
     });
-  </script>
+  });
+
+</script>
 </body>
 </html>
