@@ -1810,8 +1810,7 @@ function toggleTheme() {
 // Init theme
 (function() {
   var saved = localStorage.getItem('rosetta-theme');
-  var pref = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-  var theme = saved || pref;
+  var theme = saved || 'light';
   document.documentElement.setAttribute('data-theme', theme);
   document.getElementById('theme-icon').innerHTML = theme === 'dark' ? '&#9788;' : '&#9789;';
 })();
