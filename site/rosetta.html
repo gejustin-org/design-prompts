@@ -1,1432 +1,1889 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rosetta Design System — Handshake</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            r: {
-              'bg-primary': '#FFFFFF',
-              'bg-secondary': '#F6F6F6',
-              'bg-surface': '#FCFCFD',
-              'bg-inverted': '#121212',
-              'bg-selected': '#EAEAEA',
-              'bg-disabled': '#EEEEEE',
-              'bg-tertiary': '#F3F3F3',
-              'bg-quaternary': '#E7E7E7',
-              'fg-primary': '#121212',
-              'fg-secondary': 'rgba(18,18,18,0.7)',
-              'fg-disabled': 'rgba(18,18,18,0.4)',
-              'fg-inverted': '#FFFFFF',
-              'fg-border': 'rgba(31,32,44,0.2)',
-              'card-border': '#E2E5F3',
-              'ip': '#04191B',
-              'ip-hover': '#062E32',
-              'ip-active': '#073D42',
-              'i-hovered': 'rgba(18,18,18,0.06)',
-              'i-pressed': 'rgba(18,18,18,0.12)',
-              'focus': '#003BCC',
-              'info-bg': '#CCDBFF',
-              'info-fg': '#003BCC',
-              'pos-bg': '#A5E09F',
-              'pos-fg': '#327D0F',
-              'warn-bg': '#FFD999',
-              'warn-fg': '#A36700',
-              'neg-bg': '#FFC2C4',
-              'neg-fg': '#BB3643',
-              'neutral-bg': '#EAEAEA',
-            }
-          },
-          fontFamily: {
-            sans: ['"Noi Grotesk"', 'system-ui', 'sans-serif'],
-            brand: ['"Sansplomb"', 'sans-serif'],
-            mono: ['"IBM Plex Mono"', 'monospace'],
-          },
-          borderRadius: {
-            'r-input-sm': '4px',
-            'r-input': '8px',
-            'r-container': '16px',
-            'r-max': '9999px',
-          },
-          boxShadow: {
-            'e0': 'none',
-            'e1': '0 1px 2px rgba(0,0,0,0.08)',
-            'e2': '0 2px 20px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.08)',
-            'e3': '0 6px 30px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.08)',
-          },
-        }
-      }
-    }
-  </script>
-  <style>
-    @font-face {
-      font-family: "Noi Grotesk";
-      font-weight: 1 499;
-      font-display: swap;
-      src: url("fonts/NoiGrotesk-Regular.woff2") format("woff2"),
-           url("fonts/NoiGrotesk-Regular.woff") format("woff");
-    }
-    @font-face {
-      font-family: "Noi Grotesk";
-      font-weight: 500 1000;
-      font-display: swap;
-      src: url("fonts/NoiGrotesk-Medium.woff2") format("woff2"),
-           url("fonts/NoiGrotesk-Medium.woff") format("woff");
-    }
-    @font-face {
-      font-family: "Sansplomb";
-      font-weight: 1 1000;
-      font-display: swap;
-      src: url("fonts/SansPlomb-98.woff2") format("woff2"),
-           url("fonts/SansPlomb-98.woff") format("woff");
-    }
-    body { font-feature-settings: "ss03" on, "ss11" on; }
-    .focus-ring:focus-visible { outline: #003BCC solid 2px; outline-offset: 2px; }
-    .t-bg { transition: background-color 0.2s ease-out; }
-    .t-all { transition: all 0.15s ease-out; }
-    .t-shadow { transition: box-shadow 0.2s ease-out, border-color 0.2s ease-out; }
-    .divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(31,32,44,0.15), transparent); }
-    @keyframes modalIn { from { opacity: 0; transform: scale(0.95) translateY(8px); } to { opacity: 1; transform: scale(1) translateY(0); } }
-    .anim-modal { animation: modalIn 0.2s ease-out forwards; }
-    @keyframes slideUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
-    .anim-toast { animation: slideUp 0.2s ease-out; }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
-    .anim-section { animation: fadeIn 0.4s ease-out forwards; }
-    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; } }
-    ::-webkit-scrollbar { width: 8px; height: 8px; }
-    ::-webkit-scrollbar-track { background: #F6F6F6; }
-    ::-webkit-scrollbar-thumb { background: rgba(18,18,18,0.2); border-radius: 4px; }
-    ::-webkit-scrollbar-thumb:hover { background: rgba(18,18,18,0.35); }
-    .hero-grid { background-image: linear-gradient(rgba(4,25,27,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(4,25,27,0.04) 1px, transparent 1px); background-size: 32px 32px; }
-    .modal-overlay { background: rgba(18,18,18,0.5); backdrop-filter: blur(4px); }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rosetta Design System — Handshake</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════
+   FONTS
+   ═══════════════════════════════════════════ */
+@font-face {
+  font-family: "Noi Grotesk";
+  font-weight: 1 499;
+  font-display: swap;
+  src: url("fonts/NoiGrotesk-Regular.woff2") format("woff2"),
+       url("fonts/NoiGrotesk-Regular.woff") format("woff");
+}
+@font-face {
+  font-family: "Noi Grotesk";
+  font-weight: 500 1000;
+  font-display: swap;
+  src: url("fonts/NoiGrotesk-Medium.woff2") format("woff2"),
+       url("fonts/NoiGrotesk-Medium.woff") format("woff");
+}
+@font-face {
+  font-family: "Sansplomb";
+  font-weight: 1 1000;
+  font-display: swap;
+  src: url("fonts/SansPlomb-98.woff2") format("woff2"),
+       url("fonts/SansPlomb-98.woff") format("woff");
+}
+
+/* ═══════════════════════════════════════════
+   CSS RESET & CUSTOM PROPERTIES
+   ═══════════════════════════════════════════ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root {
+  /* Rosetta Tokens */
+  --r-bg-primary: #FFF;
+  --r-bg-secondary: #F6F6F6;
+  --r-bg-surface: #FCFCFD;
+  --r-bg-inverted: #121212;
+  --r-bg-selected: #EAEAEA;
+  --r-bg-disabled: #EEEEEE;
+  --r-fg-primary: #121212;
+  --r-fg-secondary: rgba(18,18,18,0.7);
+  --r-fg-inverted: #FFF;
+  --r-fg-disabled: rgba(18,18,18,0.4);
+  --r-fg-border: rgba(31,32,44,0.2);
+  --r-interactive-primary: #04191B;
+  --r-interactive-hovered: rgba(18,18,18,0.06);
+  --r-interactive-pressed: rgba(18,18,18,0.12);
+  --r-interactive-focus: #003BCC;
+
+  /* Status */
+  --r-info-bg: #CCDBFF; --r-info-fg: #003BCC;
+  --r-positive-bg: #A5E09F; --r-positive-fg: #327D0F;
+  --r-warning-bg: #FFD999; --r-warning-fg: #A36700;
+  --r-negative-bg: #FFC2C4; --r-negative-fg: #BB3643;
+  --r-neutral-bg: #EAEAEA;
+
+  /* Spacing */
+  --s-half: 2px; --s-1: 4px; --s-2: 8px; --s-3: 12px;
+  --s-4: 16px; --s-5: 20px; --s-6: 24px; --s-8: 32px;
+  --s-12: 48px; --s-16: 64px;
+
+  /* Radius */
+  --rad-1: 4px; --rad-2: 8px; --rad-4: 16px; --rad-max: 9999px;
+
+  /* Shadows */
+  --shadow-0: none;
+  --shadow-1: 0 1px 2px rgba(0,0,0,0.08);
+  --shadow-2: 0 2px 20px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.08);
+  --shadow-3: 0 6px 30px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.08);
+
+  /* Doc chrome */
+  --doc-bg: var(--r-bg-primary);
+  --doc-surface: var(--r-bg-surface);
+  --doc-card: var(--r-bg-secondary);
+  --doc-text: var(--r-fg-primary);
+  --doc-muted: var(--r-fg-secondary);
+  --doc-border: var(--r-fg-border);
+  --doc-accent: var(--r-interactive-primary);
+  --doc-accent-soft: rgba(4,25,27,0.06);
+  --doc-sidebar-w: 260px;
+  --doc-header-h: 64px;
+  --doc-code-bg: #F4F4F5;
+  --doc-code-text: #1a1a2e;
+
+  /* Transition */
+  --ease: 0.2s ease-out;
+
+  font-family: "Noi Grotesk", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--doc-text);
+  background: var(--doc-bg);
+  scroll-behavior: smooth;
+}
+
+body { font-feature-settings: "ss03" on, "ss11" on; }
+
+[data-theme="dark"] {
+  --r-bg-primary: #0E0E0E;
+  --r-bg-secondary: #1A1A1A;
+  --r-bg-surface: #161618;
+  --r-bg-inverted: #F6F6F6;
+  --r-bg-selected: #2A2A2A;
+  --r-bg-disabled: #222;
+  --r-fg-primary: #ECECEC;
+  --r-fg-secondary: rgba(236,236,236,0.65);
+  --r-fg-inverted: #121212;
+  --r-fg-disabled: rgba(236,236,236,0.35);
+  --r-fg-border: rgba(255,255,255,0.12);
+  --r-interactive-primary: #B4D5D8;
+  --r-interactive-hovered: rgba(255,255,255,0.06);
+  --r-interactive-pressed: rgba(255,255,255,0.12);
+  --doc-bg: var(--r-bg-primary);
+  --doc-surface: var(--r-bg-surface);
+  --doc-card: var(--r-bg-secondary);
+  --doc-text: var(--r-fg-primary);
+  --doc-muted: var(--r-fg-secondary);
+  --doc-border: var(--r-fg-border);
+  --doc-accent: var(--r-interactive-primary);
+  --doc-accent-soft: rgba(180,213,216,0.08);
+  --doc-code-bg: #1E1E22;
+  --doc-code-text: #D4D4D8;
+}
+
+/* ═══════════════════════════════════════════
+   LAYOUT
+   ═══════════════════════════════════════════ */
+body { overflow-x: hidden; }
+
+.header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  height: var(--doc-header-h);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 var(--s-6);
+  background: var(--doc-bg);
+  border-bottom: 1px solid var(--doc-border);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.header-left { display: flex; align-items: center; gap: var(--s-3); }
+.header-brand {
+  display: flex; align-items: center; gap: var(--s-2);
+  text-decoration: none;
+}
+.header-brand-icon {
+  width: 32px; height: 32px; border-radius: var(--rad-2);
+  background: var(--doc-accent);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--r-fg-inverted); font-size: 14px; font-weight: 600;
+}
+.header-brand-name {
+  font-family: "Sansplomb", sans-serif;
+  font-size: 22px; letter-spacing: -0.01em;
+  color: var(--doc-accent);
+  line-height: 1; margin-top: 2px;
+}
+.header-right { display: flex; align-items: center; gap: var(--s-3); }
+
+.theme-toggle {
+  width: 40px; height: 40px; border-radius: var(--rad-2);
+  border: 1px solid var(--doc-border);
+  background: var(--doc-surface);
+  color: var(--doc-text);
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  transition: background var(--ease), border-color var(--ease);
+  font-size: 18px;
+}
+.theme-toggle:hover { background: var(--r-interactive-hovered); }
+.theme-toggle:focus-visible { outline: 2px solid var(--r-interactive-focus); outline-offset: 2px; }
+
+.mobile-toggle {
+  display: none;
+  width: 40px; height: 40px; border-radius: var(--rad-2);
+  border: 1px solid var(--doc-border);
+  background: var(--doc-surface);
+  color: var(--doc-text);
+  cursor: pointer; align-items: center; justify-content: center;
+  font-size: 20px;
+}
+
+.sidebar {
+  position: fixed; top: var(--doc-header-h); left: 0; bottom: 0;
+  width: var(--doc-sidebar-w);
+  background: var(--doc-bg);
+  border-right: 1px solid var(--doc-border);
+  overflow-y: auto; overflow-x: hidden;
+  padding: var(--s-6) 0;
+  z-index: 50;
+  transition: transform var(--ease);
+}
+
+.sidebar-section { margin-bottom: var(--s-4); }
+.sidebar-label {
+  padding: var(--s-2) var(--s-6);
+  font-size: 11px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.06em; color: var(--doc-muted);
+}
+.sidebar-link {
+  display: block; padding: var(--s-2) var(--s-6); padding-left: var(--s-8);
+  font-size: 14px; color: var(--doc-muted);
+  text-decoration: none; border-radius: 0;
+  transition: color var(--ease), background var(--ease);
+  border-left: 2px solid transparent;
+}
+.sidebar-link:hover { color: var(--doc-text); background: var(--r-interactive-hovered); }
+.sidebar-link.active {
+  color: var(--doc-accent); font-weight: 500;
+  border-left-color: var(--doc-accent);
+  background: var(--doc-accent-soft);
+}
+
+.main {
+  margin-left: var(--doc-sidebar-w);
+  margin-top: var(--doc-header-h);
+  min-height: calc(100vh - var(--doc-header-h));
+}
+.main-content {
+  padding: var(--s-12) var(--s-16);
+  max-width: 960px;
+}
+
+@media (max-width: 900px) {
+  .mobile-toggle { display: flex; }
+  .sidebar { transform: translateX(-100%); }
+  .sidebar.open { transform: translateX(0); box-shadow: var(--shadow-3); }
+  .main { margin-left: 0; }
+  .main-content { padding: var(--s-8) var(--s-4); }
+}
+
+/* ═══════════════════════════════════════════
+   TYPOGRAPHY
+   ═══════════════════════════════════════════ */
+.h-xl { font-size: 44px; font-weight: 500; line-height: 1.0; letter-spacing: -0.04em; }
+.h-lg { font-size: 32px; font-weight: 500; line-height: 1.2; letter-spacing: -0.03em; }
+.h-md { font-size: 28px; font-weight: 500; line-height: 1.2; letter-spacing: -0.03em; }
+.h-sm { font-size: 24px; font-weight: 500; line-height: 1.2; letter-spacing: -0.02em; }
+.body-lg { font-size: 17px; line-height: 1.4; letter-spacing: -0.02em; }
+.body-md { font-size: 15px; line-height: 1.5; }
+.body-sm { font-size: 13px; line-height: 1.4; letter-spacing: 0.01em; }
+.caption { font-size: 11px; letter-spacing: 0.02em; color: var(--doc-muted); text-transform: uppercase; font-weight: 600; }
+.font-brand { font-family: "Sansplomb", sans-serif; }
+.font-mono { font-family: "IBM Plex Mono", monospace; }
+
+/* ═══════════════════════════════════════════
+   HERO WITH RULED GRID
+   ═══════════════════════════════════════════ */
+.hero-grid {
+  position: relative;
+  background-color: var(--r-bg-surface);
+  background-image:
+    linear-gradient(rgba(4,25,27,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(4,25,27,0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+.hero-grid::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 120px;
+  background: linear-gradient(to bottom, transparent, var(--doc-bg));
+  pointer-events: none;
+}
+[data-theme="dark"] .hero-grid {
+  background-color: var(--r-bg-surface);
+  background-image:
+    linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+}
+.hero-inner {
+  max-width: 960px;
+  padding: 80px var(--s-16) var(--s-16);
+}
+.hero-inner .hero-sup {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--doc-muted);
+  margin-bottom: var(--s-4);
+}
+.hero-inner .hero-title {
+  font-family: "Sansplomb", sans-serif;
+  font-size: clamp(72px, 12vw, 120px);
+  line-height: 0.85;
+  letter-spacing: -0.02em;
+  color: var(--doc-accent);
+  margin-bottom: var(--s-6);
+}
+.hero-inner .hero-lead {
+  font-size: 24px; font-weight: 500;
+  line-height: 1.2; letter-spacing: -0.02em;
+  margin-bottom: var(--s-3);
+  max-width: 560px;
+}
+.hero-inner .hero-sub {
+  font-size: 17px; color: var(--doc-muted);
+  line-height: 1.4; letter-spacing: -0.02em;
+  max-width: 560px; margin-bottom: var(--s-8);
+}
+.hero-pills { display: flex; flex-wrap: wrap; gap: var(--s-3); }
+.hero-pill {
+  display: inline-flex; align-items: center; gap: var(--s-2);
+  padding: var(--s-2) var(--s-4);
+  background: var(--doc-card);
+  border-radius: var(--rad-2);
+  font-size: 13px; font-weight: 500;
+}
+.hero-pill-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+}
+.hero-cards {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: var(--s-4); margin-top: var(--s-8);
+}
+.hero-card {
+  padding: var(--s-6); border-radius: var(--rad-4);
+}
+.hero-card h3 { font-size: 17px; font-weight: 500; letter-spacing: -0.02em; margin-bottom: 2px; }
+.hero-card p { font-size: 13px; opacity: 0.6; }
+
+@media (min-width: 768px) {
+  .hero-inner { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-16); align-items: center; }
+}
+@media (max-width: 767px) {
+  .hero-cards { margin-top: var(--s-6); }
+}
+
+/* ═══════════════════════════════════════════
+   SECTIONS & COMPONENTS
+   ═══════════════════════════════════════════ */
+.section {
+  padding-bottom: var(--s-16);
+  border-bottom: 1px solid var(--doc-border);
+  margin-bottom: var(--s-12);
+}
+.section:last-child { border-bottom: none; }
+.section-header { margin-bottom: var(--s-8); }
+.section-header p { color: var(--doc-muted); margin-top: var(--s-2); max-width: 640px; }
+
+/* Vibe callout */
+.vibe-callout {
+  background: var(--doc-accent);
+  color: var(--r-fg-inverted);
+  border-radius: var(--rad-4);
+  padding: var(--s-8);
+  margin: var(--s-8) 0;
+}
+[data-theme="dark"] .vibe-callout {
+  background: rgba(180,213,216,0.08);
+  color: var(--doc-text);
+}
+.vibe-callout h3 { font-size: 20px; font-weight: 500; margin-bottom: var(--s-3); letter-spacing: -0.02em; }
+.vibe-callout p { opacity: 0.85; line-height: 1.6; }
+.vibe-not {
+  margin-top: var(--s-4);
+  padding-top: var(--s-4);
+  border-top: 1px solid rgba(255,255,255,0.15);
+  font-size: 13px; opacity: 0.65;
+}
+[data-theme="dark"] .vibe-not { border-top-color: rgba(255,255,255,0.08); }
+
+/* DNA grid */
+.dna-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--s-4); margin: var(--s-8) 0;
+}
+.dna-card {
+  background: var(--doc-surface);
+  border: 1px solid var(--doc-border);
+  border-radius: var(--rad-4);
+  padding: var(--s-6);
+  transition: box-shadow var(--ease);
+}
+.dna-card:hover { box-shadow: var(--shadow-1); }
+.dna-card .num {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 28px; height: 28px; border-radius: var(--rad-2);
+  background: var(--doc-accent-soft);
+  color: var(--doc-accent);
+  font-size: 13px; font-weight: 700;
+  margin-bottom: var(--s-3);
+}
+.dna-card h4 { font-size: 15px; font-weight: 600; margin-bottom: var(--s-1); letter-spacing: -0.01em; }
+.dna-card p { font-size: 13px; color: var(--doc-muted); line-height: 1.5; }
+
+/* Quick-nav cards */
+.quick-nav {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: var(--s-4); margin: var(--s-8) 0;
+}
+.quick-card {
+  display: flex; flex-direction: column; gap: var(--s-2);
+  padding: var(--s-6);
+  background: var(--doc-surface);
+  border: 1px solid var(--doc-border);
+  border-radius: var(--rad-4);
+  text-decoration: none; color: var(--doc-text);
+  transition: box-shadow var(--ease), border-color var(--ease);
+}
+.quick-card:hover { box-shadow: var(--shadow-2); border-color: var(--doc-accent); }
+.quick-card .icon { font-size: 28px; margin-bottom: var(--s-1); }
+.quick-card h3 { font-size: 16px; font-weight: 600; letter-spacing: -0.01em; }
+.quick-card p { font-size: 13px; color: var(--doc-muted); }
+
+/* ═══════════════════════════════════════════
+   TOKEN DISPLAYS
+   ═══════════════════════════════════════════ */
+
+/* Color swatches */
+.color-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: var(--s-3); margin: var(--s-6) 0;
+}
+.swatch {
+  display: flex; align-items: center; gap: var(--s-3);
+  padding: var(--s-3);
+  background: var(--doc-surface);
+  border: 1px solid var(--doc-border);
+  border-radius: var(--rad-2);
+  cursor: pointer;
+  transition: box-shadow var(--ease);
+  position: relative;
+}
+.swatch:hover { box-shadow: var(--shadow-1); }
+.swatch-chip {
+  width: 40px; height: 40px; border-radius: var(--rad-1); flex-shrink: 0;
+  border: 1px solid rgba(0,0,0,0.08);
+}
+.swatch-info { min-width: 0; }
+.swatch-name { font-size: 12px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.swatch-val { font-size: 11px; color: var(--doc-muted); font-family: "IBM Plex Mono", monospace; }
+.swatch-toast {
+  position: absolute; top: -8px; right: 8px;
+  background: var(--r-positive-fg); color: #fff;
+  padding: 2px 8px; border-radius: var(--rad-max);
+  font-size: 11px; font-weight: 600;
+  opacity: 0; transform: translateY(4px);
+  transition: all 0.15s ease-out;
+  pointer-events: none;
+}
+.swatch-toast.show { opacity: 1; transform: translateY(0); }
+
+/* Status colors row */
+.status-row {
+  display: flex; flex-wrap: wrap; gap: var(--s-3);
+  margin: var(--s-4) 0;
+}
+.status-chip {
+  display: flex; align-items: center; gap: var(--s-2);
+  padding: var(--s-2) var(--s-3);
+  border-radius: var(--rad-max); font-size: 13px; font-weight: 500;
+}
+
+/* Spacing scale */
+.spacing-scale { margin: var(--s-6) 0; }
+.spacing-item {
+  display: flex; align-items: center; gap: var(--s-4);
+  padding: var(--s-2) 0;
+}
+.spacing-label { width: 80px; font-size: 13px; font-family: "IBM Plex Mono", monospace; color: var(--doc-muted); flex-shrink: 0; }
+.spacing-bar {
+  height: 24px; border-radius: var(--rad-1);
+  background: var(--doc-accent);
+  opacity: 0.7;
+  transition: opacity var(--ease);
+}
+.spacing-item:hover .spacing-bar { opacity: 1; }
+.spacing-px { font-size: 12px; color: var(--doc-muted); font-family: "IBM Plex Mono", monospace; width: 40px; text-align: right; flex-shrink: 0; }
+
+/* Radius examples */
+.radius-grid {
+  display: flex; flex-wrap: wrap; gap: var(--s-4); margin: var(--s-6) 0;
+}
+.radius-demo {
+  display: flex; flex-direction: column; align-items: center; gap: var(--s-2);
+}
+.radius-box {
+  width: 80px; height: 80px;
+  background: var(--doc-accent-soft);
+  border: 2px solid var(--doc-accent);
+}
+.radius-demo span { font-size: 12px; font-family: "IBM Plex Mono", monospace; color: var(--doc-muted); }
+.radius-demo strong { font-size: 13px; }
+
+/* Shadow examples */
+.shadow-grid {
+  display: flex; flex-wrap: wrap; gap: var(--s-6); margin: var(--s-6) 0;
+}
+.shadow-demo {
+  display: flex; flex-direction: column; align-items: center; gap: var(--s-3);
+}
+.shadow-box {
+  width: 120px; height: 80px; border-radius: var(--rad-4);
+  background: var(--doc-surface);
+  border: 1px solid var(--doc-border);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; color: var(--doc-muted);
+}
+.shadow-demo strong { font-size: 13px; }
+
+/* Typography examples */
+.type-examples { margin: var(--s-6) 0; }
+.type-row {
+  display: flex; align-items: baseline; gap: var(--s-6);
+  padding: var(--s-4) 0;
+  border-bottom: 1px solid var(--doc-border);
+}
+.type-row:last-child { border-bottom: none; }
+.type-meta { width: 160px; flex-shrink: 0; }
+.type-meta .name { font-size: 13px; font-weight: 600; }
+.type-meta .spec { font-size: 11px; color: var(--doc-muted); font-family: "IBM Plex Mono", monospace; margin-top: 2px; }
+.type-sample { flex: 1; min-width: 0; }
+
+/* ═══════════════════════════════════════════
+   COMPONENT DOCS
+   ═══════════════════════════════════════════ */
+.component-block {
+  background: var(--doc-surface);
+  border: 1px solid var(--doc-border);
+  border-radius: var(--rad-4);
+  overflow: hidden;
+  margin: var(--s-6) 0;
+}
+.component-header {
+  padding: var(--s-6);
+  border-bottom: 1px solid var(--doc-border);
+}
+.component-header h3 { font-size: 20px; font-weight: 600; letter-spacing: -0.02em; }
+.component-header p { font-size: 14px; color: var(--doc-muted); margin-top: var(--s-1); }
+
+.component-preview {
+  padding: var(--s-8);
+  display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-4);
+  background: var(--doc-card);
+  border-bottom: 1px solid var(--doc-border);
+}
+
+.component-meta {
+  padding: var(--s-6);
+}
+.meta-group { margin-bottom: var(--s-4); }
+.meta-group:last-child { margin-bottom: 0; }
+.meta-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--doc-muted); margin-bottom: var(--s-1); }
+.meta-tags { display: flex; flex-wrap: wrap; gap: var(--s-1); }
+.meta-tag {
+  padding: 2px 8px; border-radius: var(--rad-max);
+  background: var(--doc-accent-soft); color: var(--doc-accent);
+  font-size: 12px; font-weight: 500;
+}
+
+/* Code blocks */
+.code-block {
+  position: relative; margin: var(--s-4) 0;
+  border-radius: var(--rad-2);
+  overflow: hidden;
+  border: 1px solid var(--doc-border);
+}
+.code-lang {
+  position: absolute; top: 0; right: 0;
+  padding: 4px 10px;
+  font-size: 10px; font-weight: 600; text-transform: uppercase;
+  color: var(--doc-muted);
+  letter-spacing: 0.05em;
+}
+.code-copy {
+  position: absolute; top: 8px; right: 56px;
+  padding: 4px 10px; border-radius: var(--rad-1);
+  background: var(--doc-border);
+  color: var(--doc-text);
+  border: none; cursor: pointer;
+  font-size: 11px; font-weight: 600;
+  opacity: 0; transition: opacity var(--ease);
+}
+.code-block:hover .code-copy { opacity: 1; }
+.code-copy:hover { background: var(--doc-accent-soft); }
+
+pre {
+  background: var(--doc-code-bg);
+  color: var(--doc-code-text);
+  padding: var(--s-6);
+  overflow-x: auto;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 13px;
+  line-height: 1.6;
+  tab-size: 2;
+}
+
+/* Syntax highlighting */
+.kw { color: #8B5CF6; }
+.fn { color: #2563EB; }
+.st { color: #059669; }
+.at { color: #D97706; }
+.cm { color: #9CA3AF; font-style: italic; }
+.tg { color: #DC2626; }
+.op { color: #6B7280; }
+[data-theme="dark"] .kw { color: #A78BFA; }
+[data-theme="dark"] .fn { color: #60A5FA; }
+[data-theme="dark"] .st { color: #34D399; }
+[data-theme="dark"] .at { color: #FBBF24; }
+[data-theme="dark"] .cm { color: #6B7280; }
+[data-theme="dark"] .tg { color: #F87171; }
+[data-theme="dark"] .op { color: #9CA3AF; }
+
+/* Do / Don't */
+.do-dont {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: var(--s-4); margin: var(--s-6) 0;
+}
+@media (max-width: 600px) { .do-dont { grid-template-columns: 1fr; } }
+.do-col, .dont-col {
+  border-radius: var(--rad-2);
+  padding: var(--s-6);
+}
+.do-col { background: rgba(50,125,15,0.06); border: 1px solid rgba(50,125,15,0.2); }
+.dont-col { background: rgba(187,54,67,0.06); border: 1px solid rgba(187,54,67,0.2); }
+[data-theme="dark"] .do-col { background: rgba(50,125,15,0.08); border-color: rgba(50,125,15,0.25); }
+[data-theme="dark"] .dont-col { background: rgba(187,54,67,0.08); border-color: rgba(187,54,67,0.25); }
+.do-col h4 { color: var(--r-positive-fg); font-size: 14px; font-weight: 700; margin-bottom: var(--s-3); }
+.dont-col h4 { color: var(--r-negative-fg); font-size: 14px; font-weight: 700; margin-bottom: var(--s-3); }
+.do-col li, .dont-col li {
+  font-size: 13px; line-height: 1.6;
+  margin-bottom: var(--s-1);
+  padding-left: var(--s-1);
+  list-style: none;
+}
+
+/* A11y checklist */
+.a11y-list { margin: var(--s-6) 0; }
+.a11y-item {
+  display: flex; align-items: flex-start; gap: var(--s-3);
+  padding: var(--s-3) 0;
+  border-bottom: 1px solid var(--doc-border);
+}
+.a11y-item:last-child { border-bottom: none; }
+.a11y-check {
+  flex-shrink: 0;
+  width: 22px; height: 22px; border-radius: var(--rad-1);
+  background: var(--r-positive-bg);
+  color: var(--r-positive-fg);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 700;
+  margin-top: 1px;
+}
+.a11y-text { font-size: 14px; line-height: 1.5; }
+.a11y-text strong { font-weight: 600; }
+.a11y-text code {
+  background: var(--doc-code-bg);
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-size: 12px;
+  font-family: "IBM Plex Mono", monospace;
+}
+
+/* Inline code */
+code:not(pre code) {
+  background: var(--doc-code-bg);
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 0.9em;
+  font-family: "IBM Plex Mono", monospace;
+}
+
+/* Tables */
+.token-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: var(--s-4) 0;
+  font-size: 14px;
+}
+.token-table th {
+  text-align: left;
+  padding: var(--s-3) var(--s-4);
+  border-bottom: 2px solid var(--doc-border);
+  font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.06em;
+  color: var(--doc-muted);
+}
+.token-table td {
+  padding: var(--s-3) var(--s-4);
+  border-bottom: 1px solid var(--doc-border);
+  vertical-align: top;
+}
+.token-table td code { font-size: 12px; }
+
+/* Misc */
+.divider { border: none; border-top: 1px solid var(--doc-border); margin: var(--s-8) 0; }
+
+/* Preview buttons */
+.preview-btn {
+  display: inline-flex; align-items: center; gap: var(--s-2);
+  padding: var(--s-3) var(--s-5);
+  border-radius: var(--rad-1);
+  font-size: 14px; font-weight: 500;
+  border: none; cursor: default;
+  transition: background var(--ease);
+  font-family: inherit;
+}
+.preview-btn.primary { background: #04191B; color: #FFF; }
+.preview-btn.secondary { background: transparent; border: 1.5px solid #04191B; color: #04191B; }
+.preview-btn.tertiary { background: transparent; color: #04191B; text-decoration: underline; text-underline-offset: 2px; }
+.preview-btn.subdued { background: var(--doc-card); color: var(--doc-muted); border: 1px solid var(--doc-border); }
+.preview-btn.destructive { background: #BB3643; color: #FFF; }
+.preview-btn.sm { padding: var(--s-2) var(--s-3); font-size: 13px; }
+.preview-btn.lg { padding: var(--s-4) var(--s-6); font-size: 15px; }
+[data-theme="dark"] .preview-btn.primary { background: #B4D5D8; color: #121212; }
+[data-theme="dark"] .preview-btn.secondary { border-color: #B4D5D8; color: #B4D5D8; }
+[data-theme="dark"] .preview-btn.tertiary { color: #B4D5D8; }
+
+/* Preview modal */
+.preview-modal-frame {
+  background: var(--doc-surface);
+  border: 1px solid var(--doc-border);
+  border-radius: var(--rad-4);
+  box-shadow: var(--shadow-3);
+  width: 100%; max-width: 400px;
+  overflow: hidden;
+}
+.preview-modal-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: var(--s-5) var(--s-6);
+  border-bottom: 1px solid var(--doc-border);
+}
+.preview-modal-header h4 { font-size: 16px; font-weight: 600; }
+.preview-modal-body { padding: var(--s-6); font-size: 14px; color: var(--doc-muted); }
+.preview-modal-footer {
+  display: flex; justify-content: flex-end; gap: var(--s-3);
+  padding: var(--s-4) var(--s-6);
+  border-top: 1px solid var(--doc-border);
+}
+
+/* Preview form */
+.preview-field { margin-bottom: var(--s-4); }
+.preview-label { display: block; font-size: 13px; font-weight: 500; margin-bottom: var(--s-1); }
+.preview-input {
+  width: 100%; padding: var(--s-3) var(--s-4);
+  border: 1.5px solid var(--doc-border);
+  border-radius: var(--rad-1);
+  background: var(--doc-bg);
+  color: var(--doc-text);
+  font-size: 14px; font-family: inherit;
+  transition: border-color var(--ease);
+  outline: none;
+}
+.preview-input:focus { border-color: var(--r-interactive-focus); }
+.preview-helper { font-size: 12px; color: var(--doc-muted); margin-top: 2px; }
+
+/* Preview alert */
+.preview-alert {
+  display: flex; align-items: flex-start; gap: var(--s-3);
+  padding: var(--s-4);
+  border-radius: var(--rad-2);
+  font-size: 14px;
+}
+.preview-alert.info { background: var(--r-info-bg); color: var(--r-info-fg); }
+.preview-alert.positive { background: var(--r-positive-bg); color: var(--r-positive-fg); }
+.preview-alert.warning { background: var(--r-warning-bg); color: var(--r-warning-fg); }
+.preview-alert.negative { background: var(--r-negative-bg); color: var(--r-negative-fg); }
+.preview-alert strong { font-weight: 600; }
+
+/* Preview tag */
+.preview-tag {
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 3px 10px;
+  border-radius: var(--rad-max);
+  font-size: 12px; font-weight: 500;
+}
+.tag-purple { background: #EDE9FE; color: #6D28D9; }
+.tag-teal { background: #CCFBF1; color: #0D9488; }
+.tag-pink { background: #FCE7F3; color: #DB2777; }
+.tag-red { background: #FEE2E2; color: #DC2626; }
+.tag-green { background: #DCFCE7; color: #16A34A; }
+.tag-yellow { background: #FEF9C3; color: #CA8A04; }
+[data-theme="dark"] .tag-purple { background: rgba(109,40,217,0.15); color: #A78BFA; }
+[data-theme="dark"] .tag-teal { background: rgba(13,148,136,0.15); color: #5EEAD4; }
+[data-theme="dark"] .tag-pink { background: rgba(219,39,119,0.15); color: #F472B6; }
+[data-theme="dark"] .tag-red { background: rgba(220,38,38,0.15); color: #FCA5A5; }
+[data-theme="dark"] .tag-green { background: rgba(22,163,74,0.15); color: #86EFAC; }
+[data-theme="dark"] .tag-yellow { background: rgba(202,138,4,0.15); color: #FDE047; }
+
+/* Preview banner */
+.preview-banner {
+  display: flex; align-items: center; gap: var(--s-3);
+  padding: var(--s-3) var(--s-4);
+  border-radius: var(--rad-2);
+  font-size: 13px; font-weight: 500;
+}
+
+/* Back to top */
+.back-top {
+  position: fixed; bottom: 24px; right: 24px;
+  width: 40px; height: 40px; border-radius: 50%;
+  background: var(--doc-accent); color: var(--r-fg-inverted);
+  border: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+  box-shadow: var(--shadow-2);
+  opacity: 0; pointer-events: none;
+  transition: opacity var(--ease);
+  z-index: 200;
+}
+.back-top.show { opacity: 1; pointer-events: auto; }
+.back-top:hover { box-shadow: var(--shadow-3); }
+
+/* Footer */
+.doc-footer {
+  margin-top: var(--s-12);
+  padding: var(--s-8) 0;
+  border-top: 1px solid var(--doc-border);
+  text-align: center;
+  font-size: 13px; color: var(--doc-muted);
+}
+.doc-footer a { color: var(--doc-accent); text-decoration: none; }
+.doc-footer a:hover { text-decoration: underline; }
+
+/* Scroll-margin for anchored sections */
+[id] { scroll-margin-top: calc(var(--doc-header-h) + var(--s-6)); }
+
+/* Animations */
+@keyframes fadeIn { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--doc-card); }
+::-webkit-scrollbar-thumb { background: rgba(18,18,18,0.2); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(18,18,18,0.35); }
+[data-theme="dark"] ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); }
+[data-theme="dark"] ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.25); }
+</style>
 </head>
-<body class="bg-r-bg-primary text-r-fg-primary font-sans antialiased">
+<body>
 
-  <!-- ==================== NAV ==================== -->
-  <nav class="fixed top-0 left-0 right-0 z-50 bg-r-bg-primary/95 backdrop-blur-sm border-b border-r-fg-border h-16">
-    <div class="max-w-[1280px] mx-auto px-6 flex items-center justify-between h-16">
-      <div class="flex items-center gap-4">
-        <a href="index.html" class="text-[13px] text-r-fg-secondary hover:text-r-fg-primary t-all font-mono">&larr; Back</a>
-        <div class="flex items-center gap-2">
-          <div class="w-8 h-8 rounded-r-input bg-r-ip flex items-center justify-center">
-            <span class="text-r-fg-inverted text-sm font-semibold">R</span>
-          </div>
-          <span class="font-brand text-[22px] tracking-tight text-r-ip leading-none mt-0.5">ROSETTA</span>
+<!-- ════════════════════════════════════════════
+     HEADER
+     ════════════════════════════════════════════ -->
+<header class="header">
+  <div class="header-left">
+    <button class="mobile-toggle" onclick="toggleSidebar()" aria-label="Toggle navigation">&#9776;</button>
+    <a class="header-brand" href="#home">
+      <div class="header-brand-icon">R</div>
+      <span class="header-brand-name">ROSETTA</span>
+    </a>
+  </div>
+  <div class="header-right">
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode" title="Toggle dark/light mode">
+      <span id="theme-icon">&#9789;</span>
+    </button>
+  </div>
+</header>
+
+<!-- ════════════════════════════════════════════
+     SIDEBAR
+     ════════════════════════════════════════════ -->
+<nav class="sidebar" id="sidebar">
+  <div class="sidebar-section">
+    <div class="sidebar-label">Overview</div>
+    <a class="sidebar-link active" href="#home" onclick="closeSidebar()">Home</a>
+    <a class="sidebar-link" href="#dna" onclick="closeSidebar()">DNA</a>
+  </div>
+  <div class="sidebar-section">
+    <div class="sidebar-label">Tokens</div>
+    <a class="sidebar-link" href="#colors" onclick="closeSidebar()">Colors</a>
+    <a class="sidebar-link" href="#typography" onclick="closeSidebar()">Typography</a>
+    <a class="sidebar-link" href="#spacing" onclick="closeSidebar()">Spacing</a>
+    <a class="sidebar-link" href="#radii" onclick="closeSidebar()">Radii</a>
+    <a class="sidebar-link" href="#elevation" onclick="closeSidebar()">Elevation</a>
+  </div>
+  <div class="sidebar-section">
+    <div class="sidebar-label">Components</div>
+    <a class="sidebar-link" href="#button" onclick="closeSidebar()">Button</a>
+    <a class="sidebar-link" href="#modal" onclick="closeSidebar()">Modal</a>
+    <a class="sidebar-link" href="#select" onclick="closeSidebar()">Select</a>
+    <a class="sidebar-link" href="#inline-alert" onclick="closeSidebar()">InlineAlert</a>
+    <a class="sidebar-link" href="#toast" onclick="closeSidebar()">Toast</a>
+    <a class="sidebar-link" href="#tag" onclick="closeSidebar()">Tag</a>
+    <a class="sidebar-link" href="#banner" onclick="closeSidebar()">Banner</a>
+    <a class="sidebar-link" href="#table" onclick="closeSidebar()">Table</a>
+  </div>
+  <div class="sidebar-section">
+    <div class="sidebar-label">Patterns</div>
+    <a class="sidebar-link" href="#layouts" onclick="closeSidebar()">Layouts</a>
+    <a class="sidebar-link" href="#motion" onclick="closeSidebar()">Motion</a>
+    <a class="sidebar-link" href="#do-dont" onclick="closeSidebar()">Do / Don't</a>
+  </div>
+  <div class="sidebar-section">
+    <div class="sidebar-label">Foundation</div>
+    <a class="sidebar-link" href="#accessibility" onclick="closeSidebar()">Accessibility</a>
+    <a class="sidebar-link" href="#resources" onclick="closeSidebar()">Resources</a>
+  </div>
+</nav>
+
+<!-- ════════════════════════════════════════════
+     MAIN CONTENT
+     ════════════════════════════════════════════ -->
+<main class="main">
+
+  <!-- HERO with ruled grid -->
+  <div class="hero-grid" id="home">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-sup">Handshake Design System</div>
+        <h1 class="hero-title">ROSETTA</h1>
+        <p class="hero-lead">Professional clarity with human warmth.</p>
+        <p class="hero-sub">Built for a platform connecting students and employers. Readable, accessible, and trustworthy&mdash;without the coldness of enterprise software.</p>
+        <div class="hero-pills">
+          <span class="hero-pill"><span class="hero-pill-dot" style="background:#327D0F"></span>Trustworthy</span>
+          <span class="hero-pill"><span class="hero-pill-dot" style="background:#003BCC"></span>Approachable</span>
+          <span class="hero-pill"><span class="hero-pill-dot" style="background:#04191B"></span>Clear</span>
+          <span class="hero-pill"><span class="hero-pill-dot" style="background:#A36700"></span>Modern</span>
         </div>
       </div>
-      <a href="rosetta-demo-jobs.html" class="text-[13px] text-r-fg-secondary hover:text-r-fg-primary t-all font-mono">View Demo &rarr;</a>
+      <div>
+        <div class="hero-cards">
+          <div class="hero-card" style="background:#04191B;color:#FFF;box-shadow:var(--shadow-3)">
+            <h3 style="color:#FFF">Find Your Path</h3>
+            <p style="color:rgba(255,255,255,0.6)">Discover opportunities that match your goals</p>
+          </div>
+          <div class="hero-card" style="background:var(--r-bg-primary);border:1px solid var(--doc-border);box-shadow:var(--shadow-3)">
+            <h3 style="font-size:32px;font-weight:500;letter-spacing:-0.03em;line-height:1.2">120k+</h3>
+            <p>Jobs posted this month</p>
+          </div>
+          <div class="hero-card" style="background:var(--r-info-bg);color:var(--r-info-fg);box-shadow:var(--shadow-2)">
+            <h3 style="color:var(--r-info-fg)">Application Sent</h3>
+            <p>You'll hear back soon</p>
+          </div>
+          <div class="hero-card" style="background:var(--r-positive-bg);color:var(--r-positive-fg);box-shadow:var(--shadow-2)">
+            <h3 style="color:var(--r-positive-fg)">Interview Scheduled</h3>
+            <p>Tomorrow at 2:00 PM</p>
+          </div>
+        </div>
+      </div>
     </div>
-  </nav>
+  </div>
 
-  <!-- ==================== MAIN CONTENT ==================== -->
-  <div class="pt-16">
+  <div class="main-content">
 
-    <!-- ==================== HERO ==================== -->
-    <header class="hero-grid bg-r-bg-surface">
-      <div class="max-w-[1120px] mx-auto px-6 pt-20 pb-16">
-        <div class="grid lg:grid-cols-2 gap-16 items-center">
-          <div>
-            <div class="text-[13px] font-mono text-r-fg-secondary mb-4 tracking-wider uppercase">Handshake Design System</div>
-            <h1 class="font-brand text-[96px] lg:text-[120px] text-r-ip leading-[0.85] tracking-tight mb-6">
-              ROSETTA
-            </h1>
-            <p class="text-[24px] font-medium text-r-fg-primary leading-[1.2] tracking-[-0.02em] mb-3 max-w-lg">
-              Professional clarity with human warmth.
-            </p>
-            <p class="text-[17px] text-r-fg-secondary leading-[1.4] tracking-[-0.02em] mb-8 max-w-lg">
-              Built for a platform connecting students and employers. Readable, accessible, and trustworthy — without the coldness of enterprise software.
-            </p>
-            <div class="flex flex-wrap gap-3">
-              <span class="inline-flex items-center gap-2 px-4 py-2 bg-r-bg-secondary rounded-r-input text-[13px] font-medium">
-                <span class="w-2 h-2 rounded-full bg-r-pos-fg"></span>Trustworthy
-              </span>
-              <span class="inline-flex items-center gap-2 px-4 py-2 bg-r-bg-secondary rounded-r-input text-[13px] font-medium">
-                <span class="w-2 h-2 rounded-full bg-r-info-fg"></span>Approachable
-              </span>
-              <span class="inline-flex items-center gap-2 px-4 py-2 bg-r-bg-secondary rounded-r-input text-[13px] font-medium">
-                <span class="w-2 h-2 rounded-full bg-r-ip"></span>Clear
-              </span>
-              <span class="inline-flex items-center gap-2 px-4 py-2 bg-r-bg-secondary rounded-r-input text-[13px] font-medium">
-                <span class="w-2 h-2 rounded-full bg-r-warn-fg"></span>Modern
-              </span>
-            </div>
-          </div>
+  <!-- THE VIBE -->
+  <div class="vibe-callout">
+    <h3>The Vibe</h3>
+    <p><strong>Clean. Approachable. Trustworthy. Modern.</strong> Like a well-designed coworking space&mdash;organized and professional but not intimidating. Content is the hero; UI recedes.</p>
+    <div class="vibe-not">This design is NOT: playful/whimsical &middot; dark/moody &middot; decorative/ornate &middot; cold/clinical &middot; trendy/experimental</div>
+  </div>
 
-          <!-- Hero visual: mini product cards -->
-          <div class="relative">
-            <div class="grid grid-cols-2 gap-4">
-              <div class="bg-r-ip rounded-r-container p-6 shadow-e3">
-                <div class="text-r-fg-inverted text-[17px] font-medium tracking-[-0.02em] mb-1">Find Your Path</div>
-                <div class="text-r-fg-inverted/60 text-[13px]">Discover opportunities that match your goals</div>
-              </div>
-              <div class="bg-r-bg-primary rounded-r-container p-6 shadow-e3 border border-r-card-border">
-                <div class="text-[32px] font-medium tracking-[-0.03em] leading-[1.2] mb-1">120k+</div>
-                <div class="text-r-fg-secondary text-[13px]">Jobs posted this month</div>
-              </div>
-              <div class="bg-r-info-bg rounded-r-container p-6 shadow-e2">
-                <div class="text-r-info-fg text-[17px] font-medium tracking-[-0.02em] mb-1">Application Sent</div>
-                <div class="text-r-info-fg/60 text-[13px]">You'll hear back soon</div>
-              </div>
-              <div class="bg-r-pos-bg rounded-r-container p-6 shadow-e2">
-                <div class="text-r-pos-fg text-[17px] font-medium tracking-[-0.02em] mb-1">Interview Scheduled</div>
-                <div class="text-r-pos-fg/60 text-[13px]">Tomorrow at 2:00 PM</div>
-              </div>
-            </div>
-          </div>
-        </div>
+  <!-- QUICK NAV -->
+  <div class="quick-nav">
+    <a class="quick-card" href="#colors">
+      <div class="icon">&#127912;</div>
+      <h3>Tokens</h3>
+      <p>Colors, typography, spacing, radii, elevation</p>
+    </a>
+    <a class="quick-card" href="#button">
+      <div class="icon">&#9881;</div>
+      <h3>Components</h3>
+      <p>Button, Modal, Select, Alert, Tag, Table&hellip;</p>
+    </a>
+    <a class="quick-card" href="#layouts">
+      <div class="icon">&#9638;</div>
+      <h3>Patterns</h3>
+      <p>Layouts, motion, composition guidelines</p>
+    </a>
+    <a class="quick-card" href="#accessibility">
+      <div class="icon">&#9855;</div>
+      <h3>Accessibility</h3>
+      <p>WCAG AA, keyboard, focus, reduced motion</p>
+    </a>
+  </div>
+
+  <!-- DNA -->
+  <section class="section" id="dna">
+    <div class="section-header">
+      <h2 class="h-lg">DNA</h2>
+      <p>What makes Rosetta, <em>Rosetta</em>. Six principles encoded into every decision.</p>
+    </div>
+    <div class="dna-grid">
+      <div class="dna-card"><div class="num">1</div><h4>Dark Teal, Not Blue</h4><p><code>#04191B</code> is the signature. Sophisticated, distinctive, avoids "generic SaaS blue."</p></div>
+      <div class="dna-card"><div class="num">2</div><h4>Noi Grotesk + Alternates</h4><p><code>font-feature-settings: "ss03" on, "ss11" on</code> gives subtle character.</p></div>
+      <div class="dna-card"><div class="num">3</div><h4>Shadow-First Elevation</h4><p>Soft shadows over heavy borders. Cards float, not sit.</p></div>
+      <div class="dna-card"><div class="num">4</div><h4>4px Grid Discipline</h4><p>Everything snaps to 4px. Spacing: 2/4/8/12/16/20/24/32/48/64.</p></div>
+      <div class="dna-card"><div class="num">5</div><h4>Semantic Color Restraint</h4><p>Color means something. Don't use color decoratively.</p></div>
+      <div class="dna-card"><div class="num">6</div><h4>White Space as Feature</h4><p>Generous padding and margins. The interface breathes.</p></div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       TOKENS: COLORS
+       ══════════════════════════════════════ -->
+  <section class="section" id="colors">
+    <div class="section-header">
+      <h2 class="h-lg">Colors</h2>
+      <p>All colors accessed via <code>var(--rosetta-*)</code> in CSS or <code>rosettaVariables["--rosetta-*"]</code> in TS. Click a swatch to copy.</p>
+    </div>
+
+    <h3 class="h-sm" style="margin-bottom:var(--s-4)">Background</h3>
+    <div class="color-grid">
+      <div class="swatch" onclick="copySwatch(this,'#FFFFFF')"><div class="swatch-chip" style="background:#FFF"></div><div class="swatch-info"><div class="swatch-name">bg-primary</div><div class="swatch-val">#FFFFFF</div></div><div class="swatch-toast">Copied!</div></div>
+      <div class="swatch" onclick="copySwatch(this,'#F6F6F6')"><div class="swatch-chip" style="background:#F6F6F6"></div><div class="swatch-info"><div class="swatch-name">bg-secondary</div><div class="swatch-val">#F6F6F6</div></div><div class="swatch-toast">Copied!</div></div>
+      <div class="swatch" onclick="copySwatch(this,'#FCFCFD')"><div class="swatch-chip" style="background:#FCFCFD"></div><div class="swatch-info"><div class="swatch-name">bg-surface</div><div class="swatch-val">#FCFCFD</div></div><div class="swatch-toast">Copied!</div></div>
+      <div class="swatch" onclick="copySwatch(this,'#121212')"><div class="swatch-chip" style="background:#121212"></div><div class="swatch-info"><div class="swatch-name">bg-inverted</div><div class="swatch-val">#121212</div></div><div class="swatch-toast">Copied!</div></div>
+      <div class="swatch" onclick="copySwatch(this,'#EAEAEA')"><div class="swatch-chip" style="background:#EAEAEA"></div><div class="swatch-info"><div class="swatch-name">bg-selected</div><div class="swatch-val">#EAEAEA</div></div><div class="swatch-toast">Copied!</div></div>
+      <div class="swatch" onclick="copySwatch(this,'#EEEEEE')"><div class="swatch-chip" style="background:#EEEEEE"></div><div class="swatch-info"><div class="swatch-name">bg-disabled</div><div class="swatch-val">#EEEEEE</div></div><div class="swatch-toast">Copied!</div></div>
+    </div>
+
+    <h3 class="h-sm" style="margin:var(--s-8) 0 var(--s-4)">Foreground</h3>
+    <div class="color-grid">
+      <div class="swatch" onclick="copySwatch(this,'#121212')"><div class="swatch-chip" style="background:#121212"></div><div class="swatch-info"><div class="swatch-name">fg-primary</div><div class="swatch-val">#121212</div></div><div class="swatch-toast">Copied!</div></div>
+      <div class="swatch" onclick="copySwatch(this,'rgba(18,18,18,0.7)')"><div class="swatch-chip" style="background:rgba(18,18,18,0.7)"></div><div class="swatch-info"><div class="swatch-name">fg-secondary</div><div class="swatch-val">rgba(18,18,18,0.7)</div></div><div class="swatch-toast">Copied!</div></div>
+      <div class="swatch" onclick="copySwatch(this,'#FFFFFF')"><div class="swatch-chip" style="background:#FFF;border-color:rgba(0,0,0,0.15)"></div><div class="swatch-info"><div class="swatch-name">fg-inverted</div><div class="swatch-val">#FFFFFF</div></div><div class="swatch-toast">Copied!</div></div>
+      <div class="swatch" onclick="copySwatch(this,'rgba(18,18,18,0.4)')"><div class="swatch-chip" style="background:rgba(18,18,18,0.4)"></div><div class="swatch-info"><div class="swatch-name">fg-disabled</div><div class="swatch-val">rgba(18,18,18,0.4)</div></div><div class="swatch-toast">Copied!</div></div>
+      <div class="swatch" onclick="copySwatch(this,'rgba(31,32,44,0.2)')"><div class="swatch-chip" style="background:rgba(31,32,44,0.2)"></div><div class="swatch-info"><div class="swatch-name">fg-border</div><div class="swatch-val">rgba(31,32,44,0.2)</div></div><div class="swatch-toast">Copied!</div></div>
+    </div>
+
+    <h3 class="h-sm" style="margin:var(--s-8) 0 var(--s-4)">Interactive</h3>
+    <div class="color-grid">
+      <div class="swatch" onclick="copySwatch(this,'#04191B')"><div class="swatch-chip" style="background:#04191B"></div><div class="swatch-info"><div class="swatch-name">interactive-primary</div><div class="swatch-val">#04191B</div></div><div class="swatch-toast">Copied!</div></div>
+      <div class="swatch" onclick="copySwatch(this,'rgba(18,18,18,0.06)')"><div class="swatch-chip" style="background:rgba(18,18,18,0.06)"></div><div class="swatch-info"><div class="swatch-name">interactive-hovered</div><div class="swatch-val">rgba(18,18,18,0.06)</div></div><div class="swatch-toast">Copied!</div></div>
+      <div class="swatch" onclick="copySwatch(this,'rgba(18,18,18,0.12)')"><div class="swatch-chip" style="background:rgba(18,18,18,0.12)"></div><div class="swatch-info"><div class="swatch-name">interactive-pressed</div><div class="swatch-val">rgba(18,18,18,0.12)</div></div><div class="swatch-toast">Copied!</div></div>
+      <div class="swatch" onclick="copySwatch(this,'#003BCC')"><div class="swatch-chip" style="background:#003BCC"></div><div class="swatch-info"><div class="swatch-name">interactive-focusOutline</div><div class="swatch-val">#003BCC</div></div><div class="swatch-toast">Copied!</div></div>
+    </div>
+
+    <h3 class="h-sm" style="margin:var(--s-8) 0 var(--s-4)">Status</h3>
+    <p class="body-sm" style="color:var(--doc-muted);margin-bottom:var(--s-4)">Each status has a background (tint) + foreground (saturated) pair.</p>
+    <div class="status-row">
+      <div class="status-chip" style="background:var(--r-info-bg);color:var(--r-info-fg)">&#8505; Info</div>
+      <div class="status-chip" style="background:var(--r-positive-bg);color:var(--r-positive-fg)">&#10003; Positive</div>
+      <div class="status-chip" style="background:var(--r-warning-bg);color:var(--r-warning-fg)">&#9888; Warning</div>
+      <div class="status-chip" style="background:var(--r-negative-bg);color:var(--r-negative-fg)">&#10005; Negative</div>
+      <div class="status-chip" style="background:var(--r-neutral-bg);color:var(--r-fg-primary)">&#8212; Neutral</div>
+    </div>
+    <table class="token-table" style="margin-top:var(--s-4)">
+      <thead><tr><th>Status</th><th>Background</th><th>Foreground</th></tr></thead>
+      <tbody>
+        <tr><td>Info</td><td><code>#CCDBFF</code></td><td><code>#003BCC</code></td></tr>
+        <tr><td>Positive</td><td><code>#A5E09F</code></td><td><code>#327D0F</code></td></tr>
+        <tr><td>Warning</td><td><code>#FFD999</code></td><td><code>#A36700</code></td></tr>
+        <tr><td>Negative</td><td><code>#FFC2C4</code></td><td><code>#BB3643</code></td></tr>
+        <tr><td>Neutral</td><td><code>#EAEAEA</code></td><td>&mdash;</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       TOKENS: TYPOGRAPHY
+       ══════════════════════════════════════ -->
+  <section class="section" id="typography">
+    <div class="section-header">
+      <h2 class="h-lg">Typography</h2>
+      <p>Three font families. Noi Grotesk for product UI, Sansplomb for brand impact, IBM Plex Mono for code and labels.</p>
+    </div>
+
+    <div class="meta-group" style="margin-bottom:var(--s-6)">
+      <div class="meta-label">Font Stacks</div>
+      <table class="token-table">
+        <thead><tr><th>Role</th><th>Family</th><th>Stack</th></tr></thead>
+        <tbody>
+          <tr><td>Sans</td><td style="font-size:20px;font-weight:500;letter-spacing:-0.02em">Noi Grotesk</td><td><code>"Noi Grotesk", system-ui, sans-serif</code></td></tr>
+          <tr><td>Brand</td><td><span class="font-brand" style="font-size:20px;letter-spacing:0.02em">SANSPLOMB</span></td><td><code>"Sansplomb", sans-serif</code></td></tr>
+          <tr><td>Mono</td><td><span class="font-mono" style="font-size:17px;font-weight:500">IBM Plex Mono</span></td><td><code>"IBM Plex Mono", monospace</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="meta-group" style="margin-bottom:var(--s-6)">
+      <div class="meta-label">Weights</div>
+      <div class="meta-tags">
+        <span class="meta-tag">regular &middot; 400</span>
+        <span class="meta-tag">semiBold &middot; 500</span>
+        <span class="meta-tag">bold &middot; 700</span>
       </div>
-    </header>
+    </div>
 
-    <!-- ==================== OVERVIEW ==================== -->
-    <section id="overview" class="py-16 px-6 bg-r-bg-primary">
-      <div class="max-w-[1120px] mx-auto">
-        <h2 class="text-[32px] font-medium tracking-[-0.03em] leading-[1.2] mb-2">Overview</h2>
-        <p class="text-[17px] text-r-fg-secondary tracking-[-0.02em] leading-[1.4] mb-10 max-w-2xl">
-          Rosetta is Handshake's design system — a shared language for building interfaces that feel professional, approachable, and trustworthy. Every token, component, and pattern serves this intent.
-        </p>
-
-        <!-- The Vibe -->
-        <h3 class="text-[24px] font-medium tracking-[-0.02em] mb-5">The Vibe</h3>
-        <p class="text-[17px] text-r-fg-secondary tracking-[-0.02em] leading-[1.4] mb-6">Clean. Approachable. Trustworthy. Modern.</p>
-        <div class="grid md:grid-cols-2 gap-6 mb-12">
-          <div class="bg-r-bg-surface rounded-r-container p-8 border border-r-fg-border">
-            <div class="text-[13px] font-mono text-r-fg-secondary mb-4 uppercase tracking-wider">If this design were a space</div>
-            <p class="text-[17px] text-r-fg-primary leading-[1.5] tracking-[-0.02em]">
-              A modern coworking space with clean desks and good lighting. White walls with occasional accent plants. Natural light through large windows. Professional but not stuffy — people wear nice casual. Quiet enough to focus, social enough to feel human.
-            </p>
-          </div>
-          <div class="bg-r-bg-surface rounded-r-container p-8 border border-r-fg-border">
-            <div class="text-[13px] font-mono text-r-fg-secondary mb-4 uppercase tracking-wider">If this design were music</div>
-            <p class="text-[17px] text-r-fg-primary leading-[1.5] tracking-[-0.02em]">
-              Lo-fi beats or ambient electronic. Professional podcast intro music. Nothing distracting, nothing boring. The kind of background that helps you focus on the work.
-            </p>
-          </div>
-        </div>
-
-        <!-- What This Design Is NOT -->
-        <h3 class="text-[24px] font-medium tracking-[-0.02em] mb-5">What This Design Is NOT</h3>
-        <div class="flex flex-wrap gap-3">
-          <span class="inline-flex items-center gap-2 px-4 py-2 bg-r-neg-bg text-r-neg-fg text-[13px] font-semibold rounded-r-max">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-            Dark or moody
-          </span>
-          <span class="inline-flex items-center gap-2 px-4 py-2 bg-r-neg-bg text-r-neg-fg text-[13px] font-semibold rounded-r-max">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-            Playful or whimsical
-          </span>
-          <span class="inline-flex items-center gap-2 px-4 py-2 bg-r-neg-bg text-r-neg-fg text-[13px] font-semibold rounded-r-max">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-            Trendy or experimental
-          </span>
-          <span class="inline-flex items-center gap-2 px-4 py-2 bg-r-neg-bg text-r-neg-fg text-[13px] font-semibold rounded-r-max">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-            Corporate or sterile
-          </span>
-          <span class="inline-flex items-center gap-2 px-4 py-2 bg-r-neg-bg text-r-neg-fg text-[13px] font-semibold rounded-r-max">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-            Loud or attention-seeking
-          </span>
-        </div>
+    <div class="meta-label">Type Scale</div>
+    <div class="type-examples">
+      <div class="type-row">
+        <div class="type-meta"><div class="name">heading.xlarge</div><div class="spec">44px / 500 / 1.0 / -0.04em</div></div>
+        <div class="type-sample" style="font-size:44px;font-weight:500;line-height:1.0;letter-spacing:-0.04em">Heading XL</div>
       </div>
-    </section>
-
-    <div class="divider mx-6"></div>
-
-    <!-- ==================== COLORS ==================== -->
-    <section id="colors" class="py-16 px-6 bg-r-bg-primary">
-      <div class="max-w-[1120px] mx-auto">
-        <h2 class="text-[32px] font-medium tracking-[-0.03em] leading-[1.2] mb-2">Color System</h2>
-        <p class="text-[17px] text-r-fg-secondary tracking-[-0.02em] leading-[1.4] mb-10 max-w-2xl">
-          Neutral foundation with semantic accents. Color is intentionally restrained — it appears meaningfully for status, actions, and hierarchy.
-        </p>
-
-        <!-- Backgrounds -->
-        <h3 class="text-[24px] font-medium tracking-[-0.02em] mb-5">Backgrounds</h3>
-        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4 mb-10">
-          <div class="swatch cursor-pointer group" data-color="#FFFFFF" data-name="bg-primary">
-            <div class="aspect-square rounded-r-container bg-[#FFFFFF] border border-r-fg-border shadow-e1 group-hover:shadow-e2 t-shadow"></div>
-            <div class="mt-2"><div class="text-[13px] font-medium">bg-primary</div><div class="text-[13px] text-r-fg-secondary font-mono">#FFFFFF</div></div>
-          </div>
-          <div class="swatch cursor-pointer group" data-color="#F6F6F6" data-name="bg-secondary">
-            <div class="aspect-square rounded-r-container bg-[#F6F6F6] border border-r-fg-border shadow-e1 group-hover:shadow-e2 t-shadow"></div>
-            <div class="mt-2"><div class="text-[13px] font-medium">bg-secondary</div><div class="text-[13px] text-r-fg-secondary font-mono">#F6F6F6</div></div>
-          </div>
-          <div class="swatch cursor-pointer group" data-color="#FCFCFD" data-name="bg-surface">
-            <div class="aspect-square rounded-r-container bg-[#FCFCFD] border border-r-fg-border shadow-e1 group-hover:shadow-e2 t-shadow"></div>
-            <div class="mt-2"><div class="text-[13px] font-medium">bg-surface</div><div class="text-[13px] text-r-fg-secondary font-mono">#FCFCFD</div></div>
-          </div>
-          <div class="swatch cursor-pointer group" data-color="#121212" data-name="bg-inverted">
-            <div class="aspect-square rounded-r-container bg-[#121212] shadow-e1 group-hover:shadow-e2 t-shadow"></div>
-            <div class="mt-2"><div class="text-[13px] font-medium">bg-inverted</div><div class="text-[13px] text-r-fg-secondary font-mono">#121212</div></div>
-          </div>
-          <div class="swatch cursor-pointer group" data-color="#EAEAEA" data-name="bg-selected">
-            <div class="aspect-square rounded-r-container bg-[#EAEAEA] border border-r-fg-border shadow-e1 group-hover:shadow-e2 t-shadow"></div>
-            <div class="mt-2"><div class="text-[13px] font-medium">bg-selected</div><div class="text-[13px] text-r-fg-secondary font-mono">#EAEAEA</div></div>
-          </div>
-          <div class="swatch cursor-pointer group" data-color="#EEEEEE" data-name="bg-disabled">
-            <div class="aspect-square rounded-r-container bg-[#EEEEEE] border border-r-fg-border shadow-e1 group-hover:shadow-e2 t-shadow"></div>
-            <div class="mt-2"><div class="text-[13px] font-medium">bg-disabled</div><div class="text-[13px] text-r-fg-secondary font-mono">#EEEEEE</div></div>
-          </div>
-        </div>
-
-        <!-- Foreground & Interactive -->
-        <h3 class="text-[24px] font-medium tracking-[-0.02em] mb-5">Foreground &amp; Interactive</h3>
-        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 mb-10">
-          <div class="swatch cursor-pointer group" data-color="#121212" data-name="fg-primary">
-            <div class="aspect-square rounded-r-container bg-[#121212] shadow-e1 group-hover:shadow-e2 t-shadow"></div>
-            <div class="mt-2"><div class="text-[13px] font-medium">fg-primary</div><div class="text-[13px] text-r-fg-secondary font-mono">#121212</div></div>
-          </div>
-          <div class="swatch cursor-pointer group" data-color="#04191B" data-name="interactive-primary">
-            <div class="aspect-square rounded-r-container bg-[#04191B] shadow-e1 group-hover:shadow-e2 t-shadow"></div>
-            <div class="mt-2"><div class="text-[13px] font-medium">interactive-primary</div><div class="text-[13px] text-r-fg-secondary font-mono">#04191B</div></div>
-          </div>
-          <div class="swatch cursor-pointer group" data-color="#062E32" data-name="interactive-hover">
-            <div class="aspect-square rounded-r-container bg-[#062E32] shadow-e1 group-hover:shadow-e2 t-shadow"></div>
-            <div class="mt-2"><div class="text-[13px] font-medium">hover</div><div class="text-[13px] text-r-fg-secondary font-mono">#062E32</div></div>
-          </div>
-          <div class="swatch cursor-pointer group" data-color="#073D42" data-name="interactive-active">
-            <div class="aspect-square rounded-r-container bg-[#073D42] shadow-e1 group-hover:shadow-e2 t-shadow"></div>
-            <div class="mt-2"><div class="text-[13px] font-medium">active</div><div class="text-[13px] text-r-fg-secondary font-mono">#073D42</div></div>
-          </div>
-          <div class="swatch cursor-pointer group" data-color="#003BCC" data-name="focus-outline">
-            <div class="aspect-square rounded-r-container bg-[#003BCC] shadow-e1 group-hover:shadow-e2 t-shadow"></div>
-            <div class="mt-2"><div class="text-[13px] font-medium">focus-outline</div><div class="text-[13px] text-r-fg-secondary font-mono">#003BCC</div></div>
-          </div>
-        </div>
-
-        <!-- Status Colors -->
-        <h3 class="text-[24px] font-medium tracking-[-0.02em] mb-5">Status Colors</h3>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <div class="rounded-r-container overflow-hidden border border-r-fg-border">
-            <div class="swatch cursor-pointer p-5 bg-r-info-bg" data-color="#CCDBFF" data-name="info-bg">
-              <div class="text-[13px] font-semibold text-r-info-fg mb-0.5">Info Background</div>
-              <div class="text-[13px] text-r-info-fg/70 font-mono">#CCDBFF</div>
-            </div>
-            <div class="swatch cursor-pointer p-5 bg-r-info-fg" data-color="#003BCC" data-name="info-fg">
-              <div class="text-[13px] font-semibold text-white mb-0.5">Info Foreground</div>
-              <div class="text-[13px] text-white/70 font-mono">#003BCC</div>
-            </div>
-          </div>
-          <div class="rounded-r-container overflow-hidden border border-r-fg-border">
-            <div class="swatch cursor-pointer p-5 bg-r-pos-bg" data-color="#A5E09F" data-name="pos-bg">
-              <div class="text-[13px] font-semibold text-r-pos-fg mb-0.5">Positive Background</div>
-              <div class="text-[13px] text-r-pos-fg/70 font-mono">#A5E09F</div>
-            </div>
-            <div class="swatch cursor-pointer p-5 bg-r-pos-fg" data-color="#327D0F" data-name="pos-fg">
-              <div class="text-[13px] font-semibold text-white mb-0.5">Positive Foreground</div>
-              <div class="text-[13px] text-white/70 font-mono">#327D0F</div>
-            </div>
-          </div>
-          <div class="rounded-r-container overflow-hidden border border-r-fg-border">
-            <div class="swatch cursor-pointer p-5 bg-r-warn-bg" data-color="#FFD999" data-name="warn-bg">
-              <div class="text-[13px] font-semibold text-r-warn-fg mb-0.5">Warning Background</div>
-              <div class="text-[13px] text-r-warn-fg/70 font-mono">#FFD999</div>
-            </div>
-            <div class="swatch cursor-pointer p-5 bg-r-warn-fg" data-color="#A36700" data-name="warn-fg">
-              <div class="text-[13px] font-semibold text-white mb-0.5">Warning Foreground</div>
-              <div class="text-[13px] text-white/70 font-mono">#A36700</div>
-            </div>
-          </div>
-          <div class="rounded-r-container overflow-hidden border border-r-fg-border">
-            <div class="swatch cursor-pointer p-5 bg-r-neg-bg" data-color="#FFC2C4" data-name="neg-bg">
-              <div class="text-[13px] font-semibold text-r-neg-fg mb-0.5">Negative Background</div>
-              <div class="text-[13px] text-r-neg-fg/70 font-mono">#FFC2C4</div>
-            </div>
-            <div class="swatch cursor-pointer p-5 bg-r-neg-fg" data-color="#BB3643" data-name="neg-fg">
-              <div class="text-[13px] font-semibold text-white mb-0.5">Negative Foreground</div>
-              <div class="text-[13px] text-white/70 font-mono">#BB3643</div>
-            </div>
-          </div>
-        </div>
+      <div class="type-row">
+        <div class="type-meta"><div class="name">heading.large</div><div class="spec">32px / 500 / 1.2 / -0.03em</div></div>
+        <div class="type-sample" style="font-size:32px;font-weight:500;line-height:1.2;letter-spacing:-0.03em">Heading Large</div>
       </div>
-    </section>
-
-    <div class="divider mx-6"></div>
-
-    <!-- ==================== TYPOGRAPHY ==================== -->
-    <section id="typography" class="py-16 px-6 bg-r-bg-secondary">
-      <div class="max-w-[1120px] mx-auto">
-        <h2 class="text-[32px] font-medium tracking-[-0.03em] leading-[1.2] mb-2">Typography</h2>
-        <p class="text-[17px] text-r-fg-secondary tracking-[-0.02em] leading-[1.4] mb-10 max-w-2xl">
-          Three font families. Noi Grotesk for product UI, Sansplomb for brand impact, IBM Plex Mono for code and labels.
-        </p>
-
-        <!-- Font families -->
-        <div class="grid md:grid-cols-3 gap-5 mb-12">
-          <div class="bg-r-bg-primary rounded-r-container p-6 shadow-e2">
-            <div class="text-[13px] text-r-fg-secondary mb-3 font-mono">font-sans</div>
-            <div class="text-[28px] font-medium tracking-[-0.03em] leading-[1.2] mb-1">Noi Grotesk</div>
-            <div class="text-[13px] text-r-fg-secondary font-mono mb-4">ss03 + ss11 stylistic alternates</div>
-            <p class="text-[15px] text-r-fg-secondary leading-[1.4]">Geometric sans-serif with optical corrections and humanist touches. Regular (1-499) and Medium (500-1000) weight ranges.</p>
-          </div>
-          <div class="bg-r-bg-primary rounded-r-container p-6 shadow-e2">
-            <div class="text-[13px] text-r-fg-secondary mb-3 font-mono">font-brand</div>
-            <div class="text-[28px] font-brand tracking-wide mb-1">SANSPLOMB</div>
-            <div class="text-[13px] text-r-fg-secondary font-mono mb-4">SansPlomb-98</div>
-            <p class="text-[15px] text-r-fg-secondary leading-[1.4]">Bold condensed face that commands attention. Reserved for marketing and brand moments — stays out of product UI.</p>
-          </div>
-          <div class="bg-r-bg-primary rounded-r-container p-6 shadow-e2">
-            <div class="text-[13px] text-r-fg-secondary mb-3 font-mono">font-mono</div>
-            <div class="text-[28px] font-mono font-medium mb-1">IBM Plex Mono</div>
-            <div class="text-[13px] text-r-fg-secondary font-mono mb-4">monospace</div>
-            <p class="text-[15px] text-r-fg-secondary leading-[1.4]">Clean monospace for code blocks, technical labels, and metadata. Available in 400 and 500 weights.</p>
-          </div>
-        </div>
-
-        <!-- Type scale -->
-        <h3 class="text-[24px] font-medium tracking-[-0.02em] mb-5">Type Scale</h3>
-        <div class="bg-r-bg-primary rounded-r-container shadow-e2 overflow-hidden">
-          <div class="overflow-x-auto">
-            <table class="w-full min-w-[700px]">
-              <thead>
-                <tr class="text-left text-[13px] text-r-fg-secondary border-b border-r-fg-border">
-                  <th class="p-5 pb-3 font-medium w-40">Style</th>
-                  <th class="p-5 pb-3 font-medium">Preview</th>
-                  <th class="p-5 pb-3 font-medium font-mono w-24">Size</th>
-                  <th class="p-5 pb-3 font-medium font-mono w-24">Weight</th>
-                  <th class="p-5 pb-3 font-medium font-mono w-24">Leading</th>
-                </tr>
-              </thead>
-              <tbody class="divide-y divide-r-fg-border">
-                <tr>
-                  <td class="p-5 text-[13px] font-mono text-r-fg-secondary">Brand Large</td>
-                  <td class="p-5"><span class="font-brand text-[56px] lg:text-[80px] text-r-ip leading-[0.8] tracking-tight">HEADLINE</span></td>
-                  <td class="p-5 text-[13px] font-mono text-r-fg-secondary">122px</td>
-                  <td class="p-5 text-[13px] font-mono text-r-fg-secondary">600</td>
-                  <td class="p-5 text-[13px] font-mono text-r-fg-secondary">0.8</td>
-                </tr>
-                <tr>
-                  <td class="p-5 text-[13px] font-mono text-r-fg-secondary">Brand Small</td>
-                  <td class="p-5"><span class="font-brand text-[40px] lg:text-[60px] text-r-ip leading-[0.9] tracking-tight">SECTION</span></td>
-                  <td class="p-5 text-[13px] font-mono text-r-fg-secondary">60px</td>
-                  <td class="p-5 text-[13px] font-mono text-r-fg-secondary">600</td>
-                  <td class="p-5 text-[13px] font-mono text-r-fg-secondary">0.9</td>
-                </tr>
-                <tr>
-                  <td class="p-5 text-[13px] font-mono text-r-fg-secondary">Heading XL</td>
-                  <td class="p-5"><span class="text-[44px] font-medium tracking-[-0.04em] leading-[1.0]">Page Title</span></td>
-                  <td class="p-5 text-[13px] font-mono text-r-fg-secondary">44px</td>
-                  <td class="p-5 text-[13px] font-mono text-r-fg-secondary">500</td>
-                  <td class="p-5 text-[13px] font-mono text-r-fg-secondary">1.0</td>
-                </tr>
-                <tr>
-                  <td class="p-5 text-[13px] font-mono text-r-fg-secondary">Heading Large</td>
-                  <td class="p-5"><span class="text-[32px] font-medium tracking-[-0.03em] leading-[1.2]">Section Header</span></td>
-                  <td class="p-5 text-[13px] font-mono text-r-fg-secondary">32px</td>
-                  <td class="p-5 text-[13px] font-mono text-r-fg-secondary">500</td>
-                  <td class="p-5 text-[13px] font-mono text-r-fg-secondary">1.2</td>
-                </tr>
-                <tr>
-                  <td class="p-5 text-[13px] font-mono text-r-fg-secondary">Heading Medium</td>
-                  <td class="p-5"><span class="text-[28px] font-medium tracking-[-0.03em] leading-[1.2]">Card Title</span></td>
-                  <td class="p-5 text-[13px] font-mono text-r-fg-secondary">28px</td>
-                  <td class="p-5 text-[13px] font-mono text-r-fg-secondary">500</td>
-                  <td class="p-5 text-[13px] font-mono text-r-fg-secondary">1.2</td>
-                </tr>
-                <tr>
-                  <td class="p-5 text-[13px] font-mono text-r-fg-secondary">Heading Small</td>
-                  <td class="p-5"><span class="text-[24px] font-medium tracking-[-0.02em] leading-[1.2]">Subsection Header</span></td>
-                  <td class="p-5 text-[13px] font-mono text-r-fg-secondary">24px</td>
-                  <td class="p-5 text-[13px] font-mono text-r-fg-secondary">500</td>
-                  <td class="p-5 text-[13px] font-mono text-r-fg-secondary">1.2</td>
-                </tr>
-                <tr>
-                  <td class="p-5 text-[13px] font-mono text-r-fg-secondary">Body XL</td>
-                  <td class="p-5"><span class="text-[19px] tracking-[-0.02em] leading-[1.2]">Large body text for introductions and featured content</span></td>
-                  <td class="p-5 text-[13px] font-mono text-r-fg-secondary">19px</td>
-                  <td class="p-5 text-[13px] font-mono text-r-fg-secondary">400/500</td>
-                  <td class="p-5 text-[13px] font-mono text-r-fg-secondary">1.2</td>
-                </tr>
-                <tr>
-                  <td class="p-5 text-[13px] font-mono text-r-fg-secondary">Body Large</td>
-                  <td class="p-5"><span class="text-[17px] tracking-[-0.02em] leading-[1.4]">Primary body text for longer passages and descriptions</span></td>
-                  <td class="p-5 text-[13px] font-mono text-r-fg-secondary">17px</td>
-                  <td class="p-5 text-[13px] font-mono text-r-fg-secondary">400/500</td>
-                  <td class="p-5 text-[13px] font-mono text-r-fg-secondary">1.4</td>
-                </tr>
-                <tr>
-                  <td class="p-5 text-[13px] font-mono text-r-fg-secondary">Body Medium</td>
-                  <td class="p-5"><span class="text-[15px] leading-[1.2]">Default UI text for buttons, labels, and general interface elements</span></td>
-                  <td class="p-5 text-[13px] font-mono text-r-fg-secondary">15px</td>
-                  <td class="p-5 text-[13px] font-mono text-r-fg-secondary">400/500</td>
-                  <td class="p-5 text-[13px] font-mono text-r-fg-secondary">1.2</td>
-                </tr>
-                <tr>
-                  <td class="p-5 text-[13px] font-mono text-r-fg-secondary">Body Small</td>
-                  <td class="p-5"><span class="text-[13px] leading-[1.2] tracking-[0.01em]">Captions, metadata, timestamps, and supplementary information</span></td>
-                  <td class="p-5 text-[13px] font-mono text-r-fg-secondary">13px</td>
-                  <td class="p-5 text-[13px] font-mono text-r-fg-secondary">400/500</td>
-                  <td class="p-5 text-[13px] font-mono text-r-fg-secondary">1.2</td>
-                </tr>
-                <tr>
-                  <td class="p-5 text-[13px] font-mono text-r-fg-secondary">Mono</td>
-                  <td class="p-5"><span class="font-mono text-[15px] leading-[1.2]">const token = "spacing-four"; // 16px</span></td>
-                  <td class="p-5 text-[13px] font-mono text-r-fg-secondary">11-17px</td>
-                  <td class="p-5 text-[13px] font-mono text-r-fg-secondary">400/500</td>
-                  <td class="p-5 text-[13px] font-mono text-r-fg-secondary">1.2</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
+      <div class="type-row">
+        <div class="type-meta"><div class="name">heading.medium</div><div class="spec">28px / 500 / 1.2 / -0.03em</div></div>
+        <div class="type-sample" style="font-size:28px;font-weight:500;line-height:1.2;letter-spacing:-0.03em">Heading Medium</div>
       </div>
-    </section>
-
-    <div class="divider mx-6"></div>
-
-    <!-- ==================== SPACING & LAYOUT ==================== -->
-    <section id="spacing" class="py-16 px-6 bg-r-bg-secondary">
-      <div class="max-w-[1120px] mx-auto">
-        <h2 class="text-[32px] font-medium tracking-[-0.03em] leading-[1.2] mb-2">Spacing &amp; Layout</h2>
-        <p class="text-[17px] text-r-fg-secondary tracking-[-0.02em] leading-[1.4] mb-10 max-w-2xl">
-          Everything aligns to a 4px base grid. This consistency creates subconscious harmony across the entire system.
-        </p>
-
-        <!-- Spacing scale -->
-        <h3 class="text-[24px] font-medium tracking-[-0.02em] mb-5">Spacing Scale</h3>
-        <div class="bg-r-bg-primary rounded-r-container shadow-e2 overflow-hidden mb-10">
-          <div class="overflow-x-auto">
-            <table class="w-full min-w-[500px]">
-              <thead>
-                <tr class="text-left text-[13px] text-r-fg-secondary border-b border-r-fg-border">
-                  <th class="p-5 pb-3 font-medium font-mono">Token</th>
-                  <th class="p-5 pb-3 font-medium font-mono">Value</th>
-                  <th class="p-5 pb-3 font-medium">Usage</th>
-                  <th class="p-5 pb-3 font-medium">Visual</th>
-                </tr>
-              </thead>
-              <tbody class="divide-y divide-r-fg-border">
-                <tr><td class="p-4 text-[13px] font-mono">spacing-half</td><td class="p-4 text-[13px] font-mono">2px</td><td class="p-4 text-[13px] text-r-fg-secondary">Micro adjustments</td><td class="p-4"><div class="h-3 bg-r-ip rounded-sm" style="width:2px"></div></td></tr>
-                <tr><td class="p-4 text-[13px] font-mono">spacing-one</td><td class="p-4 text-[13px] font-mono">4px</td><td class="p-4 text-[13px] text-r-fg-secondary">Icon margins, tight gaps</td><td class="p-4"><div class="h-3 bg-r-ip rounded-sm" style="width:4px"></div></td></tr>
-                <tr><td class="p-4 text-[13px] font-mono">spacing-two</td><td class="p-4 text-[13px] font-mono">8px</td><td class="p-4 text-[13px] text-r-fg-secondary">Default element spacing</td><td class="p-4"><div class="h-3 bg-r-ip rounded-sm" style="width:8px"></div></td></tr>
-                <tr><td class="p-4 text-[13px] font-mono">spacing-three</td><td class="p-4 text-[13px] font-mono">12px</td><td class="p-4 text-[13px] text-r-fg-secondary">Small component padding</td><td class="p-4"><div class="h-3 bg-r-ip rounded-sm" style="width:12px"></div></td></tr>
-                <tr><td class="p-4 text-[13px] font-mono">spacing-four</td><td class="p-4 text-[13px] font-mono">16px</td><td class="p-4 text-[13px] text-r-fg-secondary">Standard padding</td><td class="p-4"><div class="h-3 bg-r-ip rounded-sm" style="width:16px"></div></td></tr>
-                <tr><td class="p-4 text-[13px] font-mono">spacing-five</td><td class="p-4 text-[13px] font-mono">20px</td><td class="p-4 text-[13px] text-r-fg-secondary">Medium padding</td><td class="p-4"><div class="h-3 bg-r-ip rounded-sm" style="width:20px"></div></td></tr>
-                <tr><td class="p-4 text-[13px] font-mono">spacing-six</td><td class="p-4 text-[13px] font-mono">24px</td><td class="p-4 text-[13px] text-r-fg-secondary">Section spacing</td><td class="p-4"><div class="h-3 bg-r-ip rounded-sm" style="width:24px"></div></td></tr>
-                <tr><td class="p-4 text-[13px] font-mono">spacing-eight</td><td class="p-4 text-[13px] font-mono">32px</td><td class="p-4 text-[13px] text-r-fg-secondary">Large gaps</td><td class="p-4"><div class="h-3 bg-r-ip rounded-sm" style="width:32px"></div></td></tr>
-                <tr><td class="p-4 text-[13px] font-mono">spacing-twelve</td><td class="p-4 text-[13px] font-mono">48px</td><td class="p-4 text-[13px] text-r-fg-secondary">Section margins</td><td class="p-4"><div class="h-3 bg-r-ip rounded-sm" style="width:48px"></div></td></tr>
-                <tr><td class="p-4 text-[13px] font-mono">spacing-sixteen</td><td class="p-4 text-[13px] font-mono">64px</td><td class="p-4 text-[13px] text-r-fg-secondary">Page-level spacing</td><td class="p-4"><div class="h-3 bg-r-ip rounded-sm" style="width:64px"></div></td></tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        <!-- Component Sizes -->
-        <h3 class="text-[24px] font-medium tracking-[-0.02em] mb-5">Component Sizes</h3>
-        <div class="grid md:grid-cols-3 gap-5">
-          <div class="bg-r-bg-primary rounded-r-container p-6 shadow-e2">
-            <div class="text-[13px] font-mono text-r-fg-secondary mb-3">Touch targets</div>
-            <div class="text-[15px] font-medium mb-2">Minimum 44px height</div>
-            <div class="flex items-center gap-3">
-              <div class="w-11 h-11 border-2 border-dashed border-r-pos-fg rounded-r-input flex items-center justify-center text-[11px] font-mono text-r-pos-fg">44px</div>
-              <div class="w-12 h-12 bg-r-ip rounded-r-input flex items-center justify-center text-[11px] font-mono text-r-fg-inverted">48px</div>
-            </div>
-          </div>
-          <div class="bg-r-bg-primary rounded-r-container p-6 shadow-e2">
-            <div class="text-[13px] font-mono text-r-fg-secondary mb-3">Mobile buttons</div>
-            <div class="text-[15px] font-medium mb-2">Full-width on narrow screens</div>
-            <button class="t-bg w-full h-12 bg-r-ip text-r-fg-inverted font-semibold rounded-r-input text-[15px]">Apply Now</button>
-          </div>
-          <div class="bg-r-bg-primary rounded-r-container p-6 shadow-e2">
-            <div class="text-[13px] font-mono text-r-fg-secondary mb-3">Layout</div>
-            <div class="text-[15px] font-medium mb-2">Stack instead of grid</div>
-            <p class="text-[13px] text-r-fg-secondary">Multi-column layouts collapse to single column. Prefer stacking over horizontal scroll.</p>
-          </div>
-        </div>
+      <div class="type-row">
+        <div class="type-meta"><div class="name">heading.small</div><div class="spec">24px / 500 / 1.2 / -0.02em</div></div>
+        <div class="type-sample" style="font-size:24px;font-weight:500;line-height:1.2;letter-spacing:-0.02em">Heading Small</div>
       </div>
-    </section>
-
-    <div class="divider mx-6"></div>
-
-    <!-- ==================== ELEVATION & RADII ==================== -->
-    <section id="elevation" class="py-16 px-6 bg-r-bg-secondary">
-      <div class="max-w-[1120px] mx-auto">
-        <h2 class="text-[32px] font-medium tracking-[-0.03em] leading-[1.2] mb-2">Elevation &amp; Radii</h2>
-        <p class="text-[17px] text-r-fg-secondary tracking-[-0.02em] leading-[1.4] mb-10 max-w-2xl">
-          Shadow-first depth hierarchy with consistent border radii. Cards float rather than sit — depth without visual noise.
-        </p>
-
-        <!-- Elevation -->
-        <h3 class="text-[24px] font-medium tracking-[-0.02em] mb-5">Elevation</h3>
-        <div class="grid md:grid-cols-4 gap-5 mb-10">
-          <div class="bg-r-bg-primary rounded-r-container p-6 border border-r-fg-border">
-            <div class="text-[13px] font-mono text-r-fg-secondary mb-2">elevation-zero</div>
-            <div class="text-[15px] font-medium">Flat</div>
-            <div class="text-[13px] text-r-fg-secondary mt-1">No shadow</div>
-          </div>
-          <div class="bg-r-bg-primary rounded-r-container p-6 shadow-e1">
-            <div class="text-[13px] font-mono text-r-fg-secondary mb-2">elevation-one</div>
-            <div class="text-[15px] font-medium">Subtle lift</div>
-            <div class="text-[13px] text-r-fg-secondary mt-1">Slight separation</div>
-          </div>
-          <div class="bg-r-bg-primary rounded-r-container p-6 shadow-e2">
-            <div class="text-[13px] font-mono text-r-fg-secondary mb-2">elevation-two</div>
-            <div class="text-[15px] font-medium">Standard card</div>
-            <div class="text-[13px] text-r-fg-secondary mt-1">Default card elevation</div>
-          </div>
-          <div class="bg-r-bg-primary rounded-r-container p-6 shadow-e3">
-            <div class="text-[13px] font-mono text-r-fg-secondary mb-2">elevation-three</div>
-            <div class="text-[15px] font-medium">Modals</div>
-            <div class="text-[13px] text-r-fg-secondary mt-1">Dropdowns, popovers</div>
-          </div>
-        </div>
-
-        <!-- Border Radius -->
-        <h3 class="text-[24px] font-medium tracking-[-0.02em] mb-5">Border Radius</h3>
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-5">
-          <div class="bg-r-bg-primary rounded-r-container p-6 shadow-e2 text-center">
-            <div class="w-20 h-20 bg-r-ip rounded-r-input-sm mx-auto mb-4"></div>
-            <div class="text-[15px] font-medium mb-1">radius-input-small</div>
-            <div class="text-[13px] font-mono text-r-fg-secondary">4px</div>
-            <div class="text-[13px] text-r-fg-secondary mt-1">Interactive elements</div>
-          </div>
-          <div class="bg-r-bg-primary rounded-r-container p-6 shadow-e2 text-center">
-            <div class="w-20 h-20 bg-r-ip rounded-r-input mx-auto mb-4"></div>
-            <div class="text-[15px] font-medium mb-1">radius-input-regular</div>
-            <div class="text-[13px] font-mono text-r-fg-secondary">8px</div>
-            <div class="text-[13px] text-r-fg-secondary mt-1">Small interactive elements</div>
-          </div>
-          <div class="bg-r-bg-primary rounded-r-container p-6 shadow-e2 text-center">
-            <div class="w-20 h-20 bg-r-ip rounded-r-container mx-auto mb-4"></div>
-            <div class="text-[15px] font-medium mb-1">radius-container</div>
-            <div class="text-[13px] font-mono text-r-fg-secondary">16px</div>
-            <div class="text-[13px] text-r-fg-secondary mt-1">Cards, large surfaces</div>
-          </div>
-          <div class="bg-r-bg-primary rounded-r-container p-6 shadow-e2 text-center">
-            <div class="w-20 h-20 bg-r-ip rounded-r-max mx-auto mb-4"></div>
-            <div class="text-[15px] font-medium mb-1">radius-max</div>
-            <div class="text-[13px] font-mono text-r-fg-secondary">9999px</div>
-            <div class="text-[13px] text-r-fg-secondary mt-1">Pills, icon buttons</div>
-          </div>
-        </div>
+      <div class="type-row">
+        <div class="type-meta"><div class="name">body.large</div><div class="spec">17px / 400|500 / 1.4 / -0.02em</div></div>
+        <div class="type-sample" style="font-size:17px;line-height:1.4;letter-spacing:-0.02em">Body large renders at 17px with a comfortable line height for reading longer content.</div>
       </div>
-    </section>
-
-    <div class="divider mx-6"></div>
-
-    <!-- ==================== COMPONENTS ==================== -->
-    <section id="buttons" class="py-16 px-6 bg-r-bg-primary">
-      <div class="max-w-[1120px] mx-auto">
-        <h2 class="text-[32px] font-medium tracking-[-0.03em] leading-[1.2] mb-2">Components</h2>
-        <p class="text-[17px] text-r-fg-secondary tracking-[-0.02em] leading-[1.4] mb-10 max-w-2xl">
-          Functional, accessible building blocks on the 4px grid. Shadow-first elevation, semantic color restraint.
-        </p>
-
-        <!-- Buttons -->
-        <h3 class="text-[24px] font-medium tracking-[-0.02em] mb-5">Buttons</h3>
-        <div class="bg-r-bg-surface rounded-r-container p-8 border border-r-fg-border mb-10">
-          <div class="text-[13px] font-mono text-r-fg-secondary mb-4">Variants</div>
-          <div class="flex flex-wrap gap-4 items-center mb-8">
-            <button class="t-bg focus-ring h-12 px-6 bg-r-ip text-r-fg-inverted font-semibold rounded-r-input text-[15px] hover:bg-r-ip-hover active:bg-r-ip-active">
-              Primary
-            </button>
-            <button class="t-bg focus-ring h-12 px-6 bg-r-bg-primary text-r-fg-primary font-semibold rounded-r-input text-[15px] border border-r-fg-border hover:bg-r-bg-tertiary active:bg-r-bg-quaternary">
-              Secondary
-            </button>
-            <button class="t-bg focus-ring h-12 px-6 bg-transparent text-r-fg-primary font-semibold rounded-r-input text-[15px] hover:bg-r-i-hovered active:bg-r-i-pressed">
-              Ghost
-            </button>
-            <button class="t-bg focus-ring h-12 px-6 bg-r-neg-fg text-white font-semibold rounded-r-input text-[15px] hover:opacity-90 active:opacity-80">
-              Destructive
-            </button>
-            <button class="t-bg focus-ring h-12 px-6 bg-r-bg-primary text-r-neg-fg font-semibold rounded-r-input text-[15px] border border-r-neg-fg hover:bg-r-neg-bg/20">
-              Destructive Secondary
-            </button>
-          </div>
-
-          <div class="text-[13px] font-mono text-r-fg-secondary mb-4">Sizes — 36px / 48px / 60px</div>
-          <div class="flex flex-wrap gap-4 items-center mb-8">
-            <button class="t-bg focus-ring h-9 px-4 bg-r-ip text-r-fg-inverted text-[13px] font-semibold rounded-r-input hover:bg-r-ip-hover">Small (36px)</button>
-            <button class="t-bg focus-ring h-12 px-6 bg-r-ip text-r-fg-inverted text-[15px] font-semibold rounded-r-input hover:bg-r-ip-hover">Medium (48px)</button>
-            <button class="t-bg focus-ring h-[60px] px-8 bg-r-ip text-r-fg-inverted text-[17px] font-semibold rounded-r-input hover:bg-r-ip-hover">Large (60px)</button>
-          </div>
-
-          <div class="text-[13px] font-mono text-r-fg-secondary mb-4">States &amp; icon-only</div>
-          <div class="flex flex-wrap gap-4 items-center">
-            <button class="h-12 px-6 bg-r-bg-disabled text-r-fg-disabled font-semibold rounded-r-input text-[15px] cursor-not-allowed">Disabled</button>
-            <button class="t-bg focus-ring w-12 h-12 bg-r-ip text-r-fg-inverted rounded-r-max hover:bg-r-ip-hover flex items-center justify-center">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
-            </button>
-            <button class="t-bg focus-ring w-12 h-12 bg-r-bg-primary text-r-fg-primary rounded-r-max border border-r-fg-border hover:bg-r-bg-tertiary flex items-center justify-center">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"/></svg>
-            </button>
-          </div>
-        </div>
-
-        <!-- Inputs -->
-        <h3 id="inputs" class="text-[24px] font-medium tracking-[-0.02em] mb-5">Inputs</h3>
-        <div class="bg-r-bg-surface rounded-r-container p-8 border border-r-fg-border mb-10">
-          <div class="grid md:grid-cols-2 gap-6 mb-6">
-            <div>
-              <label class="block text-[13px] font-medium text-r-fg-primary mb-2">Text Input</label>
-              <input type="text" placeholder="Enter your name" class="focus-ring t-all w-full h-12 px-4 border border-r-fg-border rounded-r-input-sm bg-transparent text-r-fg-primary placeholder:text-r-fg-secondary hover:border-r-fg-primary text-[15px]">
-            </div>
-            <div>
-              <label class="block text-[13px] font-medium text-r-fg-primary mb-2">Select</label>
-              <select class="focus-ring t-all w-full h-12 px-4 border border-r-fg-border rounded-r-input-sm bg-r-bg-primary text-r-fg-primary hover:border-r-fg-primary text-[15px]">
-                <option>Select a field of study</option>
-                <option>Computer Science</option>
-                <option>Product Design</option>
-                <option>Business Administration</option>
-              </select>
-            </div>
-          </div>
-          <div class="mb-6">
-            <label class="block text-[13px] font-medium text-r-fg-primary mb-2">Textarea</label>
-            <textarea rows="3" placeholder="Tell us about your career interests..." class="focus-ring t-all w-full p-4 border border-r-fg-border rounded-r-input-sm bg-transparent text-r-fg-primary placeholder:text-r-fg-secondary hover:border-r-fg-primary resize-none text-[15px]"></textarea>
-          </div>
-          <div class="flex flex-wrap gap-6">
-            <label class="flex items-center gap-3 cursor-pointer">
-              <input type="checkbox" class="w-5 h-5 rounded-r-input border-r-fg-border accent-r-ip focus-ring" checked>
-              <span class="text-[15px]">I agree to the terms</span>
-            </label>
-            <label class="flex items-center gap-3 cursor-pointer">
-              <input type="checkbox" class="w-5 h-5 rounded-r-input border-r-fg-border accent-r-ip focus-ring">
-              <span class="text-[15px]">Send me job alerts</span>
-            </label>
-          </div>
-          <div class="mt-6">
-            <label class="block text-[13px] font-medium text-r-fg-primary mb-2">Disabled Input</label>
-            <input type="text" value="Cannot be edited" disabled class="w-full h-12 px-4 border border-r-fg-border rounded-r-input-sm bg-r-bg-disabled text-r-fg-disabled cursor-not-allowed text-[15px]">
-          </div>
-        </div>
-
-        <!-- Cards -->
-        <h3 id="cards" class="text-[24px] font-medium tracking-[-0.02em] mb-5">Cards</h3>
-        <div class="grid md:grid-cols-3 gap-5 mb-10">
-          <!-- Static card -->
-          <div class="bg-r-bg-primary rounded-r-container p-6 shadow-e2 border border-r-card-border">
-            <div class="text-[13px] font-mono text-r-fg-secondary mb-4">Static Card</div>
-            <h4 class="text-[28px] font-medium tracking-[-0.03em] leading-[1.2] mb-2">elevation-two</h4>
-            <p class="text-[15px] text-r-fg-secondary leading-[1.4] mb-4">Cards use soft shadows for depth. No heavy borders needed.</p>
-            <div class="flex gap-2">
-              <span class="inline-flex items-center px-3 py-1 bg-r-info-bg text-r-info-fg text-[13px] font-semibold rounded-r-input-sm">Remote</span>
-              <span class="inline-flex items-center px-3 py-1 bg-r-neutral-bg text-r-fg-primary text-[13px] font-semibold rounded-r-input-sm">Full-time</span>
-            </div>
-          </div>
-          <!-- Interactive card -->
-          <div class="t-shadow cursor-pointer bg-r-bg-primary rounded-r-container p-6 shadow-e2 border border-r-card-border hover:shadow-e3 hover:border-r-fg-border">
-            <div class="text-[13px] font-mono text-r-fg-secondary mb-4">Interactive Card — hover me</div>
-            <h4 class="text-[28px] font-medium tracking-[-0.03em] leading-[1.2] mb-2">Shadow deepens</h4>
-            <p class="text-[15px] text-r-fg-secondary leading-[1.4] mb-4">Interactive cards elevate on hover with deeper shadow and subtle border shift.</p>
-            <div class="flex gap-2">
-              <span class="inline-flex items-center px-3 py-1 bg-r-pos-bg text-r-pos-fg text-[13px] font-semibold rounded-r-input-sm">Actively Hiring</span>
-            </div>
-          </div>
-          <!-- Structured card -->
-          <div class="t-shadow cursor-pointer bg-r-bg-primary rounded-r-container shadow-e2 border border-r-card-border hover:shadow-e3 hover:border-r-fg-border overflow-hidden">
-            <div class="p-6 border-b border-r-fg-border">
-              <div class="flex items-start justify-between mb-3">
-                <div class="w-12 h-12 bg-r-ip rounded-r-input flex items-center justify-center text-r-fg-inverted font-brand text-xl">HS</div>
-                <span class="inline-flex items-center px-3 py-1 bg-r-warn-bg text-r-warn-fg text-[13px] font-semibold rounded-r-input-sm">2 days left</span>
-              </div>
-              <h4 class="text-[28px] font-medium tracking-[-0.03em] leading-[1.2] mb-1">Software Engineer</h4>
-              <p class="text-[15px] text-r-fg-secondary">Handshake — San Francisco, CA</p>
-            </div>
-            <div class="p-6 bg-r-bg-surface">
-              <div class="flex gap-2 flex-wrap">
-                <span class="inline-flex items-center px-2 py-1 bg-r-bg-primary text-r-fg-secondary text-[13px] rounded-r-input-sm border border-r-fg-border">React</span>
-                <span class="inline-flex items-center px-2 py-1 bg-r-bg-primary text-r-fg-secondary text-[13px] rounded-r-input-sm border border-r-fg-border">TypeScript</span>
-                <span class="inline-flex items-center px-2 py-1 bg-r-bg-primary text-r-fg-secondary text-[13px] rounded-r-input-sm border border-r-fg-border">Node.js</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Badges & Tags -->
-        <h3 id="tags" class="text-[24px] font-medium tracking-[-0.02em] mb-5">Badges &amp; Tags</h3>
-        <div class="bg-r-bg-surface rounded-r-container p-8 border border-r-fg-border mb-10">
-          <div class="text-[13px] font-mono text-r-fg-secondary mb-4">Status variants</div>
-          <div class="flex flex-wrap gap-3 items-center mb-6">
-            <span class="inline-flex items-center px-3 py-1 bg-r-info-bg text-r-info-fg text-[13px] font-semibold rounded-r-input-sm">Info</span>
-            <span class="inline-flex items-center px-3 py-1 bg-r-pos-bg text-r-pos-fg text-[13px] font-semibold rounded-r-input-sm">Positive</span>
-            <span class="inline-flex items-center px-3 py-1 bg-r-warn-bg text-r-warn-fg text-[13px] font-semibold rounded-r-input-sm">Warning</span>
-            <span class="inline-flex items-center px-3 py-1 bg-r-neg-bg text-r-neg-fg text-[13px] font-semibold rounded-r-input-sm">Negative</span>
-            <span class="inline-flex items-center px-3 py-1 bg-r-neutral-bg text-r-fg-primary text-[13px] font-semibold rounded-r-input-sm">Neutral</span>
-          </div>
-          <div class="text-[13px] font-mono text-r-fg-secondary mb-4">Pill &amp; compound</div>
-          <div class="flex flex-wrap gap-3 items-center">
-            <span class="inline-flex items-center gap-2 px-3 py-1 bg-r-ip text-r-fg-inverted text-[13px] font-semibold rounded-r-max">
-              <span class="w-1.5 h-1.5 bg-r-pos-bg rounded-full"></span>Active
-            </span>
-            <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-r-bg-primary text-r-fg-primary text-[13px] font-medium rounded-r-max border border-r-fg-border">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-              San Francisco
-            </span>
-            <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-r-bg-primary text-r-fg-primary text-[13px] font-medium rounded-r-max border border-r-fg-border">
-              $140K - $180K
-            </span>
-          </div>
-        </div>
-
-        <!-- Modal Animation -->
-        <h3 id="modal-section" class="text-[24px] font-medium tracking-[-0.02em] mb-5">Modal Animation</h3>
-        <div class="bg-r-bg-surface rounded-r-container p-8 border border-r-fg-border">
-          <p class="text-[15px] text-r-fg-secondary mb-4">Modals use a subtle scale + fade entrance. Click to preview.</p>
-          <button id="modalTrigger" class="t-bg focus-ring h-12 px-6 bg-r-ip text-r-fg-inverted font-semibold rounded-r-input text-[15px] hover:bg-r-ip-hover active:bg-r-ip-active">
-            Open Modal
-          </button>
-        </div>
+      <div class="type-row">
+        <div class="type-meta"><div class="name">body.medium</div><div class="spec">15px / 400|500 / 1.2 / 0</div></div>
+        <div class="type-sample" style="font-size:15px;line-height:1.2">Body medium is the workhorse for most UI text.</div>
       </div>
-    </section>
-
-    <div class="divider mx-6"></div>
-<!-- ==================== PATTERNS ==================== -->
-<div class="divider mx-6"></div>
-
-<section id="patterns" class="py-16 px-6 bg-r-bg-primary">
-  <div class="max-w-[1120px] mx-auto">
-    <h2 class="text-[32px] font-medium tracking-[-0.03em] leading-[1.2] mb-2">Patterns</h2>
-    <p class="text-[17px] text-r-fg-secondary tracking-[-0.02em] leading-[1.4] mb-10 max-w-2xl">
-      Reusable behavioral rules that govern how components compose and interact. The grammar of the design system.
-    </p>
-
-    <!-- Interaction States -->
-    <h3 id="interactions" class="text-[24px] font-medium tracking-[-0.02em] mb-5">Interaction States</h3>
-    <div class="space-y-6 mb-12">
-      <!-- Follow/Toggle -->
-      <div class="grid md:grid-cols-2 gap-5">
-        <div class="rounded-r-container overflow-hidden border-2 border-r-pos-fg/30">
-          <div class="px-5 py-3 bg-r-pos-bg/30 flex items-center gap-2">
-            <svg class="w-5 h-5 text-r-pos-fg" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-            <span class="text-[13px] font-semibold text-r-pos-fg uppercase tracking-wider">Do</span>
-          </div>
-          <div class="p-5 bg-r-bg-primary">
-            <div class="flex gap-3 items-center mb-3">
-              <button class="t-bg h-10 px-5 bg-r-bg-primary text-r-fg-primary text-[13px] font-semibold rounded-r-input border border-r-fg-border">Follow</button>
-              <button class="t-bg h-10 px-5 bg-r-ip text-r-fg-inverted text-[13px] font-semibold rounded-r-input">Following &#10003;</button>
-            </div>
-            <p class="text-[13px] text-r-fg-secondary">Label describes current state. Toggle is clear and reversible.</p>
-          </div>
-        </div>
-        <div class="rounded-r-container overflow-hidden border-2 border-r-neg-fg/30">
-          <div class="px-5 py-3 bg-r-neg-bg/30 flex items-center gap-2">
-            <svg class="w-5 h-5 text-r-neg-fg" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-            <span class="text-[13px] font-semibold text-r-neg-fg uppercase tracking-wider">Don't</span>
-          </div>
-          <div class="p-5 bg-r-bg-primary">
-            <div class="flex gap-3 items-center mb-3">
-              <button class="t-bg h-10 px-5 bg-r-bg-primary text-r-fg-primary text-[13px] font-semibold rounded-r-input border border-r-fg-border">Follow</button>
-              <button class="t-bg h-10 px-5 bg-r-neg-fg text-white text-[13px] font-semibold rounded-r-input">Unfollow</button>
-            </div>
-            <p class="text-[13px] text-r-fg-secondary">Label describes destructive action &mdash; creates anxiety. Red implies danger for a safe action.</p>
-          </div>
-        </div>
+      <div class="type-row">
+        <div class="type-meta"><div class="name">body.small</div><div class="spec">13px / 400|500 / 1.2 / 0.01em</div></div>
+        <div class="type-sample" style="font-size:13px;line-height:1.2;letter-spacing:0.01em">Body small for captions, helper text, and secondary information.</div>
       </div>
+    </div>
 
-      <!-- List Hover -->
-      <div class="grid md:grid-cols-2 gap-5">
-        <div class="rounded-r-container overflow-hidden border-2 border-r-pos-fg/30">
-          <div class="px-5 py-3 bg-r-pos-bg/30 flex items-center gap-2">
-            <svg class="w-5 h-5 text-r-pos-fg" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-            <span class="text-[13px] font-semibold text-r-pos-fg uppercase tracking-wider">Do</span>
-          </div>
-          <div class="p-5 bg-r-bg-primary">
-            <div class="space-y-1 mb-3">
-              <div class="px-3 py-2 rounded-r-input-sm bg-r-bg-secondary">
-                <span class="text-[15px] underline text-r-fg-primary">Product Designer at Stripe</span>
-              </div>
-              <div class="px-3 py-2 rounded-r-input-sm">
-                <span class="text-[15px] text-r-fg-primary">Software Engineer at Figma</span>
-              </div>
-            </div>
-            <p class="text-[13px] text-r-fg-secondary">Background change AND underlined text signals clickability.</p>
+    <div class="code-block">
+      <span class="code-lang">TSX</span>
+      <button class="code-copy" onclick="copyCode(this)">Copy</button>
+      <pre><span class="kw">const</span> <span class="fn">Title</span> <span class="op">=</span> styled.h1<span class="st">`
+  ${Typography.heading.large()}
+`</span>;
+<span class="kw">const</span> <span class="fn">Text</span> <span class="op">=</span> styled.p<span class="st">`
+  ${Typography.body.medium({ semibold: true })}
+`</span>;</pre>
+    </div>
+
+    <div class="meta-group" style="margin-top:var(--s-6)">
+      <div class="meta-label">Size Scales</div>
+      <table class="token-table">
+        <thead><tr><th>Context</th><th>xs</th><th>sm</th><th>md</th><th>lg</th><th>xl</th></tr></thead>
+        <tbody>
+          <tr><td>Standalone (touch targets)</td><td>24</td><td>36</td><td>48</td><td>60</td><td>72</td></tr>
+          <tr><td>Contained (icons)</td><td>16</td><td>20</td><td>24</td><td>28</td><td>32</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       TOKENS: SPACING
+       ══════════════════════════════════════ -->
+  <section class="section" id="spacing">
+    <div class="section-header">
+      <h2 class="h-lg">Spacing</h2>
+      <p>4px base grid. All spacing snaps to multiples of 4.</p>
+    </div>
+    <div class="spacing-scale">
+      <div class="spacing-item"><span class="spacing-label">half</span><div class="spacing-bar" style="width:2px"></div><span class="spacing-px">2px</span></div>
+      <div class="spacing-item"><span class="spacing-label">one</span><div class="spacing-bar" style="width:4px"></div><span class="spacing-px">4px</span></div>
+      <div class="spacing-item"><span class="spacing-label">two</span><div class="spacing-bar" style="width:8px"></div><span class="spacing-px">8px</span></div>
+      <div class="spacing-item"><span class="spacing-label">three</span><div class="spacing-bar" style="width:12px"></div><span class="spacing-px">12px</span></div>
+      <div class="spacing-item"><span class="spacing-label">four</span><div class="spacing-bar" style="width:16px"></div><span class="spacing-px">16px</span></div>
+      <div class="spacing-item"><span class="spacing-label">five</span><div class="spacing-bar" style="width:20px"></div><span class="spacing-px">20px</span></div>
+      <div class="spacing-item"><span class="spacing-label">six</span><div class="spacing-bar" style="width:24px"></div><span class="spacing-px">24px</span></div>
+      <div class="spacing-item"><span class="spacing-label">eight</span><div class="spacing-bar" style="width:32px"></div><span class="spacing-px">32px</span></div>
+      <div class="spacing-item"><span class="spacing-label">twelve</span><div class="spacing-bar" style="width:48px"></div><span class="spacing-px">48px</span></div>
+      <div class="spacing-item"><span class="spacing-label">sixteen</span><div class="spacing-bar" style="width:64px"></div><span class="spacing-px">64px</span></div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       TOKENS: RADII
+       ══════════════════════════════════════ -->
+  <section class="section" id="radii">
+    <div class="section-header">
+      <h2 class="h-lg">Radii</h2>
+      <p>Four radius tokens from sharp interactive elements to fully rounded pills.</p>
+    </div>
+    <div class="radius-grid">
+      <div class="radius-demo">
+        <div class="radius-box" style="border-radius:4px"></div>
+        <strong>radius-one</strong>
+        <span>4px &middot; Inputs, buttons</span>
+      </div>
+      <div class="radius-demo">
+        <div class="radius-box" style="border-radius:8px"></div>
+        <strong>radius-two</strong>
+        <span>8px &middot; Checkboxes, small avatars</span>
+      </div>
+      <div class="radius-demo">
+        <div class="radius-box" style="border-radius:16px"></div>
+        <strong>radius-four</strong>
+        <span>16px &middot; Cards, containers</span>
+      </div>
+      <div class="radius-demo">
+        <div class="radius-box" style="border-radius:9999px"></div>
+        <strong>radius-max</strong>
+        <span>9999px &middot; Pills, round avatars</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       TOKENS: ELEVATION
+       ══════════════════════════════════════ -->
+  <section class="section" id="elevation">
+    <div class="section-header">
+      <h2 class="h-lg">Elevation</h2>
+      <p>Shadow-first approach. Cards float via soft shadows, not borders.</p>
+    </div>
+    <div class="shadow-grid">
+      <div class="shadow-demo">
+        <div class="shadow-box" style="box-shadow:var(--shadow-0)">Level 0</div>
+        <strong>elevation-zero</strong>
+        <span class="body-sm" style="color:var(--doc-muted)">Flat, no shadow</span>
+      </div>
+      <div class="shadow-demo">
+        <div class="shadow-box" style="box-shadow:var(--shadow-1)">Level 1</div>
+        <strong>elevation-one</strong>
+        <span class="body-sm" style="color:var(--doc-muted)">Subtle lift (cards)</span>
+      </div>
+      <div class="shadow-demo">
+        <div class="shadow-box" style="box-shadow:var(--shadow-2)">Level 2</div>
+        <strong>elevation-two</strong>
+        <span class="body-sm" style="color:var(--doc-muted)">Dropdowns, popovers</span>
+      </div>
+      <div class="shadow-demo">
+        <div class="shadow-box" style="box-shadow:var(--shadow-3)">Level 3</div>
+        <strong>elevation-three</strong>
+        <span class="body-sm" style="color:var(--doc-muted)">Modals, dialogs</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       COMPONENTS: BUTTON
+       ══════════════════════════════════════ -->
+  <section class="section" id="button">
+    <div class="section-header">
+      <h2 class="h-lg">Button</h2>
+      <p>Four variants, each with a destructive counterpart. Three sizes.</p>
+    </div>
+
+    <div class="component-block">
+      <div class="component-header">
+        <h3>Variants</h3>
+        <p>Primary for key actions, Secondary for supporting actions, Tertiary for low-emphasis, Subdued for minimal presence.</p>
+      </div>
+      <div class="component-preview">
+        <button class="preview-btn primary">Primary</button>
+        <button class="preview-btn secondary">Secondary</button>
+        <button class="preview-btn tertiary">Tertiary</button>
+        <button class="preview-btn subdued">Subdued</button>
+        <button class="preview-btn destructive">Destructive</button>
+      </div>
+      <div class="component-preview" style="background:var(--doc-surface)">
+        <button class="preview-btn primary sm">Small</button>
+        <button class="preview-btn primary">Medium</button>
+        <button class="preview-btn primary lg">Large</button>
+      </div>
+      <div class="component-meta">
+        <div class="meta-group">
+          <div class="meta-label">API</div>
+          <div class="meta-tags">
+            <span class="meta-tag">PrimaryButton</span>
+            <span class="meta-tag">SecondaryButton</span>
+            <span class="meta-tag">TertiaryButton</span>
+            <span class="meta-tag">SubduedButton</span>
           </div>
         </div>
-        <div class="rounded-r-container overflow-hidden border-2 border-r-neg-fg/30">
-          <div class="px-5 py-3 bg-r-neg-bg/30 flex items-center gap-2">
-            <svg class="w-5 h-5 text-r-neg-fg" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-            <span class="text-[13px] font-semibold text-r-neg-fg uppercase tracking-wider">Don't</span>
-          </div>
-          <div class="p-5 bg-r-bg-primary">
-            <div class="space-y-1 mb-3">
-              <div class="px-3 py-2 rounded-r-input-sm bg-r-bg-secondary/50">
-                <span class="text-[15px] text-r-fg-primary">Product Designer at Stripe</span>
-              </div>
-              <div class="px-3 py-2 rounded-r-input-sm">
-                <span class="text-[15px] text-r-fg-primary">Software Engineer at Figma</span>
-              </div>
-            </div>
-            <p class="text-[13px] text-r-fg-secondary">Subtle color shift alone &mdash; insufficient contrast. No text affordance for clickability.</p>
+        <div class="meta-group">
+          <div class="meta-label">Sizes</div>
+          <div class="meta-tags">
+            <span class="meta-tag">Size.small</span>
+            <span class="meta-tag">Size.medium</span>
+            <span class="meta-tag">Size.large</span>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Action Hierarchy -->
-    <h3 id="actions" class="text-[24px] font-medium tracking-[-0.02em] mb-5">Action Hierarchy</h3>
-    <div class="space-y-6 mb-12">
-      <!-- One Primary Per Screen -->
-      <div class="grid md:grid-cols-2 gap-5">
-        <div class="rounded-r-container overflow-hidden border-2 border-r-pos-fg/30">
-          <div class="px-5 py-3 bg-r-pos-bg/30 flex items-center gap-2">
-            <svg class="w-5 h-5 text-r-pos-fg" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-            <span class="text-[13px] font-semibold text-r-pos-fg uppercase tracking-wider">Do</span>
+    <div class="code-block">
+      <span class="code-lang">TSX</span>
+      <button class="code-copy" onclick="copyCode(this)">Copy</button>
+      <pre><span class="op">&lt;</span><span class="fn">PrimaryButton</span> <span class="at">onClick</span><span class="op">={</span>handle<span class="op">}</span> <span class="at">size</span><span class="op">={</span>Size.small<span class="op">}</span><span class="op">&gt;</span>
+  <span class="op">&lt;</span><span class="fn">RosettaLeftIcon</span><span class="op">&gt;</span>
+    <span class="op">&lt;</span><span class="fn">Rosetta.Add</span> <span class="op">/&gt;</span>
+  <span class="op">&lt;/</span><span class="fn">RosettaLeftIcon</span><span class="op">&gt;</span>
+  <span class="op">&lt;</span><span class="fn">ButtonText</span><span class="op">&gt;</span>Add Item<span class="op">&lt;/</span><span class="fn">ButtonText</span><span class="op">&gt;</span>
+<span class="op">&lt;/</span><span class="fn">PrimaryButton</span><span class="op">&gt;</span></pre>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       COMPONENTS: MODAL
+       ══════════════════════════════════════ -->
+  <section class="section" id="modal">
+    <div class="section-header">
+      <h2 class="h-lg">Modal</h2>
+      <p>Disclosure-triggered dialog. Two sizes. Use <code>&lt;Dismiss&gt;</code> to wrap close elements.</p>
+    </div>
+
+    <div class="component-block">
+      <div class="component-header">
+        <h3>Preview</h3>
+        <p>Narrow modal with header, body, and footer.</p>
+      </div>
+      <div class="component-preview" style="justify-content:center">
+        <div class="preview-modal-frame">
+          <div class="preview-modal-header">
+            <h4>Confirm Action</h4>
+            <span style="cursor:pointer;font-size:18px;color:var(--doc-muted)">&times;</span>
           </div>
-          <div class="p-5 bg-r-bg-primary">
-            <div class="flex flex-wrap gap-3 items-center mb-3">
-              <button class="t-bg h-10 px-5 bg-r-ip text-r-fg-inverted text-[13px] font-semibold rounded-r-input">Apply Now</button>
-              <button class="t-bg h-10 px-5 bg-r-bg-primary text-r-fg-primary text-[13px] font-semibold rounded-r-input border border-r-fg-border">Save</button>
-              <a href="#" class="text-[13px] text-r-fg-secondary underline hover:text-r-fg-primary">Learn more</a>
-            </div>
-            <p class="text-[13px] text-r-fg-secondary">One primary action per screen. Secondary and text links for supporting actions.</p>
-          </div>
-        </div>
-        <div class="rounded-r-container overflow-hidden border-2 border-r-neg-fg/30">
-          <div class="px-5 py-3 bg-r-neg-bg/30 flex items-center gap-2">
-            <svg class="w-5 h-5 text-r-neg-fg" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-            <span class="text-[13px] font-semibold text-r-neg-fg uppercase tracking-wider">Don't</span>
-          </div>
-          <div class="p-5 bg-r-bg-primary">
-            <div class="flex flex-wrap gap-3 items-center mb-3">
-              <button class="t-bg h-10 px-5 bg-r-ip text-r-fg-inverted text-[13px] font-semibold rounded-r-input">Apply Now</button>
-              <button class="t-bg h-10 px-5 bg-r-ip text-r-fg-inverted text-[13px] font-semibold rounded-r-input">Save Job</button>
-              <button class="t-bg h-10 px-5 bg-r-ip text-r-fg-inverted text-[13px] font-semibold rounded-r-input">Learn More</button>
-            </div>
-            <p class="text-[13px] text-r-fg-secondary">Three competing primary buttons. No clear hierarchy &mdash; user doesn't know what to do first.</p>
+          <div class="preview-modal-body">Are you sure you want to proceed? This action cannot be undone.</div>
+          <div class="preview-modal-footer">
+            <button class="preview-btn subdued sm">Cancel</button>
+            <button class="preview-btn primary sm">Confirm</button>
           </div>
         </div>
       </div>
-
-      <!-- Group Controls -->
-      <div class="grid md:grid-cols-2 gap-5">
-        <div class="rounded-r-container overflow-hidden border-2 border-r-pos-fg/30">
-          <div class="px-5 py-3 bg-r-pos-bg/30 flex items-center gap-2">
-            <svg class="w-5 h-5 text-r-pos-fg" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-            <span class="text-[13px] font-semibold text-r-pos-fg uppercase tracking-wider">Do</span>
-          </div>
-          <div class="p-5 bg-r-bg-primary">
-            <div class="space-y-0 mb-3 border border-r-fg-border rounded-r-input overflow-hidden">
-              <div class="px-4 py-3 flex items-center justify-between border-b border-r-fg-border hover:bg-r-bg-secondary t-bg cursor-pointer">
-                <span class="text-[15px]">Engineering roles</span>
-                <svg class="w-5 h-5 text-r-fg-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-              </div>
-              <div class="px-4 py-3 flex items-center justify-between border-b border-r-fg-border hover:bg-r-bg-secondary t-bg cursor-pointer">
-                <span class="text-[15px]">Design roles</span>
-                <svg class="w-5 h-5 text-r-fg-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-              </div>
-              <div class="px-4 py-3 flex items-center justify-between hover:bg-r-bg-secondary t-bg cursor-pointer">
-                <span class="text-[15px]">Marketing roles</span>
-                <svg class="w-5 h-5 text-r-fg-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-              </div>
-            </div>
-            <p class="text-[13px] text-r-fg-secondary">List items with inline chevrons. Action is contextual and grouped.</p>
+      <div class="component-meta">
+        <div class="meta-group">
+          <div class="meta-label">Sizes</div>
+          <div class="meta-tags">
+            <span class="meta-tag">ModalSizes.Narrow</span>
+            <span class="meta-tag">ModalSizes.Wide</span>
           </div>
         </div>
-        <div class="rounded-r-container overflow-hidden border-2 border-r-neg-fg/30">
-          <div class="px-5 py-3 bg-r-neg-bg/30 flex items-center gap-2">
-            <svg class="w-5 h-5 text-r-neg-fg" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-            <span class="text-[13px] font-semibold text-r-neg-fg uppercase tracking-wider">Don't</span>
-          </div>
-          <div class="p-5 bg-r-bg-primary">
-            <div class="space-y-2 mb-3">
-              <div class="px-4 py-3 border border-r-fg-border rounded-r-input">
-                <span class="text-[15px]">Engineering roles</span>
-              </div>
-              <div class="px-4 py-3 border border-r-fg-border rounded-r-input">
-                <span class="text-[15px]">Design roles</span>
-              </div>
-              <div class="px-4 py-3 border border-r-fg-border rounded-r-input">
-                <span class="text-[15px]">Marketing roles</span>
-              </div>
-              <a href="#" class="inline-block text-[13px] text-r-fg-secondary underline mt-1">View all categories</a>
-            </div>
-            <p class="text-[13px] text-r-fg-secondary">Detached "View all" link. No inline affordance &mdash; action feels disconnected from the list.</p>
+        <div class="meta-group">
+          <div class="meta-label">Key Props</div>
+          <div class="meta-tags">
+            <span class="meta-tag">aria-label</span>
+            <span class="meta-tag">disclosure</span>
+            <span class="meta-tag">size</span>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Content Constraints -->
-    <h3 id="content" class="text-[24px] font-medium tracking-[-0.02em] mb-5">Content Constraints</h3>
-    <div class="space-y-6 mb-12">
-      <!-- No Ornamentation -->
-      <div class="grid md:grid-cols-2 gap-5">
-        <div class="rounded-r-container overflow-hidden border-2 border-r-pos-fg/30">
-          <div class="px-5 py-3 bg-r-pos-bg/30 flex items-center gap-2">
-            <svg class="w-5 h-5 text-r-pos-fg" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-            <span class="text-[13px] font-semibold text-r-pos-fg uppercase tracking-wider">Do</span>
-          </div>
-          <div class="p-5 bg-r-bg-primary">
-            <div class="bg-r-bg-primary rounded-r-container p-4 shadow-e2 border border-r-card-border mb-3">
-              <div class="text-[15px] font-medium mb-1">Product Designer</div>
-              <div class="text-[13px] text-r-fg-secondary">Stripe &middot; San Francisco, CA</div>
-              <div class="flex gap-2 mt-2">
-                <span class="inline-flex items-center px-2 py-1 bg-r-pos-bg text-r-pos-fg text-[11px] font-semibold rounded-r-input-sm">Remote</span>
-                <span class="inline-flex items-center px-2 py-1 bg-r-neutral-bg text-r-fg-primary text-[11px] font-semibold rounded-r-input-sm">Full-time</span>
-              </div>
-            </div>
-            <p class="text-[13px] text-r-fg-secondary">Clean card. Content speaks for itself. No decorative elements.</p>
-          </div>
-        </div>
-        <div class="rounded-r-container overflow-hidden border-2 border-r-neg-fg/30">
-          <div class="px-5 py-3 bg-r-neg-bg/30 flex items-center gap-2">
-            <svg class="w-5 h-5 text-r-neg-fg" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-            <span class="text-[13px] font-semibold text-r-neg-fg uppercase tracking-wider">Don't</span>
-          </div>
-          <div class="p-5 bg-r-bg-primary">
-            <div class="bg-r-bg-primary rounded-r-container p-4 shadow-e2 border border-r-card-border mb-3">
-              <div class="flex items-center gap-2 mb-1">
-                <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                <span class="text-[15px] font-medium">Product Designer</span>
-                <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-              </div>
-              <div class="text-[13px] text-r-fg-secondary">Stripe &middot; San Francisco, CA</div>
-              <div class="flex gap-2 mt-2">
-                <span class="inline-flex items-center px-2 py-1 bg-r-pos-bg text-r-pos-fg text-[11px] font-semibold rounded-full">&#9733; Remote</span>
-                <span class="inline-flex items-center px-2 py-1 bg-r-neutral-bg text-r-fg-primary text-[11px] font-semibold rounded-full">&#9733; Full-time</span>
-              </div>
-            </div>
-            <p class="text-[13px] text-r-fg-secondary">Star icons, decorative elements, rounded pills. Ornamentation adds noise, not meaning.</p>
-          </div>
+    <div class="code-block">
+      <span class="code-lang">TSX</span>
+      <button class="code-copy" onclick="copyCode(this)">Copy</button>
+      <pre><span class="op">&lt;</span><span class="fn">Modal</span>
+  <span class="at">aria-label</span><span class="op">=</span><span class="st">"Confirm"</span>
+  <span class="at">size</span><span class="op">={</span>ModalSizes.Narrow<span class="op">}</span>
+  <span class="at">disclosure</span><span class="op">={</span>
+    <span class="op">&lt;</span><span class="fn">PrimaryButton</span><span class="op">&gt;</span>
+      <span class="op">&lt;</span><span class="fn">ButtonText</span><span class="op">&gt;</span>Open<span class="op">&lt;/</span><span class="fn">ButtonText</span><span class="op">&gt;</span>
+    <span class="op">&lt;/</span><span class="fn">PrimaryButton</span><span class="op">&gt;</span>
+  <span class="op">}</span>
+<span class="op">&gt;</span>
+  <span class="op">&lt;</span><span class="fn">Header</span><span class="op">&gt;</span>
+    <span class="op">&lt;</span><span class="tg">h1</span><span class="op">&gt;</span>Title<span class="op">&lt;/</span><span class="tg">h1</span><span class="op">&gt;</span>
+    <span class="op">&lt;</span><span class="fn">Dismiss</span><span class="op">&gt;</span>
+      <span class="op">&lt;</span><span class="fn">SubduedSimpleIconButton</span> <span class="at">aria-label</span><span class="op">=</span><span class="st">"Close"</span><span class="op">&gt;</span>
+        <span class="op">&lt;</span><span class="fn">Rosetta.Close</span> <span class="op">/&gt;</span>
+      <span class="op">&lt;/</span><span class="fn">SubduedSimpleIconButton</span><span class="op">&gt;</span>
+    <span class="op">&lt;/</span><span class="fn">Dismiss</span><span class="op">&gt;</span>
+  <span class="op">&lt;/</span><span class="fn">Header</span><span class="op">&gt;</span>
+  <span class="op">&lt;</span><span class="fn">Body</span><span class="op">&gt;&lt;</span><span class="tg">p</span><span class="op">&gt;</span>Content<span class="op">&lt;/</span><span class="tg">p</span><span class="op">&gt;&lt;/</span><span class="fn">Body</span><span class="op">&gt;</span>
+  <span class="op">&lt;</span><span class="fn">Footer</span><span class="op">&gt;</span>
+    <span class="op">&lt;</span><span class="fn">Dismiss</span><span class="op">&gt;</span>
+      <span class="op">&lt;</span><span class="fn">PrimaryButton</span> <span class="at">size</span><span class="op">={</span>Size.small<span class="op">}&gt;</span>
+        <span class="op">&lt;</span><span class="fn">ButtonText</span><span class="op">&gt;</span>OK<span class="op">&lt;/</span><span class="fn">ButtonText</span><span class="op">&gt;</span>
+      <span class="op">&lt;/</span><span class="fn">PrimaryButton</span><span class="op">&gt;</span>
+    <span class="op">&lt;/</span><span class="fn">Dismiss</span><span class="op">&gt;</span>
+  <span class="op">&lt;/</span><span class="fn">Footer</span><span class="op">&gt;</span>
+<span class="op">&lt;/</span><span class="fn">Modal</span><span class="op">&gt;</span></pre>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       COMPONENTS: SELECT
+       ══════════════════════════════════════ -->
+  <section class="section" id="select">
+    <div class="section-header">
+      <h2 class="h-lg">Select</h2>
+      <p>Form select with label, placeholder, helper text, and validation status.</p>
+    </div>
+
+    <div class="component-block">
+      <div class="component-header"><h3>Preview</h3></div>
+      <div class="component-preview" style="flex-direction:column;align-items:stretch;max-width:320px">
+        <div class="preview-field">
+          <label class="preview-label">Role</label>
+          <select class="preview-input" style="appearance:auto">
+            <option value="" disabled selected>Choose...</option>
+            <option>Admin</option>
+            <option>Editor</option>
+            <option>Viewer</option>
+          </select>
+          <div class="preview-helper">Required</div>
         </div>
       </div>
-
-      <!-- Character Count -->
-      <div class="grid md:grid-cols-2 gap-5">
-        <div class="rounded-r-container overflow-hidden border-2 border-r-pos-fg/30">
-          <div class="px-5 py-3 bg-r-pos-bg/30 flex items-center gap-2">
-            <svg class="w-5 h-5 text-r-pos-fg" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-            <span class="text-[13px] font-semibold text-r-pos-fg uppercase tracking-wider">Do</span>
-          </div>
-          <div class="p-5 bg-r-bg-primary">
-            <p class="text-[15px] text-r-fg-primary leading-[1.5] max-w-[65ch] mb-3">
-              At Handshake, we believe every student deserves the chance to build a meaningful career. Our platform connects students and recent graduates with employers who value potential over pedigree. This role will help shape the future of how early-career talent finds opportunity.
-            </p>
-            <p class="text-[13px] text-r-fg-secondary">Constrained to max-width: 65ch. Comfortable reading measure for body text.</p>
+      <div class="component-meta">
+        <div class="meta-group">
+          <div class="meta-label">Statuses</div>
+          <div class="meta-tags">
+            <span class="meta-tag">FieldStatus.Warning</span>
+            <span class="meta-tag">FieldStatus.Negative</span>
+            <span class="meta-tag">FieldStatus.Positive</span>
           </div>
         </div>
-        <div class="rounded-r-container overflow-hidden border-2 border-r-neg-fg/30">
-          <div class="px-5 py-3 bg-r-neg-bg/30 flex items-center gap-2">
-            <svg class="w-5 h-5 text-r-neg-fg" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-            <span class="text-[13px] font-semibold text-r-neg-fg uppercase tracking-wider">Don't</span>
-          </div>
-          <div class="p-5 bg-r-bg-primary">
-            <p class="text-[15px] text-r-fg-primary leading-[1.5] mb-3">
-              At Handshake, we believe every student deserves the chance to build a meaningful career. Our platform connects students and recent graduates with employers who value potential over pedigree. This role will help shape the future of how early-career talent finds opportunity. We are looking for passionate individuals who share our vision of democratizing access to meaningful work for all students regardless of background.
-            </p>
-            <p class="text-[13px] text-r-fg-secondary">Full-width paragraph. Lines are too long &mdash; reader loses their place. No measure constraint.</p>
+        <div class="meta-group">
+          <div class="meta-label">Sizes</div>
+          <div class="meta-tags"><span class="meta-tag">FieldSize.Medium</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="code-block">
+      <span class="code-lang">TSX</span>
+      <button class="code-copy" onclick="copyCode(this)">Copy</button>
+      <pre><span class="op">&lt;</span><span class="fn">Select</span>
+  <span class="at">label</span><span class="op">=</span><span class="st">"Role"</span>
+  <span class="at">placeholder</span><span class="op">=</span><span class="st">"Choose..."</span>
+  <span class="at">data-size</span><span class="op">={</span>FieldSize.Medium<span class="op">}</span>
+  <span class="at">helperText</span><span class="op">=</span><span class="st">"Required"</span>
+<span class="op">&gt;</span>
+  <span class="op">&lt;</span><span class="fn">Option</span> <span class="at">value</span><span class="op">=</span><span class="st">"admin"</span><span class="op">&gt;</span>Admin<span class="op">&lt;/</span><span class="fn">Option</span><span class="op">&gt;</span>
+<span class="op">&lt;/</span><span class="fn">Select</span><span class="op">&gt;</span></pre>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       COMPONENTS: INLINE ALERT
+       ══════════════════════════════════════ -->
+  <section class="section" id="inline-alert">
+    <div class="section-header">
+      <h2 class="h-lg">InlineAlert</h2>
+      <p>Contextual messages for in-page feedback. Five statuses including AI.</p>
+    </div>
+
+    <div class="component-block">
+      <div class="component-header"><h3>Statuses</h3></div>
+      <div class="component-preview" style="flex-direction:column;gap:var(--s-3);align-items:stretch">
+        <div class="preview-alert info"><strong>Info&nbsp;&mdash;</strong>&nbsp;Here's some useful information.</div>
+        <div class="preview-alert positive"><strong>Saved&nbsp;&mdash;</strong>&nbsp;Your changes have been saved.</div>
+        <div class="preview-alert warning"><strong>Warning&nbsp;&mdash;</strong>&nbsp;This action may have side effects.</div>
+        <div class="preview-alert negative"><strong>Error&nbsp;&mdash;</strong>&nbsp;Something went wrong. Try again.</div>
+      </div>
+      <div class="component-meta">
+        <div class="meta-group">
+          <div class="meta-label">Statuses</div>
+          <div class="meta-tags">
+            <span class="meta-tag">Information</span>
+            <span class="meta-tag">Warning</span>
+            <span class="meta-tag">Negative</span>
+            <span class="meta-tag">Positive</span>
+            <span class="meta-tag">Ai</span>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Component Behavior -->
-    <h3 id="behavior" class="text-[24px] font-medium tracking-[-0.02em] mb-5">Component Behavior</h3>
-    <div class="space-y-6 mb-12">
-      <!-- Tooltips -->
-      <div class="bg-r-bg-surface rounded-r-container p-8 border border-r-fg-border">
-        <div class="text-[13px] font-mono text-r-fg-secondary mb-4 uppercase tracking-wider">Tooltips</div>
-        <div class="flex items-center gap-6">
-          <div class="relative inline-flex flex-col items-center">
-            <div class="mb-2 px-3 py-1.5 bg-r-bg-inverted text-r-fg-inverted text-[13px] rounded-r-input-sm shadow-e3 whitespace-nowrap">
-              Add to favorites
-              <div class="absolute left-1/2 -translate-x-1/2 -bottom-1 w-2 h-2 bg-r-bg-inverted rotate-45"></div>
-            </div>
-            <button class="t-bg focus-ring w-10 h-10 bg-r-bg-primary text-r-fg-primary rounded-r-max border border-r-fg-border hover:bg-r-bg-tertiary flex items-center justify-center">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
-            </button>
-          </div>
-          <p class="text-[13px] text-r-fg-secondary max-w-sm">Icon-only buttons require tooltips. Tooltip appears above the trigger, centered, with an inverted background and small caret.</p>
-        </div>
-      </div>
+    <div class="code-block">
+      <span class="code-lang">TSX</span>
+      <button class="code-copy" onclick="copyCode(this)">Copy</button>
+      <pre><span class="op">&lt;</span><span class="fn">InlineAlert</span>
+  <span class="at">title</span><span class="op">=</span><span class="st">"Saved"</span>
+  <span class="at">data-status</span><span class="op">={</span>InlineAlertStatus.Positive<span class="op">}</span>
+  <span class="at">icon</span>
+<span class="op">&gt;</span>
+  <span class="op">&lt;</span><span class="tg">div</span><span class="op">&gt;</span>Done.<span class="op">&lt;/</span><span class="tg">div</span><span class="op">&gt;</span>
+<span class="op">&lt;/</span><span class="fn">InlineAlert</span><span class="op">&gt;</span></pre>
+    </div>
+  </section>
 
-      <!-- Tabs -->
-      <div class="bg-r-bg-surface rounded-r-container p-8 border border-r-fg-border">
-        <div class="text-[13px] font-mono text-r-fg-secondary mb-4 uppercase tracking-wider">Tabs</div>
-        <div class="border-b border-r-fg-border mb-4">
-          <div class="flex gap-0">
-            <button class="px-4 py-3 text-[15px] font-medium text-r-ip border-b-2 border-r-ip -mb-px">Overview</button>
-            <button class="px-4 py-3 text-[15px] text-r-fg-secondary hover:text-r-fg-primary t-all -mb-px border-b-2 border-transparent">Details</button>
-            <button class="px-4 py-3 text-[15px] text-r-fg-secondary hover:text-r-fg-primary t-all -mb-px border-b-2 border-transparent">Activity</button>
-          </div>
-        </div>
-        <div class="bg-r-bg-primary rounded-r-input p-4 border border-r-fg-border">
-          <p class="text-[15px] text-r-fg-secondary">Tab content area. Tabs are left-aligned, active tab uses interactive-primary color with a 2px bottom border. Content swaps in-place below.</p>
-        </div>
-      </div>
-
-      <!-- More/Expand -->
-      <div class="bg-r-bg-surface rounded-r-container p-8 border border-r-fg-border">
-        <div class="text-[13px] font-mono text-r-fg-secondary mb-4 uppercase tracking-wider">More / Expand</div>
-        <div class="space-y-0 border border-r-fg-border rounded-r-input overflow-hidden mb-3">
-          <div class="px-4 py-3 border-b border-r-fg-border flex items-center justify-between">
-            <div>
-              <div class="text-[15px] font-medium">Software Engineer</div>
-              <div class="text-[13px] text-r-fg-secondary">Handshake &middot; San Francisco</div>
-            </div>
-            <svg class="w-5 h-5 text-r-fg-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-          </div>
-          <div class="px-4 py-3 border-b border-r-fg-border flex items-center justify-between">
-            <div>
-              <div class="text-[15px] font-medium">Product Designer</div>
-              <div class="text-[13px] text-r-fg-secondary">Stripe &middot; Remote</div>
-            </div>
-            <svg class="w-5 h-5 text-r-fg-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-          </div>
-          <div class="px-4 py-3 flex items-center justify-between">
-            <div>
-              <div class="text-[15px] font-medium">Data Analyst</div>
-              <div class="text-[13px] text-r-fg-secondary">Figma &middot; New York</div>
-            </div>
-            <svg class="w-5 h-5 text-r-fg-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-          </div>
-        </div>
-        <a href="#" class="text-[15px] font-medium text-r-ip hover:text-r-ip-hover t-all">Show 5 more &#8250;</a>
-      </div>
+  <!-- ══════════════════════════════════════
+       COMPONENTS: TOAST
+       ══════════════════════════════════════ -->
+  <section class="section" id="toast">
+    <div class="section-header">
+      <h2 class="h-lg">Toast</h2>
+      <p>Ephemeral notifications. Wrap in <code>&lt;Toasts&gt;</code> provider.</p>
     </div>
 
-    <!-- Unresolved Patterns -->
-    <h3 id="unresolved" class="text-[24px] font-medium tracking-[-0.02em] mb-5">Unresolved Patterns</h3>
-    <div class="bg-r-bg-primary rounded-r-container shadow-e2 overflow-hidden">
-      <div class="overflow-x-auto">
-        <table class="w-full min-w-[500px]">
+    <div class="component-block">
+      <div class="component-header"><h3>Preview</h3></div>
+      <div class="component-preview" style="flex-direction:column;gap:var(--s-3);align-items:flex-end">
+        <div style="background:var(--r-positive-bg);color:var(--r-positive-fg);padding:var(--s-3) var(--s-5);border-radius:var(--rad-2);font-size:14px;font-weight:500;box-shadow:var(--shadow-2);display:flex;align-items:center;gap:var(--s-2)">&#10003; Changes saved</div>
+        <div style="background:var(--r-warning-bg);color:var(--r-warning-fg);padding:var(--s-3) var(--s-5);border-radius:var(--rad-2);font-size:14px;font-weight:500;box-shadow:var(--shadow-2);display:flex;align-items:center;gap:var(--s-2)">&#9888; Connection unstable</div>
+        <div style="background:var(--r-negative-bg);color:var(--r-negative-fg);padding:var(--s-3) var(--s-5);border-radius:var(--rad-2);font-size:14px;font-weight:500;box-shadow:var(--shadow-2);display:flex;align-items:center;gap:var(--s-2)">&#10005; Failed to save</div>
+      </div>
+      <div class="component-meta">
+        <div class="meta-group">
+          <div class="meta-label">Statuses</div>
+          <div class="meta-tags">
+            <span class="meta-tag">ToastStatus.Positive</span>
+            <span class="meta-tag">ToastStatus.Warning</span>
+            <span class="meta-tag">ToastStatus.Negative</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       COMPONENTS: TAG
+       ══════════════════════════════════════ -->
+  <section class="section" id="tag">
+    <div class="section-header">
+      <h2 class="h-lg">Tag</h2>
+      <p>Colored labels. Three variants: Static, Interactive, Dismissable. Wrap text in <code>&lt;TagText&gt;</code>.</p>
+    </div>
+
+    <div class="component-block">
+      <div class="component-header"><h3>Colors</h3></div>
+      <div class="component-preview">
+        <span class="preview-tag tag-purple">Purple</span>
+        <span class="preview-tag tag-teal">Teal</span>
+        <span class="preview-tag tag-pink">Pink</span>
+        <span class="preview-tag tag-red">Red</span>
+        <span class="preview-tag tag-green">Green</span>
+        <span class="preview-tag tag-yellow">Yellow</span>
+      </div>
+      <div class="component-preview" style="background:var(--doc-surface)">
+        <span class="preview-tag tag-teal">Static</span>
+        <span class="preview-tag tag-teal" style="cursor:pointer;text-decoration:underline;text-underline-offset:2px">Interactive</span>
+        <span class="preview-tag tag-teal">Dismissable &times;</span>
+      </div>
+      <div class="component-meta">
+        <div class="meta-group">
+          <div class="meta-label">Variants</div>
+          <div class="meta-tags">
+            <span class="meta-tag">Static</span>
+            <span class="meta-tag">Interactive</span>
+            <span class="meta-tag">Dismissable</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       COMPONENTS: BANNER
+       ══════════════════════════════════════ -->
+  <section class="section" id="banner">
+    <div class="section-header">
+      <h2 class="h-lg">Banner</h2>
+      <p>Full-width contextual banners. Five semantic types.</p>
+    </div>
+
+    <div class="component-block">
+      <div class="component-header"><h3>Types</h3></div>
+      <div class="component-preview" style="flex-direction:column;gap:var(--s-3);align-items:stretch">
+        <div class="preview-banner" style="background:var(--r-info-bg);color:var(--r-info-fg)">&#8505;&ensp;Information banner&mdash;neutral informational context.</div>
+        <div class="preview-banner" style="background:var(--r-positive-bg);color:var(--r-positive-fg)">&#10003;&ensp;Positive banner&mdash;success confirmation.</div>
+        <div class="preview-banner" style="background:var(--r-warning-bg);color:var(--r-warning-fg)">&#9888;&ensp;Warning banner&mdash;caution required.</div>
+        <div class="preview-banner" style="background:var(--r-negative-bg);color:var(--r-negative-fg)">&#10005;&ensp;Negative banner&mdash;error or critical issue.</div>
+        <div class="preview-banner" style="background:linear-gradient(135deg,#E0E7FF,#EDE9FE);color:#4F46E5">&#10024;&ensp;AI banner&mdash;AI-generated content indicator.</div>
+      </div>
+      <div class="component-meta">
+        <div class="meta-group">
+          <div class="meta-label">Components</div>
+          <div class="meta-tags">
+            <span class="meta-tag">InformationBanner</span>
+            <span class="meta-tag">PositiveBanner</span>
+            <span class="meta-tag">WarningBanner</span>
+            <span class="meta-tag">NegativeBanner</span>
+            <span class="meta-tag">AiBanner</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       COMPONENTS: TABLE
+       ══════════════════════════════════════ -->
+  <section class="section" id="table">
+    <div class="section-header">
+      <h2 class="h-lg">Table</h2>
+      <p>Compositional <code>&lt;table&gt;</code> with sortable headers, row selection, and pagination.</p>
+    </div>
+
+    <div class="component-block">
+      <div class="component-header"><h3>Preview</h3></div>
+      <div class="component-preview" style="flex-direction:column;align-items:stretch;padding:0;overflow-x:auto">
+        <table style="width:100%;border-collapse:collapse;font-size:14px">
           <thead>
-            <tr class="text-left text-[13px] text-r-fg-secondary border-b border-r-fg-border">
-              <th class="p-5 pb-3 font-medium">Pattern</th>
-              <th class="p-5 pb-3 font-medium">Open Question</th>
+            <tr style="border-bottom:2px solid var(--doc-border)">
+              <th style="text-align:left;padding:var(--s-3) var(--s-4);font-weight:600;font-size:13px;color:var(--doc-muted)">Name &#8593;</th>
+              <th style="text-align:left;padding:var(--s-3) var(--s-4);font-weight:600;font-size:13px;color:var(--doc-muted)">Role</th>
+              <th style="text-align:left;padding:var(--s-3) var(--s-4);font-weight:600;font-size:13px;color:var(--doc-muted)">Status</th>
             </tr>
           </thead>
-          <tbody class="divide-y divide-r-fg-border">
-            <tr>
-              <td class="p-4 text-[15px] font-medium">Carousels</td>
-              <td class="p-4 text-[15px] text-r-fg-secondary">Swipe/scroll physics, item count per viewport, peek behavior</td>
+          <tbody>
+            <tr style="border-bottom:1px solid var(--doc-border)">
+              <td style="padding:var(--s-3) var(--s-4)">Alex Johnson</td>
+              <td style="padding:var(--s-3) var(--s-4)">Engineering</td>
+              <td style="padding:var(--s-3) var(--s-4)"><span class="preview-tag tag-green">Active</span></td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--doc-border)">
+              <td style="padding:var(--s-3) var(--s-4)">Sam Rivera</td>
+              <td style="padding:var(--s-3) var(--s-4)">Design</td>
+              <td style="padding:var(--s-3) var(--s-4)"><span class="preview-tag tag-green">Active</span></td>
             </tr>
             <tr>
-              <td class="p-4 text-[15px] font-medium">Skeleton vs. spinner loaders</td>
-              <td class="p-4 text-[15px] text-r-fg-secondary">When to use each; skeleton shape fidelity</td>
-            </tr>
-            <tr>
-              <td class="p-4 text-[15px] font-medium">Truncated text / "Show full copy"</td>
-              <td class="p-4 text-[15px] text-r-fg-secondary">Ellipsis vs. full text; expand-in-place vs. popover</td>
-            </tr>
-            <tr>
-              <td class="p-4 text-[15px] font-medium">Profile popover</td>
-              <td class="p-4 text-[15px] text-r-fg-secondary">Trigger behavior, content hierarchy, dismissal</td>
-            </tr>
-            <tr>
-              <td class="p-4 text-[15px] font-medium">Menus on mobile</td>
-              <td class="p-4 text-[15px] text-r-fg-secondary">Full-screen vs. bottom sheet vs. inline expansion</td>
-            </tr>
-            <tr>
-              <td class="p-4 text-[15px] font-medium">List vs. cards</td>
-              <td class="p-4 text-[15px] text-r-fg-secondary">Decision criteria (data density, scanability, action count)</td>
+              <td style="padding:var(--s-3) var(--s-4)">Jordan Lee</td>
+              <td style="padding:var(--s-3) var(--s-4)">Product</td>
+              <td style="padding:var(--s-3) var(--s-4)"><span class="preview-tag tag-yellow">Pending</span></td>
             </tr>
           </tbody>
         </table>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- ==================== BOLD FACTOR ==================== -->
-<section id="bold-factor" class="py-20 px-6 bg-r-ip text-r-fg-inverted">
-  <div class="max-w-[1120px] mx-auto">
-    <div class="font-brand text-[48px] lg:text-[72px] tracking-tight leading-[0.9] mb-3">THE BOLD FACTOR</div>
-    <p class="text-[19px] text-white/70 tracking-[-0.02em] leading-[1.3] mb-12 max-w-xl">Signature elements that make Rosetta unmistakably Rosetta.</p>
-    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-      <div class="bg-white/10 backdrop-blur-sm rounded-r-container p-6">
-        <div class="font-brand text-[36px] leading-none mb-3 text-white/40">01</div>
-        <h3 class="text-[24px] font-medium tracking-[-0.02em] leading-[1.2] mb-2">Dark Teal, Not Blue</h3>
-        <p class="text-[15px] text-white/60 leading-[1.4]">#04191B is the hero color. Sophisticated, distinctive. Avoids the "generic SaaS blue" trap.</p>
-      </div>
-      <div class="bg-white/10 backdrop-blur-sm rounded-r-container p-6">
-        <div class="font-brand text-[36px] leading-none mb-3 text-white/40">02</div>
-        <h3 class="text-[24px] font-medium tracking-[-0.02em] leading-[1.2] mb-2">Noi Grotesk + Alternates</h3>
-        <p class="text-[15px] text-white/60 leading-[1.4]">ss03 and ss11 features give subtle character. Geometric precision with humanist warmth.</p>
-      </div>
-      <div class="bg-white/10 backdrop-blur-sm rounded-r-container p-6">
-        <div class="font-brand text-[36px] leading-none mb-3 text-white/40">03</div>
-        <h3 class="text-[24px] font-medium tracking-[-0.02em] leading-[1.2] mb-2">Shadow-First Elevation</h3>
-        <p class="text-[15px] text-white/60 leading-[1.4]">Soft shadows over heavy borders. Cards float rather than sit. Depth without visual noise.</p>
-      </div>
-      <div class="bg-white/10 backdrop-blur-sm rounded-r-container p-6">
-        <div class="font-brand text-[36px] leading-none mb-3 text-white/40">04</div>
-        <h3 class="text-[24px] font-medium tracking-[-0.02em] leading-[1.2] mb-2">4px Grid Discipline</h3>
-        <p class="text-[15px] text-white/60 leading-[1.4]">Every measurement snaps to the 4px grid. Subconscious harmony across the entire system.</p>
-      </div>
-      <div class="bg-white/10 backdrop-blur-sm rounded-r-container p-6">
-        <div class="font-brand text-[36px] leading-none mb-3 text-white/40">05</div>
-        <h3 class="text-[24px] font-medium tracking-[-0.02em] leading-[1.2] mb-2">Status Dual Variants</h3>
-        <p class="text-[15px] text-white/60 leading-[1.4]">Each status has both a light background tint and saturated foreground. Flexible, consistent patterns.</p>
-      </div>
-      <div class="bg-white/10 backdrop-blur-sm rounded-r-container p-6">
-        <div class="font-brand text-[36px] leading-none mb-3 text-white/40">06</div>
-        <h3 class="text-[24px] font-medium tracking-[-0.02em] leading-[1.2] mb-2">Sansplomb for Impact</h3>
-        <p class="text-[15px] text-white/60 leading-[1.4]">Bold condensed energy reserved for hero headlines and marketing. Never in product UI.</p>
-      </div>
-      <div class="bg-white/10 backdrop-blur-sm rounded-r-container p-6">
-        <div class="font-brand text-[36px] leading-none mb-3 text-white/40">07</div>
-        <h3 class="text-[24px] font-medium tracking-[-0.02em] leading-[1.2] mb-2">White Space as Feature</h3>
-        <p class="text-[15px] text-white/60 leading-[1.4]">Generous padding and margins. The interface breathes. Content has room to be comprehended.</p>
-      </div>
-      <div class="bg-white/10 backdrop-blur-sm rounded-r-container p-6">
-        <div class="font-brand text-[36px] leading-none mb-3 text-white/40">08</div>
-        <h3 class="text-[24px] font-medium tracking-[-0.02em] leading-[1.2] mb-2">Semantic Color Restraint</h3>
-        <p class="text-[15px] text-white/60 leading-[1.4]">Color means something. Blue = info. Green = success. Red = error. Never decorative.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ==================== DO'S & DON'TS ==================== -->
-<section id="dos-donts" class="py-16 px-6 bg-r-bg-primary">
-  <div class="max-w-[1120px] mx-auto">
-    <h2 class="text-[32px] font-medium tracking-[-0.03em] leading-[1.2] mb-2">Do's and Don'ts</h2>
-    <p class="text-[17px] text-r-fg-secondary tracking-[-0.02em] leading-[1.4] mb-10 max-w-2xl">
-      Visual comparisons of correct Rosetta usage vs. common anti-patterns.
-    </p>
-
-    <div class="space-y-8">
-      <!-- Example 1: Color usage -->
-      <div class="grid md:grid-cols-2 gap-5">
-        <div class="rounded-r-container overflow-hidden border-2 border-r-pos-fg/30">
-          <div class="px-5 py-3 bg-r-pos-bg/30 flex items-center gap-2">
-            <svg class="w-5 h-5 text-r-pos-fg" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-            <span class="text-[13px] font-semibold text-r-pos-fg uppercase tracking-wider">Do</span>
-          </div>
-          <div class="p-5 bg-r-bg-primary">
-            <div class="flex gap-3 items-center mb-3">
-              <button class="t-bg h-10 px-5 bg-r-ip text-r-fg-inverted text-[13px] font-semibold rounded-r-input">Apply Now</button>
-              <span class="inline-flex items-center px-3 py-1 bg-r-pos-bg text-r-pos-fg text-[13px] font-semibold rounded-r-input-sm">Hired</span>
-              <span class="inline-flex items-center px-3 py-1 bg-r-neg-bg text-r-neg-fg text-[13px] font-semibold rounded-r-input-sm">Rejected</span>
-            </div>
-            <p class="text-[13px] text-r-fg-secondary">Use semantic colors only for meaningful status and actions. The dark teal primary anchors the interface.</p>
-          </div>
-        </div>
-        <div class="rounded-r-container overflow-hidden border-2 border-r-neg-fg/30">
-          <div class="px-5 py-3 bg-r-neg-bg/30 flex items-center gap-2">
-            <svg class="w-5 h-5 text-r-neg-fg" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-            <span class="text-[13px] font-semibold text-r-neg-fg uppercase tracking-wider">Don't</span>
-          </div>
-          <div class="p-5 bg-r-bg-primary">
-            <div class="flex gap-3 items-center mb-3">
-              <button class="h-10 px-5 bg-gradient-to-r from-purple-500 to-pink-500 text-white text-[13px] font-semibold rounded-full">Apply Now</button>
-              <span class="inline-flex items-center px-3 py-1 bg-orange-200 text-orange-700 text-[13px] font-semibold rounded-full">Hired</span>
-              <span class="inline-flex items-center px-3 py-1 bg-cyan-200 text-cyan-700 text-[13px] font-semibold rounded-full">Rejected</span>
-            </div>
-            <p class="text-[13px] text-r-fg-secondary">Don't use decorative gradients, off-palette colors, or rounded pills where the system specifies squared radii.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Example 2: Elevation -->
-      <div class="grid md:grid-cols-2 gap-5">
-        <div class="rounded-r-container overflow-hidden border-2 border-r-pos-fg/30">
-          <div class="px-5 py-3 bg-r-pos-bg/30 flex items-center gap-2">
-            <svg class="w-5 h-5 text-r-pos-fg" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-            <span class="text-[13px] font-semibold text-r-pos-fg uppercase tracking-wider">Do</span>
-          </div>
-          <div class="p-5 bg-r-bg-secondary">
-            <div class="bg-r-bg-primary rounded-r-container p-4 shadow-e2 border border-r-card-border mb-3">
-              <div class="text-[15px] font-medium mb-1">Product Manager at Airbnb</div>
-              <div class="text-[13px] text-r-fg-secondary">Soft shadow for elevation. Card floats naturally.</div>
-            </div>
-            <p class="text-[13px] text-r-fg-secondary">Cards use elevation shadows, not heavy borders. Subtle card-border (#E2E5F3) for definition.</p>
-          </div>
-        </div>
-        <div class="rounded-r-container overflow-hidden border-2 border-r-neg-fg/30">
-          <div class="px-5 py-3 bg-r-neg-bg/30 flex items-center gap-2">
-            <svg class="w-5 h-5 text-r-neg-fg" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-            <span class="text-[13px] font-semibold text-r-neg-fg uppercase tracking-wider">Don't</span>
-          </div>
-          <div class="p-5 bg-r-bg-secondary">
-            <div class="bg-r-bg-primary rounded-lg p-4 border-2 border-gray-400 mb-3">
-              <div class="text-[15px] font-medium mb-1">Product Manager at Airbnb</div>
-              <div class="text-[13px] text-r-fg-secondary">Heavy border, no shadow. Card looks flat and heavy.</div>
-            </div>
-            <p class="text-[13px] text-r-fg-secondary">Don't rely on thick borders for containment. Shadow-first elevation creates depth without visual weight.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Example 3: Tone -->
-      <div class="grid md:grid-cols-2 gap-5">
-        <div class="rounded-r-container overflow-hidden border-2 border-r-pos-fg/30">
-          <div class="px-5 py-3 bg-r-pos-bg/30 flex items-center gap-2">
-            <svg class="w-5 h-5 text-r-pos-fg" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-            <span class="text-[13px] font-semibold text-r-pos-fg uppercase tracking-wider">Do</span>
-          </div>
-          <div class="p-5 bg-r-bg-primary">
-            <div class="text-[32px] font-medium tracking-[-0.03em] leading-[1.2] mb-1">Find your next role</div>
-            <div class="text-[17px] text-r-fg-secondary tracking-[-0.02em] leading-[1.4]">Discover opportunities at companies that match your values.</div>
-            <p class="text-[13px] text-r-fg-secondary mt-3">Clean, professional, warm. Generous whitespace. Content is the hero.</p>
-          </div>
-        </div>
-        <div class="rounded-r-container overflow-hidden border-2 border-r-neg-fg/30">
-          <div class="px-5 py-3 bg-r-neg-bg/30 flex items-center gap-2">
-            <svg class="w-5 h-5 text-r-neg-fg" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-            <span class="text-[13px] font-semibold text-r-neg-fg uppercase tracking-wider">Don't</span>
-          </div>
-          <div class="p-5 bg-gray-900">
-            <div class="text-[32px] font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400 leading-[1.2] mb-1">LAND YOUR DREAM JOB!!!</div>
-            <div class="text-[17px] text-gray-400 leading-[1.4]">Join the revolution. We're disrupting career discovery.</div>
-            <p class="text-[13px] text-gray-500 mt-3">Not dark or moody. Not playful or whimsical. Not trendy or experimental.</p>
+      <div class="component-meta">
+        <div class="meta-group">
+          <div class="meta-label">Composition</div>
+          <div class="meta-tags">
+            <span class="meta-tag">SortableHeader</span>
+            <span class="meta-tag">useRowSelect()</span>
+            <span class="meta-tag">useSortBy()</span>
+            <span class="meta-tag">Pagination</span>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<div class="divider mx-6"></div>
+  <!-- ══════════════════════════════════════
+       PATTERNS: LAYOUTS
+       ══════════════════════════════════════ -->
+  <section class="section" id="layouts">
+    <div class="section-header">
+      <h2 class="h-lg">Layouts</h2>
+      <p>Pre-built layout patterns for common page structures.</p>
+    </div>
 
-<!-- ==================== PRODUCT DEMOS ==================== -->
-<section id="demos" class="py-16 px-6 bg-r-bg-secondary">
-  <div class="max-w-[1120px] mx-auto">
-    <h2 class="text-[32px] font-medium tracking-[-0.03em] leading-[1.2] mb-2">Product Demos</h2>
-    <p class="text-[17px] text-r-fg-secondary tracking-[-0.02em] leading-[1.4] mb-10 max-w-2xl">
-      Live implementations of Rosetta in product-like contexts.
-    </p>
-
-    <div class="grid md:grid-cols-2 gap-5">
-      <!-- Job Search Demo -->
-      <a href="rosetta-demo-jobs.html" class="t-shadow group block bg-r-bg-primary rounded-r-container shadow-e2 border border-r-card-border hover:shadow-e3 hover:border-r-fg-border overflow-hidden">
-        <div class="p-6">
-          <div class="flex items-start justify-between mb-3">
-            <div class="w-12 h-12 bg-r-ip rounded-r-input flex items-center justify-center">
-              <svg class="w-6 h-6 text-r-fg-inverted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-            </div>
-            <span class="inline-flex items-center px-3 py-1 bg-r-pos-bg text-r-pos-fg text-[13px] font-semibold rounded-r-input-sm">Live Demo</span>
-          </div>
-          <h3 class="text-[24px] font-medium tracking-[-0.02em] leading-[1.2] mb-2 group-hover:text-r-ip t-all">Job Search</h3>
-          <p class="text-[15px] text-r-fg-secondary leading-[1.4]">Search, filter, and browse job listings. Cards, badges, inputs, and action hierarchy in context.</p>
+    <div class="component-block">
+      <div class="component-header">
+        <h3>GridLayout</h3>
+        <p>12-column responsive grid. Use <code>spans</code> and <code>itemSpans</code> props.</p>
+      </div>
+      <div class="component-preview" style="flex-direction:column;align-items:stretch;gap:var(--s-2)">
+        <div style="display:grid;grid-template-columns:repeat(12,1fr);gap:var(--s-2)">
+          <div style="grid-column:span 4;height:48px;background:var(--doc-accent-soft);border-radius:var(--rad-1);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--doc-muted)">span 4</div>
+          <div style="grid-column:span 4;height:48px;background:var(--doc-accent-soft);border-radius:var(--rad-1);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--doc-muted)">span 4</div>
+          <div style="grid-column:span 4;height:48px;background:var(--doc-accent-soft);border-radius:var(--rad-1);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--doc-muted)">span 4</div>
         </div>
-      </a>
-
-      <!-- Placeholder -->
-      <div class="rounded-r-container border-2 border-dashed border-r-fg-border p-6 flex flex-col items-center justify-center text-center min-h-[200px]">
-        <svg class="w-8 h-8 text-r-fg-disabled mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg>
-        <div class="text-[15px] font-medium text-r-fg-disabled mb-1">More demos coming soon</div>
-        <div class="text-[13px] text-r-fg-disabled">Profile, messaging, employer dashboard</div>
+        <div style="display:grid;grid-template-columns:repeat(12,1fr);gap:var(--s-2)">
+          <div style="grid-column:span 8;height:48px;background:var(--doc-accent-soft);border-radius:var(--rad-1);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--doc-muted)">span 8</div>
+          <div style="grid-column:span 4;height:48px;background:var(--doc-accent-soft);border-radius:var(--rad-1);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--doc-muted)">span 4</div>
+        </div>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- ==================== FOOTER ==================== -->
-<footer class="py-12 px-6 bg-r-bg-inverted text-r-fg-inverted">
-  <div class="max-w-[1120px] mx-auto">
-    <div class="flex flex-col md:flex-row items-center justify-between gap-6 mb-6">
-      <div class="flex items-center gap-4">
-        <span class="font-brand text-[28px] tracking-tight leading-none">ROSETTA</span>
-        <span class="text-[13px] text-white/50">Handshake Design System</span>
+    <div class="component-block" style="margin-top:var(--s-4)">
+      <div class="component-header">
+        <h3>TwoColumnLeftLayout</h3>
+        <p>Master-detail pattern. <code>leftContent</code>, <code>rightContent</code>, <code>focusedColumn</code> props.</p>
       </div>
-      <div class="flex items-center gap-4">
-        <button id="copyPromptBtn" class="t-bg focus-ring h-10 px-5 bg-white/10 text-r-fg-inverted text-[13px] font-semibold rounded-r-input hover:bg-white/20 backdrop-blur-sm">
-          Copy Rosetta Prompt
-        </button>
-        <a href="index.html" class="text-[13px] text-white/50 hover:text-white t-all">&larr; All Prompts</a>
+      <div class="component-preview" style="flex-direction:column;align-items:stretch">
+        <div style="display:grid;grid-template-columns:1fr 2fr;gap:var(--s-4)">
+          <div style="height:120px;background:var(--doc-accent-soft);border-radius:var(--rad-2);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--doc-muted)">leftContent</div>
+          <div style="height:120px;background:var(--doc-accent-soft);border-radius:var(--rad-2);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--doc-muted)">rightContent</div>
+        </div>
       </div>
     </div>
-    <div class="text-center text-[13px] text-white/50">Professional clarity with human warmth</div>
-  </div>
-</footer>
+  </section>
 
-</div><!-- close main content wrapper -->
-
-<!-- ==================== MODAL ==================== -->
-<div id="modal" class="fixed inset-0 z-[100] hidden items-center justify-center">
-  <div class="modal-overlay absolute inset-0" id="modalOverlay"></div>
-  <div class="anim-modal relative bg-r-bg-primary rounded-r-container shadow-e3 w-full max-w-md mx-4 p-6">
-    <div class="flex items-center justify-between mb-4">
-      <h3 class="text-[28px] font-medium tracking-[-0.03em] leading-[1.2]">Apply to this role?</h3>
-      <button id="modalClose" class="t-bg focus-ring w-10 h-10 rounded-r-input flex items-center justify-center hover:bg-r-i-hovered">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-      </button>
+  <!-- ══════════════════════════════════════
+       PATTERNS: MOTION
+       ══════════════════════════════════════ -->
+  <section class="section" id="motion">
+    <div class="section-header">
+      <h2 class="h-lg">Motion</h2>
+      <p>Functional, not decorative. Standard timing for all transitions.</p>
     </div>
-    <p class="text-[15px] text-r-fg-secondary leading-[1.4] mb-6">Your profile will be shared with the employer. Make sure your resume and portfolio are up to date before applying.</p>
-    <div class="mb-6">
-      <label class="block text-[13px] font-medium mb-2">Cover note (optional)</label>
-      <textarea rows="3" placeholder="Add a personal note to the recruiter..." class="focus-ring t-all w-full p-4 border border-r-fg-border rounded-r-input-sm bg-transparent placeholder:text-r-fg-secondary hover:border-r-fg-primary resize-none text-[15px]"></textarea>
-    </div>
-    <div class="flex gap-3 justify-end">
-      <button id="modalCancel" class="t-bg focus-ring h-12 px-6 bg-r-bg-primary text-r-fg-primary font-semibold rounded-r-input text-[15px] border border-r-fg-border hover:bg-r-bg-tertiary">Cancel</button>
-      <button class="t-bg focus-ring h-12 px-6 bg-r-ip text-r-fg-inverted font-semibold rounded-r-input text-[15px] hover:bg-r-ip-hover active:bg-r-ip-active">Submit Application</button>
-    </div>
-  </div>
-</div>
 
-<!-- ==================== TOAST ==================== -->
-<div id="toast" class="fixed bottom-6 right-6 z-[200] hidden">
-  <div class="anim-toast bg-r-bg-inverted text-r-fg-inverted px-4 py-3 rounded-r-input shadow-e3 flex items-center gap-2">
-    <svg class="w-5 h-5 text-r-pos-bg" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-    <span id="toastMsg" class="text-[13px]">Copied</span>
-  </div>
-</div>
+    <div class="dna-grid">
+      <div class="dna-card">
+        <h4>Standard Transition</h4>
+        <p><code>transition: 0.2s ease-out</code></p>
+        <p style="margin-top:var(--s-2)">Applied to hover states, focus rings, color changes, and micro-interactions.</p>
+      </div>
+      <div class="dna-card">
+        <h4>Reduced Motion</h4>
+        <p><code>prefers-reduced-motion: reduce</code></p>
+        <p style="margin-top:var(--s-2)">Always respected. Animations disabled or replaced with instant transitions.</p>
+      </div>
+    </div>
+  </section>
 
-<!-- ==================== JS ==================== -->
+  <!-- ══════════════════════════════════════
+       PATTERNS: DO / DON'T
+       ══════════════════════════════════════ -->
+  <section class="section" id="do-dont">
+    <div class="section-header">
+      <h2 class="h-lg">Do / Don't</h2>
+      <p>Guidelines for correct Rosetta usage.</p>
+    </div>
+
+    <div class="do-dont">
+      <div class="do-col">
+        <h4>&#10003; Do</h4>
+        <ul>
+          <li>Wrap button text in <code>&lt;ButtonText&gt;</code>, icons in <code>&lt;RosettaLeftIcon&gt;</code>/<code>&lt;RosettaRightIcon&gt;</code></li>
+          <li>Use <code>data-size</code>/<code>data-status</code> attributes for sizing and status</li>
+          <li>Use <code>aria-label</code> on icon-only buttons and inputs without visible labels</li>
+          <li>Use Rosetta tokens for ALL colors, spacing, and radii</li>
+          <li>Use <code>&lt;Dismiss&gt;</code> wrapper for elements that close modals</li>
+          <li>Buttons for actions, <code>&lt;Link&gt;</code> for navigation</li>
+          <li>Maintain minimum 44px touch target</li>
+        </ul>
+      </div>
+      <div class="dont-col">
+        <h4>&#10005; Don't</h4>
+        <ul>
+          <li>Hardcode colors, spacing, or font sizes</li>
+          <li>Invent new tokens or components not in Rosetta</li>
+          <li>Use color decoratively&mdash;color carries semantic meaning</li>
+          <li>Put too much in modals&mdash;if scrolling needed, use a page</li>
+          <li>Use raw HTML <code>&lt;select&gt;</code>/<code>&lt;input&gt;</code>&mdash;use Rosetta fields</li>
+          <li>Skip labels on fields (use <code>aria-label</code> if visually hidden)</li>
+          <li>Use inverted button variants or <code>--deprecated</code> tokens</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       ACCESSIBILITY
+       ══════════════════════════════════════ -->
+  <section class="section" id="accessibility">
+    <div class="section-header">
+      <h2 class="h-lg">Accessibility</h2>
+      <p>WCAG AA compliance is a hard requirement, not a nice-to-have.</p>
+    </div>
+
+    <h3 class="h-sm" style="margin-bottom:var(--s-4)">Requirements</h3>
+    <div class="a11y-list">
+      <div class="a11y-item">
+        <div class="a11y-check">&#10003;</div>
+        <div class="a11y-text"><strong>Color Contrast</strong>&mdash;WCAG AA minimum. 4.5:1 for normal text, 3:1 for large text (18px+ or 14px bold).</div>
+      </div>
+      <div class="a11y-item">
+        <div class="a11y-check">&#10003;</div>
+        <div class="a11y-text"><strong>Focus Indicators</strong>&mdash;<code>outline: var(--rosetta-interactive-focusOutline) solid 2px; outline-offset: 2px</code></div>
+      </div>
+      <div class="a11y-item">
+        <div class="a11y-check">&#10003;</div>
+        <div class="a11y-text"><strong>Keyboard Navigation</strong>&mdash;Enter/Space activate buttons. Escape closes modals. Tab navigates through focusable elements.</div>
+      </div>
+      <div class="a11y-item">
+        <div class="a11y-check">&#10003;</div>
+        <div class="a11y-text"><strong>Modal Accessibility</strong>&mdash;Automatic focus trap. <code>aria-label</code> required on every modal.</div>
+      </div>
+      <div class="a11y-item">
+        <div class="a11y-check">&#10003;</div>
+        <div class="a11y-text"><strong>Form Labels</strong>&mdash;Every field needs a label. Use <code>aria-label</code> for visually hidden labels. Focus moves to first error on submit.</div>
+      </div>
+      <div class="a11y-item">
+        <div class="a11y-check">&#10003;</div>
+        <div class="a11y-text"><strong>Table Semantics</strong>&mdash;<code>&lt;th&gt;</code> with <code>scope</code>, <code>&lt;caption&gt;</code> for table title, <code>aria-sort</code> on sortable headers.</div>
+      </div>
+      <div class="a11y-item">
+        <div class="a11y-check">&#10003;</div>
+        <div class="a11y-text"><strong>Reduced Motion</strong>&mdash;Respect <code>prefers-reduced-motion: reduce</code>. All animations must have a reduced-motion fallback.</div>
+      </div>
+    </div>
+
+    <h3 class="h-sm" style="margin:var(--s-8) 0 var(--s-4)">Keyboard Patterns</h3>
+    <table class="token-table">
+      <thead><tr><th>Key</th><th>Action</th></tr></thead>
+      <tbody>
+        <tr><td><code>Tab</code></td><td>Navigate to next focusable element</td></tr>
+        <tr><td><code>Shift+Tab</code></td><td>Navigate to previous focusable element</td></tr>
+        <tr><td><code>Enter</code> / <code>Space</code></td><td>Activate buttons, toggle checkboxes</td></tr>
+        <tr><td><code>Escape</code></td><td>Close modals, dismiss toasts, cancel actions</td></tr>
+        <tr><td><code>Arrow Keys</code></td><td>Navigate within radio groups, selects, menus</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       RESOURCES
+       ══════════════════════════════════════ -->
+  <section class="section" id="resources">
+    <div class="section-header">
+      <h2 class="h-lg">Resources</h2>
+      <p>Package: <code>@joinhandshake/rosetta</code></p>
+    </div>
+
+    <table class="token-table">
+      <thead><tr><th>Resource</th><th>URL</th></tr></thead>
+      <tbody>
+        <tr><td>Rosetta Component Library</td><td><a href="https://rosetta.joinhandshake-internal.com/" style="color:var(--doc-accent)">rosetta.joinhandshake-internal.com</a></td></tr>
+        <tr><td>Keystone (Foundation)</td><td><a href="https://keystone.joinhandshake-internal.com/" style="color:var(--doc-accent)">keystone.joinhandshake-internal.com</a></td></tr>
+        <tr><td>Playground</td><td><a href="https://rosetta-playground.joinhandshake-internal.com/" style="color:var(--doc-accent)">rosetta-playground.joinhandshake-internal.com</a></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Footer -->
+  <footer class="doc-footer">
+    Rosetta Design System &middot; Handshake &middot; Built from <a href="#home">DESIGN-CONTEXT.md</a>
+  </footer>
+
+  </div><!-- end .main-content -->
+</main>
+
+<!-- Back to top -->
+<button class="back-top" id="backTop" onclick="window.scrollTo({top:0})" aria-label="Back to top">&#8593;</button>
+
+<!-- ════════════════════════════════════════════
+     JAVASCRIPT
+     ════════════════════════════════════════════ -->
 <script>
-  // Toast
-  const toast = document.getElementById('toast');
-  const toastMsg = document.getElementById('toastMsg');
-  let toastTimer;
-  function showToast(msg) {
-    toastMsg.textContent = msg;
-    toast.classList.remove('hidden');
-    clearTimeout(toastTimer);
-    toastTimer = setTimeout(() => toast.classList.add('hidden'), 2000);
+// Theme toggle
+function toggleTheme() {
+  var html = document.documentElement;
+  var next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  html.setAttribute('data-theme', next);
+  localStorage.setItem('rosetta-theme', next);
+  document.getElementById('theme-icon').innerHTML = next === 'dark' ? '&#9788;' : '&#9789;';
+}
+
+// Init theme
+(function() {
+  var saved = localStorage.getItem('rosetta-theme');
+  var pref = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  var theme = saved || pref;
+  document.documentElement.setAttribute('data-theme', theme);
+  document.getElementById('theme-icon').innerHTML = theme === 'dark' ? '&#9788;' : '&#9789;';
+})();
+
+// Sidebar toggle (mobile)
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('open');
+}
+function closeSidebar() {
+  document.getElementById('sidebar').classList.remove('open');
+}
+
+// Active sidebar link tracking
+var sidebarLinks = document.querySelectorAll('.sidebar-link');
+var sections = [];
+sidebarLinks.forEach(function(link) {
+  var id = link.getAttribute('href');
+  if (id && id.startsWith('#')) {
+    var el = document.querySelector(id);
+    if (el) sections.push({ el: el, link: link });
   }
+});
 
-  // Color swatches — click to copy
-  document.querySelectorAll('.swatch').forEach(el => {
-    el.addEventListener('click', async () => {
-      const color = el.dataset.color;
-      if (!color) return;
-      try {
-        await navigator.clipboard.writeText(color);
-        showToast('Copied ' + color);
-      } catch { showToast('Copy failed'); }
-    });
-  });
-
-  // Copy prompt button
-  document.getElementById('copyPromptBtn').addEventListener('click', async () => {
-    try {
-      const res = await fetch('../design-prompts/rosetta.md');
-      const text = await res.text();
-      await navigator.clipboard.writeText(text);
-      showToast('Prompt copied!');
-    } catch { showToast('Copy failed'); }
-  });
-
-  // Modal
-  const modal = document.getElementById('modal');
-  document.getElementById('modalTrigger').addEventListener('click', () => {
-    modal.classList.remove('hidden');
-    modal.classList.add('flex');
-  });
-  function closeModal() {
-    modal.classList.add('hidden');
-    modal.classList.remove('flex');
+function updateActive() {
+  var current = sections[0];
+  var offset = 100;
+  for (var i = 0; i < sections.length; i++) {
+    if (sections[i].el.getBoundingClientRect().top <= offset) current = sections[i];
   }
-  document.getElementById('modalOverlay').addEventListener('click', closeModal);
-  document.getElementById('modalClose').addEventListener('click', closeModal);
-  document.getElementById('modalCancel').addEventListener('click', closeModal);
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+  sidebarLinks.forEach(function(l) { l.classList.remove('active'); });
+  if (current) current.link.classList.add('active');
+}
+window.addEventListener('scroll', updateActive, { passive: true });
+updateActive();
 
-  // Smooth scroll for anchor links
-  document.querySelectorAll('a[href^="#"]').forEach(a => {
-    a.addEventListener('click', e => {
-      e.preventDefault();
-      const target = document.querySelector(a.getAttribute('href'));
-      if (target) {
-        const offset = 80;
-        const top = target.getBoundingClientRect().top + window.scrollY - offset;
-        window.scrollTo({ top, behavior: 'smooth' });
-      }
-    });
+// Back to top
+window.addEventListener('scroll', function() {
+  document.getElementById('backTop').classList.toggle('show', window.scrollY > 400);
+}, { passive: true });
+
+// Copy swatch value
+function copySwatch(el, val) {
+  navigator.clipboard.writeText(val).then(function() {
+    var toast = el.querySelector('.swatch-toast');
+    toast.classList.add('show');
+    setTimeout(function() { toast.classList.remove('show'); }, 1200);
   });
+}
 
+// Copy code block
+function copyCode(btn) {
+  var pre = btn.closest('.code-block').querySelector('pre');
+  var text = pre.textContent || pre.innerText;
+  navigator.clipboard.writeText(text).then(function() {
+    btn.textContent = 'Copied!';
+    setTimeout(function() { btn.textContent = 'Copy'; }, 1500);
+  });
+}
+
+// Close sidebar on outside click (mobile)
+document.addEventListener('click', function(e) {
+  var sidebar = document.getElementById('sidebar');
+  var toggle = document.querySelector('.mobile-toggle');
+  if (sidebar.classList.contains('open') && !sidebar.contains(e.target) && !toggle.contains(e.target)) {
+    sidebar.classList.remove('open');
+  }
+});
+
+// Reduced motion
+if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  document.documentElement.style.scrollBehavior = 'auto';
+}
 </script>
 </body>
 </html>
